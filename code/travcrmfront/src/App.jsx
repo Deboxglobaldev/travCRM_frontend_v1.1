@@ -4,10 +4,11 @@ import Footer from './Component/Layout/Footer'
 import Mail from './Pages/Mail'
 import Query from './Pages/Query'
 import Home from "./Pages/Home";
-import Master from "./Pages/Master";
+import Master from './Pages/master/Master';
 import Login from "./Pages/Auth/Login";
 import { useState } from "react";
 import Logout from "./Pages/Auth/Logout";
+import State from './Pages/master/state/State';
 
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
@@ -27,6 +28,7 @@ function App() {
           <Route path='/mail' element={isLogged ? <Mail/> : <Login />} />
           <Route path='/query' element={isLogged ? <Query/> : <Login />} />
           <Route path='/master' element={isLogged ? <Master /> : <Login />} />
+          <Route path='/master/state' element={isLogged ? <State/> : <Login/>}></Route>
           <Route path='/login' element={<Login setLogged={setLogged} />} />
           <Route path='/logout' element={<Logout setLogged={setLogged} />} />
         </Routes>
