@@ -12,7 +12,7 @@ import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Master from "./components/master/Master";
-
+import StateMaster from "./components/master/state_master/StateMaster";
 const App = () => {
 
   const [isLogged, setIsLogged] = useState(false);
@@ -20,11 +20,11 @@ const App = () => {
   return (
     <>
         <Router>
-          {/* {isLogged && <Navbar/>} */}
-          <Navbar/>
+           {isLogged && <Navbar/>}
           <Routes>
-            {/* <Route path="/" element={isLogged ? <Dashboard /> : <Login setIsLogged={setIsLogged}/>}></Route> */}
-            <Route path='/' element={<Master/>}></Route>
+            <Route path="/" element={isLogged ? <Dashboard /> : <Login setIsLogged={setIsLogged}/>}></Route>
+            <Route path='/master' element={<Master/>}></Route>
+            <Route path='/statemaster' element={<StateMaster/>}></Route>
           </Routes>
           <Footer/>
         </Router>

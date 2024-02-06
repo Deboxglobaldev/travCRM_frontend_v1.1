@@ -1563,6 +1563,14 @@ const Navbar = () => {
                 </NavLink>
               </div>
             </li>
+
+            <li className="nav-item dropdown">
+              <div className="dropdown">
+              <NavLink to='/master' className='navbar-nav-link '>
+                Master
+              </NavLink>
+              </div>
+            </li>
           </ul>
 
           <ul className="navbar-nav ml-md-auto">

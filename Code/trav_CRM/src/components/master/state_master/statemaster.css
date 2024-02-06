@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.stateHead{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.backState{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div .backButton{
+    height: 30px;
+    width: 80px;
+    border: none;
+    background: white;
+    border: 1px solid rgb(213, 213, 213);
+    cursor: pointer;
+    color: black;
+    border-radius: 30px;
+}
+div .text{
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.addState{
+    width: 42%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div .keyword{
+    width: 130px;
+    border:1px solid rgb(213, 213, 213);
+    padding: 5px 10px;
+    border-radius: 20px;
+    outline: none;
+}
+div .select{
+    height: 30px;
+    width: 120px;
+    padding: 0 5px;
+    border:1px solid rgb(213, 213, 213);
+    border-radius: 20px;
+}
+
+div .search{
+    width: 80px;
+    padding: 5px 10px;
+    border:1px solid rgb(213, 213, 213);
+    outline: none;
+    border-radius: 30px;
+}
+div .addButton{
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: teal;
+    color: white;
+    font-family: sans-serif;
+    font-size: 13px;
+    border-radius: 30px;
+    cursor: pointer;
+}

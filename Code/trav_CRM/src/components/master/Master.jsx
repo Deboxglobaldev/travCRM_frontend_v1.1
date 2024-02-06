@@ -1,10 +1,11 @@
 import React from "react";
 import './master.css';
+import { NavLink } from "react-router-dom";
 
 const Master = () => {
   return (
     <>
-      <div className="master container-fluid d-flex flex-wrap p-x-2">
+      <div className="master container-fluid d-flex flex-wrap p-x-2 pb-5">
         <ul class="list-group col-2">
           <li class="list-group-item text-primary first" aria-current="true">
             General Master
@@ -14,7 +15,10 @@ const Master = () => {
             Country Master</li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            State Master</li>
+            <NavLink to='/statemaster' style={{color:'inherit'}}>
+            State Master
+            </NavLink>
+            </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
             City Master</li>
