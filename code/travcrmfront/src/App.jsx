@@ -10,9 +10,8 @@ import { useState } from "react";
 import Logout from "./Pages/Auth/Logout";
 import State from './Pages/master/state/State';
 
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
-
+//import reactLogo from './assets/react.svg';
+//import viteLogo from '/vite.svg';
 
 function App() {
 
