@@ -1,219 +1,267 @@
 import React from "react";
-import './master.css';
+import "./master.css";
 import { NavLink } from "react-router-dom";
 
 const Master = () => {
   return (
     <>
       <div className="master container-fluid d-flex flex-wrap p-x-2 py-3">
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             General Master
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Country Master</li>
+            Country Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            <NavLink to='/master/state' style={{color:'inherit'}}>
-            State Master
+            <NavLink to="/master/state" style={{ color: "inherit" }}>
+              State Master
             </NavLink>
-            </li>
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            City Master</li>
+            City Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Lead Source Master</li>
+            Lead Source Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Destination Master</li>
+            Destination Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Business Type Master</li>
+            Business Type Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Language Master</li>
+            Language Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Market Type Master</li>
+            Market Type Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Division Master</li>
+            Division Master
+          </li>
         </ul>
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             Hotel Master
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Room Master</li>
+            Room Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Room Type Master</li>
+            Room Type Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Amenities Master</li>
+            Amenities Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Category Master</li>
+            Hotel Category Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Type Master</li>
+            Hotel Type Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Meal Plan</li>
+            Hotel Meal Plan
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Weakend Master Plan</li>
+            Weakend Master Plan
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Master</li>
+            Hotel Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Additional Master</li>
+            Hotel Additional Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Hotel Chain Master</li>
+            Hotel Chain Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-layer-group"></i>
-            Operation Restriction</li>
-          
+            Operation Restriction
+          </li>
         </ul>
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             SIGHTSEEING MASTER
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-plane"></i>
-            Monument Master</li>
+            Monument Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-plane"></i>
-            Airline Master</li>
+            Airline Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-plane"></i>
-            Train Master</li>
+            Train Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-plane"></i>
-            Sighseeing Master</li>
-          <li class="list-group-item text-primary">
-            TOURESCORT MASTER</li>
+            Sighseeing Master
+          </li>
+          <li class="list-group-item text-primary">TOURESCORT MASTER</li>
           <li class="list-group-item ">
             <i class="fa-solid fa-plane"></i>
-            Tour Escort Master</li>
+            Tour Escort Master
+          </li>
           <li class="list-group-item ">
             <i class="fa-solid fa-plane"></i>
-            Tour Escort Price Master</li>
-          <li class="list-group-item text-primary">
-            Visa Master</li>
+            Tour Escort Price Master
+          </li>
+          <li class="list-group-item text-primary">Visa Master</li>
           <li class="list-group-item ">
             <i class="fa-solid fa-plane"></i>
-            Visa Type</li>
+            Visa Type
+          </li>
           <li class="list-group-item ">
             <i class="fa-solid fa-plane"></i>
-            Visa Cost</li>
-          <li class="list-group-item text-primary">
-            INSURANCE MASTER</li>
+            Visa Cost
+          </li>
+          <li class="list-group-item text-primary">INSURANCE MASTER</li>
         </ul>
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
-           TRANSPORT MASTER
+            TRANSPORT MASTER
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Transfer Master</li>
+            Transfer Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Transfer Type</li>
+            Transfer Type
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Transportation Master</li>
+            Transportation Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Vehicle Master</li>
+            Vehicle Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Vehicle Type Master</li>
+            Vehicle Type Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Vehicle Brand Master</li>
+            Vehicle Brand Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Driver Master</li>
+            Driver Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-briefcase"></i>
-            Fleet Master</li>
+            Fleet Master
+          </li>
         </ul>
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             CRUISE MASTER
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Cruise Company</li>
+            Cruise Company
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Cruise Name Master</li>
+            Cruise Name Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Cabin Type</li>
+            Cabin Type
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Cabin Category</li>
+            Cabin Category
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Cruise Master</li>
-          <li class="list-group-item text-primary">
-            FERRY MASTER</li>
+            Cruise Master
+          </li>
+          <li class="list-group-item text-primary">FERRY MASTER</li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Ferry Company</li>
+            Ferry Company
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Ferry Master</li>
+            Ferry Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Ferry Seat Master</li>
+            Ferry Seat Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-list"></i>
-            Ferry Price Master</li>
+            Ferry Price Master
+          </li>
         </ul>
-        <ul class="list-group col-2">
+        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             ADDITIONAL MASTER
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Additional Requirements</li>
+            Additional Requirements
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Itinerary Information</li>
+            Itinerary Information
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Itinerary Overview</li>
+            Itinerary Overview
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Social Media Details</li>
+            Social Media Details
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            FIC Inc&Exc/T&C</li>
+            FIC Inc&Exc/T&C
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            GIT Inc&Exc/T&C</li>
+            GIT Inc&Exc/T&C
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Letter Master</li>
+            Letter Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Proposal Setting Master</li>
-          <li class="list-group-item text-primary">
-            FINANCE MASTER</li>
+            Proposal Setting Master
+          </li>
+          <li class="list-group-item text-primary">FINANCE MASTER</li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            Currency Master</li>
+            Currency Master
+          </li>
           <li class="list-group-item">
             <i class="fa-solid fa-share-from-square"></i>
-            TAX Master</li>
+            TAX Master
+          </li>
         </ul>
       </div>
     </>
