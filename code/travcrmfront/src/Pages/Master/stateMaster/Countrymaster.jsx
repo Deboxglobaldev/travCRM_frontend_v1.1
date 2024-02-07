@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import axios from "axios";
+import Spinner from "../../../Component/Layout/Spinner";
 
 const Countrymaster = () => {
 
@@ -11,16 +12,20 @@ const Countrymaster = () => {
         "Status": null
     });
 
-    const [countryData, setCountryData] = useState();
+    const [getData, setGetData] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         const postDataToServer  = async () => {
             try{
-                const response = await axios.post("http://127.0.0.1:8000/api/countrylist",postData)
-                setCountryData(response.data)
-                console.log(countryData.DataList)
+                const response = await axios.post("http://127.0.0.1:8000/api/countrylist",postData);
+                setGetData(response.data)
+                console.log(response.status)
+                setLoading(false);
             }catch(error){
                 console.log(error)
+                setLoading(false);
             }
         }
 
@@ -53,11 +58,15 @@ const Countrymaster = () => {
                 type="text"
                 placeholder="keyword"
                 className="keyword-input focus-ring"
+                onChange={(e) => setPostData({...postData,Search:e.target.value })}
+                value={postData.Search}
               />
             </div>
             <div className="col-lg-3 d-flex justify-content-end align-items-center">
-              <select className="select-input focus-ring">
-                <option value="status">Select Status</option>
+              <select className="select-input focus-ring" onChange={(e) => { setPostData({...postData,Status:e.target.value}) }}>
+                <option value="">Select Status</option>
+                <option value="0">Active</option>
+                <option value="1">Inactive</option>
               </select>
             </div>
             <div className="col-lg-3 d-flex justify-content-end align-items-center">
@@ -161,14 +170,6 @@ const Countrymaster = () => {
           <table className="table table-hover table-bordered table-light">
             <thead>
               <tr>
-                <th scope="col">
-                  Sr.
-                  <i className="fa-solid fa-up-down ps-4"></i>
-                </th>
-                <th scope="col">
-                  <input type="checkbox" />
-                  <i className="fa-solid fa-up-down ps-4"></i>
-                </th>
                 <th scope="col">Name</th>
                 <th scope="col">Short Name</th>
                 <th scope="col">Status</th>
@@ -177,13 +178,10 @@ const Countrymaster = () => {
               </tr>
             </thead>
             <tbody>
-              {countryData?.Status && countryData?.DataList.map((item, index) => {
+              {loading && <span>Loading...</span>}
+              {getData?.Status && getData?.DataList.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <th scope="row">{item.id}</th>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
                     <td>{item.Name}</td>
                     <td>{item.ShortName}</td>
                     <td>{item.Status}</td>
