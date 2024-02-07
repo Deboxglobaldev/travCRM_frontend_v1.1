@@ -1,0 +1,80 @@
+.back-button{
+    height: 2rem;
+    width: 5rem;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: rgb(113, 112, 112);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.state-text{
+    font-size: 2rem;
+}
+
+.keyword-input{
+    width: 8rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 30px;
+}
+.select-input{
+    width: 8rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 12px;
+    padding: 0 5px;
+}
+.search-input{
+    width: 6rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    padding: 0 10px;
+    background-color: teal;
+    color: white;
+}
+.search-input::placeholder{
+    color: white;
+}
+.add-button{
+    width: 6rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    background-color: rgb(184, 137, 255);
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 10px;
+}
+.cancel-button{
+    width: 4rem;
+    height: 2rem;
+    border: 1px solid rgb(131, 131, 131);
+    outline: none;
+    background-color: white;
+    color:  black;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 14px;
+}
+.save-button{
+    width: 5rem;
+    height: 2rem;
+    border: 1px solid rgb(131, 131, 131);
+    outline: none;
+    background-color: white;
+    background-color: teal;
+    color:  white;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 14px;
+}
