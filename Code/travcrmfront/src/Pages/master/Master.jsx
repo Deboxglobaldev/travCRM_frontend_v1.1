@@ -12,7 +12,9 @@ const Master = () => {
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Country Master
+            <NavLink to="/master/country" style={{ color: "inherit" }}>
+              Country Master
+            </NavLink>
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>

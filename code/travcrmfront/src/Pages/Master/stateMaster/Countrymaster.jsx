@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import stateData from "../../../data";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import axios from "axios";
 
-const StateMaster = () => {
+const Countrymaster = () => {
+
+    const [postData, setPostData] = useState({
+        "Search": null,
+        "Status": null
+    });
+
+    const [countryData, setCountryData] = useState();
+
+    useEffect(() => {
+        const postDataToServer  = async () => {
+            try{
+                const response = await axios.post("http://127.0.0.1:8000/api/countrylist",postData)
+                setCountryData(response.data)
+                console.log(countryData.DataList)
+            }catch(error){
+                console.log(error)
+            }
+        }
+
+        postDataToServer();
+    },[postData])
+
   const handleAddSubmit = (e) => {
     e.preventDefault();
   };
@@ -147,27 +169,26 @@ const StateMaster = () => {
                   <input type="checkbox" />
                   <i className="fa-solid fa-up-down ps-4"></i>
                 </th>
-                <th scope="col">Country Name</th>
-                <th scope="col">State Name</th>
+                <th scope="col">Name</th>
+                <th scope="col">Short Name</th>
+                <th scope="col">Status</th>
                 <th scope="col">Created By</th>
                 <th scope="col">Modified By</th>
-                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              {stateData.DataList.map((v, index) => {
-                console.log(v);
+              {countryData?.Status && countryData?.DataList.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <th scope="row">{v.Id}</th>
+                    <th scope="row">{item.id}</th>
                     <td>
                       <input type="checkbox" />
                     </td>
-                    <td>{v.CountryName}</td>
-                    <td>{v.Name}</td>
-                    <td>{v.UpdatedBy}</td>
-                    <td>{v.UpdatedBy}</td>
-                    <td>{v.Status}</td>
+                    <td>{item.Name}</td>
+                    <td>{item.ShortName}</td>
+                    <td>{item.Status}</td>
+                    <td>{item.AddedBy}</td>
+                    <td>{item.UpdatedBy}</td>
                   </tr>
                 );
               })}
@@ -179,4 +200,4 @@ const StateMaster = () => {
   );
 };
 
-export default StateMaster;
+export default Countrymaster;
