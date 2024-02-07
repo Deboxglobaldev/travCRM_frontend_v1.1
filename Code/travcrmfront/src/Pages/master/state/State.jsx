@@ -5,36 +5,9 @@ import stateData from "../../../data";
 const StateMaster = () => {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="stateHead">
-            <div className="backState">
-              <div className="backButton">
-                <button className="backButton">Back</button>
-              </div>
-              <div class="text">State</div>
-            </div>
-            <div class="addState">
-              <div>
-                <input type="text" placeholder="Keyword" className="keyword" />
-              </div>
-
-              <div>
-                <select className="select">
-                  <option>Select Status</option>
-                </select>
-              </div>
-              <div>
-                <input type="text" placeholder="Search" className="search" />
-              </div>
-              <div>
-                <button className="addButton">+ Add State</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="stateTable">
-          <table class="table table-hover table-bordered table-light">
+      <div className="container-fluid my-4">
+        <div className="table-responsive">
+          <table class="table table-hover table-bordered table-light overflow-scroll">
             <thead>
               <tr>
                 <th scope="col">
