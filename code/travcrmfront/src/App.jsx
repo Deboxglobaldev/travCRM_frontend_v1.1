@@ -9,7 +9,8 @@ import Login from "./Pages/Auth/Login";
 import { useState } from "react";
 import Logout from "./Pages/Auth/Logout";
 import Statemaster from "./Pages/master/stateMaster/Statemaster";
-
+import Countrymaster from './Pages/master/countryMaster/Countrymaster';
+import Citymaster from './Pages/master/cityMaster/Citymaster';
 //import reactLogo from './assets/react.svg';
 //import viteLogo from '/vite.svg';
 
@@ -28,6 +29,8 @@ function App() {
           <Route path='/query' element={isLogged ? <Query/> : <Login />} />
           <Route path='/master' element={isLogged ? <Master /> : <Login />} />
           <Route path='/master/state' element={isLogged ? <Statemaster/> : <Login/>}></Route>
+          <Route path='/master/country' element={isLogged ? <Countrymaster/> : <Login/>}></Route>
+          <Route path='/master/city' element={isLogged ? <Citymaster/> : <Login/>}></Route>
           <Route path='/login' element={<Login setLogged={setLogged} />} />
           <Route path='/logout' element={<Logout setLogged={setLogged} />} />
         </Routes>
