@@ -5,14 +5,16 @@ import { NavLink } from "react-router-dom";
 const Master = () => {
   return (
     <>
-      <div className="master container-fluid d-flex flex-wrap p-x-2 py-3">
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+      <div className="master container-fluid d-flex flex-wrap p-x-2 py-3 justify-content-between">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             General Master
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            Country Master
+            <NavLink to="/master/country" style={{color:"inherit"}}>
+              Country Master
+            </NavLink>
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
@@ -22,7 +24,9 @@ const Master = () => {
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
-            City Master
+            <NavLink to='/master/city' style={{color:"inherit"}}>
+              City Master
+            </NavLink>
           </li>
           <li class="list-group-item">
             <i class="fa-solid fa-flag"></i>
@@ -49,7 +53,7 @@ const Master = () => {
             Division Master
           </li>
         </ul>
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             Hotel Master
           </li>
@@ -98,7 +102,7 @@ const Master = () => {
             Operation Restriction
           </li>
         </ul>
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             SIGHTSEEING MASTER
           </li>
@@ -138,7 +142,7 @@ const Master = () => {
           </li>
           <li class="list-group-item text-primary">INSURANCE MASTER</li>
         </ul>
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             TRANSPORT MASTER
           </li>
@@ -175,7 +179,7 @@ const Master = () => {
             Fleet Master
           </li>
         </ul>
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             CRUISE MASTER
           </li>
@@ -217,7 +221,7 @@ const Master = () => {
             Ferry Price Master
           </li>
         </ul>
-        <ul class="list-group col-lg-2 col-md-4 col-sm-6">
+        <ul class="list-group col-lg-2 col-md-4 my-1 col-sm-6">
           <li class="list-group-item text-primary first" aria-current="true">
             ADDITIONAL MASTER
           </li>

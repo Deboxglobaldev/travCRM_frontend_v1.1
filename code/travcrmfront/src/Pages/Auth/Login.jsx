@@ -13,8 +13,8 @@ const Login = ({ setLogged }) => {
     password: "",
   });
 
-  //"username":"atuny0","password":"9uQFF1Lh"
-  //"username":"hbingley1","password":"CQutx25i8r"
+  //"username":"atuny0","password":"9uQFF1Lh";
+  //"username":"hbingley1","password":"CQutx25i8r";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import stateData from "../../../data";
+import { cityList } from "../../../data";
 
-const StateMaster = () => {
-  const [stateMasterInputs, setStateMasterInputs] = useState({
+const Citymaster = () => {
+  const [cityMasterInputs, setCityMasterInputs] = useState({
     country: "",
     name: "",
     status: "",
@@ -12,18 +12,18 @@ const StateMaster = () => {
     e.preventDefault();
   };
 
-  const handleAddStateInput = (e) => {
-    setStateMasterInputs({
-      ...stateMasterInputs,
+  const handleAddCityInput = (e) => {
+    setCityMasterInputs({
+      ...cityMasterInputs,
       [e.target.name]: e.target.value,
     });
   };
 
-  console.log(stateMasterInputs);
+  console.log(cityMasterInputs);
 
   return (
     <>
-      <div className="container-fluid my-3">
+      <div className="container-fluid my-3 mb-5">
         <div className="card">
           <div class="page-header-content header-elements-md-inline px-3">
             <div class="page-title d-flex">
@@ -97,8 +97,8 @@ const StateMaster = () => {
                               <select
                                 className="form-control"
                                 id="country"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.country}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.country}
                                 name="country"
                               >
                                 <option>Select Country</option>
@@ -116,8 +116,8 @@ const StateMaster = () => {
                                 className="form-control"
                                 id="name"
                                 placeholder="Name"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.name}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.name}
                                 name="name"
                               />
                             </div>
@@ -126,8 +126,8 @@ const StateMaster = () => {
                               <select
                                 className="form-control"
                                 id="status"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.status}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.status}
                                 name="status"
                               >
                                 <option>Select</option>
@@ -164,12 +164,13 @@ const StateMaster = () => {
                 <tr>
                   <th scope="col">
                     Sr.
-                    <i className="fa-solid fa-up-down px-3"></i>
+                    <i className="fa-solid fa-up-down ps-4 px-3"></i>
                   </th>
                   <th scope="col">
                     <input type="checkbox" />
                     <i className="fa-solid fa-up-down px-3"></i>
                   </th>
+                  <th scope="col">City Name</th>
                   <th scope="col">Country Name</th>
                   <th scope="col">State Name</th>
                   <th scope="col">Created By</th>
@@ -178,7 +179,7 @@ const StateMaster = () => {
                 </tr>
               </thead>
               <tbody>
-                {stateData.DataList.map((v, index) => {
+                {cityList.DataList.map((v, index) => {
                   console.log(v);
                   return (
                     <tr key={index}>
@@ -186,9 +187,10 @@ const StateMaster = () => {
                       <td>
                         <input type="checkbox" />
                       </td>
-                      <td>{v.CountryName}</td>
                       <td>{v.Name}</td>
-                      <td>{v.UpdatedBy}</td>
+                      <td>{v.CountryName}</td>
+                      <td>{v.StateName}</td>
+                      <td>{v.AddedBy}</td>
                       <td>{v.UpdatedBy}</td>
                       <td>{v.Status}</td>
                     </tr>
@@ -203,4 +205,4 @@ const StateMaster = () => {
   );
 };
 
-export default StateMaster;
+export default Citymaster;

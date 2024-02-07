@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import stateData from "../../../data";
+import { countryData } from "../../../data";
 
-const StateMaster = () => {
-  const [stateMasterInputs, setStateMasterInputs] = useState({
+const Countrymaster = () => {
+  const [countryMasterInputs, setCountryMasterInputs] = useState({
     country: "",
     name: "",
     status: "",
@@ -12,18 +12,18 @@ const StateMaster = () => {
     e.preventDefault();
   };
 
-  const handleAddStateInput = (e) => {
-    setStateMasterInputs({
-      ...stateMasterInputs,
+  const handleAddCountryInput = (e) => {
+    setCountryMasterInputs({
+      ...countryMasterInputs,
       [e.target.name]: e.target.value,
     });
   };
 
-  console.log(stateMasterInputs);
+  console.log(countryMasterInputs);
 
   return (
     <>
-      <div className="container-fluid my-3">
+      <div className="container-fluid my-3 mb-5">
         <div className="card">
           <div class="page-header-content header-elements-md-inline px-3">
             <div class="page-title d-flex">
@@ -97,8 +97,8 @@ const StateMaster = () => {
                               <select
                                 className="form-control"
                                 id="country"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.country}
+                                onChange={handleAddCountryInput}
+                                value={countryMasterInputs.country}
                                 name="country"
                               >
                                 <option>Select Country</option>
@@ -116,8 +116,8 @@ const StateMaster = () => {
                                 className="form-control"
                                 id="name"
                                 placeholder="Name"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.name}
+                                onChange={handleAddCountryInput}
+                                value={countryMasterInputs.name}
                                 name="name"
                               />
                             </div>
@@ -126,8 +126,8 @@ const StateMaster = () => {
                               <select
                                 className="form-control"
                                 id="status"
-                                onChange={handleAddStateInput}
-                                value={stateMasterInputs.status}
+                                onChange={handleAddCountryInput}
+                                value={countryMasterInputs.status}
                                 name="status"
                               >
                                 <option>Select</option>
@@ -171,14 +171,14 @@ const StateMaster = () => {
                     <i className="fa-solid fa-up-down px-3"></i>
                   </th>
                   <th scope="col">Country Name</th>
-                  <th scope="col">State Name</th>
+                  <th scope="col">Short Name</th>
                   <th scope="col">Created By</th>
                   <th scope="col">Modified By</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {stateData.DataList.map((v, index) => {
+                {countryData.DataList.map((v, index) => {
                   console.log(v);
                   return (
                     <tr key={index}>
@@ -188,7 +188,7 @@ const StateMaster = () => {
                       </td>
                       <td>{v.CountryName}</td>
                       <td>{v.Name}</td>
-                      <td>{v.UpdatedBy}</td>
+                      <td>{v.AddedBy}</td>
                       <td>{v.UpdatedBy}</td>
                       <td>{v.Status}</td>
                     </tr>
@@ -203,4 +203,4 @@ const StateMaster = () => {
   );
 };
 
-export default StateMaster;
+export default Countrymaster;
