@@ -63,10 +63,16 @@ const Login = ({ setLogged }) => {
         {/*<!-- Main content -->*/}
         <div className="content-wrapper">
           {/*<!-- Content area -->*/}
-          <div className="content d-flex justify-content-center align-items-center">
+          <div className="content d-flex justify-content-center align-items-center flex-column">
             {isLoading && <Spinner />}
+            <Toaster
+              toastOptions={{
+                className: "toastings",
+              }}
+            />
+            {/* <ToastContainer/> */}
             {/*<!-- Login form -->*/}
-            <Toaster />
+
             <form className="login-form" action="" onSubmit={handleSubmit}>
               <div className="card mb-0">
                 <div className="card-body">

@@ -2,7 +2,9 @@ import React from 'react'
 
 const Spinner = () => {
   return (
-    <div><img src="/Spin.gif" alt="spinner" /></div>
+    <div className=''>
+      <img src="/Spin.gif" alt="spinner" style={{height:'70px', width:'70px'}}/>
+    </div>
   )
 }
 

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { countryData } from "../../../data";
+import { cityList } from "../../../data";
+import { useNavigate } from "react-router-dom";
 
-const Countrymaster = () => {
-  const [countryMasterInputs, setCountryMasterInputs] = useState({
-    country: "",
-    name: "",
+const Citymaster = () => {
+  const navigate = useNavigate();
+
+  const [cityMasterInputs, setCityMasterInputs] = useState({
+    state: "",
+    name: "keyword",
     status: "",
   });
 
@@ -12,25 +15,33 @@ const Countrymaster = () => {
     e.preventDefault();
   };
 
-  const handleAddCountryInput = (e) => {
-    setCountryMasterInputs({
-      ...countryMasterInputs,
+  const handleAddCityInput = (e) => {
+    setCityMasterInputs({
+      ...cityMasterInputs,
       [e.target.name]: e.target.value,
     });
   };
 
-  console.log(countryMasterInputs);
+  const backMasterButton = () => {
+    navigate("/master");
+  };
+
+  console.log(cityMasterInputs);
 
   return (
     <>
       <div className="container-fluid my-3 mb-5">
         <div className="card">
           <div class="page-header-content header-elements-md-inline px-3">
-            <div class="page-title d-flex">
-              <button type="button" className=" btn btn-outline-info">
-                Back
+            <div class="page-title d-flex align-items-center">
+              <button
+                type="button"
+                class="btn bg-teal-400 btn-icon backButton"
+                onClick={backMasterButton}
+              >
+                <i class="fa-solid fa-arrow-left"></i>
               </button>
-              <h1 className="px-2"> City </h1>
+              <h2 className="px-2"> City </h2>
             </div>
 
             <div class="header-elements d-none">
@@ -40,11 +51,23 @@ const Countrymaster = () => {
                     type="text"
                     placeholder="Keyword"
                     className="form-control"
+                    name="keyowrd"
+                    value={cityMasterInputs.keyword}
+                    onChange={handleAddCityInput}
                   />
                 </div>
                 <div className="px-2">
-                  <select className="form-control">
-                    <option value="Select">Select</option>
+                  <select
+                    className=" form-control form-select form-selct-lg m-2"
+                    aria-label=".form-select-lg example"
+                    name="status"
+                    value={cityMasterInputs.status}
+                    onChange={handleAddCityInput}
+                  >
+                    <option selected>Select State</option>
+                    <option value="hr">Haryana</option>
+                    <option value="dl">Delhi</option>
+                    <option value="ch">Chandigarh</option>
                   </select>
                 </div>
                 <div className="px-2">
@@ -52,13 +75,16 @@ const Countrymaster = () => {
                     type="text"
                     placeholder="Search"
                     className="form-control"
+                    name="state"
+                    value={cityMasterInputs.state}
+                    onChange={handleAddCityInput}
                   />
                 </div>
                 <div className="col-lg-3 d-flex justify-content-end align-items-center">
                   {/* Bootstrap Modal */}
                   <button
                     type="button"
-                    className="btn btn-primary add-button"
+                    className="btn btn-info addButton"
                     data-toggle="modal"
                     data-target="#exampleModal"
                   >
@@ -97,8 +123,8 @@ const Countrymaster = () => {
                               <select
                                 className="form-control"
                                 id="country"
-                                onChange={handleAddCountryInput}
-                                value={countryMasterInputs.country}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.country}
                                 name="country"
                               >
                                 <option>Select Country</option>
@@ -116,8 +142,8 @@ const Countrymaster = () => {
                                 className="form-control"
                                 id="name"
                                 placeholder="Name"
-                                onChange={handleAddCountryInput}
-                                value={countryMasterInputs.name}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.name}
                                 name="name"
                               />
                             </div>
@@ -126,8 +152,8 @@ const Countrymaster = () => {
                               <select
                                 className="form-control"
                                 id="status"
-                                onChange={handleAddCountryInput}
-                                value={countryMasterInputs.status}
+                                onChange={handleAddCityInput}
+                                value={cityMasterInputs.status}
                                 name="status"
                               >
                                 <option>Select</option>
@@ -164,21 +190,22 @@ const Countrymaster = () => {
                 <tr>
                   <th scope="col">
                     Sr.
-                    <i className="fa-solid fa-up-down px-3"></i>
+                    <i className="fa-solid fa-up-down ps-4 px-3"></i>
                   </th>
                   <th scope="col">
                     <input type="checkbox" />
                     <i className="fa-solid fa-up-down px-3"></i>
                   </th>
+                  <th scope="col">City Name</th>
                   <th scope="col">Country Name</th>
-                  <th scope="col">Short Name</th>
+                  <th scope="col">State Name</th>
                   <th scope="col">Created By</th>
                   <th scope="col">Modified By</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {countryData.DataList.map((v, index) => {
+                {cityList.DataList.map((v, index) => {
                   console.log(v);
                   return (
                     <tr key={index}>
@@ -186,8 +213,9 @@ const Countrymaster = () => {
                       <td>
                         <input type="checkbox" />
                       </td>
-                      <td>{v.CountryName}</td>
                       <td>{v.Name}</td>
+                      <td>{v.CountryName}</td>
+                      <td>{v.StateName}</td>
                       <td>{v.AddedBy}</td>
                       <td>{v.UpdatedBy}</td>
                       <td>{v.Status}</td>
@@ -203,4 +231,4 @@ const Countrymaster = () => {
   );
 };
 
-export default Countrymaster;
+export default Citymaster;

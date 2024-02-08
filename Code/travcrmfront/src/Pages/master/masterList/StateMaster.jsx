@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import stateData from "../../../data";
+import { useNavigate } from "react-router-dom";
 
 const StateMaster = () => {
+  const navigate = useNavigate();
   const [stateMasterInputs, setStateMasterInputs] = useState({
     country: "",
     name: "",
@@ -19,18 +21,23 @@ const StateMaster = () => {
     });
   };
 
+  const backMasterButton = () =>{
+    navigate('/master');
+  }
+
   console.log(stateMasterInputs);
 
   return (
     <>
       <div className="container-fluid my-3">
         <div className="card">
-          <div class="page-header-content header-elements-md-inline px-3">
-            <div class="page-title d-flex">
-              <button type="button" className=" btn btn-outline-info">
-                Back
-              </button>
-              <h1 className="px-2"> City </h1>
+        <div class="page-header-content header-elements-md-inline px-3">
+            <div class="page-title d-flex align-items-center">
+              <button type="button" 
+              class="btn bg-teal-400 btn-icon backButton"
+              onClick={backMasterButton}
+              ><i class="fa-solid fa-arrow-left"></i></button>
+              <h2 className="px-2"> State </h2>
             </div>
 
             <div class="header-elements d-none">
@@ -43,8 +50,11 @@ const StateMaster = () => {
                   />
                 </div>
                 <div className="px-2">
-                  <select className="form-control">
-                    <option value="Select">Select</option>
+                  <select className=" form-control form-select form-selct-lg m-2" aria-label=".form-select-lg example">
+                    <option selected>Select State</option>
+                    <option value="hr">Haryana</option>
+                    <option value="dl">Delhi</option>
+                    <option value="ch">Chandigarh</option>
                   </select>
                 </div>
                 <div className="px-2">
@@ -58,9 +68,9 @@ const StateMaster = () => {
                   {/* Bootstrap Modal */}
                   <button
                     type="button"
-                    className="btn btn-primary add-button"
+                    className="btn btn-info addButton"
                     data-toggle="modal"
-                    data-target="#exampleModal"
+                    data-target="#exampleModal" 
                   >
                     + Add State
                   </button>
