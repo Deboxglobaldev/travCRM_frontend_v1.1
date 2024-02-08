@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-
-import Popup from "reactjs-popup";
+import React, { useEffect, useState, useMemo } from "react";
 import "reactjs-popup/dist/index.css";
 import axios from "axios";
-import Spinner from "../../../Component/Layout/Spinner";
+import Pagination from '../../../Pagination/Pagination';
+
+let PageSize = 10;
 
 const Countrymaster = () => {
+
 
     const [postData, setPostData] = useState({
         "Search": null,
@@ -16,13 +17,15 @@ const Countrymaster = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
+
         const postDataToServer  = async () => {
             try{
                 const response = await axios.post("http://127.0.0.1:8000/api/countrylist",postData);
                 setGetData(response.data)
                 console.log(response.status)
+                console.log(getData)
                 setLoading(false);
+
             }catch(error){
                 console.log(error)
                 setLoading(false);
@@ -31,6 +34,14 @@ const Countrymaster = () => {
 
         postDataToServer();
     },[postData])
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return getData?.DataList.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+    console.log(currentTableData);
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +53,26 @@ const Countrymaster = () => {
 
   return (
     <>
-      <div className="container-fluid my-3">
+    <div className="page-container">
+    <div className="page-content">
+    <div className="content-wrapper">
+    <div className="content pt-0" style={{ marginTop:"20px" }}>
+
+    <div className="row">
+    <div className="col-xl-12">
+        <div className="card-header header-elements-inline bg-info-700" style={{ padding: "10px" }}>
+        <div className="col-xl-9">
+            <h5 className="card-title">Brand Master</h5>
+        </div>
+        <div className="col-xl-3" >
+            <div className="btn-group justify-content-center" >
+                <a href="/#" className="btn bg-teal-400" aria-expanded="false" ><i className="fa fa-arrow-left mr-2"></i>Back</a>
+                <a href="#" className="btn bg-teal-400" aria-expanded="false" ><i className="fa fa-plus" aria-hidden="true"></i> Create New</a>
+            </div>
+        </div>
+        </div>
+        <div className="card">
+      <div className="">
         <div className="row d-flex justify-content-between">
           <div className="col-lg-2 col-md-2 col-sm-2 d-flex align-items-center">
             <div className="col-lg-6 d-flex justify-content-center align-items-center">
@@ -178,8 +208,8 @@ const Countrymaster = () => {
               </tr>
             </thead>
             <tbody>
-              {loading && <span>Loading...</span>}
-              {getData?.Status && getData?.DataList.map((item, index) => {
+              {loading && <>Loading...</>}
+              {currentTableData && currentTableData.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{item.Name}</td>
@@ -192,8 +222,22 @@ const Countrymaster = () => {
               })}
             </tbody>
           </table>
+          <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={34}
+        pageSize={PageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
         </div>
       </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </>
   );
 };

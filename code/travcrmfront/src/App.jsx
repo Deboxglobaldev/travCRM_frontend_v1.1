@@ -9,14 +9,14 @@ import Login from "./Pages/Auth/Login";
 import { useState } from "react";
 import Logout from "./Pages/Auth/Logout";
 import Statemaster from "./Pages/master/stateMaster/Statemaster";
-import Countrymaster from './Pages/master/countryMaster/Countrymaster';
 import Citymaster from './Pages/master/cityMaster/Citymaster';
+import Countrymaster from "./Pages/Master/stateMaster/Countrymaster";
 //import reactLogo from './assets/react.svg';
 //import viteLogo from '/vite.svg';
 
 function App() {
 
- const [isLogged, setLogged] = useState(false);
+ const [isLogged, setLogged] = useState(true);
 
   return (
     <>
