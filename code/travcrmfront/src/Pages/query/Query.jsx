@@ -2,7 +2,7 @@ import React from 'react'
 
 const Query = () => {
   return (
-    <div>this is query page</div>
+    <div>for query only</div>
   )
 }
 

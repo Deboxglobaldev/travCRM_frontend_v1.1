@@ -72,7 +72,7 @@ const stateData = {
 };
 
 const countryData = {
-    
+
         "Status": 200,
         "TotalRecord": 1,
         "DataList": [
@@ -167,7 +167,7 @@ const countryData = {
                 "Updated_at": null
             },
         ]
-} 
+}
 
 const cityList = {
     "Status": 0,

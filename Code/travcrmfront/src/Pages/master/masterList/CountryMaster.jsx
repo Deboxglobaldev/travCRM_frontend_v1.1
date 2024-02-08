@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "reactjs-popup/dist/index.css";
 import axios from "axios";
-import Pagination from '../../../Pagination/Pagination';
+import Pagination from '../../../helper/Pagination/Pagination';
 
-let PageSize = 10;
+let PageSize = 5;
 
 const Countrymaster = () => {
-
 
     const [postData, setPostData] = useState({
         "Search": null,

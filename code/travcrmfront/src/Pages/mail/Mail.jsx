@@ -2,7 +2,7 @@ import React from 'react'
 
 const Mail = () => {
   return (
-    <div>this is for mail section</div>
+    <div>mail section here</div>
   )
 }
 

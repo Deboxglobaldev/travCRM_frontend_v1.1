@@ -1,32 +1,32 @@
 import React from "react";
 import "./master.css";
 import MasterData from "./MasterData";
-import { masterList } from "../data";
+import { masterList } from "../../data";
 
 const Master = () => {
   return (
     <>
       <div className="master container-fluid">
         <div className="row px-2 py-4 bg-light">
-          <MasterData 
+          <MasterData
             masterList = {masterList.GenralList}
           />
-          <MasterData 
+          <MasterData
             masterList = {masterList.HotelList}
           />
-          <MasterData 
+          <MasterData
             masterList = {masterList.MonumentList}
           />
-          <MasterData 
+          <MasterData
             masterList = {masterList.TransferlList}
           />
-          <MasterData 
+          <MasterData
             masterList = {masterList.AdditionList}
           />
-          <MasterData 
+          <MasterData
             masterList = {masterList.AdditionList}
           />
-         
+
         </div>
       </div>
     </>
