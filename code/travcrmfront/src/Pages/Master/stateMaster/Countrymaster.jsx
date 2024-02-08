@@ -3,7 +3,7 @@ import "reactjs-popup/dist/index.css";
 import axios from "axios";
 import Pagination from '../../../Pagination/Pagination';
 
-let PageSize = 10;
+let PageSize = 5;
 
 const Countrymaster = () => {
 
