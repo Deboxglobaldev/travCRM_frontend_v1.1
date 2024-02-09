@@ -25,6 +25,8 @@
     width:600px;
     padding: 16px 10px;
     color: red;
-    font-size:12px;
-    
+    font-size:12px;   
+}
+a{
+  color: black;
 }
