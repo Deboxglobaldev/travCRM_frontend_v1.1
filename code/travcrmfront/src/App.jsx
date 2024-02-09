@@ -9,7 +9,7 @@ import Master from "./Pages/master/Master";
 import Login from "./Pages/auth/Login";
 import Logout from "./Pages/auth/Logout";
 import { useState } from "react";
-// import StateMaster from "./Pages/master/masterList/Statemaster";
+// import StateMaster from "./Pages/master/masterList/StateMaster";
 import CityMaster from "./Pages/master/masterlist/CityMaster";
 import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 

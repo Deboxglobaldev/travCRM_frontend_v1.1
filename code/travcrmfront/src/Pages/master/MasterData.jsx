@@ -22,6 +22,7 @@ const MasterData = ({ masterList }) => {
           </div>
           <div className="col-2 mt-4 mb-2 d-flex flex-column justify-content-between">
             <div className="row">
+              <NavLink to='/master/country_master'>
               <div className="col d-flex align-items-center">
                 <img
                   src="assets/icons/countries.png"
@@ -30,11 +31,12 @@ const MasterData = ({ masterList }) => {
                 />
                 <span
                   className="fs-6 pl-1"
-                  style={{ fontSize: "10px", fontWeight: "500" }}
+                  style={{ fontSize: "10px", fontWeight: "500"}}
                 >
                   Country Master
                 </span>
               </div>
+              </NavLink>
             </div>
             <div className="row">
               <div className="col d-flex align-items-center">
@@ -54,6 +56,7 @@ const MasterData = ({ masterList }) => {
           </div>
           <div className="col-2 mt-4 mb-2 d-flex flex-column justify-content-between">
             <div className="row">
+              <NavLink to='/master/state_master'>
               <div className="col d-flex align-items-center">
                 <img
                   src="assets/icons/united-states.png"
@@ -67,6 +70,7 @@ const MasterData = ({ masterList }) => {
                   State Master
                 </span>
               </div>
+              </NavLink>
             </div>
             <div className="row">
               <div className="col d-flex align-items-center">
@@ -86,6 +90,7 @@ const MasterData = ({ masterList }) => {
           </div>
           <div className="col-2 mt-4 mb-2 d-flex flex-column justify-content-between">
             <div className="row">
+              <NavLink to='/master/city_master'>
               <div className="col d-flex align-items-center">
                 <img
                   src="assets/icons/city.png"
@@ -99,6 +104,7 @@ const MasterData = ({ masterList }) => {
                   City Master
                 </span>
               </div>
+              </NavLink>
             </div>
             <div className="row">
               <div className="col d-flex align-items-center">
