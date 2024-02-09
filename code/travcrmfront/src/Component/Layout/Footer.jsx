@@ -1,9 +1,15 @@
 import React from 'react'
 
 const Footer = () => {
+    const footerStyle = {
+        display: "block",
+        position: "absolute",
+        bottom: "0px",
+        width: "100%",
+    }
   return (
     // <!-- Footer -->
-	<div className="navbar navbar-expand-lg navbar-light">
+	<div className="navbar navbar-expand-lg navbar-light" style={footerStyle}>
         <div className="text-center d-lg-none w-100">
             <button type="button" className="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
                 <i className="icon-unfold mr-2"></i>
