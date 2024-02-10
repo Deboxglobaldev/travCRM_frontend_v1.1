@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { cityList } from "../../../data";
+import stateData from '../../../data'; 
 import { useNavigate } from "react-router-dom";
 
-const CityMaster = () => {
+const StateMaster = () => {
   const navigate = useNavigate();
 
-  const [cityMasterInputs, setCityMasterInputs] = useState({
+  const [stateMasterInputs, setStateMasterInputs] = useState({
     state: "",
     name: "keyword",
     status: "",
@@ -15,8 +15,8 @@ const CityMaster = () => {
     e.preventDefault();
   };
 
-  const handleAddCityInput = (e) => {
-    setCityMasterInputs({
+  const handleAddStateInput = (e) => {
+    setStateMasterInputs({
       ...cityMasterInputs,
       [e.target.name]: e.target.value,
     });
@@ -26,7 +26,6 @@ const CityMaster = () => {
     navigate("/master");
   };
 
-  console.log(cityMasterInputs);
 
   return (
     <>
@@ -41,7 +40,7 @@ const CityMaster = () => {
               >
                 <i class="fa-solid fa-arrow-left"></i>
               </button>
-              <h2 className="px-2"> City </h2>
+              <h2 className="px-2"> State </h2>
             </div>
 
             <div class="header-elements d-none">
@@ -52,8 +51,8 @@ const CityMaster = () => {
                     placeholder="Keyword"
                     className="form-control"
                     name="keyowrd"
-                    value={cityMasterInputs.keyword}
-                    onChange={handleAddCityInput}
+                    value={stateMasterInputs.keyword}
+                    onChange={handleAddStateInput}
                   />
                 </div>
                 <div className="px-2">
@@ -61,8 +60,8 @@ const CityMaster = () => {
                     className=" form-control form-select form-selct-lg m-2"
                     aria-label=".form-select-lg example"
                     name="status"
-                    value={cityMasterInputs.status}
-                    onChange={handleAddCityInput}
+                    value={stateMasterInputs.status}
+                    onChange={handleAddStateInput}
                   >
                     <option selected>Select Status</option>
                     <option value="hr">Active</option>
@@ -75,8 +74,8 @@ const CityMaster = () => {
                     placeholder="Search"
                     className="form-control"
                     name="state"
-                    value={cityMasterInputs.state}
-                    onChange={handleAddCityInput}
+                    value={stateMasterInputs.state}
+                    onChange={handleAddStateInput}
                   />
                 </div>
                 <div className="col-lg-3 d-flex justify-content-end align-items-center">
@@ -122,8 +121,8 @@ const CityMaster = () => {
                               <select
                                 className="form-control"
                                 id="country"
-                                onChange={handleAddCityInput}
-                                value={cityMasterInputs.country}
+                                onChange={handleAddStateInput}
+                                value={stateMasterInputs.country}
                                 name="country"
                               >
                                 <option>Select Country</option>
@@ -141,8 +140,8 @@ const CityMaster = () => {
                                 className="form-control"
                                 id="name"
                                 placeholder="Name"
-                                onChange={handleAddCityInput}
-                                value={cityMasterInputs.name}
+                                onChange={handleAddStateInput}
+                                value={stateMasterInputs.name}
                                 name="name"
                               />
                             </div>
@@ -151,8 +150,8 @@ const CityMaster = () => {
                               <select
                                 className="form-control"
                                 id="status"
-                                onChange={handleAddCityInput}
-                                value={cityMasterInputs.status}
+                                onChange={handleAddStateInput}
+                                value={stateMasterInputs.status}
                                 name="status"
                               >
                                 <option>Select</option>
@@ -204,7 +203,7 @@ const CityMaster = () => {
                 </tr>
               </thead>
               <tbody>
-                {cityList.DataList.map((v, index) => {
+                {stateData.DataList.map((v, index) => {
                   console.log(v);
                   return (
                     <tr key={index}>
@@ -230,4 +229,4 @@ const CityMaster = () => {
   );
 };
 
-export default CityMaster;
+export default StateMaster;

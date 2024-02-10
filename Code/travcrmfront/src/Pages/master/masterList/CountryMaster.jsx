@@ -5,7 +5,7 @@ import Pagination from '../../../helper/Pagination/Pagination';
 
 let PageSize = 5;
 
-const Countrymaster = () => {
+const CountryMaster = () => {
 
     const [postData, setPostData] = useState({
         "Search": null,
@@ -42,9 +42,11 @@ const Countrymaster = () => {
     }, [currentPage]);
     console.log(currentTableData);
 
+
   const handleAddSubmit = (e) => {
     e.preventDefault();
   };
+
 
   const handleAddStateInput = (e) =>{
     console.log(e.target.value);
@@ -187,11 +189,13 @@ const Countrymaster = () => {
                       </button>
                     </div>
                     {/* /modal body */}
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="col-lg-8"></div>
         </div>
 
@@ -237,8 +241,10 @@ const Countrymaster = () => {
     </div>
     </div>
     </div>
+
     </>
   );
 };
 
-export default Countrymaster;
+
+export default CountryMaster;
