@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import Spinner from "../../Component/Layout/Spinner";
 
-const Login = ({ setLogged }) => {
+const Login = ({setLogged}) => {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -64,7 +64,7 @@ const Login = ({ setLogged }) => {
         <div className="content-wrapper">
           {/*<!-- Content area -->*/}
           <div className="content d-flex justify-content-center align-items-center flex-column">
-            {isLoading && <Spinner />}
+            {/* {isLoading && <Spinner />} */}
             <Toaster
               toastOptions={{
                 className: "toastings",
@@ -126,7 +126,7 @@ const Login = ({ setLogged }) => {
 
                   <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">
-                      Sign in <i className="icon-circle-right2 ml-2"></i>
+                      {isLoading? "Loading.." :"Sign In"} <i className="icon-circle-right2 ml-2"></i>
                     </button>
                   </div>
 

@@ -19,7 +19,7 @@ import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 
 function App() {
 
- const [isLogged, setLogged] = useState(true);
+ const [isLogged, setLogged] = useState(false);
 
   return (
     <>
