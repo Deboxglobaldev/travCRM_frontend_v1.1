@@ -157,7 +157,7 @@ const Header = () => {
 							</a>
 
 							<div className="dropdown-menu dropdown-menu-right">
-								<a href="/#" className="dropdown-item"><i className="icon-user-plus"></i> My profile</a>
+								<Link to="profile" className="dropdown-item"><i className="icon-user-plus"></i> My profile</Link>
 								<a href="/#" className="dropdown-item"><i className="icon-comment-discussion"></i> Messages <span className="badge badge-pill bg-blue ml-auto">58</span></a>
 								<div className="dropdown-divider"></div>
 								<a href="/#" className="dropdown-item"><i className="icon-cog5"></i> Account settings</a>

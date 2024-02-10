@@ -130,37 +130,6 @@ const Login = ({setLogged}) => {
                     </button>
                   </div>
 
-                  <div className="form-group text-center">
-                    <button
-                      type="button"
-                      className="btn btn-outline bg-indigo border-indigo text-indigo btn-icon rounded-round border-2"
-                    >
-                      <i className="icon-facebook"></i>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline bg-pink-300 border-pink-300 text-pink-300 btn-icon rounded-round border-2 ml-2"
-                    >
-                      <i className="icon-dribbble3"></i>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline bg-slate-600 border-slate-600 text-slate-600 btn-icon rounded-round border-2 ml-2"
-                    >
-                      <i className="icon-github"></i>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline bg-info border-info text-info btn-icon rounded-round border-2 ml-2"
-                    >
-                      <i className="icon-twitter"></i>
-                    </button>
-                  </div>
-
-                  <div className="form-group text-center text-muted content-divider">
-                    <span className="px-2">Don't have an account?</span>
-                  </div>
-
                   <span className="form-text text-center text-muted">
                     By continuing, you're confirming that you've read our{" "}
                     <a href="#">Terms &amp; Conditions</a> and{" "}
