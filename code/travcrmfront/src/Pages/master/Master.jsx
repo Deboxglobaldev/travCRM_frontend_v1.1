@@ -1,11 +1,14 @@
 import React from "react";
 import "./master.css";
 import MasterData from "./MasterData";
-
+import Layout from "../../Component/Layout/Layout";
 
 const Master = () => {
   return (
     <>
+    <Layout>
+
+
       <div className="master container-fluid">
         <div className="row px-2 py-4 bg-light mb-4">
           <MasterData
@@ -114,6 +117,7 @@ const Master = () => {
           />
         </div>
       </div>
+      </Layout>
     </>
   );
 };

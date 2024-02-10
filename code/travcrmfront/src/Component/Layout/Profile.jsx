@@ -1,7 +1,10 @@
 import React from 'react'
+import Layout from './Layout'
 
 const Profile = () => {
     return (
+        <>
+        <Layout>
         <div className="page-content">
             <div className="content-wrapper">
                 <div className="content pt-0" style={{marginTop:"20px"}}>
@@ -201,6 +204,8 @@ const Profile = () => {
                 </div>
             </div>
         </div>
+        </Layout>
+        </>
     )
 }
 

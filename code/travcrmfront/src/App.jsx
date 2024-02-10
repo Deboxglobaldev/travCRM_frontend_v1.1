@@ -1,39 +1,36 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./Component/Layout/Header";
-import Footer from "./Component/Layout/Footer";
 import Home from "./Pages/home/Home";
 import Mail from "./Pages/mail/Mail";
 import Query from "./Pages/query/Query";
 import Master from "./Pages/master/Master";
 import Login from "./Pages/auth/Login";
 import Logout from "./Pages/auth/Logout";
-import { useState } from "react";
 import StateMaster from "./Pages/master/masterlist/StateMaster";
 import CityMaster from "./Pages/master/masterlist/CityMaster";
 import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 import Profile from "./Component/Layout/Profile";
-
+import Protected from "./Pages/auth/Protected";
 
 const App = () => {
-  const [isLogged, setLogged] = useState(true);
   return (
     <>
       <Router>
-        {isLogged && <Header setLogged={setLogged} />}
         <Routes>
-          <Route path="/" element={isLogged ? <Home /> : <Login setLogged={setLogged} />}/>
-          <Route path="/mail" element={isLogged ? <Mail /> : <Login />} />
-          <Route path="/query" element={isLogged ? <Query /> : <Login />} />
-          <Route path="/master" element={isLogged ? <Master /> : <Login />} />
-          <Route path="/master/state_master" element={isLogged ? <StateMaster /> : <Login />} ></Route>
-          <Route path="/master/country_master" element={isLogged ? <CountryMaster /> : <Login />} ></Route>
-          <Route path="/master/city_master" element={isLogged ? <CityMaster /> : <Login />}></Route>
-          <Route path="profile" element={isLogged ? <Profile/> : <Login />}></Route>
-          <Route path="/login" element={<Login setLogged={setLogged} />} />
-          <Route path="/logout" element={<Logout setLogged={setLogged} />} />
+
+            <Route path="/" element={<Protected><Home /></Protected>} />
+            <Route path="/mail" element={<Protected><Mail /></Protected>} />
+            <Route path="/query" element={<Protected><Query /></Protected>} />
+            <Route path="/master" element={<Protected><Master /></Protected>} />
+            <Route path="/master/state_master" element={<Protected><StateMaster /></Protected>} />
+            <Route path="/master/country_master" element={<Protected><CountryMaster /></Protected>} />
+            <Route path="/master/city_master" element={<Protected><CityMaster /></Protected>} />
+            <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
+
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Protected><Logout /></Protected>} />
         </Routes>
-        <Footer />
       </Router>
     </>
   );

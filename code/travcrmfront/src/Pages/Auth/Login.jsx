@@ -3,9 +3,12 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
-import Spinner from "../../Component/Layout/Spinner";
+import axiosNew from "../../http/axios/axios_new";
+import { useDispatch } from "react-redux";
+import { login } from "../../reducer/authReducers";
 
-const Login = ({setLogged}) => {
+const Login = () => {
+  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -21,18 +24,28 @@ const Login = ({setLogged}) => {
     try {
       if (user.username != "" && user.password != "") {
         setLoading(true);
-        const { data } = await axios.post("https://dummyjson.com/auth/login", {
+
+        const { data } = await axiosNew.post("/auth/login", {
           username: user.username,
           password: user.password,
         });
+
         console.log(data);
+
         if (data?.username) {
           toast.success(`${data.username} is logged in`);
-          localStorage.setItem("auth", JSON.stringify(data));
+          // localStorage.setItem("auth", JSON.stringify(data));
+          dispatch(
+            login({
+              user: data,
+              isAuthenticated: true,
+            })
+          );
+
           setTimeout(() => {
-            setLogged(true);
             navigate("/");
           }, 2000);
+
         } else {
           setLoading(false);
           toast.error(`${data.message}`);
@@ -46,7 +59,7 @@ const Login = ({setLogged}) => {
       }
     } catch (error) {
       setLoading(false);
-      toast.error(`${error.message} is logged in`);
+      toast.error(`${error.message}`);
       console.log("Error while log in.", error);
     }
   };
@@ -126,7 +139,7 @@ const Login = ({setLogged}) => {
 
                   <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">
-                      {isLoading? "Loading.." :"Sign In"} <i className="icon-circle-right2 ml-2"></i>
+                      {isLoading ? "Loading.." : "Sign In"} <i className="icon-circle-right2 ml-2"></i>
                     </button>
                   </div>
 
@@ -145,6 +158,31 @@ const Login = ({setLogged}) => {
         {/*<!-- /main content -->*/}
       </div>
       {/*<!-- /page content -->*/}
+      {/* <!-- Footer --> */}
+      <div className="navbar navbar-expand-lg navbar-light" style={{
+        display: "block",
+        position: "absolute",
+        bottom: "0px",
+        width: "100%",
+      }}>
+        <div className="text-center d-lg-none w-100">
+          <button type="button" className="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+            <i className="icon-unfold mr-2"></i>
+            Footer
+          </button>
+        </div>
+
+        <div className="navbar-collapse collapse" id="navbar-footer">
+          <span className="navbar-text">
+            &copy; 2024. Powered By <a href="https://www.deboxglobal.com/" ><img src="https://shivdvn.com/staging/global_assets/images/debox-logo.png" alt="footerlogo" style={{ width: "50px", marginLeft: "5px" }} /></a>
+          </span>
+
+          <ul className="navbar-nav ml-lg-auto">
+            <li className="nav-item"><a href="https://www.deboxglobal.com/" className="navbar-nav-link font-weight-semibold"><span className="text-pink-400"><i className="icon-lifebuoy mr-2"></i> Support</span></a></li>
+          </ul>
+        </div>
+      </div>
+      {/* <!-- /footer --> */}
     </>
   );
 };

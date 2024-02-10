@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Layout from '../../Component/Layout/Layout'
 const Mail = () => {
   return (
-    <div>mail section here</div>
+    <Layout>
+      <div>mail section here</div>
+    </Layout>
+
   )
 }
 

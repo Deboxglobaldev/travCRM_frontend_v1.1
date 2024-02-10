@@ -1,12 +1,15 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { logout } from '../../reducer/authReducers';
 
-const Logout = ({setLogged}) => {
-    const navigate = useNavigate();
-    //clear local storate auth data
-    localStorage.removeItem('auth');
-    navigate('/login');
-    setLogged(false);
+const Logout = () => {
+    const dispatch = useDispatch();
+
+    dispatch(
+        logout({
+            user: "",
+            isAuthenticated: false,
+        })
+    )
 }
 
 export default Logout
