@@ -1,7 +1,7 @@
 import React from "react";
 import "./master.css";
 import MasterData from "./MasterData";
-import { masterList } from "../../data";
+
 
 const Master = () => {
   return (

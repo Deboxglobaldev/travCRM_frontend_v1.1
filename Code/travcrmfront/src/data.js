@@ -246,441 +246,50 @@ const cityList = {
 
 // ----------------------Master List------------------------
 
-
-const masterList = {
-   GenralList : [
+const newMasterList = {
+    dataList:[
         {
-            Id:1,
-            MasterName:'GENARAL MASTER',
-            IsHeading:'true',
-            Path:'general_master',
-            Type:'General'
+            id:1,
+            list:'Country Master'
         },
         {
-            Id:2,
-            MasterName:'Country Master',
-            IsHeading:'false',
-            Path:'country_master',
-            Type:'General'
+            id:2,
+            list:'Business Type Master'
         },
         {
-            Id:3,
-            MasterName:'State Master',
-            IsHeading:'false',
-            Path:'state_master',
-            Type:'General'
+            id:3,
+            list:'State Master'
         },
         {
-            Id:4,
-            MasterName:'City Master',
-            IsHeading:'false',
-            Path:'city_master',
-            Type:'General'
+            id:4,
+            list:'Language Master'
         },
         {
-            Id:5,
-            MasterName:'Lead Source Master',
-            IsHeading:'false',
-            Path:'lead_source_master',
-            Type:'General'
+            id:5,
+            list:'City Master'
         },
         {
-            Id:6,
-            MasterName:'Destination Master',
-            IsHeading:'false',
-            Path:'destination_master',
-            Type:'General'
+            id:6,
+            list:'Division Master'
         },
         {
-            Id:7,
-            MasterName:'Business Type',
-            IsHeading:'false',
-            Path:'business_type',
-            Type:'General'
+            id:7,
+            list:'Lead Source Master'
         },
         {
-            Id:8,
-            MasterName:'Language Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
+            id:8,
+            list:'Tour Type'
         },
         {
-            Id:9,
-            MasterName:'Currency Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
+            id:9,
+            list:'Destination Master'
         },
         {
-            Id:10,
-            MasterName:'Tax Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:11,
-            MasterName:'Market Type Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:12,
-            MasterName:'Bank Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:13,
-            MasterName:'Commission Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:14,
-            MasterName:'SAC Code Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:15,
-            MasterName:'Payment Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-        {
-            Id:16,
-            MasterName:'Division Master',
-            IsHeading:'false',
-            Path:'language_master',
-            Type:'General'
-        },
-    ],
-    HotelList : [
-        {
-            Id:17,
-            MasterName:'HOTEL',
-            IsHeading:'true',
-            Path:'hotel',
-            Type:'Airline'
-        },
-        {
-            Id:18,
-            MasterName:'Room Type Master',
-            IsHeading:'false',
-            Path:'room_type',
-            Type:'Airline'
-        },
-        {
-            Id:19,
-            MasterName:'Amenties Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:20,
-            MasterName:'Hotel Category Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:21,
-            MasterName:'Hotel Type Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:22,
-            MasterName:'Hotel Meal Plan',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:23,
-            MasterName:'Weekent Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:23,
-            MasterName:'Hotel Master',
-            IsHeading:'true',
-            Path:'monument',
-            Type:'Airline'
-        },
-        {
-            Id:24,
-            MasterName:'Hotel Chain Master',
-            IsHeading:'false',
-            Path:'monument_master',
-            Type:'Airline'
-        },
-        {
-            Id:25,
-            MasterName:'Operation Restriction',
-            IsHeading:'false',
-            Path:'airline_master',
-            Type:'Airline'
-        },
-        {
-            Id:26,
-            MasterName:'Restaurant Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:27,
-            MasterName:'Restaurant Meal Plan',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:28,
-            MasterName:'Season Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:29,
-            MasterName:'Tour Type',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-    ],
-    MonumentList : [
-        {
-            Id:30,
-            MasterName:'MONUMENT',
-            IsHeading:'true',
-            Path:'hotel',
-            Type:'Airline'
-        },
-        {
-            Id:31,
-            MasterName:'Monument Master',
-            IsHeading:'false',
-            Path:'room_type',
-            Type:'Airline'
-        },
-        {
-            Id:32,
-            MasterName:'Airline Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:33,
-            MasterName:'Train Master',
-            IsHeading:'true',
-            Path:'monument',
-            Type:'Airline'
-        },
-        {
-            Id:34,
-            MasterName:'Train Master',
-            IsHeading:'false',
-            Path:'monument_master',
-            Type:'Airline'
-        },
-        {
-            Id:35,
-            MasterName:'Activity Master',
-            IsHeading:'false',
-            Path:'airline_master',
-            Type:'Airline'
-        },
-        {
-            Id:36,
-            MasterName:'Enroute Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:37,
-            MasterName:'VISA MASTERS',
-            IsHeading:'true',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:38,
-            MasterName:'VISA Type',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:39,
-            MasterName:'VISA Cost',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:40,
-            MasterName:'INSURANCE MASTER',
-            IsHeading:'true',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:41,
-            MasterName:'Insurance Type',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:42,
-            MasterName:'Insurance Cost',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-
-    ],
-    TransferlList : [
-        {
-            Id:43,
-            MasterName:'TPT TRANSFER',
-            IsHeading:'true',
-            Path:'hotel',
-            Type:'Airline'
-        },
-        {
-            Id:44,
-            MasterName:'Transfer Master',
-            IsHeading:'false',
-            Path:'room_type',
-            Type:'Airline'
-        },
-        {
-            Id:45,
-            MasterName:'Transfer Type',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:46,
-            MasterName:'Transportation Master',
-            IsHeading:'true',
-            Path:'monument',
-            Type:'Airline'
-        },
-        {
-            Id:47,
-            MasterName:'City Distance Master',
-            IsHeading:'false',
-            Path:'monument_master',
-            Type:'Airline'
-        },
-        {
-            Id:49,
-            MasterName:'Vehicle Master',
-            IsHeading:'false',
-            Path:'airline_master',
-            Type:'Airline'
-        },
-        {
-            Id:50,
-            MasterName:'Vehicle Type Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:51,
-            MasterName:'Vehicle Brand Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:52,
-            MasterName:'Driver Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-        {
-            Id:53,
-            MasterName:'Fleet Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
-        },
-    ],
-    AdditionList : [
-        {
-            Id:53,
-            MasterName:'ADDITIONAL',
-            IsHeading:'true',
-            Path:'hotel',
-            Type:'Airline'
-        },
-        {
-            Id:54,
-            MasterName:'Additional Requirements',
-            IsHeading:'false',
-            Path:'room_type',
-            Type:'Airline'
-        },
-        {
-            Id:55,
-            MasterName:'Expense Type Master',
-            IsHeading:'false',
-            Path:'amenties_master',
-            Type:'Airline'
-        },
-        {
-            Id:56,
-            MasterName:'Expense Head Master',
-            IsHeading:'true',
-            Path:'monument',
-            Type:'Airline'
-        },
-        {
-            Id:57,
-            MasterName:'Itenarary Information',
-            IsHeading:'false',
-            Path:'monument_master',
-            Type:'Airline'
-        },
-        {
-            Id:58,
-            MasterName:'Itenarary Overview',
-            IsHeading:'false',
-            Path:'airline_master',
-            Type:'Airline'
-        },
-        {
-            Id:59,
-            MasterName:'Train Master',
-            IsHeading:'false',
-            Path:'train_master',
-            Type:'Airline'
+            id:10,
+            list:'Season Master'
         }
     ]
-
 }
 
 export default stateData;
-export {countryData, cityList, masterList}
+export {countryData, cityList, newMasterList}
