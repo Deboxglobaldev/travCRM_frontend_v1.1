@@ -27,6 +27,45 @@
     color: red;
     font-size:12px;
 }
+.text-size{
+  font-size: 11px;
+}
 a{
   color: black;
+}
+
+.bg-orange{
+  background-color: orange;
+}
+.text-orange{
+  color: orange;
+}
+
+.bg-height30{
+  height: 30px;
+}
+
+.input-style{
+  background-color: rgb(209, 230, 231);
+  border: none;
+  border-radius: 1px;
+  outline: none;
+  padding: 8px 5px;
+  font-weight: 500;
+}
+
+.date-input{
+  background: none;
+  border: none;
+  outline: none;
+}
+.input-border-bottom{
+  border-bottom: 2px solid rgb(158, 156, 156);
+}
+.font-size-9{
+  font-size:9px;
+  font-weight: 500;
+}
+.card-bg-color{
+  background-color: rgba(228, 244, 245, 0.686);
 }
