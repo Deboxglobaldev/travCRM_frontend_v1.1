@@ -9,7 +9,7 @@ const Header = () => {
 		const user = JSON.parse(localStorage.getItem('auth'));
 		if(user){
 			setUserData(user);
-	  		console.log('get from local',user.firstName);
+	  		console.log('get from local', user.firstName);
 		}
 	}, []);
 

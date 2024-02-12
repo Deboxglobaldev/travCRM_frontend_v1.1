@@ -3,7 +3,7 @@ import Layout from "../../Component/Layout/Layout";
 const Query = () => {
   return (
     <Layout>
-<div className="container-fluid mt-2 mb-5 px-5">
+    <div className="container-fluid mt-2 mb-5 px-5">
       <div class="card pb-3">
         <div class="card-header bg-orange bg-height30 header-elements-inline">
           <h6 class="card-title text-dark">Contact Information</h6>

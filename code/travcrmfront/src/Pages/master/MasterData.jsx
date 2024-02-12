@@ -17,24 +17,23 @@ const MasterData = ({
   list11,
   list12,
 }) => {
+
   return (
     <>
       <div class="card bg-light w-100">
         <div class="card-body p-2">
           <p
-            className="text-primary fw-500 m-0 mb-1 d-block"
-            style={{ fontSize: "12px", fontWeight: "500" }}
+            className="text-primary fw-500 m-0 mb-1 d-block .master-head"
           >
             {head}
           </p>
 
           <div className="row">
-            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 master-head-img">
               <img
                 className="mt-2 mt-lg-0 mt-xl-0"
                 src={img}
                 alt="main-menu"
-                style={{ height: "40px", width: "40px" }}
               ></img>
             </div>
 
@@ -63,15 +62,13 @@ const DataPiece = ({ list1, list2 }) => {
           ""
         ) : (
           <NavLink to="/master/country_master">
-            <div className="mb-lg-3 mb-xl-3 mb-md-1 mb-1">
+            <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
               <img
                 src="assets/icons/countries.png"
                 alt="image"
-                style={{ height: "15px", width: "15px" }}
               />
               <span
                 className="fs-6 pl-1"
-                style={{ fontSize: "10px", fontWeight: "500" }}
               >
                 {list1}
               </span>
@@ -83,15 +80,13 @@ const DataPiece = ({ list1, list2 }) => {
           ""
         ) : (
           <NavLink to="/master">
-            <div>
+            <div className="master-list-icon">
               <img
                 src="assets/icons/process.png"
                 alt="image"
-                style={{ height: "15px", width: "15px" }}
               />
               <span
                 className="pl-1"
-                style={{ fontSize: "10px", fontWeight: "500" }}
               >
                 {list2}
               </span>

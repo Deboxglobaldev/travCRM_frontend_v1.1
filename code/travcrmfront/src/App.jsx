@@ -11,6 +11,7 @@ import CityMaster from "./Pages/master/masterlist/CityMaster";
 import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 import Profile from "./Component/Layout/Profile";
 import Protected from "./Pages/auth/Protected";
+import '../public/global_assets/custom_css/master.css';
 
 const App = () => {
   return (

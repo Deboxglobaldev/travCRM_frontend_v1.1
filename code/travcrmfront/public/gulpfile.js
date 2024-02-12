@@ -46,7 +46,6 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-
 //
 // SCSS compilation
 //
@@ -72,6 +71,8 @@ var processors = [
 
 // Make it dynamic by changing core variables. Sensitive to location: make sure
 // the paths are correct if you need to use a custom assets location
+
+
 if(direction == 'LTR') {
     gulp.task('sass', function() {
         return gulp
@@ -107,16 +108,13 @@ else {
     });
 }
 
-
 //
 // Watch files for changes
 //
-
 // Listen for changes in all SCSS files and automatically re-compile
 gulp.task('watch', function() {
     gulp.watch('global_assets/scss/**/*.scss', ['sass']);
 });
-
 
 //
 // Default task
