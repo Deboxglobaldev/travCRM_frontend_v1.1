@@ -9,6 +9,7 @@ import { combineReducers } from "redux";
 const reducers = combineReducers({
     auth: authReducers,
 });
+
 const persistConfig = {
     key: "root",
     storage,
