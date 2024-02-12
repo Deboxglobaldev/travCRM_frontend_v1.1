@@ -92,3 +92,13 @@ a{
     font-weight: 400;
 }
 /* /master page custom css */
+
+/*  form input custom style*/
+
+.form-input{
+  width: 100%;
+  border: 1px solid rgb(209, 207, 207);
+  outline: none;
+  border-radius: 2px;
+  height: 30px;
+}
