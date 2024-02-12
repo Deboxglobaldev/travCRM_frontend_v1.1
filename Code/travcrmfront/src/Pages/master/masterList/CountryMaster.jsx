@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import "reactjs-popup/dist/index.css";
 import axios from "axios";
 import Pagination from '../../../helper/Pagination/Pagination';
+import Layout from "../../../Component/Layout/Layout";
 
 let PageSize = 5;
 
@@ -54,6 +55,7 @@ const CountryMaster = () => {
 
   return (
     <>
+    <Layout>
     <div className="page-container">
     <div className="page-content">
     <div className="content-wrapper">
@@ -241,7 +243,7 @@ const CountryMaster = () => {
     </div>
     </div>
     </div>
-
+    </Layout>
     </>
   );
 };

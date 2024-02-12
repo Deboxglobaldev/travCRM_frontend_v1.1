@@ -12,13 +12,14 @@ import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 import Profile from "./Component/Layout/Profile";
 import Protected from "./Pages/auth/Protected";
 import '../public/global_assets/custom_css/master.css';
+import Header from "./Component/Layout/Header";
+import Footer from "./Component/Layout/Footer";
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
-
             <Route path="/" element={<Protected><Home /></Protected>} />
             <Route path="/mail" element={<Protected><Mail /></Protected>} />
             <Route path="/query" element={<Protected><Query /></Protected>} />
@@ -27,7 +28,6 @@ const App = () => {
             <Route path="/master/country_master" element={<Protected><CountryMaster /></Protected>} />
             <Route path="/master/city_master" element={<Protected><CityMaster /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
-
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Protected><Logout /></Protected>} />
         </Routes>

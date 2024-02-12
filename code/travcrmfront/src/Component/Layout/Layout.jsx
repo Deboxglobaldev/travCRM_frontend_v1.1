@@ -5,7 +5,7 @@ const Layout = (props) => {
     return (
         <div className="" >
             <Header />
-            {props.children}
+                {props.children}
             <Footer />
         </div>
     )
