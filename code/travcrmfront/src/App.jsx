@@ -27,7 +27,6 @@ const App = () => {
             <Route path="/master/city_master" element={<Protected><CityMaster /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
 
-
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Protected><Logout /></Protected>} />
         </Routes>
