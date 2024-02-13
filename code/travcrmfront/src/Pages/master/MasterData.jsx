@@ -61,7 +61,7 @@ const DataPiece = ({ list1, list2 }) => {
         {list1 == null ? (
           ""
         ) : (
-          <NavLink to="/master/country_master">
+          <NavLink to="/country_master">
             <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
               <img
                 src="assets/icons/countries.png"

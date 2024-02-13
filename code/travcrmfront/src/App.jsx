@@ -21,10 +21,10 @@ const App = () => {
             <Route path="/" element={<Protected><Home /></Protected>} />
             <Route path="/mail" element={<Protected><Mail /></Protected>} />
             <Route path="/query" element={<Protected><Query /></Protected>} />
-            <Route path="/master" element={<Protected><Master /></Protected>} />
-            <Route path="/master/state_master" element={<Protected><StateMaster /></Protected>} />
-            <Route path="/master/country_master" element={<Protected><CountryMaster /></Protected>} />
-            <Route path="/master/city_master" element={<Protected><CityMaster /></Protected>} />
+            <Route path="/master" element={<Protected><Master /></Protected>} ></Route>
+            <Route path="/state_master" element={<Protected><StateMaster /></Protected>} />
+            <Route path="/country_master" element={<Protected><CountryMaster /></Protected>} />
+            <Route path="/city_master" element={<Protected><CityMaster /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Protected><Logout /></Protected>} />
