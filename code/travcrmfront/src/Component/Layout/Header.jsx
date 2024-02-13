@@ -169,7 +169,8 @@ const Header = () => {
 			</div>
 			{/* // <!-- main end --> */}
 			{/* <!-- Alternative navbar --> */}
-			<div className="navbar navbar-expand-md navbar-dark bg-teal-400 navbar-static border-transparent">
+			{/* old alternate nav bar class: navbar navbar-expand-md navbar-dark bg-teal-400 navbar-static border-transparent */}
+			<div className="navbar navbar-expand-md navbar-light navbar-sticky navbar-static headroom headroom--not-bottom headroom--pinned headroom--top">
 				<div className="text-center d-md-none w-100">
 					<button type="button" className="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-second">
 						<i className="icon-unfold mr-2"></i>
