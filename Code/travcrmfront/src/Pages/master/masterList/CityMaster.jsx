@@ -20,7 +20,7 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <h5 className="card-title ">Brand Master</h5>
+                <h5 className="card-title d-none d-sm-block">Brand Master</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -112,28 +112,28 @@ const CityMaster = () => {
             </div>
             <div className="card-body">
               <div className="row align-items-center">
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
                     placeholder="keyword"
                     className="keyword-input focus-ring form-input"
                   />
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select className="select-input focus-ring form-input">
                     <option value="">Select Status</option>
                     <option value="0">Active</option>
                     <option value="1">Inactive</option>
                   </select>
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
                     placeholder="Search"
                     className="search-input form-input"
                   />
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <button className="btn bg-teal-400 w-75 custom-h-37">
                     Search
                   </button>
