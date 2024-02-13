@@ -1,15 +1,14 @@
 import React, { useState, useMemo } from "react";
-import stateData from "../../../data";
+import { cityList } from "../../../data";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../../helper/Pagination/Pagination";
 import Layout from "../../../Component/Layout/Layout";
 let PageSize = 5;
 
-const StateMaster = () => {
-  console.log(stateData);
-  const navigate = useNavigate();
+const CityMaster = () => {
 
-  const [stateMasterInputs, setStateMasterInputs] = useState({
+  const navigate = useNavigate();
+  const [cityMasterInputs, setCityMasterInputs] = useState({
     state: "",
     name: "keyword",
     status: "",
@@ -24,9 +23,6 @@ const StateMaster = () => {
   const [getData, setGetData] = useState();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const handleAddSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -34,9 +30,13 @@ const StateMaster = () => {
     return getData?.DataList.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
-  const handleAddStateInput = (e) => {
-    setStateMasterInputs({
-      ...stateMasterInputs,
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleAddCityInput = (e) => {
+    setCityMasterInputs({
+      ...cityMasterInputs,
       [e.target.name]: e.target.value,
     });
   };
@@ -44,6 +44,8 @@ const StateMaster = () => {
   const backMasterButton = () => {
     navigate("/master");
   };
+
+
   return (
     <>
       <Layout>
@@ -60,7 +62,7 @@ const StateMaster = () => {
                       <div className="col-xl-10 d-flex align-items-center">
                         <a
                           href="/#"
-                          className="btn p-1 bg-teal-400 mr-2 fs-11"
+                          className="btn bg-teal-400 mr-2 p-1 fs-11"
                           aria-expanded="false"
                           onClick={backMasterButton}
                         >
@@ -72,7 +74,7 @@ const StateMaster = () => {
                         {/* Bootstrap Modal */}
                         <button
                           type="button"
-                          className="btn bg-teal add-button p-1 fs-11"
+                          className="btn bg-teal-400 add-button p-1 fs-11"
                           data-toggle="modal"
                           data-target="#exampleModal"
                         >
@@ -91,7 +93,7 @@ const StateMaster = () => {
                         >
                           <div className="modal-dialog" role="document">
                             <div className="modal-content">
-                              <div className="modal-header text-dark">
+                              <div className="modal-header">
                                 <h5
                                   className="modal-title"
                                   id="exampleModalLabel"
@@ -107,17 +109,16 @@ const StateMaster = () => {
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div className="modal-body my-3">
+                              <div className="modal-body">
                                 {/* modal body */}
 
                                 <form onSubmit={handleAddSubmit}>
-                                  <div className="row">
-                                  <div className="col form-group">
+                                  <div className="form-group">
                                     <label htmlFor="country">Country</label>
                                     <select
-                                      className="form-input"
+                                      className="form-control"
                                       id="country"
-                                      onChange={handleAddStateInput}
+                                      onChange={handleAddCityInput}
                                     >
                                       <option>Select Country</option>
                                       <option>India</option>
@@ -127,44 +128,41 @@ const StateMaster = () => {
                                       <option>Bangladesh</option>
                                     </select>
                                   </div>
-                                  <div className="col form-group">
+                                  <div className="form-group">
                                     <label htmlFor="name">Name</label>
                                     <input
                                       type="email"
-                                      className="form-input"
+                                      className="form-control"
                                       id="name"
                                       placeholder="Name"
-                                      onChange={handleAddStateInput}
+                                      onChange={handleAddCityInput}
                                     />
                                   </div>
-                                  <div className="col form-group">
+                                  <div className="form-group">
                                     <label htmlFor="status">Status</label>
                                     <select
-                                      className="form-input"
+                                      className="form-control"
                                       id="status"
-                                      onChange={handleAddStateInput}
+                                      onChange={handleAddCityInput}
                                     >
                                       <option>Select</option>
                                       <option>Active</option>
                                       <option>Offline</option>
                                     </select>
                                   </div>
-                                </div>
                                 </form>
                               </div>
-                              <div className="row ml-auto pr-2">
                               <div class="modal-footer">
-                                <button type="submit" className="small-button">
+                                <button type="submit" className="save-button">
                                   Save
                                 </button>
                                 <button
                                   type="button"
-                                  className="small-button"
+                                  className="cancel-button"
                                   data-dismiss="modal"
                                 >
                                   Cancel
                                 </button>
-                              </div>
                               </div>
                               {/* /modal body */}
                             </div>
@@ -174,65 +172,26 @@ const StateMaster = () => {
                     </div>
                     <div className="card">
                       <div className="card-body p-0">
-                        <div className="row align-items-center justify-content-end p-3">
-                          <div className="col-lg-2">
-                            <input
-                              type="text"
-                              placeholder="keyword"
-                              className="keyword-input focus-ring form-input"
-                              onChange={(e) =>
-                                setPostData({
-                                  ...postData,
-                                  Search: e.target.value,
-                                })
-                              }
-                              value={postData.Search}
-                            />
-                          </div>
-                          <div className="col-lg-2">
-                            <select
-                              className="select-input focus-ring form-input"
-                              onChange={(e) => {
-                                setPostData({
-                                  ...postData,
-                                  Status: e.target.value,
-                                });
-                              }}
-                            >
-                              <option value="">Select Status</option>
-                              <option value="0">Active</option>
-                              <option value="1">Inactive</option>
-                            </select>
-                          </div>
-                          <div className="col-lg-2">
-                            <input
-                              type="text"
-                              placeholder="Search"
-                              className="search-input form-input"
-                            />
-                          </div>
-                        </div>
-
                         <div className="stateTable table-responsive px-3 pb-3">
                           <table className="table table-hover table-bordered table-light">
                             <thead>
                               <tr>
                                 <th scope="col">Name</th>
+                                <th scope="col">State Name</th>
                                 <th scope="col">Country Name</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Created By</th>
                                 <th scope="col">Modified By</th>
                               </tr>
                             </thead>
                             <tbody>
                               {loading && <>Loading...</>}
-                              {
-                                stateData.DataList.map((item, index) => {
+                              { 
+                                cityList.DataList.map((item, index) => {
                                   return (
                                     <tr key={index}>
                                       <td>{item.Name}</td>
+                                      <td>{item.StateName}</td>
                                       <td>{item.CountryName}</td>
-                                      <td>{item.Status}</td>
                                       <td>{item.AddedBy}</td>
                                       <td>{item.UpdatedBy}</td>
                                     </tr>
@@ -261,4 +220,4 @@ const StateMaster = () => {
   );
 };
 
-export default StateMaster;
+export default CityMaster;

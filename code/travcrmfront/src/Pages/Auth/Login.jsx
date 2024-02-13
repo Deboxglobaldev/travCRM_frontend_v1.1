@@ -17,9 +17,6 @@ const Login = () => {
     password: "",
   });
 
-
-
-
   //"username":"atuny0","password":"9uQFF1Lh";
   //"username":"hbingley1","password":"CQutx25i8r";
 
