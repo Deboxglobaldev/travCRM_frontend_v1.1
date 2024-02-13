@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
+import Pagination from "../../../helper/Pagination/Pagination";
+
+let PageSize = 5;
 const CityMaster = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
       <Layout>
@@ -176,6 +180,13 @@ const CityMaster = () => {
                 </table>
               </div>
             </div>
+            <Pagination
+              className="pagination-bar"
+              currentPage={currentPage}
+              totalCount={34}
+              pageSize={PageSize}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
           </div>
         </div>
       </Layout>
