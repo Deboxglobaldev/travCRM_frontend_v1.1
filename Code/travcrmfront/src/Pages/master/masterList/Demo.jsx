@@ -5,9 +5,7 @@ import { cityList } from "../../../data";
 import Pagination from "../../../helper/Pagination/Pagination";
 
 let PageSize = 5;
-
-const StateMaster = () => {
-
+const CityMaster = () => {
   const [currentPage, setCurrentPage] = useState(1);
   return (
     <>
@@ -19,17 +17,17 @@ const StateMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Brand Master</h5>
-              </div>
-              <div className="col-xl-2 d-flex justify-content-end">
-                {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn btn-gray mr-2 fs-11 shadow"
+                  className="btn bg-teal-400 mr-2 fs-11"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
+                <h5 className="card-title d-none d-sm-block">Brand Master</h5>
+              </div>
+              <div className="col-xl-2 d-flex justify-content-end">
+                {/* Bootstrap Modal */}
                 <button
                   type="button"
                   className="btn bg-teal-400 add-button fs-11"
@@ -121,8 +119,8 @@ const StateMaster = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
-                    placeholder="Search"
-                    className="search-input focus-ring form-input"
+                    placeholder="keyword"
+                    className="keyword-input focus-ring form-input"
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -131,6 +129,13 @@ const StateMaster = () => {
                     <option value="0">Active</option>
                     <option value="1">Inactive</option>
                   </select>
+                </div>
+                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="search-input form-input"
+                  />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <button className="btn bg-teal-400 w-75 custom-h-37">
@@ -142,6 +147,7 @@ const StateMaster = () => {
           </div>
 
           <div className="card">
+            <div className="card-body">
               <div class="table-responsive px-0">
                 <table class="table table-bordered">
                   <thead class="bg-light font-weight-bold">
@@ -156,7 +162,7 @@ const StateMaster = () => {
                     </tr>
                   </thead>
                   <tbody class="text-secondary">
-                    {cityList.DataList.map((item, index) => {
+                    {cityList.DataList.map((item,index) => {
                       console.log(item);
                       return (
                         <tr key={index}>
@@ -182,9 +188,10 @@ const StateMaster = () => {
               onPageChange={(page) => setCurrentPage(page)}
             />
           </div>
+        </div>
       </Layout>
     </>
   );
 };
 
-export default StateMaster;
+export default CityMaster;

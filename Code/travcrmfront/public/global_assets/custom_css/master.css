@@ -112,3 +112,9 @@ a{
 .custom-h-37{
   height: 37px;
 }
+
+/* btn colo */
+
+.btn-gray{
+  background-color: rgb(220, 217, 217);
+}

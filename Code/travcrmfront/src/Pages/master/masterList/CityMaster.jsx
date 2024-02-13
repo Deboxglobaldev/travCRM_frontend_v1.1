@@ -17,20 +17,20 @@ const CityMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
+                <h5 className="card-title d-none d-sm-block">City Master</h5>
+              </div>
+              <div className="col-xl-2 d-flex justify-content-end">
+                {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn bg-teal-400 mr-2 fs-11"
+                  className="btn btn-gray mr-2 fs-11 shadow"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
-                <h5 className="card-title d-none d-sm-block">Brand Master</h5>
-              </div>
-              <div className="col-xl-2 d-flex justify-content-end">
-                {/* Bootstrap Modal */}
                 <button
                   type="button"
-                  className="btn bg-teal-400 add-button fs-11"
+                  className="btn bg-teal-400 add-button fs-11 shadow"
                   data-toggle="modal"
                   data-target="#exampleModal"
                 >
@@ -119,8 +119,8 @@ const CityMaster = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
-                    placeholder="keyword"
-                    className="keyword-input focus-ring form-input"
+                    placeholder="Search"
+                    className="search-input focus-ring form-input"
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -129,13 +129,6 @@ const CityMaster = () => {
                     <option value="0">Active</option>
                     <option value="1">Inactive</option>
                   </select>
-                </div>
-                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="search-input form-input"
-                  />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <button className="btn bg-teal-400 w-75 custom-h-37">
@@ -147,7 +140,6 @@ const CityMaster = () => {
           </div>
 
           <div className="card">
-            <div className="card-body">
               <div class="table-responsive px-0">
                 <table class="table table-bordered">
                   <thead class="bg-light font-weight-bold">
@@ -179,7 +171,6 @@ const CityMaster = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}
