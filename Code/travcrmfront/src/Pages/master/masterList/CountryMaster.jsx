@@ -3,14 +3,17 @@ import "reactjs-popup/dist/index.css";
 import axios from "axios";
 import Pagination from "../../../helper/Pagination/Pagination";
 import Layout from "../../../Component/Layout/Layout";
-import { NavLink } from "react-router-dom";
-let PageSize = 5;
+import { Link, NavLink } from "react-router-dom";
+import Model from "../../../Component/Layout/Model";
+
+let PageSize = 10;
 
 const CountryMaster = () => {
   const [postData, setPostData] = useState({
     Search: null,
     Status: null,
   });
+
 
   const [getData, setGetData] = useState();
   const [loading, setLoading] = useState(true);
@@ -40,15 +43,11 @@ const CountryMaster = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return getData?.DataList.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage,getData]);
 
-  const handleAddSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const handleAddCountryInput = (e) => {
-    console.log(e.target.value);
-  };
+  const handleInputChange = (e) => {
+    console.log(e.target.value)
+  }
 
   return (
     <>
@@ -66,100 +65,40 @@ const CountryMaster = () => {
                 {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn mr-2 btn-gray fs-11 shadow" 
+                  className="btn mr-2 btn-gray fs-11 shadow"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
-                <button
-                  type="button"
-                  className="btn bg-teal-400 add-button fs-11 shadow"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  <i className="fa fa-plus pr-1" aria-hidden="true"></i>
-                  Create New
-                </button>
 
-                {/* <!-- Modal --> */}
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Add Country
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                        {/* modal body */}
+                <Model heading={"Add Country"}>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <label>Name</label>
+                          <input type="text" placeholder="Enter Name" class="form-control" onChange={handleInputChange} />
+                        </div>
 
-                        <form onSubmit={handleAddSubmit}>
-                          <div className="form-group">
-                            <label htmlFor="country">Country</label>
-                            <select className="form-control" id="country"
-                             onChange={handleAddCountryInput}
-                            >
-                              <option>Select Country</option>
-                              <option>India</option>
-                              <option>Pakistan</option>
-                              <option>Nepal</option>
-                              <option>China</option>
-                              <option>Bangladesh</option>
-                            </select>
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="name"
-                              placeholder="Name"
-                              onChange={handleAddCountryInput}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="status">Status</label>
-                            <select className="form-control" id="status"
-                                onChange={handleAddCountryInput}
-                            >
-                              <option>Select</option>
-                              <option>Active</option>
-                              <option>Offline</option>
-                            </select>
-                          </div>
-                        </form>
+                        <div class="col-sm-3">
+                          <label>Short Name</label>
+                          <input type="text" placeholder="Enter Short Name" class="form-control" onChange={handleInputChange} />
+                        </div>
+
+                        <div class="col-sm-4">
+                          <label>Status</label>
+                          <select className="form-control">
+                            <option>Active</option>
+                            <option>Inactive</option>
+                          </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <label>Set Default</label>
+                            <input type="checkbox" />
+                        </div>
                       </div>
-                      <div class="modal-footer">
-                        <button type="submit" className="save-button">
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          className="cancel-button"
-                          data-dismiss="modal"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                      {/* /modal body */}
                     </div>
-                  </div>
-                </div>
+                </Model>
               </div>
             </div>
             <div className="card-body">
@@ -170,12 +109,12 @@ const CountryMaster = () => {
                     placeholder="Search"
                     className="search-input focus-ring form-input"
                     onChange={(e) =>
-                        setPostData({
-                          ...postData,
-                          Search: e.target.value,
-                        })
-                      }
-                      value={postData.Search}
+                      setPostData({
+                        ...postData,
+                        Search: e.target.value,
+                      })
+                    }
+                    value={postData.Search}
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -205,44 +144,43 @@ const CountryMaster = () => {
           {/*******************------Table Card-----*******************/}
 
           <div className="card">
-              <div class="table-responsive px-0">
-                <table class="table table-bordered">
-                  <thead class="bg-light font-weight-bold">
-                    <tr>
-                      <th scope="col">Sr</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Short Name</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Added By</th>
-                      <th scope="col">Updated By</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-secondary">
-                    {loading && <>Loading...</>}
-                    {currentTableData &&
-                      currentTableData.map((item, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{item.Name}</td>
-                            <td>{item.ShortName}</td>
-                            <td>{item.Status}</td>
-                            <td>{item.AddedBy}</td>
-                            <td>{item.UpdatedBy}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </div>
+            <div class="table-responsive px-0">
+              <table class="table table-bordered">
+                <thead class="bg-light font-weight-bold">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Short Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Added By</th>
+                    <th scope="col">Updated By</th>
+                  </tr>
+                </thead>
+                <tbody class="text-secondary">
+                  {loading && <>Loading...</>}
+                  {currentTableData &&
+                    currentTableData.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{item.Name}</td>
+                          <td>{item.ShortName}</td>
+                          <td>{item.Status}</td>
+                          <td>{item.AddedBy}</td>
+                          <td>{item.UpdatedBy}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
             </div>
-            <Pagination
-              className="pagination-bar"
-              currentPage={currentPage}
-              totalCount={34}
-              pageSize={PageSize}
-              onPageChange={(page) => setCurrentPage(page)}
-            />
           </div>
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={34}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
       </Layout>
     </>
   );

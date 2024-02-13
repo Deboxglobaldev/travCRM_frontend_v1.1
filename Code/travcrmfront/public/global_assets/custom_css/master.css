@@ -18,6 +18,11 @@
 .card-body{
   background: #ffff;
 }
+
+.modal-content{
+  color:black;
+}
+
 .backButton {
   display: flex;
   justify-content: center;
