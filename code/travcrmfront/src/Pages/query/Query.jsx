@@ -131,7 +131,7 @@ const Query = () => {
       </div>
 
       <div className="row d-flex">
-        <div className="col-6">
+        <div className="col-md-6">
           <div class="card pb-3">
             <div class="bg-orange bg-height30">
               <p class="py-1 pl-1 text-dark">
@@ -291,7 +291,7 @@ const Query = () => {
           </div>
         </div>
 
-        <div className="col-6">
+        <div className="col-md-6">
           <div class="card pb-3">
             <div class="bg-orange bg-height30">
               <p class="py-1 pl-1 text-dark">

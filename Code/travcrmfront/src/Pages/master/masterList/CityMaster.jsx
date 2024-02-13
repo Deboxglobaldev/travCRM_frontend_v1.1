@@ -62,7 +62,7 @@ const CityMaster = () => {
                       <div className="col-xl-10 d-flex align-items-center">
                         <a
                           href="/#"
-                          className="btn bg-teal-400 mr-2"
+                          className="btn bg-teal-400 mr-2 p-1"
                           aria-expanded="false"
                           onClick={backMasterButton}
                         >
@@ -74,11 +74,11 @@ const CityMaster = () => {
                         {/* Bootstrap Modal */}
                         <button
                           type="button"
-                          className="btn bg-teal-400 add-button"
+                          className="btn bg-teal-400 add-button p-1"
                           data-toggle="modal"
                           data-target="#exampleModal"
                         >
-                          <i className="fa fa-plus" aria-hidden="true"></i>{" "}
+                          <i className="fa fa-plus" aria-hidden="true"></i>
                           Create New
                         </button>
 

@@ -10,14 +10,14 @@
   font-size: 12px;
   box-sizing: border-box;
 }
-.addButton {
-  height: 30px;
-  font-size: 10px;
-  font-weight: 500;
+.small-button{
   height: 30px;
   width: 80px;
-  padding: 0;
-  box-sizing: border-box;
+  background: none;
+  border-radius: 30px;
+  border: 1px solid rgb(209, 207, 207);
+  outline: 1px solid rgb(209, 207, 207);
+  cursor: pointer;
 }
 .toastings {
     border: 1px solid #713200;

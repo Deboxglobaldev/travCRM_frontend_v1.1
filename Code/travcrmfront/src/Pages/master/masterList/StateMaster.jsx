@@ -60,7 +60,7 @@ const StateMaster = () => {
                       <div className="col-xl-10 d-flex align-items-center">
                         <a
                           href="/#"
-                          className="btn bg-teal-400 mr-2"
+                          className="btn p-1 bg-teal-400 mr-2"
                           aria-expanded="false"
                           onClick={backMasterButton}
                         >
@@ -72,7 +72,7 @@ const StateMaster = () => {
                         {/* Bootstrap Modal */}
                         <button
                           type="button"
-                          className="btn bg-teal-400 add-button"
+                          className="btn bg-teal add-button p-1"
                           data-toggle="modal"
                           data-target="#exampleModal"
                         >
@@ -91,7 +91,7 @@ const StateMaster = () => {
                         >
                           <div className="modal-dialog" role="document">
                             <div className="modal-content">
-                              <div className="modal-header">
+                              <div className="modal-header text-dark">
                                 <h5
                                   className="modal-title"
                                   id="exampleModalLabel"
@@ -107,14 +107,15 @@ const StateMaster = () => {
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div className="modal-body">
+                              <div className="modal-body my-3">
                                 {/* modal body */}
 
                                 <form onSubmit={handleAddSubmit}>
-                                  <div className="form-group">
+                                  <div className="row">
+                                  <div className="col form-group">
                                     <label htmlFor="country">Country</label>
                                     <select
-                                      className="form-control"
+                                      className="form-input"
                                       id="country"
                                       onChange={handleAddStateInput}
                                     >
@@ -126,20 +127,20 @@ const StateMaster = () => {
                                       <option>Bangladesh</option>
                                     </select>
                                   </div>
-                                  <div className="form-group">
+                                  <div className="col form-group">
                                     <label htmlFor="name">Name</label>
                                     <input
                                       type="email"
-                                      className="form-control"
+                                      className="form-input"
                                       id="name"
                                       placeholder="Name"
                                       onChange={handleAddStateInput}
                                     />
                                   </div>
-                                  <div className="form-group">
+                                  <div className="col form-group">
                                     <label htmlFor="status">Status</label>
                                     <select
-                                      className="form-control"
+                                      className="form-input"
                                       id="status"
                                       onChange={handleAddStateInput}
                                     >
@@ -148,19 +149,22 @@ const StateMaster = () => {
                                       <option>Offline</option>
                                     </select>
                                   </div>
+                                </div>
                                 </form>
                               </div>
+                              <div className="row ml-auto pr-2">
                               <div class="modal-footer">
-                                <button type="submit" className="save-button">
+                                <button type="submit" className="small-button">
                                   Save
                                 </button>
                                 <button
                                   type="button"
-                                  className="cancel-button"
+                                  className="small-button"
                                   data-dismiss="modal"
                                 >
                                   Cancel
                                 </button>
+                              </div>
                               </div>
                               {/* /modal body */}
                             </div>

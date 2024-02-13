@@ -68,7 +68,7 @@ const CountryMaster = () => {
                       <div className="col-xl-10 d-flex align-items-center">
                         <a
                           href="/#"
-                          className="btn bg-teal-400 mr-2"
+                          className="btn bg-teal-400 mr-2 p-1"
                           aria-expanded="false"
                         >
                           Back
@@ -79,7 +79,7 @@ const CountryMaster = () => {
                         {/* Bootstrap Modal */}
                         <button
                           type="button"
-                          className="btn bg-teal-400 add-button"
+                          className="btn bg-teal-400 add-button p-1"
                           data-toggle="modal"
                           data-target="#exampleModal"
                         >

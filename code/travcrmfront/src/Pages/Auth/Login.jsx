@@ -10,7 +10,7 @@ import { login } from "../../reducer/authReducers";
 const Login = () => {
 
   const dispatch = useDispatch();
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
