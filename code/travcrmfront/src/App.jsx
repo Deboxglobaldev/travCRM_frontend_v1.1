@@ -12,8 +12,6 @@ import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 import Profile from "./Component/Layout/Profile";
 import Protected from "./Pages/auth/Protected";
 import '../public/global_assets/custom_css/master.css';
-import Header from "./Component/Layout/Header";
-import Footer from "./Component/Layout/Footer";
 
 const App = () => {
   return (

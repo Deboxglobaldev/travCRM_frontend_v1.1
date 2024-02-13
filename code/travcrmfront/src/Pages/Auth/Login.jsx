@@ -10,15 +10,12 @@ import { login } from "../../reducer/authReducers";
 const Login = () => {
 
   const dispatch = useDispatch();
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
-
-
-
 
   //"username":"atuny0","password":"9uQFF1Lh";
   //"username":"hbingley1","password":"CQutx25i8r";
