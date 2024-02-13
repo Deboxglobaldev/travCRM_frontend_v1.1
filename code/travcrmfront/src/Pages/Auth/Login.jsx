@@ -26,7 +26,7 @@ const Login = () => {
       if (user.username != "" && user.password != "") {
         setLoading(true);
 
-        const { data } = await axiosNew.post("/auth/login", {
+        const { data } = await axiosNew.post("/auth/login",{
           username: user.username,
           password: user.password,
         });

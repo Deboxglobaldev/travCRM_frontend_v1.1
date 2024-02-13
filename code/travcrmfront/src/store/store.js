@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducers from "../reducer/authReducers";
-// import thunk from "redux-thunk";     /////this line commented by nitish
+// import thunk from "redux-thunk";     /////this line commented by prasang
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import { combineReducers } from "redux";
@@ -19,7 +19,7 @@ const persistReducers = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
     reducer: persistReducers,
-    // middleware: [thunk],   /////this line commented by nitish
+    // middleware: [thunk],   /////this line commented by prasang
 });
 
 export default store;
