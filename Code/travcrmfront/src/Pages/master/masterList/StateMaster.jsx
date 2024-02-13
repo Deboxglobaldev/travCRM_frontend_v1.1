@@ -173,7 +173,6 @@ const StateMaster = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}
@@ -181,6 +180,7 @@ const StateMaster = () => {
               pageSize={PageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />
+            </div>
           </div>
       </Layout>
     </>
