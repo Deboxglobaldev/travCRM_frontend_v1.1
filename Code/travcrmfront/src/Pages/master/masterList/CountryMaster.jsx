@@ -43,7 +43,7 @@ const CountryMaster = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return getData?.DataList.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage,getData]);
+  }, [currentPage, getData]);
 
 
   const handleAddSubmit = (e) => {
@@ -67,22 +67,22 @@ const CountryMaster = () => {
                 <div className="col-xl-10 d-flex align-items-center">
                   <a
                     href="/#"
-                    className="btn bg-teal-400 mr-2"
+                    className="btn bg-teal-400 mr-2 p-1 fs-11"
                     aria-expanded="false"
                   >
                     Back
                   </a>
-                  <h5 className="card-title ">Country Master</h5>
+                  <h5 className="card-title ">Brand Master</h5>
                 </div>
                 <div className="col-xl-2 d-flex justify-content-end">
                   {/* Bootstrap Modal */}
                   <button
                     type="button"
-                    className="btn bg-teal-400 add-button"
+                    className="btn bg-teal-400 add-button p-1 fs-11"
                     data-toggle="modal"
                     data-target="#exampleModal"
                   >
-                    <i className="fa fa-plus" aria-hidden="true"></i>{" "}
+                    <i className="fa fa-plus pr-1" aria-hidden="true"></i>
                     Create New
                   </button>
 

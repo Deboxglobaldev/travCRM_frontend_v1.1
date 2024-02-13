@@ -6,6 +6,7 @@
     background-color: #324148;
 }
 
+
 .backButton {
   display: flex;
   justify-content: center;
@@ -14,14 +15,14 @@
   font-size: 12px;
   box-sizing: border-box;
 }
-.addButton {
-  height: 30px;
-  font-size: 10px;
-  font-weight: 500;
+.small-button{
   height: 30px;
   width: 80px;
-  padding: 0;
-  box-sizing: border-box;
+  background: none;
+  border-radius: 30px;
+  border: 1px solid rgb(209, 207, 207);
+  outline: 1px solid rgb(209, 207, 207);
+  cursor: pointer;
 }
 
 .text-size{
@@ -98,5 +99,16 @@ a{
   border: 1px solid rgb(209, 207, 207);
   outline: none;
   border-radius: 2px;
-  height: 30px;
+  height: 37px;
+  padding-left: 10px;
+}
+
+
+/* font-size */
+.fs-11{
+  font-size: 11px;
+}
+
+.custom-h-37{
+  height: 37px;
 }
