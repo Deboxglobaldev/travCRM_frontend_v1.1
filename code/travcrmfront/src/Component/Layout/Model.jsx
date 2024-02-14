@@ -1,6 +1,16 @@
 import React from 'react'
 
-const Model = ({ children, heading }) => {
+const Model = ({ children, heading, value }) => {
+
+    // console.log('Modal Inputs', value);
+
+    const submitModalData = (e) =>{
+        e.preventDefault();
+        localStorage.setItem('user1', JSON.stringify(value))
+        let data = localStorage.getItem('user1');
+        let result = JSON.parse(data);
+        console.log(result);
+    }
 
     return (
         <>
@@ -31,7 +41,7 @@ const Model = ({ children, heading }) => {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="POST" action="">
+                        <form method="POST" action="" onSubmit={submitModalData}>
                             <div className="modal-body">
                                 {/* modal body */}
                                 {children}

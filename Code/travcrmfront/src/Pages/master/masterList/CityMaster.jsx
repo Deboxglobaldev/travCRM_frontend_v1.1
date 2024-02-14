@@ -37,18 +37,17 @@ const CityMaster = () => {
                 <Model heading={"Add City"}>
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-sm-3">
-                        <label>Name</label>
-                        <input
-                          type="text"
-                          placeholder="City Name"
-                          class="form-control"
-                          onChange={handleInputChange}
-                        />
+                    <div class="col-sm-3">
+                        <label htmlFor="country">Country</label>
+                        <select className="form-control" id="country">
+                          <option>Select Country</option>
+                          <option>India</option>
+                          <option>Iran</option>
+                          <option>China</option>
+                        </select>
                       </div>
-
                       <div class="col-sm-3">
-                        <label>State Name</label>
+                        <label>State</label>
                         <input
                           type="text"
                           placeholder="State Name"
@@ -57,13 +56,13 @@ const CityMaster = () => {
                         />
                       </div>
                       <div class="col-sm-3">
-                        <label htmlFor="country">Country</label>
-                        <select className="form-control" id="country">
-                          <option>Select Country</option>
-                          <option>India</option>
-                          <option>Iran</option>
-                          <option>China</option>
-                        </select>
+                        <label>Name</label>
+                        <input
+                          type="text"
+                          placeholder="City Name"
+                          class="form-control"
+                          onChange={handleInputChange}
+                        />
                       </div>
                       <div class="col-sm-3">
                         <label>Status</label>

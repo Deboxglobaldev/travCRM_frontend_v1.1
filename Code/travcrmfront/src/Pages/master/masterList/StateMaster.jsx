@@ -9,10 +9,16 @@ let PageSize = 5;
 
 const StateMaster = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalInputs, setModalInputs] = useState({
+    country:"",
+    state:"",
+    status:""
+  });
 
-  const handleInputChange = () =>{
-
+  const handleInputChange = (e) =>{
+    setModalInputs({...modalInputs, [e.target.name]:e.target.value})
   }
+  // console.log('Modal Inputs', modalInputs);
 
   return (
     <>
@@ -35,30 +41,40 @@ const StateMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add State"}>
+                <Model heading={"Add State"} value={modalInputs}>
                   <div class="card-body">
                     <div class="row">
+                      <div className="col-sm-4">
+                        <label htmlFor="country">Select Country</label>
+                        <select className="form-control" id="country"
+                          name="country"
+                          value={modalInputs.country}
+                          onChange={handleInputChange}
+                        >
+                          <option>Select Country</option>
+                          <option>India</option>
+                          <option>Iran</option>
+                          <option>China</option>
+                        </select>
+                      </div>
                       <div class="col-sm-4">
                         <label>Name</label>
                         <input
                           type="text"
                           placeholder="State Name"
                           class="form-control"
+                          name="state"
+                          value={modalInputs.state}
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div className="col-sm-4">
-                        <label htmlFor="country">Select Country</label>
-                        <select className="form-control" id="country">
-                          <option value="selct">Select Country</option>
-                          <option value="selct">India</option>
-                          <option value="selct">Iran</option>
-                          <option value="selct">China</option>
-                        </select>
-                      </div>
                       <div class="col-sm-4">
                         <label>Status</label>
-                        <select className="form-control">
+                        <select className="form-control"
+                          name="status"
+                          value={modalInputs.status}
+                          onChange={handleInputChange}
+                        >
                           <option>Active</option>
                           <option>Inactive</option>
                         </select>
@@ -89,6 +105,9 @@ const StateMaster = () => {
                     Search
                   </button>
                 </div>
+                <div className="col-lg-2">
+                  <NavLink to="/master/state_master/another_master">Another Master</NavLink>
+                </div>
               </div>
             </div>
           </div>
@@ -108,7 +127,7 @@ const StateMaster = () => {
                   </tr>
                 </thead>
                 <tbody className="text-secondary">
-                  {cityList.DataList.map((item, index) => {
+                  {/* {cityList.DataList.map((item, index) => {
                     console.log(item);
                     return (
                       <tr key={index}>
@@ -121,7 +140,7 @@ const StateMaster = () => {
                         <td>{item.Status}</td>
                       </tr>
                     );
-                  })}
+                  })} */}
                 </tbody>
               </table>
             </div>

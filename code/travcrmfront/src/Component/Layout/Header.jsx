@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, NavLink } from "react-router-dom";
+import logo from '../../../public/global_assets/images/logo_light.png';
+import placeholder from '../../../public/global_assets/images/placeholders/placeholder.jpg'
 
 const Header = () => {
   const [user, setUserData] = useState([]);
@@ -18,7 +20,7 @@ const Header = () => {
       <div className="navbar navbar-expand-md navbar-dark border-transparent">
         <div className="navbar-brand">
           <NavLink to="/">
-            <img src="/global_assets/images/logo_light.png" alt="limitless" />
+            <img src={logo} alt="limitless" />
           </NavLink>
         </div>
 
@@ -61,7 +63,7 @@ const Header = () => {
                     <li className="media">
                       <div className="mr-3">
                         <img
-                          src="global_assets/images/placeholders/placeholder.jpg"
+                          src={placeholder}
                           width="36"
                           height="36"
                           className="rounded-circle"
@@ -87,7 +89,7 @@ const Header = () => {
                     <li className="media">
                       <div className="mr-3">
                         <img
-                          src="global_assets/images/placeholders/placeholder.jpg"
+                          src={placeholder}
                           width="36"
                           height="36"
                           className="rounded-circle"
@@ -149,7 +151,7 @@ const Header = () => {
                     <li className="media">
                       <div className="mr-3 position-relative">
                         <img
-                          src="global_assets/images/placeholders/placeholder.jpg"
+                          src={placeholder}
                           width="36"
                           height="36"
                           className="rounded-circle"
@@ -179,7 +181,7 @@ const Header = () => {
                     <li className="media">
                       <div className="mr-3">
                         <img
-                          src="global_assets/images/placeholders/placeholder.jpg"
+                          src={placeholder}
                           width="36"
                           height="36"
                           className="rounded-circle"
