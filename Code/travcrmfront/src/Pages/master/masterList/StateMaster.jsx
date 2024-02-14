@@ -24,7 +24,7 @@ const StateMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Brand Master</h5>
+                <h5 className="card-title d-none d-sm-block">State Master</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -35,7 +35,7 @@ const StateMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add Country"}>
+                <Model heading={"Add State"}>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-4">

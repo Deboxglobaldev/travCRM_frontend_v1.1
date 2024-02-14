@@ -34,7 +34,7 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add Country"}>
+                <Model heading={"Add City"}>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-3">
