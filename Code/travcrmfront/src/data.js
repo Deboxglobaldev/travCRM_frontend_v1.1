@@ -70,7 +70,6 @@ const stateData = {
         },
     ]
 };
-
 const countryData = {
 
         "Status": 200,
@@ -168,7 +167,6 @@ const countryData = {
             },
         ]
 }
-
 const cityList = {
     "Status": 0,
     "message": "",
@@ -242,10 +240,7 @@ const cityList = {
         },
     ]
 }
-
-
 // ----------------------Master List------------------------
-
 const newMasterList = {
     dataList:[
         {

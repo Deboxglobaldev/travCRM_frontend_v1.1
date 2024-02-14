@@ -9,4 +9,4 @@ const Mail = () => {
   )
 }
 
-export default Mail
+export default Mail;

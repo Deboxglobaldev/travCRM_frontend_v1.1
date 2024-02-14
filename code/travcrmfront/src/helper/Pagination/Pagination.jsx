@@ -21,7 +21,7 @@ const Pagination = props => {
     pageSize
   });
 
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (currentPage === 0 || paginationRange.length < 2){
     return null;
   }
 
@@ -36,7 +36,7 @@ const Pagination = props => {
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
     <ul
-      className={classnames('pagination-container', { [className]: className })}
+      className={classnames('pagination-container', {[className]: className })}
     >
       <li
         className={classnames('pagination-item', {

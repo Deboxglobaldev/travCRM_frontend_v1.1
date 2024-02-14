@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
 import Pagination from "../../../helper/Pagination/Pagination";
+import Model from "../../../Component/Layout/Model";
 
 let PageSize = 5;
 const CityMaster = () => {
   const [currentPage, setCurrentPage] = useState(1);
+
+  const handleInputChange = () =>{
+    
+  }
+
   return (
     <>
       <Layout>
@@ -28,90 +34,48 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <button
-                  type="button"
-                  className="btn bg-teal-400 add-button fs-11 shadow"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  <i className="fa fa-plus pr-1" aria-hidden="true"></i>
-                  Create New
-                </button>
+                <Model heading={"Add Country"}>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <label>Name</label>
+                        <input
+                          type="text"
+                          placeholder="City Name"
+                          class="form-control"
+                          onChange={handleInputChange}
+                        />
+                      </div>
 
-                {/* <!-- Modal --> */}
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Add State
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                      <div class="col-sm-3">
+                        <label>State Name</label>
+                        <input
+                          type="text"
+                          placeholder="State Name"
+                          class="form-control"
+                          onChange={handleInputChange}
+                        />
                       </div>
-                      <div className="modal-body">
-                        {/* modal body */}
+                      <div class="col-sm-3">
+                        <label htmlFor="country">Country</label>
+                        <select className="form-control" id="country">
+                          <option>Select Country</option>
+                          <option>India</option>
+                          <option>Iran</option>
+                          <option>China</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-3">
+                        <label>Status</label>
+                        <select className="form-control">
+                          <option>Active</option>
+                          <option>Inactive</option>
+                        </select>
+                      </div>
 
-                        <form>
-                          <div className="form-group">
-                            <label htmlFor="country">Country</label>
-                            <select className="form-control" id="country">
-                              <option>Select Country</option>
-                              <option>India</option>
-                              <option>Pakistan</option>
-                              <option>Nepal</option>
-                              <option>China</option>
-                              <option>Bangladesh</option>
-                            </select>
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              id="name"
-                              placeholder="Name"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="status">Status</label>
-                            <select className="form-control" id="status">
-                              <option>Select</option>
-                              <option>Active</option>
-                              <option>Offline</option>
-                            </select>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" className="save-button">
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          className="cancel-button"
-                          data-dismiss="modal"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                      {/* /modal body */}
                     </div>
                   </div>
-                </div>
+                </Model>
               </div>
             </div>
             <div className="card-body">
@@ -140,37 +104,37 @@ const CityMaster = () => {
           </div>
 
           <div className="card">
-              <div class="table-responsive px-0">
-                <table class="table table-bordered">
-                  <thead class="bg-light font-weight-bold">
-                    <tr>
-                      <th scope="col">Sr</th>
-                      <th scope="col">City Name</th>
-                      <th scope="col">State Name</th>
-                      <th scope="col">Country Name</th>
-                      <th scope="col">Created By</th>
-                      <th scope="col">Modified By</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-secondary">
-                    {cityList.DataList.map((item,index) => {
-                      console.log(item);
-                      return (
-                        <tr key={index}>
-                          <th>{item.Id}</th>
-                          <td>{item.Name}</td>
-                          <td>{item.StateName}</td>
-                          <td>{item.CountryName}</td>
-                          <td>{item.AddedBy}</td>
-                          <td>{item.UpdatedBy}</td>
-                          <td>{item.Status}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+            <div className="table-responsive px-0">
+              <table className="table table-bordered">
+                <thead className="bg-light font-weight-bold">
+                  <tr>
+                    <th scope="col">Sr</th>
+                    <th scope="col">City Name</th>
+                    <th scope="col">State Name</th>
+                    <th scope="col">Country Name</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Modified By</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="text-secondary">
+                  {cityList.DataList.map((item, index) => {
+                    console.log(item);
+                    return (
+                      <tr key={index}>
+                        <th>{item.Id}</th>
+                        <td>{item.Name}</td>
+                        <td>{item.StateName}</td>
+                        <td>{item.CountryName}</td>
+                        <td>{item.AddedBy}</td>
+                        <td>{item.UpdatedBy}</td>
+                        <td>{item.Status}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}

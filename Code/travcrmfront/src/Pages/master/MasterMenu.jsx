@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const MasterData = ({
+const MasterMenu = ({
   img,
   head,
   list1,
@@ -98,4 +98,4 @@ const DataPiece = ({ list1, list2 }) => {
   );
 };
 
-export default MasterData;
+export default MasterMenu;

@@ -1,5 +1,8 @@
 import React from "react";
 import Layout from "../../Component/Layout/Layout";
+
+
+
 const Query = () => {
   return (
     <Layout>

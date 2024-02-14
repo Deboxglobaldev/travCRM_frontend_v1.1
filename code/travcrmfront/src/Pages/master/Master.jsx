@@ -1,15 +1,14 @@
 import React from "react";
-import MasterData from "./MasterData";
 import Layout from "../../Component/Layout/Layout";
+import MasterMenu from "./MasterMenu";
 
 const Master = () => {
   return (
     <>
-
     <Layout>
       <div className="master container-fluid">
         <div className="row px-2 py-4 bg-light mb-4">
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/main-menu.png'}
             head='GENERAL'
             list1='Country Master'
@@ -23,7 +22,7 @@ const Master = () => {
             list9='Destination Master'
             list10='Season Master'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/hotel.png'}
             head='HOTEL'
             list1='Hotel Rate Sheet'
@@ -39,7 +38,7 @@ const Master = () => {
             list11='Weekend Master'
             list12='Resturant Meal Plan'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/sightseeing.png'}
             head='SIGHTSEEING/ACTIVITY'
             list1='Monument Master'
@@ -51,7 +50,7 @@ const Master = () => {
             list7='Insurance Type'
             list8='Insourance Cost'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/passport8.png'}
             head='PASSPORT'
             list1='Passport Type'
@@ -61,7 +60,7 @@ const Master = () => {
             list5='Additional Requirement'
             list6='Operation Restriction'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/sep.png'}
             head='TRANSPORT'
             list1='Transfer Master'
@@ -73,7 +72,7 @@ const Master = () => {
             list7='Vehicle Master'
             list8='Fleet Master'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/ship1.png'}
             head='CRUISE'
             list1='Cruise Company'
@@ -82,7 +81,7 @@ const Master = () => {
             list4='Cabin Category'
             list5='Cruise Master'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/cruise4.png'}
             head='FERRY'
             list1='Ferry Company'
@@ -90,7 +89,7 @@ const Master = () => {
             list3='Ferry Seat Master'
             list4='Ferry Price Master'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/itinerary3.png'}
             head='ITINERARY PROPOSAL SETTING'
             list1='Itenary Requirements'
@@ -101,7 +100,7 @@ const Master = () => {
             list6='FIT Inc&Exc/T&C'
             list7='GIT Inc&Exc/T&C'
           />
-          <MasterData
+          <MasterMenu
             img={'/public/assets/icons/budget1.png'}
             head='FINANCE'
             list1='Currency Master'
