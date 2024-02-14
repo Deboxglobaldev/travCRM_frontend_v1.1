@@ -8,7 +8,9 @@ import Model from "../../../Component/Layout/Model";
 let PageSize = 5;
 
 const StateMaster = () => {
+
   const [currentPage, setCurrentPage] = useState(1);
+
   const [modalInputs, setModalInputs] = useState({
     country:"",
     state:"",
@@ -18,7 +20,7 @@ const StateMaster = () => {
   const handleInputChange = (e) =>{
     setModalInputs({...modalInputs, [e.target.name]:e.target.value})
   }
-  // console.log('Modal Inputs', modalInputs);
+
 
   return (
     <>
@@ -42,11 +44,11 @@ const StateMaster = () => {
                   Back
                 </NavLink>
                 <Model heading={"Add State"} value={modalInputs}>
-                  <div class="card-body">
-                    <div class="row">
+                  <div className="card-body">
+                    <div className="row">
                       <div className="col-sm-4">
                         <label htmlFor="country">Select Country</label>
-                        <select className="form-control" id="country"
+                        <select className="form-input" id="country"
                           name="country"
                           value={modalInputs.country}
                           onChange={handleInputChange}
@@ -57,20 +59,20 @@ const StateMaster = () => {
                           <option>China</option>
                         </select>
                       </div>
-                      <div class="col-sm-4">
+                      <div className="col-sm-4">
                         <label>Name</label>
                         <input
                           type="text"
                           placeholder="State Name"
-                          class="form-control"
+                          className="form-input"
                           name="state"
                           value={modalInputs.state}
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div class="col-sm-4">
+                      <div className="col-sm-4">
                         <label>Status</label>
-                        <select className="form-control"
+                        <select className="form-input"
                           name="status"
                           value={modalInputs.status}
                           onChange={handleInputChange}
@@ -91,22 +93,23 @@ const StateMaster = () => {
                     type="text"
                     placeholder="Search"
                     className="search-input focus-ring form-input"
+                    name="search"
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <select className="select-input focus-ring form-input">
+                  <select className="select-input focus-ring form-input"
+                    name="userStatus"
+                  >
                     <option value="">Select Status</option>
                     <option value="0">Active</option>
                     <option value="1">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <button className="btn bg-teal-400 w-75 custom-h-37">
+                  <button className="btn bg-teal-400 w-75 custom-h-37"
+                  >
                     Search
                   </button>
-                </div>
-                <div className="col-lg-2">
-                  <NavLink to="/master/state_master/another_master">Another Master</NavLink>
                 </div>
               </div>
             </div>
@@ -117,18 +120,17 @@ const StateMaster = () => {
               <table className="table table-bordered">
                 <thead className="bg-light font-weight-bold">
                   <tr>
-                    <th scope="col">Sr</th>
-                    <th scope="col">City Name</th>
-                    <th scope="col">State Name</th>
-                    <th scope="col">Country Name</th>
-                    <th scope="col">Created By</th>
-                    <th scope="col">Modified By</th>
-                    <th scope="col">Status</th>
+                    <th>Sr</th>
+                    <th>City Name</th>
+                    <th>State Name</th>
+                    <th>Country Name</th>
+                    <th>Created By</th>
+                    <th>Modified By</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody className="text-secondary">
-                  {/* {cityList.DataList.map((item, index) => {
-                    console.log(item);
+                  {cityList.DataList.map((item, index) => {
                     return (
                       <tr key={index}>
                         <th>{item.Id}</th>
@@ -140,7 +142,7 @@ const StateMaster = () => {
                         <td>{item.Status}</td>
                       </tr>
                     );
-                  })} */}
+                  })}
                 </tbody>
               </table>
             </div>

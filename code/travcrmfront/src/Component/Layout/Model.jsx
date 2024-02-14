@@ -3,7 +3,6 @@ import React from 'react'
 const Model = ({ children, heading, value }) => {
 
     // console.log('Modal Inputs', value);
-
     const submitModalData = (e) =>{
         e.preventDefault();
         localStorage.setItem('user1', JSON.stringify(value))
@@ -12,6 +11,7 @@ const Model = ({ children, heading, value }) => {
         console.log(result);
     }
 
+    
     return (
         <>
             <button
