@@ -9,9 +9,16 @@ import Model from "../../../Component/Layout/Model";
 let PageSize = 10;
 
 const CountryMaster = () => {
+
   const [postData, setPostData] = useState({
     Search: null,
     Status: null,
+  });
+
+  const [modalInputs, setModalInputs] = useState({
+    name:"",
+    shortName:"",
+    status:""
   });
 
 
@@ -46,7 +53,8 @@ const CountryMaster = () => {
   }, [currentPage,getData]);
 
   const handleInputChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
+    setModalInputs({...modalInputs, [e.target.name]:e.target.value});
   }
 
   return (
@@ -71,22 +79,37 @@ const CountryMaster = () => {
                   Back
                 </NavLink>
 
-                <Model heading={"Add Country"}>
+                <Model heading={"Add Country"} value={modalInputs}>
                     <div class="card-body">
                       <div class="row">
                         <div class="col-sm-3">
                           <label>Name</label>
-                          <input type="text" placeholder="Enter Name" class="form-control" onChange={handleInputChange} />
+                          <input type="text" 
+                          placeholder="Enter Name" 
+                          class="form-control" 
+                          name="name"
+                          value={modalInputs.name}
+                          onChange={handleInputChange} 
+                          />
                         </div>
               
                         <div class="col-sm-3">
                           <label>Short Name</label>
-                          <input type="text" placeholder="Enter Short Name" class="form-control" onChange={handleInputChange} />
+                          <input type="text"
+                          placeholder="Enter Short Name" 
+                          class="form-control" 
+                          name="shortName"
+                          value={modalInputs.shortName}
+                          onChange={handleInputChange} />
                         </div>
 
                         <div class="col-sm-4">
                           <label>Status</label>
-                          <select className="form-control">
+                          <select className="form-control"
+                            name="status"
+                            value={modalInputs.status}
+                            onChange={handleInputChange}
+                          >
                             <option>Active</option>
                             <option>Inactive</option>
                           </select>
@@ -94,7 +117,8 @@ const CountryMaster = () => {
 
                         <div class="col-sm-2">
                           <label>Set Default</label>
-                            <input type="checkbox" />
+                            <input type="checkbox" 
+                            />
                         </div>
                       </div>
                     </div>

@@ -9,8 +9,15 @@ let PageSize = 5;
 const CityMaster = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handleInputChange = () =>{
-    
+  const [modalInputs, setModalInputs] = useState({
+    countryName:"",
+    stateName:"",
+    cityName:"",
+    status:""
+  });
+
+  const handleInputChange = (e) =>{
+    setModalInputs({...modalInputs, [e.target.name]:e.target.value})
   }
 
   return (
@@ -34,12 +41,17 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add City"}>
+                <Model heading={"Add City"} value={modalInputs}>
                   <div class="card-body">
                     <div class="row">
                     <div class="col-sm-3">
                         <label htmlFor="country">Country</label>
-                        <select className="form-control" id="country">
+                        <select className="form-control" 
+                        id="country"
+                        name="countryName"
+                        value={modalInputs.countryName}
+                        onChange={handleInputChange}
+                        >
                           <option>Select Country</option>
                           <option>India</option>
                           <option>Iran</option>
@@ -52,6 +64,8 @@ const CityMaster = () => {
                           type="text"
                           placeholder="State Name"
                           class="form-control"
+                          name="stateName"
+                          value={modalInputs.stateName}
                           onChange={handleInputChange}
                         />
                       </div>
@@ -61,12 +75,18 @@ const CityMaster = () => {
                           type="text"
                           placeholder="City Name"
                           class="form-control"
+                          name="cityName"
+                          value={modalInputs.cityName}
                           onChange={handleInputChange}
                         />
                       </div>
                       <div class="col-sm-3">
                         <label>Status</label>
-                        <select className="form-control">
+                        <select className="form-control"
+                          name="status"
+                          value={modalInputs.status}
+                          onChange={handleInputChange}
+                        >
                           <option>Active</option>
                           <option>Inactive</option>
                         </select>
