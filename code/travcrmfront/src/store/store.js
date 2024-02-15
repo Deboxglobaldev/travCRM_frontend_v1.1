@@ -19,7 +19,11 @@ const persistReducers = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
     reducer: persistReducers,
-    // middleware: [thunk],   /////this line commented by prasang
+    //middleware: [thunk],   /////this line commented by prasang
+    middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

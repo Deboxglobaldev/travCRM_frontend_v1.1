@@ -10,7 +10,7 @@ const NewPagination = ({tableData, setTableRecords}) => {
   const records = tableData.slice(firstIndex, lastIndex);
   const npages = Math.ceil(tableData.length/ dataPerPage);
   const numbers = [...Array(npages + 1).keys()].slice(1);
-  
+
   useEffect(()=>{
     setTableRecords(records);
   },[currentPage])

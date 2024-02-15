@@ -20,8 +20,8 @@ const MasterMenu = ({
 
   return (
     <>
-      <div class="card bg-light w-100">
-        <div class="card-body p-2">
+      <div className="card bg-light w-100">
+        <div className="card-body p-2">
           <p
             className="text-primary fw-500 m-0 mb-1 d-block .master-head"
           >
@@ -29,7 +29,7 @@ const MasterMenu = ({
           </p>
 
           <div className="row">
-            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 master-head-img">
+            <div className="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 master-head-img">
               <img
                 className="mt-2 mt-lg-0 mt-xl-0"
                 src={img}
@@ -57,7 +57,7 @@ const MasterMenu = ({
 const DataPiece = ({ list1, list2 }) => {
   return (
     <>
-      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
+      <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
         {list1 == null ? (
           ""
         ) : (

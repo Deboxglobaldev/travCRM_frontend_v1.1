@@ -11,7 +11,7 @@ const Model = ({ children, heading, value }) => {
         console.log(result);
     }
 
-    
+
     return (
         <>
             <button
