@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
-import Pagination from "../../../helper/Pagination/Pagination";
 import Model from "../../../Component/Layout/Model";
+import NewPagination from "../../../helper/NewPagination";
 
 let PageSize = 5;
 
 const StateMaster = () => {
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [tableRecords, setTableRecords] = useState([]);
 
   const [modalInputs, setModalInputs] = useState({
-    country:"",
-    state:"",
-    status:""
+    country: "",
+    state: "",
+    status: "",
   });
 
-  const handleInputChange = (e) =>{
-    setModalInputs({...modalInputs, [e.target.name]:e.target.value})
-  }
-
+  const handleInputChange = (e) => {
+    setModalInputs({ ...modalInputs, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
@@ -48,7 +47,9 @@ const StateMaster = () => {
                     <div className="row">
                       <div className="col-sm-4">
                         <label htmlFor="country">Select Country</label>
-                        <select className="form-input" id="country"
+                        <select
+                          className="form-input"
+                          id="country"
                           name="country"
                           value={modalInputs.country}
                           onChange={handleInputChange}
@@ -72,7 +73,8 @@ const StateMaster = () => {
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
-                        <select className="form-input"
+                        <select
+                          className="form-input"
                           name="status"
                           value={modalInputs.status}
                           onChange={handleInputChange}
@@ -97,7 +99,8 @@ const StateMaster = () => {
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <select className="select-input focus-ring form-input"
+                  <select
+                    className="select-input focus-ring form-input"
                     name="userStatus"
                   >
                     <option value="">Select Status</option>
@@ -106,8 +109,7 @@ const StateMaster = () => {
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <button className="btn bg-teal-400 w-75 custom-h-37"
-                  >
+                  <button className="btn bg-teal-400 w-75 custom-h-37">
                     Search
                   </button>
                 </div>
@@ -130,7 +132,7 @@ const StateMaster = () => {
                   </tr>
                 </thead>
                 <tbody className="text-secondary">
-                  {cityList.DataList.map((item, index) => {
+                  {tableRecords.map((item, index) => {
                     return (
                       <tr key={index}>
                         <th>{item.Id}</th>
@@ -146,13 +148,13 @@ const StateMaster = () => {
                 </tbody>
               </table>
             </div>
-            <Pagination
-              className="pagination-bar"
-              currentPage={currentPage}
-              totalCount={34}
-              pageSize={PageSize}
-              onPageChange={(page) => setCurrentPage(page)}
-            />
+
+            <div className="card-body m-auto">
+              <NewPagination
+                tableData={cityList.DataList}
+                setTableRecords={setTableRecords}
+              />
+            </div>
           </div>
         </div>
       </Layout>

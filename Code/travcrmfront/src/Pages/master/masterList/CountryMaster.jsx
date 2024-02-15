@@ -85,7 +85,7 @@ const CountryMaster = () => {
                         <div class="col-sm-3">
                           <label>Name</label>
                           <input type="text" 
-                          placeholder="Enter Name" 
+                          placeholder="Country Name" 
                           class="form-control" 
                           name="name"
                           value={modalInputs.name}
@@ -96,7 +96,7 @@ const CountryMaster = () => {
                         <div class="col-sm-3">
                           <label>Short Name</label>
                           <input type="text"
-                          placeholder="Enter Short Name" 
+                          placeholder="Short Name" 
                           class="form-control" 
                           name="shortName"
                           value={modalInputs.shortName}
