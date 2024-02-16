@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
-import NewPagination from "../../../helper/NewPagination";
-
-let PageSize = 5;
-
+import DataTable from "react-data-table-component";
 const StateMaster = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [tableRecords, setTableRecords] = useState([]);
+
+  const [getData, setGetData] = useState();
+  const [filterData, setFilterData] = useState();
+  const [postData, setPostData] = useState({
+    Search: null,
+    Status: null,
+  });
+
 
   const [modalInputs, setModalInputs] = useState({
     country: "",
@@ -17,9 +20,63 @@ const StateMaster = () => {
     status: "",
   });
 
+  useEffect(() => {
+    const postDataToServer = async () => {
+      try {
+        const {DataList} = cityList;
+        console.log('datalist',DataList)
+        setGetData(DataList);
+        setFilterData(DataList)
+        console.log('get data is logged here: ', getData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    postDataToServer();
+  }, []);
+
+  useEffect(() => {
+    const result = getData.filter((item) => {
+      return item.Name.toLowerCase().match(postData.Search.toLowerCase());
+    })
+
+    setFilterData(result);
+  }, [postData])
+
   const handleInputChange = (e) => {
     setModalInputs({ ...modalInputs, [e.target.name]: e.target.value });
   };
+
+  const columns = [
+    {
+      name: "Name",
+      selector: (row) => row.Name,
+      sortable: true
+    },
+    {
+      name: "State Name",
+      selector: (row) => row.StateName,
+      sortable: true
+    },
+    {
+      name: "Country Name",
+      selector: (row) => row.CountryName,
+      sortable: true
+    },
+    {
+      name: "Added By",
+      selector: (row) => {
+        return (<span> Admin <br /> {row.Created_at}</span>)
+      }
+    },
+    {
+      name: "Updated By",
+      selector: (row) => {
+        return (<span> {row.UpdatedBy == true ? 'Admin' : '-'} <br /> {row.Updated_at}</span>)
+      }
+    },
+  ]
 
   return (
     <>
@@ -88,20 +145,20 @@ const StateMaster = () => {
                 </Model>
               </div>
             </div>
-            <div className="card-body">
+            <div className="card-body" >
               <div className="row align-items-center">
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="search-input focus-ring form-input"
-                    name="search"
-                  />
+                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input" value={postData.Search} onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select
                     className="select-input focus-ring form-input"
-                    name="userStatus"
+                    onChange={(e) => {
+                      setPostData({
+                        ...postData,
+                        Status: e.target.value,
+                      });
+                    }}
                   >
                     <option value="">Select Status</option>
                     <option value="0">Active</option>
@@ -118,43 +175,14 @@ const StateMaster = () => {
           </div>
 
           <div className="card">
-            <div className="table-responsive px-0">
-              <table className="table table-bordered">
-                <thead className="bg-light font-weight-bold">
-                  <tr>
-                    <th>Sr</th>
-                    <th>City Name</th>
-                    <th>State Name</th>
-                    <th>Country Name</th>
-                    <th>Created By</th>
-                    <th>Modified By</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody className="text-secondary">
-                  {tableRecords.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <th>{item.Id}</th>
-                        <td>{item.Name}</td>
-                        <td>{item.StateName}</td>
-                        <td>{item.CountryName}</td>
-                        <td>{item.AddedBy}</td>
-                        <td>{item.UpdatedBy}</td>
-                        <td>{item.Status}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="card-body m-auto">
-              <NewPagination
-                tableData={cityList.DataList}
-                setTableRecords={setTableRecords}
-              />
-            </div>
+          <DataTable
+              columns={columns}
+              data={filterData}
+              pagination
+              fixedHeader
+              fixedHeaderScrollHeight="280px"
+              highlightOnHover
+            />
           </div>
         </div>
       </Layout>
