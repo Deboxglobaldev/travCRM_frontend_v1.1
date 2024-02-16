@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../Component/Layout/Layout";
 
 const Query = () => {
+  const [showQueryType , setShowQueryType] = useState(false);
+  const [showAssignment, setShowAssignment] = useState(false);
+  const [showValueAdd, setShowValueAdd] = useState(false);
+  const [showTravelInfo, setShowTravelInfo] = useState(false);
+  const [showTravelDate, setShowTravelDate]  = useState(false);
+  const [showPriority, setShowPriority] = useState(false);
+  const [showQuotation, setShowQuotation] = useState(false);
+  const queryCardShow = () =>{
+    setShowQueryType(!showQueryType);
+  }
+
+  const assignmentCardShow = () =>{
+    setShowAssignment(!showAssignment);
+  }
+
+  const valueAddCardShow = () =>{
+    setShowValueAdd(!showValueAdd)
+  }
+
+  const travelInfoCardShow = () =>{
+    setShowTravelInfo(!showTravelInfo);
+  }
+  const travelDateCardShow = () =>{
+    setShowTravelDate(!showTravelDate);
+  }
+  const priorityCardShow = () =>{
+    setShowPriority(!showPriority);
+  }
+  const quotationCardShow = () =>{
+    setShowQuotation(!showQuotation);
+  }
   return (
     <>
       <Layout>
@@ -131,15 +162,17 @@ const Query = () => {
               {/* Query Type and Assignment columsn */}
 
               <div className="row">
-                {/* Query Type Columns */}
+                {/* Query Type */}
                 <div className="col-6">
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header d-flex justify-content-between align-items-center px-2 pt-2 pb-0 border">
                           <h6>Query Type</h6>
+                          {showQueryType? <i className="fa-solid fa-caret-up up-arrow" onClick={queryCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={queryCardShow}></i>}
                         </div>
-                        <div className="card-body py-4">
+                        {showQueryType && <div className="card-body py-4">
                           <div className="row justify-content-between">
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
@@ -180,7 +213,7 @@ const Query = () => {
                               <input type="radio" />
                             </div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -188,10 +221,12 @@ const Query = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
                           <h6>Value Added Service Selection</h6>
+                          {showValueAdd? <i className="fa-solid fa-caret-up up-arrow" onClick={valueAddCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={valueAddCardShow}></i>}
                         </div>
-                        <div className="card-body">
+                        {showValueAdd && <div className="card-body">
                           <div className="row justify-content-between mt-2">
                             <div className="col-3">
                               <div className="d-flex justify-content-between align-items-end">
@@ -267,7 +302,7 @@ const Query = () => {
                             </div>
                             <div className="col-3"></div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -275,10 +310,12 @@ const Query = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
                           <h6>Travel Info | Domestic | Guest Type - FIT</h6>
+                          {showTravelInfo? <i className="fa-solid fa-caret-up up-arrow" onClick={travelInfoCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={travelInfoCardShow}></i>}
                         </div>
-                        <div className="card-body">
+                        {showTravelInfo&&<div className="card-body">
                           <div className="row justify-content-between mt-2">
                             <div className="col-5">
                               <label htmlFor="" className="m-0">
@@ -321,7 +358,7 @@ const Query = () => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -329,10 +366,12 @@ const Query = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between">
                           <h6>Travel Date</h6>
+                          {showTravelDate? <i className="fa-solid fa-caret-up up-arrow" onClick={travelDateCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={travelDateCardShow}></i>}
                         </div>
-                        <div className="card-body">
+                        {showTravelDate&&<div className="card-body">
                           <div className="row mt-2">
                             <div className="col-6">
                               <select className="form-input">
@@ -357,11 +396,8 @@ const Query = () => {
                                 <button className="btn btn-info">Save</button>
                               </div>
                             </div>
-                            {/* <div className="col-2 mt-4">
-                              <button className="btn btn-info">Save</button>
-                            </div> */}
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -369,10 +405,12 @@ const Query = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
                           <h6>Quotation/Itinerary Information</h6>
+                          {showQuotation? <i className="fa-solid fa-caret-up up-arrow" onClick={quotationCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={quotationCardShow}></i>}
                         </div>
-                        <div className="card-body">
+                        {showQuotation&&<div className="card-body">
                           <div className="row align-items-center mt-2">
                             <div className="col-6 justify-content-between d-flex align-items-center">
                               <p className="m-0">Pax Information</p>
@@ -383,24 +421,24 @@ const Query = () => {
                           <div className="row  mt-1">
                             <div className="col-3">
                               <div className="d-flex justify-content-between align-items-end">
-                              <label className="m-0">Adult</label>
-                              <i className="fa-solid fa-person mb-1"></i>
+                                <label className="m-0">Adult</label>
+                                <i className="fa-solid fa-person mb-1"></i>
                               </div>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-3">
                               <div className="d-flex justify-content-between align-items-end">
-                              <label className="m-0">Child</label>
-                              <i className="fa-solid fa-child-reaching mb-1"></i>
+                                <label className="m-0">Child</label>
+                                <i className="fa-solid fa-child-reaching mb-1"></i>
                               </div>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-3">
-                            <div className="d-flex justify-content-between align-items-end">
-                              <label className="m-0">Child</label>
-                              <i className="fa-solid fa-baby-carriage mb-1"></i>
+                              <div className="d-flex justify-content-between align-items-end">
+                                <label className="m-0">Child</label>
+                                <i className="fa-solid fa-baby-carriage mb-1"></i>
                               </div>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                           </div>
                           <div className="row align-items-center mt-4">
@@ -413,26 +451,26 @@ const Query = () => {
                           <div className="row  mt-1">
                             <div className="col-2">
                               <label>Single</label>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-2">
                               <label>Double</label>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-2">
                               <label>Twin</label>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-2">
                               <label>Triple</label>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                             <div className="col-2">
                               <label>ExtraBed(A)</label>
-                              <input type="text" className="form-input"/>
+                              <input type="text" className="form-input" />
                             </div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -442,10 +480,12 @@ const Query = () => {
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
                           <h6>Assignment</h6>
+                          {showAssignment? <i className="fa-solid fa-caret-up up-arrow" onClick={assignmentCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={assignmentCardShow}></i>}
                         </div>
-                        <div className="card-body pt-3 pb-4">
+                        {showAssignment && <div className="card-body pt-3 pb-4">
                           <div className="row">
                             <div className="col-6 d-flex justify-content-between align-items-center">
                               <h5 className="m-0 p-0">Sales Person</h5>
@@ -461,6 +501,187 @@ const Query = () => {
                             <div className="col-6">
                               <label htmlFor="">Contracting Person</label>
                               <input type="text" className="form-input" />
+                            </div>
+                          </div>
+                        </div>}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Priority Preference */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Priority Preference</h6>
+                          {showPriority? <i className="fa-solid fa-caret-up up-arrow" onClick={priorityCardShow}></i>:
+                          <i class="fa-solid fa-caret-down up-arrow" onClick={priorityCardShow}></i>}
+                        </div>
+                        {showPriority&&<div className="card-body">
+                          <div className="mt-2">Priority</div>
+                          <div className="row justify-content-between">
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Normal
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Medium
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                High
+                              </label>
+                              <input type="radio" />
+                            </div>
+                          </div>
+                          <hr className="my-2 p-0" />
+                          <div>TAT</div>
+                          <div className="row justify-content-between">
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                24 Hours
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                28 Hours
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                72 Hours
+                              </label>
+                              <input type="radio" />
+                            </div>
+                          </div>
+                          <hr className="my-2" />
+                          <div>Tour Type</div>
+                          <div className="row justify-content-between">
+                            <div className="col-5 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Adventure Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-5 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Adventrure Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Collage Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Collage Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Family Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="m-0 p-0">
+                                Wildlife Tour
+                              </label>
+                              <input type="radio" />
+                            </div>
+                          </div>
+                          <hr className="my-2" />
+                          <div className="row justify-content-between">
+                            <div className="col-5">
+                              <label className="m-0">Lead Source</label>
+                              <select className="form-input mt-1">
+                                <option value="">Select</option>
+                                <option value="">Facebook</option>
+                                <option value="">Instagram</option>
+                                <option value="">Twitter</option>
+                                <option value="">Snapchat</option>
+                                <option value="">LinkedIn</option>
+                                <option value="">Website</option>
+                                <option value="">Other</option>
+                              </select>
+                            </div>
+                            <div className="col-5">
+                              <label htmlFor="">Lead Preference</label>
+                              <input type="text" className="form-input" />
+                            </div>
+                          </div>
+                        </div>}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Hotel Preference */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border">
+                          <h6>Hotel Preference</h6>
+                        </div>
+                        <div className="card-body">
+                        <div className="mt-2">Hotel Category</div>
+                          <div className="row justify-content-between">
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">
+                                All
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">
+                                3 Star
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label  className="m-0 p-0">
+                                4 Star
+                              </label>
+                              <input type="radio" />
+                            </div>
+                            <div className="col-3 form-input d-flex justify-content-between align-items-center">
+                              <label  className="m-0 p-0">
+                                5 Star
+                              </label>
+                              <input type="radio" />
+                            </div>
+                          </div>
+                          <hr className="my-2"/>
+                          <div className="row justify-content-between">
+                            <div className="col-5">
+                                <label>Hotel Type</label>
+                                <select className="form-input">
+                                  <option>All</option>
+                                  <option>Budget</option>
+                                  <option>Delux</option>
+                                  <option>Elite</option>
+                                  <option>Luxury</option>
+                                  <option>Standard</option>
+                                </select>
+                            </div>
+                            <div className="col-5">
+                                <label>All Plan</label>
+                                <select className="form-input">
+                                  <option>All</option>
+                                  <option>AP</option>
+                                  <option>CP</option>
+                                  <option>EP</option>
+                                  <option>JPAI</option>
+                                  <option>MAP</option>
+                                </select>
                             </div>
                           </div>
                         </div>

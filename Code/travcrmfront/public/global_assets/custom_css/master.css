@@ -134,3 +134,9 @@ a{
 .btn-gray{
   background-color: rgb(220, 217, 217);
 }
+
+/* query page arrow icon */
+.up-arrow{
+  font-size: 20px;
+  cursor: pointer;
+}
