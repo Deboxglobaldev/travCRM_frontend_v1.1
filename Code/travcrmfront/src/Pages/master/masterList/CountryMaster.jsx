@@ -125,8 +125,8 @@ const CountryMaster = () => {
                       <div className="col-sm-4">
                         <label>Status</label>
                         <select name="Status" className="form-control" onChange={handleInputChange}>
-                          <option value={0}>Active</option>
-                          <option value={1}>Inactive</option>
+                          <option value={1}>Active</option>
+                          <option value={0}>Inactive</option>
                         </select>
                       </div>
 
@@ -155,8 +155,8 @@ const CountryMaster = () => {
                     }}
                   >
                     <option value="">Select Status</option>
-                    <option value="0">Active</option>
-                    <option value="1">Inactive</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
