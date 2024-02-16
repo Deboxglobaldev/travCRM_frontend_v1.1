@@ -37,7 +37,7 @@ const MasterMenu = ({
               ></img>
             </div>
 
-            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-10">
+            <div className="col-xl-11 col-lg-10 col-md-10 col-sm-10">
               <div className="row">
                 <DataPiece list1={list1} list2={list2} />
                 <DataPiece list1={list3} list2={list4} />
