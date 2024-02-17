@@ -39,15 +39,15 @@ const Query = () => {
         <div className="container-fluid p-3 mb-4">
           <div className="card">
             <div
-              className="card-header header-elements-inline bg-info-700 py-2"
-              style={{ padding: "10px" }}
+              className="card-header header-elements-inline py-2"
+              style={{ padding: "10px", backgroundColor:'orange'}}
             >
               <div className="col-xl-5 d-flex align-items-center">
                 <h5 className="card-title d-none d-sm-block">Query Form</h5>
               </div>
               <div></div>
             </div>
-            <div className="card-body">
+            <div className="card-body mt-4">
               <div className="row">
                 <div className="col-12">
                   <div className="card">
