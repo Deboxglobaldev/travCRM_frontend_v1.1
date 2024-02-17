@@ -62,25 +62,25 @@ const Query = () => {
                               <label htmlFor="" className="p-0 m-0">
                                 Agent
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="contact"/>
                             </div>
                             <div className="col-5 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="p-0 m-0">
                                 B2B
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="contact"/>
                             </div>
                             <div className="col-5 mt-1 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="p-0 m-0">
                                 B2C
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="contact"/>
                             </div>
                             <div className="col-5 mt-1 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="p-0 m-0">
                                 Corporate
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="contact"/>
                             </div>
                           </div>
                         </div>
@@ -178,19 +178,19 @@ const Query = () => {
                               <label htmlFor="" className="m-0 p-0">
                                 Query
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Fixed Departure
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Package
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                           </div>
                           <div className="row justify-content-between mt-1">
@@ -198,19 +198,19 @@ const Query = () => {
                               <label htmlFor="" className="m-0 p-0">
                                 Duplicate Query
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Multiple Services
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Activity
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="query"/>
                             </div>
                           </div>
                         </div>}
@@ -239,7 +239,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   No
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="service"/>
                               </div>
                             </div>
                             <div className="col-3">
@@ -253,7 +253,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   No
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="service"/>
                               </div>
                             </div>
                             <div className="col-3">
@@ -267,7 +267,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   No
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="service"/>
                               </div>
                             </div>
                           </div>
@@ -283,7 +283,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   No
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="service"/>
                               </div>
                             </div>
                             <div className="col-3">
@@ -297,7 +297,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   No
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="service"/>
                               </div>
                             </div>
                             <div className="col-3"></div>
@@ -325,7 +325,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   International
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="travel"/>
                               </div>
                             </div>
                             <div className="col-5 mt-3">
@@ -333,7 +333,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   Domestic
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="travel"/>
                               </div>
                             </div>
                           </div>
@@ -346,7 +346,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   GIT
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="travel"/>
                               </div>
                             </div>
                             <div className="col-5 mt-3">
@@ -354,7 +354,7 @@ const Query = () => {
                                 <label htmlFor="" className="p-0 m-0">
                                   FIT
                                 </label>
-                                <input type="radio" />
+                                <input type="radio" name="travel"/>
                               </div>
                             </div>
                           </div>
@@ -523,19 +523,19 @@ const Query = () => {
                               <label htmlFor="" className="m-0 p-0">
                                 Normal
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Medium
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 High
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                           </div>
                           <hr className="my-2 p-0" />
@@ -545,19 +545,19 @@ const Query = () => {
                               <label htmlFor="" className="m-0 p-0">
                                 24 Hours
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 28 Hours
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 72 Hours
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                           </div>
                           <hr className="my-2" />
@@ -567,37 +567,37 @@ const Query = () => {
                               <label htmlFor="" className="m-0 p-0">
                                 Adventure Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-5 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Adventrure Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Collage Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Collage Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Family Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                             <div className="col-5 mt-2 form-input d-flex justify-content-between align-items-center">
                               <label htmlFor="" className="m-0 p-0">
                                 Wildlife Tour
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="priority"/>
                             </div>
                           </div>
                           <hr className="my-2" />
@@ -638,25 +638,25 @@ const Query = () => {
                               <label className="m-0 p-0">
                                 All
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="hotel"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label className="m-0 p-0">
                                 3 Star
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="hotel"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label  className="m-0 p-0">
                                 4 Star
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="hotel"/>
                             </div>
                             <div className="col-3 form-input d-flex justify-content-between align-items-center">
                               <label  className="m-0 p-0">
                                 5 Star
                               </label>
-                              <input type="radio" />
+                              <input type="radio" name="hotel"/>
                             </div>
                           </div>
                           <hr className="my-2"/>
