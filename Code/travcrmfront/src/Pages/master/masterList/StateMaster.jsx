@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
+
+
 const StateMaster = () => {
+
 
   const [getData, setGetData] = useState();
   const [filterData, setFilterData] = useState();
