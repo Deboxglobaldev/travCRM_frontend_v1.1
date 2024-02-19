@@ -13,17 +13,20 @@ const Model = ({ children, heading, value, apiurl }) => {
 
 
     const handleSubmit = async (e) => {
+
         console.log(value)
         e.preventDefault();
         try{
-            const response = await axios.post(apiurl,value);
-            console.log(response);
-            setResponseData(response.data)
-            console.log(responseData.Status)
-            if(responseData.Status===0){
-                toast.success(`${responseData?.Message}`);
-                //handleCloseModal();
+            const res = await axios.post(apiurl,value);
+            console.log(res);
+            console.log(res.status);
+            setResponseData(res.data)
+            console.log('THIS IS RESPONSE: ',responseData);
+            if(responseData){
+                console.log("inside success",responseData.Status)
+                toast.success(`${responseData.Message}`);
                 navigate('/master/country_master');
+                //handleCloseModal();
             }else{
                 toast.error(`${responseData?.Name}`);
             }
@@ -46,6 +49,7 @@ const Model = ({ children, heading, value, apiurl }) => {
             </button>
 
             {/* <!-- Modal --> */}
+            <Toaster/>
             <div className="modal fade" id="modal_form_vertical">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -71,7 +75,7 @@ const Model = ({ children, heading, value, apiurl }) => {
 
                             <div class="modal-footer">
                                 <button type="button" id="cancel" class="btn btn-link" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit form</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
