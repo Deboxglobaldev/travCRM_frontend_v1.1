@@ -8,11 +8,11 @@ import DataTable from "react-data-table-component";
 
 const StateMaster = () =>{
 
-  const [getData, setGetData] = useState();
+  const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState();
   const [postData, setPostData] = useState({
-    Search: null,
-    Status: null,
+    Search: '',
+    Status: '',
   });
 
 
@@ -23,7 +23,7 @@ const StateMaster = () =>{
   });
 
   useEffect(() => {
-    const postDataToServer = async () => {
+    const postDataToServer = () => {
       try {
         const {DataList} = cityList;
         console.log('datalist',DataList)
@@ -150,7 +150,9 @@ const StateMaster = () =>{
             <div className="card-body" >
               <div className="row align-items-center">
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input" value={postData.Search} onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
+                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input"
+                   value={postData.Search}
+                  onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select

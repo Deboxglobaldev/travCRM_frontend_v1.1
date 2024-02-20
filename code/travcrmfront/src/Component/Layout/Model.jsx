@@ -69,9 +69,9 @@ const Model = ({ children, heading, value, apiurl }) => {
                                 {/* /modal body */}
                             </div>
 
-                            <div class="modal-footer">
+                            <div className="modal-footer">
                                 <button type="button" id="cancel" class="btn btn-link" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit form</button>
+                                <button type="submit" className="btn btn-primary">Submit form</button>
                             </div>
                         </form>
                     </div>
