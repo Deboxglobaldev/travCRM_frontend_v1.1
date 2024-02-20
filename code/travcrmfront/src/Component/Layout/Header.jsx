@@ -229,9 +229,10 @@ const Header = () => {
                 data-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img src={user.image} className="rounded-circle" alt="" />
+                <img src="https://deboxglobal.in/salescrm/profilepic/1597303900iifa.PNG" 
+                  className="rounded-circle" alt="user" />
                 <span>
-                  {user.firstName} {user.lastName}
+                    Satendra Gurjar
                 </span>
               </a>
 
@@ -240,7 +241,7 @@ const Header = () => {
                   <i className="icon-user-plus"></i> My profile
                 </Link>
                 <a href="/#" className="dropdown-item">
-                  <i className="icon-comment-discussion"></i> Messages{" "}
+                  <i className="icon-comment-discussion"></i> Messages
                   <span className="badge badge-pill bg-blue ml-auto">58</span>
                 </a>
                 <div className="dropdown-divider"></div>

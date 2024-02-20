@@ -19,16 +19,14 @@ const Profile = () => {
                       src={
                         "https://deboxglobal.in/salescrm/profilepic/1597303900iifa.PNG"
                       }
-                      width="170"
-                      height="170"
-                      alt=""
+                      alt="user"
                     />
                     <div className="card-img-actions-overlay card-img rounded-circle"></div>
                   </div>
                   <h6 className="font-weight-semibold mb-0"></h6>
                   <span className="d-block text-muted">
-                    Administrator{" "}
-                  </span>{" "}
+                    Administrator
+                  </span>
                 </div>
               </div>
             </div>
@@ -36,9 +34,8 @@ const Profile = () => {
               <div className="card">
                 <div className="card-header bg-white">
                   <h6 className="card-title">
-                    {" "}
-                    <i className="fa fa-user" aria-hidden="true"></i>{" "}
-                    &nbsp;&nbsp;&nbsp;My Profile{" "}
+                    <i className="fa fa-user" aria-hidden="true"></i>
+                    &nbsp;&nbsp;&nbsp;My Profile
                   </h6>
                 </div>
 

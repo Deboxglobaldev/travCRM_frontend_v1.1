@@ -70,7 +70,7 @@ const Model = ({ children, heading, value, apiurl }) => {
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" id="cancel" class="btn btn-link" data-dismiss="modal">Close</button>
+                                <button type="button" id="cancel" className="btn btn-link" data-dismiss="modal">Close</button>
                                 <button type="submit" className="btn btn-primary">Submit form</button>
                             </div>
                         </form>
