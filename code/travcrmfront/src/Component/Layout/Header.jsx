@@ -293,7 +293,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={"/query"} className="navbar-nav-link">
+              <NavLink to={"/query_list"} className="navbar-nav-link">
                 <i className="icon-git-pull-request	mr-2"></i>
                 Query
               </NavLink>

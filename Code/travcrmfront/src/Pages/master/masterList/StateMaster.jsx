@@ -6,8 +6,7 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 
 
-const StateMaster = () => {
-
+const StateMaster = () =>{
 
   const [getData, setGetData] = useState();
   const [filterData, setFilterData] = useState();
