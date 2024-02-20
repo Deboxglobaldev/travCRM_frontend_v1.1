@@ -1,11 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-
-/* .navbar-dark .active>.navbar-nav-link, .navbar-dark .navbar-nav-link.active, .navbar-dark .navbar-nav-link.show, .navbar-dark .show>.navbar-nav-link {
-    color: #fff;
-    background-color: #324148;
-} */
-
 .navbar-light .active>.navbar-nav-link, .navbar-light .navbar-nav-link.active, .navbar-light .navbar-nav-link.show, .navbar-light .show>.navbar-nav-link {
   color: #333;
   background-color: #0000001c;
@@ -103,7 +95,7 @@ a{
     width: 15px;
 }
 .master-list-icon span{
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
 }
 /* /master page custom css */
@@ -133,4 +125,10 @@ a{
 
 .btn-gray{
   background-color: rgb(220, 217, 217);
+}
+
+/* query page arrow icon */
+.up-arrow{
+  font-size: 16px;
+  cursor: pointer;
 }

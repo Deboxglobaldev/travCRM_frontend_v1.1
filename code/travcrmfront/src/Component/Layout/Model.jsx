@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-const Model = ({ children, heading, value }) => {
+const Model = ({ children, heading, value, apiurl }) => {
+    const navigate = useNavigate();
+    const [responseData, setResponseData] = useState();
 
-    // console.log('Modal Inputs', value);
+    const  handleCloseModal = () => {
+        document.getElementById("cancel").click();
+    }
 
-    const submitModalData = (e) =>{
+
+    const handleSubmit = async (e) => {
+        console.log(value)
         e.preventDefault();
-        localStorage.setItem('user1', JSON.stringify(value))
-        let data = localStorage.getItem('user1');
-        let result = JSON.parse(data);
-        console.log(result);
+        try{
+            const response = await axios.post(apiurl,value);
+            console.log(response);
+            setResponseData(response.data)
+            console.log(responseData.Status)
+            if(responseData.Status===0){
+                toast.success(`${responseData?.Message}`);
+                //handleCloseModal();
+                navigate('/master/country_master');
+            }else{
+                toast.error(`${responseData?.Name}`);
+            }
+        }catch(err){
+            console.log(err)
+            toast.error(`${err.message}`);
+        }
     }
 
     return (
@@ -28,7 +49,7 @@ const Model = ({ children, heading, value }) => {
             <div className="modal fade" id="modal_form_vertical">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
-                        <div className="modal-header">
+                        <div className="modal-header  bg-info-700">
                             <h5 className="modal-title" id="exampleModalLabel">
                                 {heading}
                             </h5>
@@ -41,16 +62,16 @@ const Model = ({ children, heading, value }) => {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="POST" action="" onSubmit={submitModalData}>
+                        <form method="POST" action="" onSubmit={handleSubmit}>
                             <div className="modal-body">
                                 {/* modal body */}
                                 {children}
                                 {/* /modal body */}
                             </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit form</button>
+                            <div className="modal-footer">
+                                <button type="button" id="cancel" class="btn btn-link" data-dismiss="modal">Close</button>
+                                <button type="submit" className="btn btn-primary">Submit form</button>
                             </div>
                         </form>
                     </div>

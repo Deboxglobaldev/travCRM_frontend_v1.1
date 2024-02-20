@@ -17,19 +17,16 @@ const MasterMenu = ({
   list11,
   list12,
 }) => {
-
   return (
     <>
-      <div class="card bg-light w-100">
-        <div class="card-body p-2">
-          <p
-            className="text-primary fw-500 m-0 mb-1 d-block .master-head"
-          >
+      <div className="card bg-light w-100">
+        <div className="card-body p-2">
+          <p className="text-primary fw-500 m-0 mb-1 d-block .master-head">
             {head}
           </p>
 
           <div className="row">
-            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 master-head-img">
+            <div className="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2 master-head-img">
               <img
                 className="mt-2 mt-lg-0 mt-xl-0"
                 src={img}
@@ -37,7 +34,7 @@ const MasterMenu = ({
               ></img>
             </div>
 
-            <div className="col-xl-10 col-lg-10 col-md-10 col-sm-10">
+            <div className="col-xl-11 col-lg-10 col-md-10 col-sm-10">
               <div className="row">
                 <DataPiece list1={list1} list2={list2} />
                 <DataPiece list1={list3} list2={list4} />
@@ -57,21 +54,14 @@ const MasterMenu = ({
 const DataPiece = ({ list1, list2 }) => {
   return (
     <>
-      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
+      <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
         {list1 == null ? (
           ""
         ) : (
           <NavLink to="/master/country_master">
             <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
-              <img
-                src="assets/icons/countries.png"
-                alt="image"
-              />
-              <span
-                className="fs-6 pl-1"
-              >
-                {list1}
-              </span>
+              <img src="assets/icons/countries.png" alt="image" />
+              <span className="pl-1">{list1}</span>
             </div>
           </NavLink>
         )}
@@ -81,15 +71,8 @@ const DataPiece = ({ list1, list2 }) => {
         ) : (
           <NavLink to="/master">
             <div className="master-list-icon">
-              <img
-                src="assets/icons/process.png"
-                alt="image"
-              />
-              <span
-                className="pl-1"
-              >
-                {list2}
-              </span>
+              <img src="assets/icons/process.png" alt="image" />
+              <span className="pl-1">{list2}</span>
             </div>
           </NavLink>
         )}

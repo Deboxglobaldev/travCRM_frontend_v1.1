@@ -1,428 +1,1190 @@
-import React from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Layout from "../../Component/Layout/Layout";
 
-
-
 const Query = () => {
+  const initialState = {
+    queryType: false,
+    assignment: false,
+    valueAdd: false,
+    travelInfo: false,
+    travelDate: false,
+    priority: false,
+    quotation: false,
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "QUERY_TYPE":
+        return { ...state, queryType: !state.queryType };
+      case "ASSIGNMENT":
+        return { ...state, assignment: !state.assignment };
+      case "VALUE_ADD":
+        return { ...state, valueAdd: !state.valueAdd };
+      case "TRAVEL_INFO":
+        return { ...state, travelInfo: !state.travelInfo };
+      case "TRAVEL_DATE":
+        return { ...state, travelDate: !state.travelDate };
+      case "PRIORITY":
+        return { ...state, priority: !state.priority };
+      case "QUOTATION":
+        return { ...state, quotation: !state.quotation };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const [queryInputs, setQueryInputs] = useState({
+    id: "",
+    QueryId: "",
+    FDCode: "",
+    PackageCode: "",
+    PackageName: "",
+    ClientType: "",
+    AgentId: "",
+    LeadPax: "",
+    Subject: "",
+    AddEmail: "",
+    AdditionalInfo: "",
+    QueryType: "",
+    TravelInfo: "",
+    PaxType: "",
+    Priority: "",
+    TAT: "",
+    TourType: "",
+    LeadSource: "",
+    LeadRefrenced: "",
+    HotelPrefrence: "",
+    HotelType: "",
+    MealPlan: "",
+    AddedBy: "",
+    UpdatedBy: "",
+  });
+
+  const [ValueAddedServices, setValueAddededServices] = useState({
+    Flight: "No",
+    Visa: "No",
+    Insurance: "No",
+    Train: "No",
+    Transfer: "No",
+  });
+
+  const [TravelDate, setTravelDate] = useState({
+    Type: "",
+    FromDate: "",
+    ToDate: "",
+    TotalDays: "",
+    SeasonType: "",
+    SeasonYear: "",
+  });
+
+  const [PaxInfo, setPaxInfo] = useState({
+    Adult: "",
+    Child: "",
+    Infant: "",
+  });
+
+  const [RoomInfo, setRoomInfo] = useState({
+    Single: "",
+    Double: "",
+    Twin: "",
+    Triple: "",
+    ExtraBed: "",
+  });
+
+  const handleQueryInputs = (e) => {
+    setQueryInputs({ ...queryInputs, [e.target.name]: e.target.value });
+  };
+
+  const handleValueAdded = (e) => {
+    setValueAddededServices({
+      ...ValueAddedServices,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleTravelDate = (e) => {
+    setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
+  };
+
+  const handlePaxInfo = (e) => {
+    setPaxInfo({ ...PaxInfo, [e.target.name]: e.target.value });
+  };
+
+  const handleRoomInfo = (e) => {
+    setRoomInfo({ ...RoomInfo, [e.target.name]: e.target.value });
+  };
+
+  const mergeAllData = () => {
+    setQueryInputs({
+      ...queryInputs,
+      ValueAddedServices,
+      TravelDate,
+      PaxInfo,
+      RoomInfo,
+    });
+
+    localStorage.setItem('Query', JSON.stringify(queryInputs));
+    let data = localStorage.getItem('Query');
+    let result = JSON.parse(data);
+    console.log('Data From LocalStorage.......', result);
+ 
+  };
+
   return (
-    <Layout>
-    <div className="container-fluid mt-2 mb-5 px-5">
-      <div class="card pb-3">
-        <div class="card-header bg-orange bg-height30 header-elements-inline">
-          <h6 class="card-title text-dark">Contact Information</h6>
-        </div>
-
-        <form
-          class="wizard-form steps-validation wizard clearfix px-2 py-4"
-          action="#"
-          data-fouc=""
-          role="application"
-          id="steps-uid-5"
-          novalidate="novalidate"
-        >
-          <div class="content clearfix mt-3">
-            <fieldset
-              id="steps-uid-5-p-0"
-              role="tabpanel"
-              aria-labelledby="steps-uid-5-h-0"
-              class="body current"
-              aria-hidden="false"
+    <>
+      <Layout>
+        <div className="container-fluid p-3 mb-4">
+          <div className="card">
+            <div
+              className="card-header header-elements-inline py-2"
+              style={{ padding: "10px", backgroundColor: "rgb(245, 204, 129)" }}
             >
-              <div class="row">
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="text-size">Query Type</label>
-                    <select class="form-control input-style">
-                      <option value="query">Select Query</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="text-size">Business Type</label>
-                    <select class="form-control input-style">
-                      <option value="query">Direct Client</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-md-2">
-                  <label htmlFor="name" class="text-size">
-                    Name
-                    <i class="fa-solid fa-address-card pl-lg-3 pl-md-2 pl-1 text-warning"></i>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Client Name"
-                    class="form-control input-style"
-                  />
-                </div>
-
-                <div className="col-md-2">
-                  <label htmlFor="name" class="text-size">
-                    Contact Person
-                    <i class="fa-solid fa-address-book pl-lg-3 pl-md-2 pl-1 text-warning"></i>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Contact Person"
-                    class="form-control input-style"
-                  />
-                </div>
-
-                <div className="col-md-2">
-                  <label htmlFor="name" class="text-size">
-                    Contact Number
-                    <i class="fa-solid fa-phone pl-lg-3 pl-md-2 pl-1 text-warning"></i>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Contact Number"
-                    class="form-control input-style"
-                  />
-                </div>
-
-                <div className="col-md-2">
-                  <label htmlFor="name" class="text-size">
-                    Email Address
-                    <i class="fa-regular fa-envelope pl-lg-3 pl-md-2 pl-1 text-warning"></i>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Email Address"
-                    class="form-control input-style"
-                  />
-                </div>
+              <div className="col-xl-12 d-flex align-items-center justify-content-between">
+                <h5 className="card-title d-none d-sm-block">Query Form</h5>
+                <button className="btn btn-success" onClick={mergeAllData}>
+                  Save
+                </button>
               </div>
-
-              <div className="row pt-3">
-                <div className="col-md-4 col-lg-4">
-                  <label htmlFor="" class="text-size">
-                    Lead Pax Name
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control w-100 input-style"
-                    placeholder="Lead Pax Name input-style"
-                  />
-                </div>
-                <div className="col-md-4 col-lg-4">
-                  <label htmlFor="" class="text-size">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control w-100 input-style"
-                    placeholder="Subject"
-                  />
-                </div>
-                <div className="col-md-4 col-lg-4">
-                  <label htmlFor="" class="text-size">
-                    Add More Emails(comma seprated email)
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control input-style"
-                    placeholder="exmaple@gmail.com"
-                  />
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </form>
-      </div>
-
-      <div className="row d-flex">
-        <div className="col-md-6">
-          <div class="card pb-3">
-            <div class="bg-orange bg-height30">
-              <p class="py-1 pl-1 text-dark">
-                <i class="fa-solid fa-hand-holding-dollar py-1 pl-2"></i>{" "}
-                Service Selection
-              </p>
+              <div></div>
             </div>
-            <div className="card-body">
-              <div className="row d-flex justify-content-between">
-                <div className="col-3">
-                  <span class="text-secondary">Flight</span>
-                  <i class="fa-solid fa-plane-departure pl-3"></i>
-                  <div class="d-flex input-style justify-content-center">
-                    <span>Yes</span>
-                    <div class="form-check form-check-switchery switchery-sm ml-2">
-                      <label class="form-check-label">
-                        <input
-                          type="checkbox"
-                          name="switchery_group"
-                          class="form-input-switchery"
-                          required=""
-                          data-fouc=""
-                          data-switchery="true"
-                          style={{ display: "none" }}
-                        />
-                        <span
-                          class="switchery switchery-default"
-                          style={{
-                            backgroundColor: "rgb(100, 189, 99)",
-                            borderColor: "rgb(100, 189, 99)",
-                            boxShadow:
-                              "rgb(100, 189, 99) 0px 0px 0px 9.5px inset",
-                            transition:
-                              "border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s",
-                          }}
-                        >
-                          <small
-                            style={{
-                              left: "18px",
-                              transition:
-                                "background-color 0.4s ease 0s, left 0.2s ease 0s",
-                              backgroundColor: "rgb(255, 255, 255)",
-                            }}
-                          ></small>
-                        </span>
-                      </label>
+            <div className="card-body mt-4">
+              <div className="row">
+                <div className="col-12">
+                  <div className="card">
+                    <div className="card-header px-2 pt-2 pb-0 border">
+                      <h6>Contact Information</h6>
                     </div>
-                  </div>
-                </div>
-
-                <div className="col-3">
-                  <span class="text-secondary">Visa</span>
-                  <i class="fa-brands fa-cc-visa pl-3"></i>
-                  <div class="d-flex input-style justify-content-center">
-                    <span>Yes</span>
-                    <div class="form-check form-check-switchery switchery-sm ml-2">
-                      <label class="form-check-label">
-                        <input
-                          type="checkbox"
-                          name="switchery_group"
-                          class="form-input-switchery"
-                          required=""
-                          data-fouc=""
-                          data-switchery="true"
-                          style={{ display: "none" }}
-                        />
-                        <span
-                          class="switchery switchery-default"
-                          style={{
-                            backgroundColor: "rgb(100, 189, 99)",
-                            borderColor: "rgb(100, 189, 99)",
-                            boxShadow:
-                              "rgb(100, 189, 99) 0px 0px 0px 9.5px inset",
-                            transition:
-                              "border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s",
-                          }}
-                        >
-                          <small
-                            style={{
-                              left: "18px",
-                              transition:
-                                "background-color 0.4s ease 0s, left 0.2s ease 0s",
-                              backgroundColor: "rgb(255, 255, 255)",
-                            }}
-                          ></small>
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <span class="text-secondary">Insurance</span>
-                  <i class="fa-solid fa-shield-halved pl-3"></i>
-                  <div class="d-flex input-style justify-content-center">
-                    <span>Yes</span>
-                    <div class="form-check form-check-switchery switchery-sm ml-2">
-                      <label class="form-check-label">
-                        <input
-                          type="checkbox"
-                          name="switchery_group"
-                          class="form-input-switchery"
-                          required=""
-                          data-fouc=""
-                          data-switchery="true"
-                          style={{ display: "none" }}
-                        />
-                        <span
-                          class="switchery switchery-default"
-                          style={{
-                            backgroundColor: "rgb(100, 189, 99)",
-                            borderColor: "rgb(100, 189, 99)",
-                            boxShadow:
-                              "rgb(100, 189, 99) 0px 0px 0px 9.5px inset",
-                            transition:
-                              "border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s",
-                          }}
-                        >
-                          <small
-                            style={{
-                              left: "18px",
-                              transition:
-                                "background-color 0.4s ease 0s, left 0.2s ease 0s",
-                              backgroundColor: "rgb(255, 255, 255)",
-                            }}
-                          ></small>
-                        </span>
-                      </label>
+                    <div className="card-body py-4">
+                      <div className="row">
+                        {queryInputs.QueryType == "3" && (
+                          <div className="col-lg-2 p-0 mx-1">
+                            <input
+                              type="text"
+                              className="form-input"
+                              placeholder="Package Code"
+                            />
+                            <input
+                              type="text"
+                              className="form-input mt-1 mb-1"
+                              placeholder="Package Name"
+                            />
+                          </div>
+                        )}
+                        <div className="col-12 col-sm-6 col-lg-3">
+                          <div className="row justify-content-between">
+                            <div className="col-5 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="p-0 m-0">
+                                Agent
+                              </label>
+                              <input
+                                type="radio"
+                                name="ClientType"
+                                value="1"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-5 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="p-0 m-0">
+                                B2B
+                              </label>
+                              <input
+                                type="radio"
+                                name="ClientType"
+                                value="2"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-5 mt-lg-1 mt-0 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="p-0 m-0">
+                                B2C
+                              </label>
+                              <input
+                                type="radio"
+                                name="ClientType"
+                                value="3"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-5 mt-lg-1 mt-0 form-input d-flex justify-content-between align-items-center">
+                              <label htmlFor="" className="p-0 m-0">
+                                Corporate
+                              </label>
+                              <input
+                                type="radio"
+                                name="ClientType"
+                                value="4"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-6 col-lg-4 mt-1 mt-sm-0">
+                          <div className="row">
+                            <div className="col-12 p-0 px-sm-1">
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="Company, Email, Phone, Contact Person"
+                                name=""
+                              />
+                            </div>
+                            <div className="col-12 mt-1 p-0 px-sm-1">
+                              <div className="row bg-secondary m-0 rounded">
+                                <div className="col-4">
+                                  <input
+                                    type="text"
+                                    placeholder="Name"
+                                    className="form-control"
+                                  />
+                                </div>
+                                <div className="col-4">
+                                  <input
+                                    type="text"
+                                    placeholder="Contact"
+                                    className="form-control"
+                                  />
+                                </div>
+                                <div className="col-4">
+                                  <input
+                                    type="text"
+                                    placeholder="Email"
+                                    className="form-control"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-6 col-lg-2 mt-lg-0 mt-1">
+                          <div className="row">
+                            <div className="col-12 p-0 px-lg-1">
+                              <input
+                                type="text"
+                                className="form-input"
+                                placeholder="Lead Pax Name"
+                                name="LeadPax"
+                                value={queryInputs.LeadPax}
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-12 p-0 px-lg-1">
+                              <input
+                                type="text"
+                                className="form-input mt-1"
+                                placeholder="Subject"
+                                name="Subject"
+                                value={queryInputs.Subject}
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-6 col-lg-3 mt-lg-0 mt-1">
+                          <div className="row">
+                            <div className="col-12 p-0 px-sm-1">
+                              <input
+                                type="text"
+                                placeholder="text@example.com"
+                                className="form-input"
+                                name="AddEmail"
+                                value={queryInputs.AddEmail}
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-12 p-0 px-sm-1">
+                              <input
+                                type="textArea"
+                                placeholder="Additional Information"
+                                className="form-input mt-1"
+                                name="AdditionalInfo"
+                                value={queryInputs.AdditionalInfo}
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* Query Type and Assignment columsn */}
 
-              <div className="row mt-4">
-                <div className="col-4">
-                  <span class="text-secondary">From Date</span>
-                  <div class="d-flex input-style justify-content-center">
-                    <input type="date" class="date-input" />
+              <div className="row">
+                {/* Query Type */}
+                <div className="col-sm-6 col-12">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header d-flex justify-content-between align-items-center px-2 pt-2 pb-0 border">
+                          <h6>Query Type</h6>
+                          {state.queryType ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "QUERY_TYPE" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "QUERY_TYPE" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.queryType && (
+                          <div className="card-body py-4">
+                            <div className="row">
+                              <div className="col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Query
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="1"
+                                  // checked={selectedOption == "1"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="mt-1 mt-md-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Fixed Departure
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="2"
+                                  // checked={selectedOption == "2"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Package
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="3"
+                                  // checked={selectedOption == "3"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Duplicate Query
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="4"
+                                  // checked={selectedOption == "4"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Multiple Services
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="5"
+                                  // checked={selectedOption == "5"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Activity
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="QueryType"
+                                  value="6"
+                                  // checked={selectedOption == "6"}
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* value add service selection row */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Value Added Service Selection</h6>
+                          {state.valueAdd ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "VALUE_ADD" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "VALUE_ADD" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.valueAdd && (
+                          <div className="card-body">
+                            <div className="row justify-content-md-between mt-2">
+                              <div className="col-lg-2 col-md-3 col-4 p-0">
+                                <div className="d-flex align-items-end">
+                                  <label htmlFor="" className="m-0">
+                                    Flight
+                                  </label>
+                                  <i className="fa-solid fa-plane-departure mb-1 pl-md-3 pl-1"></i>
+                                </div>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    No
+                                  </label>
+                                  <div class="form-check form-switch">
+                                    <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="Flight"
+                                      value="Yes"
+                                      onChange={handleValueAdded}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-lg-2 col-md-3 col-4 p-0">
+                                <div className="d-flex align-items-end">
+                                  <label htmlFor="" className="m-0">
+                                    Visa
+                                  </label>
+                                  <i className="fa-brands fa-cc-visa mb-1 pl-md-3 pl-1"></i>
+                                </div>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    No
+                                  </label>
+                                  <div class="form-check form-switch">
+                                    <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="visa"
+                                      value="Yes"
+                                      onChange={handleValueAdded}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-lg-2 col-md-3 col-4 p-0">
+                                <div className="d-flex align-items-end">
+                                  <label htmlFor="" className="m-0">
+                                    Insurance
+                                  </label>
+                                  <i className="fa-solid fa-shield-halved mb-1 pl-md-3 pl-1"></i>
+                                </div>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    No
+                                  </label>
+                                  <div class="form-check form-switch">
+                                    <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="insurance"
+                                      value="Yes"
+                                      onChange={handleValueAdded}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-lg-2 col-md-3 col-4 p-0">
+                                <div className="d-flex align-items-end">
+                                  <label htmlFor="" className="m-0">
+                                    Train
+                                  </label>
+                                  <i className="fa-solid fa-train mb-1 pl-md-3 pl-1"></i>
+                                </div>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label
+                                    htmlFor=""
+                                    className="pValueAddedServices-0 m-0"
+                                  >
+                                    No
+                                  </label>
+                                  <div class="form-check form-switch">
+                                    <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="Train"
+                                      value="Yes"
+                                      onChange={handleValueAdded}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-lg-2 col-md-3 col-4 p-0">
+                                <div className="d-flex align-items-end">
+                                  <label htmlFor="" className="m-0">
+                                    Transfer
+                                  </label>
+                                  <i className="fa-solid fa-car mb-1 pl-md-3 pl-1"></i>
+                                </div>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    No
+                                  </label>
+                                  <div class="form-check form-switch">
+                                    <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="Transfer"
+                                      value="Yes"
+                                      onChange={handleValueAdded}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Travel Info */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Travel Info | Domestic | Guest Type - FIT</h6>
+                          {state.travelInfo ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "TRAVEL_INFO" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "TRAVEL_INFO" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.travelInfo && (
+                          <div className="card-body">
+                            <div className="row justify-content-between mt-2">
+                              <div className="col-lg-5 col-sm-6 col-5">
+                                <label htmlFor="" className="m-0">
+                                  Travel Type
+                                </label>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    International
+                                  </label>
+                                  <input
+                                    type="radio"
+                                    name="TravelInfo"
+                                    value="1"
+                                    onChange={handleQueryInputs}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    Domestic
+                                  </label>
+                                  <input
+                                    type="radio"
+                                    name="TravelInfo"
+                                    value="2"
+                                    onChange={handleQueryInputs}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="row justify-content-between mt-2">
+                              <div className="col-lg-5 col-sm-6 col-5">
+                                <label htmlFor="" className="m-0">
+                                  Pax Type
+                                </label>
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    GIT
+                                  </label>
+                                  <input
+                                    type="radio"
+                                    name="PaxType"
+                                    value="1"
+                                    onChange={handleQueryInputs}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                  <label htmlFor="" className="p-0 m-0">
+                                    FIT
+                                  </label>
+                                  <input
+                                    type="radio"
+                                    name="PaxType"
+                                    value="2"
+                                    onChange={handleQueryInputs}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Travel Date */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between">
+                          <h6>Travel Date</h6>
+                          {state.travelDate ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "TRAVEL_DATE" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "TRAVEL_DATE" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.travelDate && (
+                          <div className="card-body">
+                            <div className="row mt-2">
+                              <div className="col-md-6 col-12">
+                                <select
+                                  className="form-input"
+                                  name="Type"
+                                  onChange={handleTravelDate}
+                                >
+                                  <option value="1">Date Wise</option>
+                                  <option value="2">Day Wise</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="row mt-1">
+                              <div className="col-lg-3 col-md-6 col-12">
+                                <label>From Date</label>
+                                <input
+                                  type="date"
+                                  className="form-input"
+                                  name="FromDate"
+                                  value={TravelDate.FromDate}
+                                  onChange={handleTravelDate}
+                                />
+                              </div>
+                              <div className="col-lg-3 col-md-6 col-12">
+                                <label>To Date</label>
+                                <input
+                                  type="date"
+                                  className="form-input"
+                                  name="ToDate"
+                                  value={TravelDate.ToDate}
+                                  onChange={handleTravelDate}
+                                />
+                              </div>
+                              <div className="col-lg-4 col-md-6 col-12">
+                                <label>Total Nights</label>
+                                <div className="d-flex ">
+                                  <input
+                                    type="text"
+                                    className="form-input"
+                                    name="TotalDays"
+                                    value={TravelDate.TotalDays}
+                                    onChange={handleTravelDate}
+                                  />
+                                  <button className="btn btn-info">Save</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Quotation/Itinerary Information */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Quotation/Itinerary Information</h6>
+                          {state.quotation ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "QUOTATION" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "QUOTATION" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.quotation && (
+                          <div className="card-body">
+                            <div className="row align-items-center mt-2">
+                              <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
+                                <p className="m-0">Pax Information</p>
+                                <p className="m-0 bg-info p-1">Total Pax:</p>
+                                <input
+                                  type="text"
+                                  className="form-input w-25"
+                                />
+                              </div>
+                            </div>
+                            <div className="row  mt-1">
+                              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div className="d-flex justify-content-between align-items-end">
+                                  <label className="m-0">Adult</label>
+                                  <i className="fa-solid fa-person mb-1"></i>
+                                </div>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Adult"
+                                  value={PaxInfo.Adult}
+                                  onChange={handlePaxInfo}
+                                />
+                              </div>
+                              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div className="d-flex justify-content-between align-items-end">
+                                  <label className="m-0">Child</label>
+                                  <i className="fa-solid fa-child-reaching mb-1"></i>
+                                </div>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Child"
+                                  value={PaxInfo.Child}
+                                  onChange={handlePaxInfo}
+                                />
+                              </div>
+                              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div className="d-flex justify-content-between align-items-end">
+                                  <label className="m-0">Infant</label>
+                                  <i className="fa-solid fa-baby-carriage mb-1"></i>
+                                </div>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Infant"
+                                  value={PaxInfo.Infant}
+                                  onChange={handlePaxInfo}
+                                />
+                              </div>
+                            </div>
+                            <div className="row align-items-center mt-4">
+                              <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
+                                <p className="m-0">Room Information</p>
+                                <p className="m-0 bg-info p-1">Total Rooms:</p>
+                                <input
+                                  type="text"
+                                  className="form-input w-25"
+                                />
+                              </div>
+                            </div>
+                            <div className="row  mt-1">
+                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <label>Single</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Single"
+                                  value={RoomInfo.Single}
+                                  onChange={handleRoomInfo}
+                                />
+                              </div>
+                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <label>Double</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Double"
+                                  value={RoomInfo.Double}
+                                  onChange={handleRoomInfo}
+                                />
+                              </div>
+                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <label>Twin</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Twin"
+                                  value={RoomInfo.Twin}
+                                  onChange={handleRoomInfo}
+                                />
+                              </div>
+                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <label>Triple</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="Triple"
+                                  value={RoomInfo.Triple}
+                                  onChange={handleRoomInfo}
+                                />
+                              </div>
+                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <label>ExtraBed(A)</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="ExtraBed"
+                                  value={RoomInfo.ExtraBed}
+                                  onChange={handleRoomInfo}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="col-4">
-                  <span class="text-secondary">To Date</span>
-                  <div class="d-flex input-style justify-content-center">
-                    <input type="date" class="date-input" />
+                {/* Assignment Column */}
+                <div className="col-sm-6 col-12">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Assignment</h6>
+                          {state.assignment ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "ASSIGNMENT" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "ASSIGNMENT" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.assignment && (
+                          <div className="card-body pt-3 pb-4">
+                            <div className="row">
+                              <div className="col-md-6 col-12 d-flex justify-content-between align-items-center">
+                                <input
+                                  type="text"
+                                  placeholder="Sales Person"
+                                  className="form-control"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="row">
+                              <div className="col-md-6 col-12">
+                                <label htmlFor="">Operation Person</label>
+                                <input type="text" className="form-input" />
+                              </div>
+                              <div className="col-md-6 col-12">
+                                <label htmlFor="">Contracting Person</label>
+                                <input type="text" className="form-input" />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="col-4">
-                  <span class="text-secondary">Total Nights</span>
-                  <div class="d-flex justify-content-center">
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
+                  {/* Priority Preference */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                          <h6>Priority Preference</h6>
+                          {state.priority ? (
+                            <i
+                              className="fa-solid fa-caret-up up-arrow"
+                              onClick={() => dispatch({ type: "PRIORITY" })}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa-solid fa-caret-down up-arrow"
+                              onClick={() => dispatch({ type: "PRIORITY" })}
+                            ></i>
+                          )}
+                        </div>
+                        {state.priority && (
+                          <div className="card-body">
+                            <div className="mt-2">Priority</div>
+                            <div className="row justify-content-between">
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Normal
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="Priority"
+                                  value="1"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Medium
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="Priority"
+                                  value="2"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  High
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="Priority"
+                                  value="3"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                            </div>
+                            <hr className="my-2 p-0" />
+                            <div>TAT</div>
+                            <div className="row justify-content-between">
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  24 Hours
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TAT"
+                                  value="24"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  28 Hours
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TAT"
+                                  value="28"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  72 Hours
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TAT"
+                                  value="72"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                            </div>
+                            <hr className="my-2" />
+                            <div>Tour Type</div>
+                            <div className="row justify-content-between">
+                              <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Adventure Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="1"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Adventrure Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="2"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Collage Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="3"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Collage Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="4"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Family Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="5"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                              <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                <label htmlFor="" className="m-0 p-0">
+                                  Wildlife Tour
+                                </label>
+                                <input
+                                  type="radio"
+                                  name="TourType"
+                                  value="6"
+                                  onClick={handleQueryInputs}
+                                />
+                              </div>
+                            </div>
+                            <hr className="my-2" />
+                            <div className="row justify-content-between">
+                              <div className="col-lg-5 col-6">
+                                <label>Lead Source</label>
+                                <select
+                                  className="form-input"
+                                  name="LeadSource"
+                                  onChange={handleQueryInputs}
+                                >
+                                  <option value="1">Select</option>
+                                  <option value="2">Facebook</option>
+                                  <option value="3">Instagram</option>
+                                  <option value="4">Twitter</option>
+                                  <option value="5">Snapchat</option>
+                                  <option value="6">LinkedIn</option>
+                                  <option value="7">Website</option>
+                                  <option value="8">Other</option>
+                                </select>
+                              </div>
+                              <div className="col-lg-5 col-6">
+                                <label>Lead Preference</label>
+                                <input
+                                  type="text"
+                                  className="form-input"
+                                  name="LeadRefrenced"
+                                  onChange={handleQueryInputs}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Hotel Preference */}
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header px-2 pt-2 pb-0 border">
+                          <h6>Hotel Preference</h6>
+                        </div>
+                        <div className="card-body">
+                          <div className="mt-2">Hotel Category</div>
+                          <div className="row justify-content-between">
+                            <div className="col-md-3 col-6 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">All</label>
+                              <input
+                                type="radio"
+                                name="HotelPrefrence"
+                                value="1"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-md-3 col-6 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">3 Star</label>
+                              <input
+                                type="radio"
+                                name="HotelPrefrence"
+                                value="2"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-md-3 col-6 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">4 Star</label>
+                              <input
+                                type="radio"
+                                name="HotelPrefrence"
+                                value="3"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                            <div className="col-md-3 col-6 form-input d-flex justify-content-between align-items-center">
+                              <label className="m-0 p-0">5 Star</label>
+                              <input
+                                type="radio"
+                                name="HotelPrefrence"
+                                value="4"
+                                onChange={handleQueryInputs}
+                              />
+                            </div>
+                          </div>
+                          <hr className="my-2" />
+                          <div className="row justify-content-between">
+                            <div className="col-lg-5 col-sm-6">
+                              <label>Hotel Type</label>
+                              <select
+                                className="form-input"
+                                name="HotelType"
+                                onChange={handleQueryInputs}
+                              >
+                                <option value="1">All</option>
+                                <option value="2">Budget</option>
+                                <option value="3">Delux</option>
+                                <option value="4">Elite</option>
+                                <option value="5">Luxury</option>
+                                <option value="6">Standard</option>
+                              </select>
+                            </div>
+                            <div className="col-lg-5 col-sm-6">
+                              <label>Meal Plan</label>
+                              <select
+                                className="form-input"
+                                name="MealPlan"
+                                onChange={handleQueryInputs}
+                              >
+                                <option value="1">All</option>
+                                <option value="2">AP</option>
+                                <option value="3">CP</option>
+                                <option value="4">EP</option>
+                                <option value="5">JPAI</option>
+                                <option value="6">MAP</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="col-md-6">
-          <div class="card pb-3">
-            <div class="bg-orange bg-height30">
-              <p class="py-1 pl-1 text-dark">
-                <i class="fa-solid fa-file-invoice  py-1 pl-2"></i>
-                Quotation/Itenary Information
-              </p>
-            </div>
-            <div className="card-body">
-              <form class="form">
-                <div className="row">
-                  <div className="col-2">
-                    <div>
-                      <span>Adult</span>
-                      <i class="fa-solid fa-person pl-3"></i>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <div>
-                      <span>Child</span>
-                      <i class="fa-solid fa-child-reaching pl-3"></i>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <div>
-                      <span>Infant</span>
-                      <i class="fa-solid fa-baby-carriage pl-2"></i>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                </div>
-
-                <div className="row mt-3">
-                  <div className="col-2">
-                    <span class="font-size-9">SGL Room</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">DBL Room</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">TWIN Room</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">TPL Room</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">QUAD Room</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                </div>
-                <div className="row mt-3">
-                  <div className="col-2">
-                    <span class="font-size-9">ExtraBed(A)</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">CWBed</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <span class="font-size-9">CNBed</span>
-                    <input
-                      type="text"
-                      class="form-control input-style input-border-bottom"
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row mt-4">
-        <div className="col-12">
-          <div className="card p-4 card-bg-color">
-          <form>
-            <div class="form-group text-dark">
-              <label for="exampleFormControlTextarea1">Example textarea</label>
-              <textarea
-                class="form-control bg-light px-2"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
-            </div>
-          </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    </Layout>
-
-
+      </Layout>
+    </>
   );
 };
 
