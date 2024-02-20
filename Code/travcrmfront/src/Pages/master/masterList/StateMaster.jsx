@@ -9,10 +9,10 @@ import DataTable from "react-data-table-component";
 const StateMaster = () =>{
 
   const [getData, setGetData] = useState([]);
-  const [filterData, setFilterData] = useState();
+  const [filterData, setFilterData] = useState([]);
   const [postData, setPostData] = useState({
-    Search: '',
-    Status: '',
+    Search: "",
+    Status: "",
   });
 
 
@@ -44,6 +44,7 @@ const StateMaster = () =>{
     })
 
     setFilterData(result);
+    
   }, [postData])
 
   const handleInputChange = (e) => {
@@ -181,7 +182,7 @@ const StateMaster = () =>{
           <div className="card">
           <DataTable
               columns={columns}
-              data={filterData}
+              data={postData.Search!=="" || postData.Status!==""? filterData : getData}
               pagination
               fixedHeader
               fixedHeaderScrollHeight="280px"
