@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
-import Pagination from "../../../helper/Pagination/Pagination";
 import Model from "../../../Component/Layout/Model";
+import DataTable from "react-data-table-component";
 
-let PageSize = 5;
 const CityMaster = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [getData, setGetData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [postData, setPostData] = useState({
+    Search: "",
+    Status: "",
+  });
 
   const [modalInputs, setModalInputs] = useState({
     countryName:"",
@@ -16,9 +20,73 @@ const CityMaster = () => {
     status:""
   });
 
+  useEffect(() => {
+    const postDataToServer = () => {
+      try {
+        const { DataList } = cityList;
+        console.log("datalist", DataList);
+        setGetData(DataList);
+        setFilterData(DataList);
+        console.log("get data is logged here: ", getData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    postDataToServer();
+  }, []);
+
+  useEffect(() => {
+    const result = getData.filter((item) => {
+      return item.Name.toLowerCase().match(postData.Search.toLowerCase());
+    });
+
+    setFilterData(result);
+  }, [postData]);
+
   const handleInputChange = (e) =>{
     setModalInputs({...modalInputs, [e.target.name]:e.target.value})
   }
+
+  const columns = [
+    {
+      name: "Name",
+      selector: (row) => row.Name,
+      sortable: true,
+    },
+    {
+      name: "State Name",
+      selector: (row) => row.StateName,
+      sortable: true,
+    },
+    {
+      name: "Country Name",
+      selector: (row) => row.CountryName,
+      sortable: true,
+    },
+    {
+      name: "Added By",
+      selector: (row) => {
+        return (
+          <span>
+            {" "}
+            Admin <br /> {row.Created_at}
+          </span>
+        );
+      },
+    },
+    {
+      name: "Updated By",
+      selector: (row) => {
+        return (
+          <span>
+            {" "}
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+          </span>
+        );
+      },
+    },
+  ];
 
   return (
     <>
@@ -42,9 +110,9 @@ const CityMaster = () => {
                   Back
                 </NavLink>
                 <Model heading={"Add City"} value={modalInputs}>
-                  <div class="card-body">
-                    <div class="row">
-                    <div class="col-sm-3">
+                  <div className="card-body">
+                    <div className="row">
+                    <div className="col-sm-3">
                         <label htmlFor="country">Country</label>
                         <select className="form-control" 
                         id="country"
@@ -58,29 +126,29 @@ const CityMaster = () => {
                           <option>China</option>
                         </select>
                       </div>
-                      <div class="col-sm-3">
+                      <div className="col-sm-3">
                         <label>State</label>
                         <input
                           type="text"
                           placeholder="State Name"
-                          class="form-control"
+                          className="form-control"
                           name="stateName"
                           value={modalInputs.stateName}
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div class="col-sm-3">
+                      <div className="col-sm-3">
                         <label>Name</label>
                         <input
                           type="text"
                           placeholder="City Name"
-                          class="form-control"
+                          className="form-control"
                           name="cityName"
                           value={modalInputs.cityName}
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div class="col-sm-3">
+                      <div className="col-sm-3">
                         <label>Status</label>
                         <select className="form-control"
                           name="status"
@@ -104,13 +172,20 @@ const CityMaster = () => {
                     type="text"
                     placeholder="Search"
                     className="search-input focus-ring form-input"
+                    name="Search"
+                    value={postData.Search}
+                    onChange={(e)=> setPostData({...postData, Search:e.target.value})}
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <select className="select-input focus-ring form-input">
-                    <option value="">Select Status</option>
-                    <option value="0">Active</option>
-                    <option value="1">Inactive</option>
+                  <select className="select-input focus-ring form-input"
+                    name="Status"
+                    value={postData.Status}
+                    onChange={(e)=> setPostData({...postData, Status:e.target.value})}
+                  >
+                    <option value="0">Select Status</option>
+                    <option value="1">Active</option>
+                    <option value="2">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -123,44 +198,19 @@ const CityMaster = () => {
           </div>
 
           <div className="card">
-            <div className="table-responsive px-0">
-              <table className="table table-bordered">
-                <thead className="bg-light font-weight-bold">
-                  <tr>
-                    <th scope="col">Sr</th>
-                    <th scope="col">City Name</th>
-                    <th scope="col">State Name</th>
-                    <th scope="col">Country Name</th>
-                    <th scope="col">Created By</th>
-                    <th scope="col">Modified By</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="text-secondary">
-                  {cityList.DataList.map((item, index) => {
-                    console.log(item);
-                    return (
-                      <tr key={index}>
-                        <th>{item.Id}</th>
-                        <td>{item.Name}</td>
-                        <td>{item.StateName}</td>
-                        <td>{item.CountryName}</td>
-                        <td>{item.AddedBy}</td>
-                        <td>{item.UpdatedBy}</td>
-                        <td>{item.Status}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <Pagination
-              className="pagination-bar"
-              currentPage={currentPage}
-              totalCount={34}
-              pageSize={PageSize}
-              onPageChange={(page) => setCurrentPage(page)}
+          <DataTable
+              columns={columns}
+              data={
+                postData.Search !== "" || postData.Status !== ""
+                  ? filterData
+                  : getData
+              }
+              pagination
+              fixedHeader
+              fixedHeaderScrollHeight="280px"
+              highlightOnHover
             />
+            
           </div>
         </div>
       </Layout>
