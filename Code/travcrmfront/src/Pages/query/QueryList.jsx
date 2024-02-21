@@ -23,7 +23,7 @@ const QueryList = () => {
         );
         setGetData(data.DataList);
         setFilterData(data.DataList)
-        console.log('get data is logged here: ', getData);
+        console.log('QUERY DATA: ', getData);
       } catch (error) {
         console.log(error);
       }
@@ -34,7 +34,7 @@ const QueryList = () => {
 
   useEffect(() => {
     const result = getData.filter((item) => {
-      return item.Name.toLowerCase().match(postData.Search.toLowerCase());
+      return item.QueryId.toLowerCase().match(postData.Search.toLowerCase());
     })
 
     setFilterData(result);
@@ -61,12 +61,12 @@ const QueryList = () => {
     {
       name: "Query Date",
       selector: (row) => {
-        return (<span> {row.Created_at}</span>)
+        return (<span> {row.CreatedDate }<br/>{row.CreatedTime }</span>)
       },
     },
     {
       name: "Tour Date",
-      selector: (row) => '-',
+      selector: (row) => row.TravelDate.FromDate,
     },
     {
       name: "Destination",
@@ -74,7 +74,7 @@ const QueryList = () => {
     },
     {
       name: "Query Type",
-      selector: (row) => '-',
+      selector: (row) => row.QueryType,
     },
     {
       name: "Total Pax",
