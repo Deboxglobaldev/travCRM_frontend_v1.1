@@ -142,7 +142,7 @@ const CountryMaster = () => {
             <div className="card-body" >
               <div className="row align-items-center">
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input" value={postData.Search} onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
+                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input" value={postData.Search == null ? '' : postData.Search} onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select

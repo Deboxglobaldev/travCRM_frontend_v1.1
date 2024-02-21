@@ -1,40 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Model = ({ children, heading, value, apiurl }) => {
     const navigate = useNavigate();
-    const [responseData, setResponseData] = useState();
-
-    const  handleCloseModal = () => {
+    const [popup, setPopup] = useState(true)
+    const handleCloseModal = () => {
         document.getElementById("cancel").click();
     }
 
 
     const handleSubmit = async (e) => {
-
-        console.log(value)
+        //console.log(value)
         e.preventDefault();
-        try{
-            const res = await axios.post(apiurl,value);
-            console.log(res);
-            console.log(res.status);
-            setResponseData(res.data)
-            console.log('THIS IS RESPONSE: ',responseData);
-            if(responseData){
-                console.log("inside success",responseData.Status)
-                toast.success(`${responseData.Message}`);
+        try {
+            const response = await axios.post(apiurl, value);
+            console.log(response);
+            console.log('Response is : ',response.data.Status);
+            if (response.data.Status) {
+                console.log("inside success", response.data.Status)
+                toast.success(`${response.data.Message}`);
                 navigate('/master/country_master');
                 //handleCloseModal();
-            }else{
-                toast.error(`${responseData?.Name}`);
+            } else {
+                toast.error(`${response.data.Name}`);
+                navigate('/master/country_master');
             }
-        }catch(err){
+53,99
+        } catch (err) {
             console.log(err)
             toast.error(`${err.message}`);
         }
     }
+
 
     return (
         <>
@@ -49,7 +48,7 @@ const Model = ({ children, heading, value, apiurl }) => {
             </button>
 
             {/* <!-- Modal --> */}
-            <Toaster/>
+            <Toaster />
             <div className="modal fade" id="modal_form_vertical">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -73,9 +72,9 @@ const Model = ({ children, heading, value, apiurl }) => {
                                 {/* /modal body */}
                             </div>
 
-                            <div class="modal-footer">
-                                <button type="button" id="cancel" class="btn btn-link" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                            <div className="modal-footer">
+                                <button type="button" id="cancel" className="btn btn-link" data-dismiss="modal">Close</button>
+                                <button type="submit" className="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
