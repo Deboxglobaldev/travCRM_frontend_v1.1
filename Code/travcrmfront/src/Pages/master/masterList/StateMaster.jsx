@@ -5,17 +5,13 @@ import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 
-
 const StateMaster = () => {
-
-
-  const [getData, setGetData] = useState();
-  const [filterData, setFilterData] = useState();
+  const [getData, setGetData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [postData, setPostData] = useState({
-    Search: null,
-    Status: null,
+    Search: "",
+    Status: "",
   });
-
 
   const [modalInputs, setModalInputs] = useState({
     country: "",
@@ -24,13 +20,13 @@ const StateMaster = () => {
   });
 
   useEffect(() => {
-    const postDataToServer = async () => {
+    const postDataToServer = () => {
       try {
-        const {DataList} = cityList;
-        console.log('datalist',DataList)
+        const { DataList } = cityList;
+        console.log("datalist", DataList);
         setGetData(DataList);
-        setFilterData(DataList)
-        console.log('get data is logged here: ', getData);
+        setFilterData(DataList);
+        console.log("get data is logged here: ", getData);
       } catch (error) {
         console.log(error);
       }
@@ -42,10 +38,10 @@ const StateMaster = () => {
   useEffect(() => {
     const result = getData.filter((item) => {
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
-    })
+    });
 
     setFilterData(result);
-  }, [postData])
+  }, [postData]);
 
   const handleInputChange = (e) => {
     setModalInputs({ ...modalInputs, [e.target.name]: e.target.value });
@@ -55,31 +51,40 @@ const StateMaster = () => {
     {
       name: "Name",
       selector: (row) => row.Name,
-      sortable: true
+      sortable: true,
     },
     {
       name: "State Name",
       selector: (row) => row.StateName,
-      sortable: true
+      sortable: true,
     },
     {
       name: "Country Name",
       selector: (row) => row.CountryName,
-      sortable: true
+      sortable: true,
     },
     {
       name: "Added By",
       selector: (row) => {
-        return (<span> Admin <br /> {row.Created_at}</span>)
-      }
+        return (
+          <span>
+            Admin <br /> {row.Created_at}
+          </span>
+        );
+      },
     },
     {
       name: "Updated By",
       selector: (row) => {
-        return (<span> {row.UpdatedBy == true ? 'Admin' : '-'} <br /> {row.Updated_at}</span>)
-      }
+        return (
+          <span>
+            {" "}
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+          </span>
+        );
+      },
     },
-  ]
+  ];
 
   return (
     <>
@@ -148,10 +153,19 @@ const StateMaster = () => {
                 </Model>
               </div>
             </div>
-            <div className="card-body" >
+            <div className="card-body">
               <div className="row align-items-center">
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input" value={postData.Search} onChange={(e) => setPostData({ ...postData, Search: e.target.value })} />
+                  <input
+                    type="text"
+                    name="Search"
+                    placeholder="Search here.."
+                    className="search-input focus-ring form-input"
+                    value={postData.Search}
+                    onChange={(e) =>
+                      setPostData({ ...postData, Search: e.target.value })
+                    }
+                  />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select
@@ -163,9 +177,9 @@ const StateMaster = () => {
                       });
                     }}
                   >
-                    <option value="">Select Status</option>
-                    <option value="0">Active</option>
-                    <option value="1">Inactive</option>
+                    <option value="0">Select Status</option>
+                    <option value="1">Active</option>
+                    <option value="2">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -178,9 +192,13 @@ const StateMaster = () => {
           </div>
 
           <div className="card">
-          <DataTable
+            <DataTable
               columns={columns}
-              data={filterData}
+              data={
+                postData.Search !== "" || postData.Status !== ""
+                  ? filterData
+                  : getData
+              }
               pagination
               fixedHeader
               fixedHeaderScrollHeight="280px"

@@ -11,6 +11,7 @@ import CityMaster from "./Pages/master/masterlist/CityMaster";
 import CountryMaster from "./Pages/master/masterlist/CountryMaster";
 import Profile from "./Component/Layout/Profile";
 import Protected from "./Pages/auth/Protected";
+import QueryList from "./Pages/query/QueryList";
 import '../public/global_assets/custom_css/master.css';
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         <Routes>
             <Route path="/" element={<Protected><Home /></Protected>} />
             <Route path="/mail" element={<Protected><Mail /></Protected>} />
-            <Route path="/query" element={<Protected><Query /></Protected>} />
+            <Route path="/query_list" element={<Protected><QueryList /></Protected>}/>
+            <Route path="/query_list/query" element={<Protected><Query/></Protected>}/>
             <Route path="/master" element={<Protected><Master /></Protected>} ></Route>
             <Route path="/master/state_master" element={<Protected><StateMaster /></Protected>} />
             <Route path="/master/country_master" element={<Protected><CountryMaster /></Protected>} />

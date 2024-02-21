@@ -27,7 +27,6 @@ const Model = ({ children, heading, value, apiurl }) => {
                 toast.error(`${response.data.Name}`);
                 navigate('/master/country_master');
             }
-53,99
         } catch (err) {
             console.log(err)
             toast.error(`${err.message}`);
@@ -75,6 +74,7 @@ const Model = ({ children, heading, value, apiurl }) => {
                             <div className="modal-footer">
                                 <button type="button" id="cancel" className="btn btn-link" data-dismiss="modal">Close</button>
                                 <button type="submit" className="btn btn-primary">Save</button>
+
                             </div>
                         </form>
                     </div>

@@ -445,7 +445,7 @@ const Query = () => {
                                   <label htmlFor="" className="p-0 m-0">
                                     No
                                   </label>
-                                  <div class="form-check form-switch">
+                                  <div className="form-check form-switch">
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
@@ -467,7 +467,7 @@ const Query = () => {
                                   <label htmlFor="" className="p-0 m-0">
                                     No
                                   </label>
-                                  <div class="form-check form-switch">
+                                  <div className="form-check form-switch">
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
@@ -489,7 +489,7 @@ const Query = () => {
                                   <label htmlFor="" className="p-0 m-0">
                                     No
                                   </label>
-                                  <div class="form-check form-switch">
+                                  <div className="form-check form-switch">
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
@@ -514,7 +514,7 @@ const Query = () => {
                                   >
                                     No
                                   </label>
-                                  <div class="form-check form-switch">
+                                  <div className="form-check form-switch">
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
@@ -536,7 +536,7 @@ const Query = () => {
                                   <label htmlFor="" className="p-0 m-0">
                                     No
                                   </label>
-                                  <div class="form-check form-switch">
+                                  <div className="form-check form-switch">
                                     <input
                                       className="form-check-input"
                                       type="checkbox"

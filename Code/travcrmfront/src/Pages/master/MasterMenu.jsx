@@ -17,14 +17,11 @@ const MasterMenu = ({
   list11,
   list12,
 }) => {
-
   return (
     <>
       <div className="card bg-light w-100">
         <div className="card-body p-2">
-          <p
-            className="text-primary fw-500 m-0 mb-1 d-block .master-head"
-          >
+          <p className="text-primary fw-500 m-0 mb-1 d-block .master-head">
             {head}
           </p>
 
@@ -63,15 +60,8 @@ const DataPiece = ({ list1, list2 }) => {
         ) : (
           <NavLink to="/master/country_master">
             <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
-              <img
-                src="assets/icons/countries.png"
-                alt="image"
-              />
-              <span
-                className="fs-6 pl-1"
-              >
-                {list1}
-              </span>
+              <img src="assets/icons/countries.png" alt="image" />
+              <span className="pl-1">{list1}</span>
             </div>
           </NavLink>
         )}
@@ -81,15 +71,8 @@ const DataPiece = ({ list1, list2 }) => {
         ) : (
           <NavLink to="/master">
             <div className="master-list-icon">
-              <img
-                src="assets/icons/process.png"
-                alt="image"
-              />
-              <span
-                className="pl-1"
-              >
-                {list2}
-              </span>
+              <img src="assets/icons/process.png" alt="image" />
+              <span className="pl-1">{list2}</span>
             </div>
           </NavLink>
         )}
