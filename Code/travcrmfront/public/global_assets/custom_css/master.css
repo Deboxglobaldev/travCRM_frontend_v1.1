@@ -130,6 +130,8 @@ a{
 /* query page arrow icon */
 .up-arrow{
   font-size: 16px;
+}
+.point-cursor{
   cursor: pointer;
 }
 
@@ -144,3 +146,4 @@ a{
   width: 100%;
   object-fit: cover;
 }
+

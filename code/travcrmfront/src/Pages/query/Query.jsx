@@ -125,11 +125,10 @@ const Query = () => {
       RoomInfo,
     });
 
-    localStorage.setItem('Query', JSON.stringify(queryInputs));
-    let data = localStorage.getItem('Query');
+    localStorage.setItem("Query", JSON.stringify(queryInputs));
+    let data = localStorage.getItem("Query");
     let result = JSON.parse(data);
-    console.log('Data From LocalStorage.......', result);
- 
+    console.log("Data From LocalStorage.......", result);
   };
 
   return (
@@ -143,7 +142,7 @@ const Query = () => {
             >
               <div className="col-xl-12 d-flex align-items-center justify-content-between">
                 <h5 className="card-title d-none d-sm-block">Query Form</h5>
-                <button className="btn btn-success" onClick={mergeAllData}>
+                <button className="btn btn-light" onClick={mergeAllData}>
                   Save
                 </button>
               </div>
@@ -157,7 +156,7 @@ const Query = () => {
                       <h6>Contact Information</h6>
                     </div>
                     <div className="card-body py-4">
-                      <div className="row">
+                      <div className="row row-gap-4">
                         {queryInputs.QueryType == "3" && (
                           <div className="col-lg-2 p-0 mx-1">
                             <input
@@ -169,6 +168,24 @@ const Query = () => {
                               type="text"
                               className="form-input mt-1 mb-1"
                               placeholder="Package Name"
+                            />
+                          </div>
+                        )}
+                        {queryInputs.QueryType == "2" && (
+                          <div className="col-lg-2 p-0 mx-1">
+                            <input
+                              type="text"
+                              placeholder="Fixed Departure Code"
+                              className="form-input"
+                            />
+                          </div>
+                        )}
+                        {queryInputs.QueryType == "4" && (
+                          <div className="col-lg-2 p-0 mx-1">
+                            <input
+                              type="text"
+                              placeholder="Query Id"
+                              className="form-input"
                             />
                           </div>
                         )}
@@ -310,25 +327,35 @@ const Query = () => {
                   </div>
                 </div>
               </div>
-              {/* Query Type and Assignment columsn */}
+              {/*Starting Query Type and Assignment columsn */}
 
               <div className="row">
                 {/* Query Type */}
+
                 <div className="col-sm-6 col-12">
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header d-flex justify-content-between align-items-center px-2 pt-2 pb-0 border">
+                        <div
+                          className="card-header point-cursor d-flex justify-content-between align-items-center px-2 pt-2 pb-0 border"
+                          onClick={() => dispatch({ type: "QUERY_TYPE" })}
+                        >
                           <h6>Query Type</h6>
                           {state.queryType ? (
                             <i
                               className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "QUERY_TYPE" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "QUERY_TYPE" });
+                              }}
                             ></i>
                           ) : (
                             <i
                               className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "QUERY_TYPE" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "QUERY_TYPE" });
+                              }}
                             ></i>
                           )}
                         </div>
@@ -413,21 +440,31 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
+
                   {/* value add service selection row */}
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                        <div
+                          className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
+                          onClick={() => dispatch({ type: "VALUE_ADD" })}
+                        >
                           <h6>Value Added Service Selection</h6>
                           {state.valueAdd ? (
                             <i
                               className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "VALUE_ADD" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "VALUE_ADD" });
+                              }}
                             ></i>
                           ) : (
                             <i
                               className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "VALUE_ADD" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "VALUE_ADD" });
+                              }}
                             ></i>
                           )}
                         </div>
@@ -553,184 +590,115 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
+
                   {/* Travel Info */}
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
-                          <h6>Travel Info | Domestic | Guest Type - FIT</h6>
-                          {state.travelInfo ? (
-                            <i
-                              className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "TRAVEL_INFO" })}
-                            ></i>
-                          ) : (
-                            <i
-                              className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "TRAVEL_INFO" })}
-                            ></i>
+                  {queryInputs.QueryType !== "5" && (
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="card">
+                          <div
+                            className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
+                            onClick={() => dispatch({ type: "TRAVEL_INFO" })}
+                          >
+                            <h6>Travel Info | Domestic | Guest Type - FIT</h6>
+                            {state.travelInfo ? (
+                              <i
+                                className="fa-solid fa-caret-up up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "TRAVEL_INFO" });
+                                }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="fa-solid fa-caret-down up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "TRAVEL_INFO" });
+                                }}
+                              ></i>
+                            )}
+                          </div>
+                          {state.travelInfo && (
+                            <div className="card-body">
+                              <div className="row justify-content-between mt-2">
+                                <div className="col-lg-5 col-sm-6 col-5">
+                                  <label htmlFor="" className="m-0">
+                                    Travel Type
+                                  </label>
+                                  <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                    <label htmlFor="" className="p-0 m-0">
+                                      International
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="TravelInfo"
+                                      value="1"
+                                      onChange={handleQueryInputs}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                  <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                    <label htmlFor="" className="p-0 m-0">
+                                      Domestic
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="TravelInfo"
+                                      value="2"
+                                      onChange={handleQueryInputs}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="row justify-content-between mt-2">
+                                <div className="col-lg-5 col-sm-6 col-5">
+                                  <label htmlFor="" className="m-0">
+                                    Pax Type
+                                  </label>
+                                  <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                    <label htmlFor="" className="p-0 m-0">
+                                      GIT
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="PaxType"
+                                      value="1"
+                                      onChange={handleQueryInputs}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                  <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                    <label htmlFor="" className="p-0 m-0">
+                                      FIT
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="PaxType"
+                                      value="2"
+                                      onChange={handleQueryInputs}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           )}
                         </div>
-                        {state.travelInfo && (
-                          <div className="card-body">
-                            <div className="row justify-content-between mt-2">
-                              <div className="col-lg-5 col-sm-6 col-5">
-                                <label htmlFor="" className="m-0">
-                                  Travel Type
-                                </label>
-                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                  <label htmlFor="" className="p-0 m-0">
-                                    International
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="TravelInfo"
-                                    value="1"
-                                    onChange={handleQueryInputs}
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-5 col-sm-6 col-5 mt-3">
-                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                  <label htmlFor="" className="p-0 m-0">
-                                    Domestic
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="TravelInfo"
-                                    value="2"
-                                    onChange={handleQueryInputs}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="row justify-content-between mt-2">
-                              <div className="col-lg-5 col-sm-6 col-5">
-                                <label htmlFor="" className="m-0">
-                                  Pax Type
-                                </label>
-                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                  <label htmlFor="" className="p-0 m-0">
-                                    GIT
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="PaxType"
-                                    value="1"
-                                    onChange={handleQueryInputs}
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-5 col-sm-6 col-5 mt-3">
-                                <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                  <label htmlFor="" className="p-0 m-0">
-                                    FIT
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="PaxType"
-                                    value="2"
-                                    onChange={handleQueryInputs}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
                       </div>
                     </div>
-                  </div>
-                  {/* Travel Date */}
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between">
-                          <h6>Travel Date</h6>
-                          {state.travelDate ? (
-                            <i
-                              className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "TRAVEL_DATE" })}
-                            ></i>
-                          ) : (
-                            <i
-                              className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "TRAVEL_DATE" })}
-                            ></i>
-                          )}
-                        </div>
-                        {state.travelDate && (
-                          <div className="card-body">
-                            <div className="row mt-2">
-                              <div className="col-md-6 col-12">
-                                <select
-                                  className="form-input"
-                                  name="Type"
-                                  onChange={handleTravelDate}
-                                >
-                                  <option value="1">Date Wise</option>
-                                  <option value="2">Day Wise</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div className="row mt-1">
-                              <div className="col-lg-3 col-md-6 col-12">
-                                <label>From Date</label>
-                                <input
-                                  type="date"
-                                  className="form-input"
-                                  name="FromDate"
-                                  value={TravelDate.FromDate}
-                                  onChange={handleTravelDate}
-                                />
-                              </div>
-                              <div className="col-lg-3 col-md-6 col-12">
-                                <label>To Date</label>
-                                <input
-                                  type="date"
-                                  className="form-input"
-                                  name="ToDate"
-                                  value={TravelDate.ToDate}
-                                  onChange={handleTravelDate}
-                                />
-                              </div>
-                              <div className="col-lg-4 col-md-6 col-12">
-                                <label>Total Nights</label>
-                                <div className="d-flex ">
-                                  <input
-                                    type="text"
-                                    className="form-input"
-                                    name="TotalDays"
-                                    value={TravelDate.TotalDays}
-                                    onChange={handleTravelDate}
-                                  />
-                                  <button className="btn btn-info">Save</button>
-                                </div>
-                              </div>
-                            </div>
+                  )}
+
+                  {/* Information it will show only on multiple services check */}
+                  {queryInputs.QueryType == "5" && (
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="card">
+                          <div className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                            <h6>Travel Information</h6>
                           </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  {/* Quotation/Itinerary Information */}
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
-                          <h6>Quotation/Itinerary Information</h6>
-                          {state.quotation ? (
-                            <i
-                              className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "QUOTATION" })}
-                            ></i>
-                          ) : (
-                            <i
-                              className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "QUOTATION" })}
-                            ></i>
-                          )}
-                        </div>
-                        {state.quotation && (
+
                           <div className="card-body">
                             <div className="row align-items-center mt-2">
                               <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
@@ -783,90 +751,282 @@ const Query = () => {
                                 />
                               </div>
                             </div>
-                            <div className="row align-items-center mt-4">
-                              <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
-                                <p className="m-0">Room Information</p>
-                                <p className="m-0 bg-info p-1">Total Rooms:</p>
-                                <input
-                                  type="text"
-                                  className="form-input w-25"
-                                />
-                              </div>
-                            </div>
-                            <div className="row  mt-1">
-                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                <label>Single</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  name="Single"
-                                  value={RoomInfo.Single}
-                                  onChange={handleRoomInfo}
-                                />
-                              </div>
-                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                <label>Double</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  name="Double"
-                                  value={RoomInfo.Double}
-                                  onChange={handleRoomInfo}
-                                />
-                              </div>
-                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                <label>Twin</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  name="Twin"
-                                  value={RoomInfo.Twin}
-                                  onChange={handleRoomInfo}
-                                />
-                              </div>
-                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                <label>Triple</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  name="Triple"
-                                  value={RoomInfo.Triple}
-                                  onChange={handleRoomInfo}
-                                />
-                              </div>
-                              <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                <label>ExtraBed(A)</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  name="ExtraBed"
-                                  value={RoomInfo.ExtraBed}
-                                  onChange={handleRoomInfo}
-                                />
-                              </div>
-                            </div>
                           </div>
-                        )}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Travel Date */}
+                  {queryInputs.QueryType !== "5" && (
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="card">
+                          <div
+                            className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between"
+                            onClick={() => dispatch({ type: "TRAVEL_DATE" })}
+                          >
+                            <h6>Travel Date</h6>
+                            {state.travelDate ? (
+                              <i
+                                className="fa-solid fa-caret-up up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "TRAVEL_DATE" });
+                                }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="fa-solid fa-caret-down up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "TRAVEL_DATE" });
+                                }}
+                              ></i>
+                            )}
+                          </div>
+                          {state.travelDate && (
+                            <div className="card-body">
+                              <div className="row mt-2">
+                                <div className="col-md-6 col-12">
+                                  <select
+                                    className="form-input"
+                                    name="Type"
+                                    onChange={handleTravelDate}
+                                  >
+                                    <option value="1">Date Wise</option>
+                                    <option value="2">Day Wise</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div className="row mt-1">
+                                <div className="col-lg-3 col-md-6 col-12">
+                                  <label>From Date</label>
+                                  <input
+                                    type="date"
+                                    className="form-input"
+                                    name="FromDate"
+                                    value={TravelDate.FromDate}
+                                    onChange={handleTravelDate}
+                                  />
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-12">
+                                  <label>To Date</label>
+                                  <input
+                                    type="date"
+                                    className="form-input"
+                                    name="ToDate"
+                                    value={TravelDate.ToDate}
+                                    onChange={handleTravelDate}
+                                  />
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-12">
+                                  <label>Total Nights</label>
+                                  <div className="d-flex ">
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="TotalDays"
+                                      value={TravelDate.TotalDays}
+                                      onChange={handleTravelDate}
+                                    />
+                                    <button className="btn btn-info">
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Quotation/Itinerary Information */}
+                  {queryInputs.QueryType !== "5" && (
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="card">
+                          <div
+                            className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
+                            onClick={() => dispatch({ type: "QUOTATION" })}
+                          >
+                            <h6>Quotation/Itinerary Information</h6>
+                            {state.quotation ? (
+                              <i
+                                className="fa-solid fa-caret-up up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "QUOTATION" });
+                                }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="fa-solid fa-caret-down up-arrow"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  dispatch({ type: "QUOTATION" });
+                                }}
+                              ></i>
+                            )}
+                          </div>
+                          {state.quotation && (
+                            <div className="card-body">
+                              <div className="row align-items-center mt-2">
+                                <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
+                                  <p className="m-0">Pax Information</p>
+                                  <p className="m-0 bg-info p-1">Total Pax:</p>
+                                  <input
+                                    type="text"
+                                    className="form-input w-25"
+                                  />
+                                </div>
+                              </div>
+                              <div className="row  mt-1">
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                  <div className="d-flex justify-content-between align-items-end">
+                                    <label className="m-0">Adult</label>
+                                    <i className="fa-solid fa-person mb-1"></i>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    className="form-input"
+                                    name="Adult"
+                                    value={PaxInfo.Adult}
+                                    onChange={handlePaxInfo}
+                                  />
+                                </div>
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                  <div className="d-flex justify-content-between align-items-end">
+                                    <label className="m-0">Child</label>
+                                    <i className="fa-solid fa-child-reaching mb-1"></i>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    className="form-input"
+                                    name="Child"
+                                    value={PaxInfo.Child}
+                                    onChange={handlePaxInfo}
+                                  />
+                                </div>
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                  <div className="d-flex justify-content-between align-items-end">
+                                    <label className="m-0">Infant</label>
+                                    <i className="fa-solid fa-baby-carriage mb-1"></i>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    className="form-input"
+                                    name="Infant"
+                                    value={PaxInfo.Infant}
+                                    onChange={handlePaxInfo}
+                                  />
+                                </div>
+                              </div>
+                              {queryInputs.QueryType !== "4" && (
+                                <div className="row align-items-center mt-4">
+                                  <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
+                                    <p className="m-0">Room Information</p>
+                                    <p className="m-0 bg-info p-1">
+                                      Total Rooms:
+                                    </p>
+                                    <input
+                                      type="text"
+                                      className="form-input w-25"
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                              {queryInputs.QueryType !== "4" && (
+                                <div className="row  mt-1">
+                                  <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                    <label>Single</label>
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="Single"
+                                      value={RoomInfo.Single}
+                                      onChange={handleRoomInfo}
+                                    />
+                                  </div>
+                                  <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                    <label>Double</label>
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="Double"
+                                      value={RoomInfo.Double}
+                                      onChange={handleRoomInfo}
+                                    />
+                                  </div>
+                                  <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                    <label>Twin</label>
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="Twin"
+                                      value={RoomInfo.Twin}
+                                      onChange={handleRoomInfo}
+                                    />
+                                  </div>
+                                  <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                    <label>Triple</label>
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="Triple"
+                                      value={RoomInfo.Triple}
+                                      onChange={handleRoomInfo}
+                                    />
+                                  </div>
+                                  <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                    <label>ExtraBed(A)</label>
+                                    <input
+                                      type="text"
+                                      className="form-input"
+                                      name="ExtraBed"
+                                      value={RoomInfo.ExtraBed}
+                                      onChange={handleRoomInfo}
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/*Ending Query Type and Assignment columsn */}
                 </div>
+
                 {/* Assignment Column */}
                 <div className="col-sm-6 col-12">
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                        <div
+                          className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
+                          onClick={() => dispatch({ type: "ASSIGNMENT" })}
+                        >
                           <h6>Assignment</h6>
                           {state.assignment ? (
                             <i
                               className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "ASSIGNMENT" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "ASSIGNMENT" });
+                              }}
                             ></i>
                           ) : (
                             <i
                               className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "ASSIGNMENT" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "ASSIGNMENT" });
+                              }}
                             ></i>
                           )}
                         </div>
@@ -897,21 +1057,31 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
+
                   {/* Priority Preference */}
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
+                        <div
+                          className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
+                          onClick={() => dispatch({ type: "PRIORITY" })}
+                        >
                           <h6>Priority Preference</h6>
                           {state.priority ? (
                             <i
                               className="fa-solid fa-caret-up up-arrow"
-                              onClick={() => dispatch({ type: "PRIORITY" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "PRIORITY" });
+                              }}
                             ></i>
                           ) : (
                             <i
                               className="fa-solid fa-caret-down up-arrow"
-                              onClick={() => dispatch({ type: "PRIORITY" })}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                dispatch({ type: "PRIORITY" });
+                              }}
                             ></i>
                           )}
                         </div>
@@ -1094,6 +1264,7 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
+
                   {/* Hotel Preference */}
                   <div className="row">
                     <div className="col-12">
