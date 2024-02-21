@@ -1,12 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../Component/Layout/Layout';
-import { NavLink } from 'react-router-dom';
-const QueryList = () =>{
-    return(
-        <>
-        <Layout>
+import { NavLink, Link } from 'react-router-dom';
+import DataTable from "react-data-table-component";
+import axios from 'axios';
+// sir browser open kijiye mujhe show nhi ho raha hai
+const QueryList = () => {
+
+  const [getData, setGetData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [postData, setPostData] = useState({
+    Search: "",
+    Status: "",
+  });
+
+
+  useEffect(() => {
+    const postDataToServer = async () => {
+      try {
+        const { data } = await axios.post(
+          "http://127.0.0.1:8000/api/querymasterlist",
+          postData
+        );
+        setGetData(data.DataList);
+        setFilterData(data.DataList)
+        console.log('get data is logged here: ', getData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    postDataToServer();
+  }, []);
+
+  useEffect(() => {
+    const result = getData.filter((item) => {
+      return item.Name.toLowerCase().match(postData.Search.toLowerCase());
+    })
+
+    setFilterData(result);
+  }, [postData])
+
+  const columns = [
+    {
+      name: "Query Id",
+      selector: (row) => {
+        return (<Link to={'/query_list/queryview'} className='linkCls'>{row.QueryId}</Link>)
+      },
+      sortable: true
+    },
+    {
+      name: "Type",
+      selector: (row) => row.ClientType,
+      sortable: true
+    },
+    {
+      name: "Lead Pax",
+      selector: (row) => row.LeadPax,
+      sortable: true
+    },
+    {
+      name: "Query Date",
+      selector: (row) => {
+        return (<span> {row.Created_at}</span>)
+      },
+    },
+    {
+      name: "Tour Date",
+      selector: (row) => '-',
+    },
+    {
+      name: "Destination",
+      selector: (row) => '-',
+    },
+    {
+      name: "Query Type",
+      selector: (row) => '-',
+    },
+    {
+      name: "Total Pax",
+      selector: (row) => '-',
+    },
+    {
+      name: "Estimated Value",
+      selector: (row) => '-',
+    },
+    {
+      name: "Payment Information",
+      selector: (row) => '-',
+    },
+    {
+      name: "Assign To",
+      selector: (row) => {
+        return (<span> Admin </span>)
+      }
+    },
+    {
+      name: "Status",
+      selector: (row) => {
+        return (<span> Pending </span>)
+      }
+    }
+  ]
+
+
+  return (
+    <>
+      <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card" style={{marginBottom:"0"}}>
+          <div className="card" style={{ marginBottom: "0" }}>
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
               style={{ padding: "10px" }}
@@ -20,19 +121,36 @@ const QueryList = () =>{
                   to="/query_list/query"
                   className="btn mr-2 btn-gray fs-11 shadow"
                   aria-expanded="false"
-                >
-                  + Add
-                </NavLink>
+                >+ Create Query</NavLink>
               </div>
             </div>
             <div className="card-body" >
               <div className="row align-items-center">
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <input type="text" name="Search" placeholder="Search here.." className="search-input focus-ring form-input"/>
+                  <input type="text"
+                    placeholder="Search here.."
+                    className="search-input focus-ring form-input"
+                    name="Search"
+                    value={postData.Search}
+                    onChange={(e) => {
+                      setPostData({
+                        ...postData,
+                        Search: e.target.value,
+                      });
+                    }}
+                  />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select
                     className="select-input focus-ring form-input"
+                    name="Status"
+                    value={postData.Status}
+                    onChange={(e) => {
+                      setPostData({
+                        ...postData,
+                        Status: e.target.value,
+                      });
+                    }}
                   >
                     <option value="">Select Status</option>
                     <option value="1">Active</option>
@@ -50,11 +168,21 @@ const QueryList = () =>{
 
           {/*******************------Table Card-----*******************/}
 
-          
+          <div className="card">
+            <DataTable
+              columns={columns}
+              data={filterData}
+              pagination
+              fixedHeader
+              fixedHeaderScrollHeight="280px"
+              highlightOnHover
+            />
+          </div>
+
         </div>
-        </Layout>
-        </>
-    )
+      </Layout>
+    </>
+  )
 };
 
 export default QueryList;
