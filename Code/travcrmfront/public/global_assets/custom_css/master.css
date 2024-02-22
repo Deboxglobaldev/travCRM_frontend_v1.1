@@ -151,3 +151,7 @@ a{
   font-weight: 700;
   color: #04a004;
 }
+
+.err-fs{
+  font-size: 10px;
+}
