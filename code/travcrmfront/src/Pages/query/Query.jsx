@@ -120,7 +120,8 @@ const Query = () => {
     setRoomInfo({ ...RoomInfo, [e.target.name]: e.target.value });
   };
 
-  const mergeAllData = () => {
+  useEffect(()=>{
+
     setQueryInputs({
       ...queryInputs,
       ValueAddedServices,
@@ -129,11 +130,16 @@ const Query = () => {
       RoomInfo,
     });
 
+  }, [RoomInfo,PaxInfo,TravelDate,ValueAddedServices,]);
+
+  const sendToLocalStorage = () => {
     localStorage.setItem("Query", JSON.stringify(queryInputs));
+    let data = localStorage.getItem("Query");
+    let result = JSON.parse(data);
+    console.log("Data From LocalStorage.......", result);
   };
-  let data = localStorage.getItem("Query");
-  let result = JSON.parse(data);
-  console.log("Data From LocalStorage.......", result);
+
+
 
   return (
     <>
@@ -146,7 +152,7 @@ const Query = () => {
             >
               <div className="col-xl-12 d-flex align-items-center justify-content-between">
                 <h5 className="card-title d-none d-sm-block">Query Form</h5>
-                <button className="btn btn-light" onClick={mergeAllData}>
+                <button className="btn btn-light" onClick={sendToLocalStorage}>
                   Save
                 </button>
               </div>
@@ -518,7 +524,7 @@ const Query = () => {
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
-                                      name="visa"
+                                      name="Visa"
                                       value="Yes"
                                       onChange={handleValueAdded}
                                     />
@@ -540,7 +546,7 @@ const Query = () => {
                                     <input
                                       className="form-check-input"
                                       type="checkbox"
-                                      name="insurance"
+                                      name="Insurance"
                                       value="Yes"
                                       onChange={handleValueAdded}
                                     />
