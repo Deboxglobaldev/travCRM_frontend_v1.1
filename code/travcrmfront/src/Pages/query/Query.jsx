@@ -4,7 +4,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { inputInitialValue, InputSchema } from "./QuerySchema";
 
 const Query = () => {
-  const initialState = {
+
+  // console.log(Formik);
+
+  const initialState={
     queryType: false,
     assignment: false,
     valueAdd: false,
@@ -14,6 +17,7 @@ const Query = () => {
     quotation: false,
   };
 
+  
   const reducer = (state, action) => {
     switch (action.type) {
       case "QUERY_TYPE":
@@ -41,8 +45,12 @@ const Query = () => {
     QueryType: "",
   });
 
+  const handleChange = () =>{
+
+  }
+
   const handleSubmit = (value) => {
-    console.log(value);
+    console.log(value.QueryType);
   };
 
   return (
@@ -350,7 +358,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="1"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                   <div className="mt-1 mt-md-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -361,7 +369,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="2"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                   <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -372,7 +380,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="3"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                   <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -383,7 +391,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="4"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                   <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -394,7 +402,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="5"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                   <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -405,7 +413,7 @@ const Query = () => {
                                       type="radio"
                                       name="QueryType"
                                       value="6"
-                                      // onChange={handleQueryInputs}
+                                      // onChange={handleChange}
                                     ></Field>
                                   </div>
                                 </div>

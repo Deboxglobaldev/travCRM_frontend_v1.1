@@ -3,7 +3,8 @@ import Layout from '../../Component/Layout/Layout';
 import { NavLink, Link } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import axios from 'axios';
-// sir browser open kijiye mujhe show nhi ho raha hai
+
+
 const QueryList = () => {
 
   const [getData, setGetData] = useState([]);
