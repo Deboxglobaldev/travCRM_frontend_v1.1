@@ -1,7 +1,10 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect} from "react";
 import Layout from "../../Component/Layout/Layout";
+import { Formik } from "formik";
+import * as yup from 'yup';
 
 const Query = () => {
+  
   const initialState = {
     queryType: false,
     assignment: false,
@@ -11,6 +14,7 @@ const Query = () => {
     priority: false,
     quotation: false,
   };
+  
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -126,10 +130,10 @@ const Query = () => {
     });
 
     localStorage.setItem("Query", JSON.stringify(queryInputs));
-    let data = localStorage.getItem("Query");
-    let result = JSON.parse(data);
-    console.log("Data From LocalStorage.......", result);
   };
+  let data = localStorage.getItem("Query");
+  let result = JSON.parse(data);
+  console.log("Data From LocalStorage.......", result);
 
   return (
     <>
@@ -149,6 +153,8 @@ const Query = () => {
               <div></div>
             </div>
             <div className="card-body mt-4">
+
+              {/* Contact Person */}
               <div className="row">
                 <div className="col-12">
                   <div className="card">
@@ -248,12 +254,13 @@ const Query = () => {
                               />
                             </div>
                             <div className="col-12 mt-1 p-0 px-sm-1">
-                              <div className="row bg-secondary m-0 rounded">
-                                <div className="col-4">
+                              <div className="row m-0 rounded">
+                                <div className="col-4 p-0 pl-1">
                                   <input
                                     type="text"
                                     placeholder="Name"
                                     className="form-control"
+                                    readOnly
                                   />
                                 </div>
                                 <div className="col-4">
@@ -261,13 +268,15 @@ const Query = () => {
                                     type="text"
                                     placeholder="Contact"
                                     className="form-control"
+                                    readOnly
                                   />
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 p-0">
                                   <input
                                     type="text"
                                     placeholder="Email"
                                     className="form-control"
+                                    readOnly
                                   />
                                 </div>
                               </div>
@@ -327,12 +336,13 @@ const Query = () => {
                   </div>
                 </div>
               </div>
+
+
               {/*Starting Query Type and Assignment columsn */}
-
               <div className="row">
-                {/* Query Type */}
-
                 <div className="col-sm-6 col-12">
+
+                  {/* Query Type */}
                   <div className="row">
                     <div className="col-12">
                       <div className="card">
