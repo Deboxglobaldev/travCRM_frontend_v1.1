@@ -66,7 +66,7 @@ const QueryList = () => {
     },
     {
       name: "Tour Date",
-      selector: (row) => row.TravelDate.FromDate,
+      selector: (row) => '-',
     },
     {
       name: "Destination",
