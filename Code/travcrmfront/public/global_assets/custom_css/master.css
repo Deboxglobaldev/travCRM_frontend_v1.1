@@ -155,3 +155,15 @@ a{
 .err-fs{
   font-size: 10px;
 }
+
+.bg-for-query-view{
+  background-color:rgb(44, 52, 63) ;
+}
+.td-size{
+  height: 40px;
+  width: 80px;
+}
+.td-size-ex{
+  height: 40px;
+  width: 35px;
+}
