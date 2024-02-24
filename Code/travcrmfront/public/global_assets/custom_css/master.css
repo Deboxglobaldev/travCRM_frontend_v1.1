@@ -121,4 +121,16 @@ a{
   height: 40px;
   width: 35px;
 }
+.accordion-item {
+  /* border: none; */
+}
 
+/* Remove border from accordion button */
+/* .accordion-button {
+  border: none;
+} */
+
+/* Remove border from accordion collapse */
+/* .accordion-collapse {
+  border: none;
+} */
