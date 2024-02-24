@@ -36,7 +36,10 @@
   font-size: 15px;
 }
 .bg-for-query-view{
-  background-color:rgb(50, 65, 72) ;
+  background-color:rgb(69, 158, 114) ;
+}
+.text-color-query-view{
+  color:rgb(69, 158, 114) ;
 }
 
 /* ------------------/custom global css/----------------  */

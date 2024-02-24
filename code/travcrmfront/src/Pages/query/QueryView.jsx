@@ -29,10 +29,10 @@ const QueryView = () => {
                     <h5 className="">DB23-24/000927</h5>
                   </div>
                 </div>
-                <div className="row text-secondary bg-for-query-view">
+                <div className="row bg-for-query-view">
                   <div className="d-flex align-items-center py-1">
                     <div>
-                      <i className="fa-solid fa-user fs-5 bg-secondary text-light p-1 rounded-circle"></i>
+                      <i className="fa-solid fa-user fs-5 bg-white text-dark p-1 rounded-circle"></i>
                     </div>
                     <div className="d-flex flex-column pl-2">
                       <span>Disha India Limited</span>
@@ -40,8 +40,8 @@ const QueryView = () => {
                     </div>
                   </div>
                   <div className="py-2 d-flex align-items-center">
-                    <i className="fa-brands fa-whatsapp text-success fs-3"></i>
-                    <span className="text-success pl-2 fs-5">Whatsapp</span>
+                    <i className="fa-brands fa-whatsapp text-white fs-3"></i>
+                    <span className="text-white pl-2 fs-5">Whatsapp</span>
                   </div>
                 </div>
               </div>
@@ -78,19 +78,19 @@ const QueryView = () => {
                       <tr>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">Adult</span>
+                            <span className="">Adult</span>
                             <span>2</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">Child</span>
+                            <span className="">Child</span>
                             <span>1</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">Infant</span>
+                            <span className="">Infant</span>
                             <span>0</span>
                           </div>
                         </td>
@@ -104,19 +104,19 @@ const QueryView = () => {
                       <tr>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">SGL</span>
+                            <span className="">SGL</span>
                             <span>2</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">DBL</span>
+                            <span className="">DBL</span>
                             <span>1</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">TPL</span>
+                            <span className="">TPL</span>
                             <span>0</span>
                           </div>
                         </td>
@@ -124,23 +124,23 @@ const QueryView = () => {
                       <tr>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">TWIN</span>
+                            <span className="">TWIN</span>
                             <span>2</span>
                           </div>
                         </td>
                         <td className="p-1 d-flex justify-content-between">
                           <div className="rounded td-size-ex text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">CWB</span>
+                            <span className="">CWB</span>
                             <span>1</span>
                           </div>
                           <div className="rounded td-size-ex text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">CNB</span>
+                            <span className="">CNB</span>
                             <span>1</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">E.BED</span>
+                            <span className="">E.BED</span>
                             <span>0</span>
                           </div>
                         </td>
@@ -148,19 +148,19 @@ const QueryView = () => {
                       <tr>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">QUAD BR</span>
+                            <span className="">QUAD BR</span>
                             <span>2</span>
                           </div>
                         </td>
                         <td className="p-1 d-flex justify-content-between">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">BUDGET</span>
+                            <span className="">BUDGET</span>
                             <span>1</span>
                           </div>
                         </td>
                         <td className="p-1 ">
                           <div className="rounded td-size text-center bg-for-query-view text-light d-flex flex-column">
-                            <span className="text-secondary">.</span>
+                            <span className="">.</span>
                             <span>0</span>
                           </div>
                         </td>
@@ -170,7 +170,7 @@ const QueryView = () => {
                 </div>
                 <div className="col border-top border-bottom mt-1 py-2">
                   <div className="d-flex flex-column">
-                    <span className="text-secondary">OPERATION PERSON</span>
+                    <span className="">OPERATION PERSON</span>
                     <span>Sanaul Ansari</span>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ const QueryView = () => {
                         <td className="py-2 px-1 text-center">1 N/ 6 D</td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Costsheet
@@ -268,7 +268,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Preview
@@ -276,7 +276,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Duplicate
@@ -284,7 +284,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Hotel Availability
@@ -292,7 +292,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Make Final
@@ -308,7 +308,7 @@ const QueryView = () => {
                         <td className="py-2 px-1 text-center">1 N/ 6 D</td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Costsheet
@@ -316,7 +316,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Preview
@@ -324,7 +324,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Duplicate
@@ -332,7 +332,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Hotel Availability
@@ -340,7 +340,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Make Final
@@ -356,7 +356,7 @@ const QueryView = () => {
                         <td className="py-2 px-1 text-center">1 N/ 6 D</td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Costsheet
@@ -364,7 +364,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Preview
@@ -372,7 +372,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Duplicate
@@ -380,7 +380,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Hotel Availability
@@ -388,7 +388,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Make Final
@@ -404,7 +404,7 @@ const QueryView = () => {
                         <td className="py-2 px-1 text-center">1 N/ 6 D</td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Costsheet
@@ -412,7 +412,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Preview
@@ -420,7 +420,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Duplicate
@@ -428,7 +428,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Hotel Availability
@@ -436,7 +436,7 @@ const QueryView = () => {
                         </td>
                         <td className="py-1 px-1 text-center">
                           <button
-                            className="py-1 rounded bg-primary"
+                            className="py-1 rounded bg-for-query-view"
                             style={{ border: "none" }}
                           >
                             Make Final
@@ -452,7 +452,7 @@ const QueryView = () => {
 
           <div className="col-3 px-1">
             <div className="card min-vh-100 shadow-none border">
-              <div className="card-header pt-2 pb-0 border-bottom">
+              <div className="card-header pt-2 pb-0 border-bottom bg-for-query-view">
                   <p>Action</p>
               </div>
               <div className="card-body p-0">
@@ -461,7 +461,7 @@ const QueryView = () => {
                   <div class="accordion-item border-top-0">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseOne"
@@ -502,14 +502,14 @@ const QueryView = () => {
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseTwo"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseTwo"
                       >
-                        Important Links
+                        Payement Information
                       </button>
                     </h2>
                     <div
@@ -543,14 +543,14 @@ const QueryView = () => {
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseThree"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseThree"
                       >
-                        Important Links
+                        Query Information
                       </button>
                     </h2>
                     <div
@@ -584,14 +584,14 @@ const QueryView = () => {
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingFour">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseFour"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseFour"
                       >
-                        Important Links
+                        Supplier Information
                       </button>
                     </h2>
                     <div
@@ -625,14 +625,14 @@ const QueryView = () => {
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingFive">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseFive"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseFive"
                       >
-                        Important Links
+                        ToDo List
                       </button>
                     </h2>
                     <div
@@ -666,14 +666,14 @@ const QueryView = () => {
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingSix">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseSix"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseSix"
                       >
-                        Important Links
+                        Assign User
                       </button>
                     </h2>
                     <div
@@ -707,14 +707,14 @@ const QueryView = () => {
                   <div class="accordion-item border-bottom-0">
                     <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
                       <button
-                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                        class="accordion-button collapsed py-2 px-3 font-size-14 text-color-query-view"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseSeven"
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseSeven"
                       >
-                        Important Links
+                        Client Information
                       </button>
                     </h2>
                     <div
