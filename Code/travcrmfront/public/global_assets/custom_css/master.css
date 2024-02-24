@@ -137,3 +137,12 @@ a{
 /* .accordion-collapse {
   border: none;
 } */
+
+.nav-pills-bordered .nav-link.active {
+  border-color: #ffc115;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #ffc115;
+}
