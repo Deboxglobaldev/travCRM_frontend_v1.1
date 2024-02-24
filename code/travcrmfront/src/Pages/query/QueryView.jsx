@@ -226,6 +226,12 @@ const QueryView = () => {
                     </NavLink>
                   </div>
                 </div>
+                <div className="col-12 d-flex gap-4 py-2 border-top">
+                  <NavLink>Quotation</NavLink>
+                  <NavLink>Tour Extension</NavLink>
+                  <NavLink>Client Communication</NavLink>
+                  <NavLink>Supplier Communication</NavLink>
+                </div>
                 <div className="col bg-for-query-view py-2">
                   <h4 className="m-0">Quotation Generated</h4>
                 </div>
@@ -698,7 +704,7 @@ const QueryView = () => {
                   </div>
 
                   {/* Accoridon Seventh */}
-                  <div class="accordion-item">
+                  <div class="accordion-item border-bottom-0">
                     <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
                       <button
                         class="accordion-button collapsed py-2 px-3 font-size-14"
@@ -737,39 +743,33 @@ const QueryView = () => {
                       </div>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
                 </div>
-                <div className="row border m-0">
-                  <div className="col-12 d-flex mt-2 gap-3">
+
+
+                <div className="row border m-0 bg-for-query-view">
+                  <div className="col-12 d-flex mt-2 gap-3 ">
                       <p className="font-size-10 m-0">Current Status</p>
-                      <p className="font-size-10 border m-0">Quotation Generated</p>
+                      <p className="font-size-10 border m-0 px-1 rounded">Quotation Generated</p>
                   </div>
 
                   <div className="col-12">
                     <div className="row p-2 row-gap-2">
-                      <div className="col-4 font-size-10 border text-center">
+                      <div className="col-4 font-size-10 border rounded text-center">
                         Qoutation Generated
                       </div>
-                      <div className="col-4 font-size-10 border  d-flex align-items-center justify-content-center">
+                      <div className="col-4 font-size-10 border rounded  d-flex align-items-center justify-content-center">
                         Qoute Sent
                       </div>
-                      <div className="col-4 font-size-10 border text-center">
+                      <div className="col-4 font-size-10 border rounded text-center">
                         Qoutation Followup
                       </div>
-                      <div className="col-4 font-size-10 border text-center ">
+                      <div className="col-4 font-size-10 border rounded text-center ">
                         Qoutation Confirmed
                       </div>
-                      <div className="col-4 font-size-10 border d-flex align-items-center">
+                      <div className="col-4 font-size-10 border rounded d-flex align-items-center">
                         Qouery Cancel
                       </div>
-                      <div className="col-4 font-size-10 border d-flex align-items-center justify-content-center">
+                      <div className="col-4 font-size-10 border rounded d-flex align-items-center justify-content-center">
                         Qouery
                       </div>
                     </div>
@@ -780,16 +780,16 @@ const QueryView = () => {
 
                   <div className="col-12 ">
                     <div className="row p-2 row-gap-2">
-                      <div className="col-4 font-size-10 border d-flex justify-content-center align-items-center">
+                      <div className="col-4 font-size-10 border rounded d-flex justify-content-center align-items-center">
                         Internal Note's
                       </div>
-                      <div className="col-4 font-size-10 border  d-flex align-items-center justify-content-center">
+                      <div className="col-4 font-size-10 border rounded d-flex align-items-center justify-content-center">
                         Not Rechable
                       </div>
-                      <div className="col-4 font-size-10 border text-center">
+                      <div className="col-4 font-size-10 border rounded text-center">
                         Talk in Progress
                       </div>
-                      <div className="col-4 font-size-10 border text-center ">
+                      <div className="col-4 font-size-10 border rounded text-center ">
                         Finalizing Soon
                       </div>
                     </div>
@@ -805,39 +805,3 @@ const QueryView = () => {
 };
 
 export default QueryView;
-
-
-<div class="panel panel-white">
-							<div class="panel-heading">
-								<h6 class="text-semibold panel-title">
-									<i class="icon-folder6 position-left"></i>
-									Downloaded files
-								<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
-
-								<div class="heading-elements">
-									<span class="heading-text text-muted">(93)</span>
-								</div>
-							</div>
-
-							<div class="list-group no-border">
-								<a href="#" class="list-group-item">
-									<i class="icon-file-pdf"></i> Hello_exotic_staunch.pdf <span class="label bg-success-400">New</span>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<i class="icon-file-word"></i> That_well_ecstatically.docx
-								</a>
-
-								<a href="#" class="list-group-item">
-									<i class="icon-file-excel"></i> Shared_coast_concurrent.csv <span class="label bg-slate">Draft</span>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<i class="icon-file-word"></i> Into_intrepid_belated.docx
-								</a>
-
-								<a href="#" class="list-group-item">
-									<i class="icon-arrow-right22"></i> Show all files (93)
-								</a>
-							</div>
-						</div>
