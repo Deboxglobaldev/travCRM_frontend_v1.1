@@ -446,7 +446,7 @@ const QueryView = () => {
           <div className="col-3 px-1">
             <div className="card min-vh-100 shadow-none border">
               <div class="accordion" id="accordionPanelsStayOpenExample">
-                
+
                 {/* First Accordian */}
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="panelsStayOpen-headingOne">

@@ -2,6 +2,7 @@ import React, { useState, useReducer, useEffect } from "react";
 import Layout from "../../Component/Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { inputInitialValue, InputSchema } from "./QuerySchema";
+import axios from "axios";
 
 const Query = () => {
 
