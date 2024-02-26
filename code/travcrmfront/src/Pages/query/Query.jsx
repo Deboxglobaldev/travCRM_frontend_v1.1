@@ -301,16 +301,16 @@ const Query = () => {
                       <div className="row my-2">
                         <div className="col-12">
                           <div
-                            class="accordion"
+                            className="accordion"
                             id="accordionPanelsStayOpenExample"
                           >
-                            <div class="accordion-item ">
+                            <div className="accordion-item ">
                               <h2
-                                class="accordion-header"
+                                className="accordion-header"
                                 id="panelsStayOpen-headingOne"
                               >
                                 <button
-                                  class="accordion-button collapsed py-2 px-3 font-size-14"
+                                  className="accordion-button collapsed py-2 px-3 font-size-14"
                                   type="button"
                                   data-bs-toggle="collapse"
                                   data-bs-target="#panelsStayOpen-collapseOne"
@@ -322,10 +322,10 @@ const Query = () => {
                               </h2>
                               <div
                                 id="panelsStayOpen-collapseOne"
-                                class="accordion-collapse collapse"
+                                className="accordion-collapse collapse"
                                 aria-labelledby="panelsStayOpen-headingOne"
                               >
-                                <div class="accordion-body py-3 px-2">
+                                <div className="accordion-body py-3 px-2">
                                   <div className="row m-0">
                                     <span className="text-danger">
                                       <ErrorMessage name="QueryType" />
@@ -410,16 +410,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingTwo"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseTwo"
@@ -431,10 +431,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseTwo"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingTwo"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <div className="row justify-content-md-between mx-0">
                                         <div className="col-lg-2 col-md-3 col-4 p-0">
                                           <div className="d-flex align-items-end">
@@ -577,16 +577,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingThree"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseThree"
@@ -598,10 +598,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseThree"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingThree"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <div className="row justify-content-between mt-2">
                                         <span className="text-danger">
                                           <ErrorMessage name="TravelInfo" />
@@ -698,16 +698,16 @@ const Query = () => {
                             <div className="row my-2">
                               <div className="col-12">
                                 <div
-                                  class="accordion"
+                                  className="accordion"
                                   id="accordionPanelsStayOpenExample"
                                 >
-                                  <div class="accordion-item ">
+                                  <div className="accordion-item ">
                                     <h2
-                                      class="accordion-header"
+                                      className="accordion-header"
                                       id="panelsStayOpen-headingThree"
                                     >
                                       <button
-                                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                                        className="accordion-button collapsed py-2 px-3 font-size-14"
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseThree"
@@ -719,10 +719,10 @@ const Query = () => {
                                     </h2>
                                     <div
                                       id="panelsStayOpen-collapseThree"
-                                      class="accordion-collapse collapse"
+                                      className="accordion-collapse collapse"
                                       aria-labelledby="panelsStayOpen-headingThree"
                                     >
-                                      <div class="accordion-body py-3 px-2">
+                                      <div className="accordion-body py-3 px-2">
                                         <div className="row align-items-center mt-2">
                                           <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
                                             <p className="m-0">
@@ -800,16 +800,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingFour"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseFour"
@@ -821,10 +821,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseFour"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingFour"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <div className="row mt-2">
                                         <div className="col-md-6 col-12">
                                           <Field
@@ -902,16 +902,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingFive"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseFive"
@@ -923,10 +923,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseFive"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingFive"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <div className="row align-items-center mt-2">
                                         <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
                                           <p className="m-0">Pax Information</p>
@@ -1095,16 +1095,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingSix"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseSix"
@@ -1116,10 +1116,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseSix"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingSix"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <div className="row">
                                         <div className="col-6 ">
                                           <div className="form-group">
@@ -1199,16 +1199,16 @@ const Query = () => {
                           <div className="row my-2">
                             <div className="col-12">
                               <div
-                                class="accordion"
+                                className="accordion"
                                 id="accordionPanelsStayOpenExample"
                               >
-                                <div class="accordion-item ">
+                                <div className="accordion-item ">
                                   <h2
-                                    class="accordion-header"
+                                    className="accordion-header"
                                     id="panelsStayOpen-headingSeven"
                                   >
                                     <button
-                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      className="accordion-button collapsed py-2 px-3 font-size-14"
                                       type="button"
                                       data-bs-toggle="collapse"
                                       data-bs-target="#panelsStayOpen-collapseSeven"
@@ -1220,10 +1220,10 @@ const Query = () => {
                                   </h2>
                                   <div
                                     id="panelsStayOpen-collapseSeven"
-                                    class="accordion-collapse collapse"
+                                    className="accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingSeven"
                                   >
-                                    <div class="accordion-body py-3 px-2">
+                                    <div className="accordion-body py-3 px-2">
                                       <span className="text-danger m-0 p-0">
                                         <ErrorMessage name="Priority" />
                                       </span>

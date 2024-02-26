@@ -77,7 +77,7 @@ const QueryView = () => {
                           m-auto w-100
                         ">
                           <i
-                            class="fa fa-light fa-moon"
+                            className="fa fa-light fa-moon"
                             style={{ color: "black", fontSize: "11px" }}
                           ></i>
                           <span className="pl-2">2</span>
@@ -212,7 +212,7 @@ const QueryView = () => {
                       <span style={{ color: "gray", fontSize: "12px" }}>
                         Subject:
                       </span>{" "}
-                      <span class="badge bg-warning-400 ml-auto">Pending</span>{" "}
+                      <span className="badge bg-warning-400 ml-auto">Pending</span>{" "}
                       <br />{" "}
                       <span style={{ color: "#16b90e" }}>
                         02-11-2023 DeBox Global Pvt. Ltd.

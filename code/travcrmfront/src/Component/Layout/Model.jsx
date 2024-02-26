@@ -3,7 +3,7 @@ import { axiosOther } from '../../http/axios/axios_new';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const Model = ({ children, heading, value, apiurl }) => {
+const Model = ({ children, heading, value, apiurl, setErrorMessage }) => {
     const navigate = useNavigate();
     const [popup, setPopup] = useState(true)
     const handleCloseModal = () => {
@@ -24,8 +24,10 @@ const Model = ({ children, heading, value, apiurl }) => {
                 navigate('/master/country_master');
                 //handleCloseModal();
             } else {
-                toast.error(`${response.data.Name}`);
+                toast.error(`'First Alert', ${response.data.Name}`);
                 navigate('/master/country_master');
+                setErrorMessage(`${response.data.Name}`)
+                // console.log(`This is Error:  ${response.data.Name}`);
             }
         } catch (err) {
             console.log(err)
@@ -74,7 +76,6 @@ const Model = ({ children, heading, value, apiurl }) => {
                             <div className="modal-footer">
                                 <button type="button" id="cancel" className="btn btn-link" data-dismiss="modal">Close</button>
                                 <button type="submit" className="btn btn-primary">Save</button>
-
                             </div>
                         </form>
                     </div>

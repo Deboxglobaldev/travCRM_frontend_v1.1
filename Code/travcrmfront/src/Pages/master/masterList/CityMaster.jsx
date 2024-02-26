@@ -17,8 +17,9 @@ const CityMaster = () => {
     countryName:"",
     stateName:"",
     cityName:"",
-    status:""
+    status:"0"
   });
+
 
   useEffect(() => {
     const postDataToServer = () => {
@@ -37,7 +38,7 @@ const CityMaster = () => {
   }, []);
 
   useEffect(() => {
-    const result = getData.filter((item) => {
+    const result = getData.filter((item) =>{
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
     });
 
@@ -109,7 +110,7 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add City"} value={modalInputs}>
+                <Model heading={"Add City"} value={modalInputs} apiurl={"addupdatecountry"}>
                   <div className="card-body">
                     <div className="row">
                     <div className="col-sm-3">
@@ -155,8 +156,8 @@ const CityMaster = () => {
                           value={modalInputs.status}
                           onChange={handleInputChange}
                         >
-                          <option>Active</option>
-                          <option>Inactive</option>
+                          <option value="0">Inactive</option>
+                          <option value="1">Active</option>
                         </select>
                       </div>
 

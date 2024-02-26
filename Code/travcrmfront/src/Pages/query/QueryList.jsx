@@ -46,7 +46,7 @@ const QueryList = () => {
     {
       name: "",
       selector: (row) => {
-        return (<div className="btn-class">
+        return (<div className="btn-className">
         <Link href="#" className="btn btn-warning" style={{ padding:"5px", margin:"0px", backgroundColor: "#324148" }}><i className="fa fa-pencil " aria-hidden="true" style={{ color: "#fffffff1", fontSize: "10px" }}></i></Link></div>)
       }
     },
