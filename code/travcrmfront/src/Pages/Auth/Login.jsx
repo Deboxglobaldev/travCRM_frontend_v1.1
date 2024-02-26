@@ -3,9 +3,9 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
-import axiosNew from "../../http/axios/axios_new";
 import { useDispatch } from "react-redux";
 import { login } from "../../reducer/authReducers";
+import { axiosNew } from "../../http/axios/axios_new";
 
 const Login = () => {
 

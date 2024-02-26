@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import { axiosOther } from '../../http/axios/axios_new';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Model = ({ children, heading, value, apiurl }) => {
         //console.log(value)
         e.preventDefault();
         try {
-            const response = await axios.post(apiurl, value);
+            const response = await axiosOther.post(apiurl, value);
             console.log(response);
             console.log('Response is : ',response.data.Status);
             if (response.data.Status) {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "reactjs-popup/dist/index.css";
-import axios from "axios";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
+import { axiosOther } from "../../../http/axios/axios_new";
+
 
 const CountryMaster = () => {
 
@@ -28,8 +29,7 @@ const CountryMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axios.post(
-          "http://127.0.0.1:8000/api/countrylist",
+        const { data } = await axiosOther.post("countrylist",
           postData
         );
         setGetData(data.DataList);
@@ -108,7 +108,7 @@ const CountryMaster = () => {
                   Back
                 </NavLink>
 
-                <Model heading={"Add Country"} value={inputValue} apiurl={"http://127.0.0.1:8000/api/addupdatecountry"}>
+                <Model heading={"Add Country"} value={inputValue} apiurl={"addupdatecountry"}>
                   <div className="card-body">
                     <input type="hidden" name="id" value="" />
                     <div className="row">
