@@ -52,7 +52,8 @@ const CountryMaster = () => {
   }, [postData]);
 
   const handleInputChange = (e) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+    const {name, value, type, checked} = e.target;
+    setInputValue({ ...inputValue, [name]: type === 'checkbox' ? (checked ? 1 : 0) : value});
   };
 
   const columns = [
