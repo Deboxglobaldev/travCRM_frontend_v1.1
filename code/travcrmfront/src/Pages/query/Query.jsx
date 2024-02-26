@@ -14,11 +14,6 @@ const Query = () => {
 
   console.log(queryInputs)
 
-  // console.log("Onchange Query Value", Formik.value);
-
-  // const handleChange = (e) => {
-  //   setQueryInputs({ [e.target.name]: e.target.value });
-  // };
 
   const [selectedQueryType, setSelectedQueryType] = useState('');
 

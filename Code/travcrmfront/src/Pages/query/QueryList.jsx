@@ -41,11 +41,19 @@ const QueryList = () => {
     setFilterData(result);
   }, [postData])
 
+
   const columns = [
+    {
+      name: "",
+      selector: (row) => {
+        return (<div className="btn-class">
+        <Link href="#" className="btn btn-warning" style={{ padding:"5px", margin:"0px", backgroundColor: "#324148" }}><i className="fa fa-pencil " aria-hidden="true" style={{ color: "#fffffff1", fontSize: "10px" }}></i></Link></div>)
+      }
+    },
     {
       name: "Query Id",
       selector: (row) => {
-        return (<Link to={'/query_list/queryview'} className='linkCls'>{row.QueryId}</Link>)
+        return (<Link to={'/query_list/queryview/'+row.QueryId} className='linkCls'>{row.QueryId}</Link>)
       },
       sortable: true
     },
