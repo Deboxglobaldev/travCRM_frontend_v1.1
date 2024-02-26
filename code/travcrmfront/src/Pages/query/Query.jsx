@@ -3,68 +3,42 @@ import Layout from "../../Component/Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { inputInitialValue, InputSchema } from "./QuerySchema";
 import axios from "axios";
+import "jquery";
+import "select2";
+
 
 const Query = () => {
-
-  // console.log(Formik);
-
-  const initialState={
-    queryType: false,
-    assignment: false,
-    valueAdd: false,
-    travelInfo: false,
-    travelDate: false,
-    priority: false,
-    quotation: false,
-  };
-
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "QUERY_TYPE":
-        return { ...state, queryType: !state.queryType };
-      case "ASSIGNMENT":
-        return { ...state, assignment: !state.assignment };
-      case "VALUE_ADD":
-        return { ...state, valueAdd: !state.valueAdd };
-      case "TRAVEL_INFO":
-        return { ...state, travelInfo: !state.travelInfo };
-      case "TRAVEL_DATE":
-        return { ...state, travelDate: !state.travelDate };
-      case "PRIORITY":
-        return { ...state, priority: !state.priority };
-      case "QUOTATION":
-        return { ...state, quotation: !state.quotation };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   const [queryInputs, setQueryInputs] = useState({
-    QueryType: "",
+    QueryType:''
   });
 
-  const handleChange = () =>{
+  console.log(queryInputs)
 
-  }
+
+  const [selectedQueryType, setSelectedQueryType] = useState('');
 
   const handleSubmit = async (postData) => {
     console.log(postData);
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/addupdatequerymaster",postData)
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/addupdatequerymaster",
+        postData
+      );
       console.log(response);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
+
+  $(document).ready(function () {
+    $(".select2-hidden-accessible").select2();
+  });
 
   return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card">
+          <div className="card shadow-none border">
             <Formik
               initialValues={inputInitialValue}
               onSubmit={handleSubmit}
@@ -89,8 +63,8 @@ const Query = () => {
                   {/* Contact Person */}
                   <div className="row">
                     <div className="col-12">
-                      <div className="card">
-                        <div className="card-header px-2 pt-2 pb-0 border">
+                      <div className="card shadow-none border">
+                        <div className="card-header px-2 pt-2 pb-0 border-bottom">
                           <h6>Contact Information</h6>
                         </div>
                         <div className="card-body py-4">
@@ -324,107 +298,108 @@ const Query = () => {
                   <div className="row">
                     <div className="col-sm-6 col-12">
                       {/* Query Type */}
-                      <div className="row">
+                      <div className="row my-2">
                         <div className="col-12">
-                          <div className="card">
-                            <div
-                              className="card-header point-cursor d-flex justify-content-between align-items-center px-2 pt-2 pb-0 border"
-                              onClick={() => dispatch({ type: "QUERY_TYPE" })}
-                            >
-                              <h6>Query Type</h6>
-                              {state.queryType ? (
-                                <i
-                                  className="fa-solid fa-caret-up up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "QUERY_TYPE" });
-                                  }}
-                                ></i>
-                              ) : (
-                                <i
-                                  className="fa-solid fa-caret-down up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "QUERY_TYPE" });
-                                  }}
-                                ></i>
-                              )}
-                            </div>
-                            {state.queryType && (
-                              <div className="card-body py-4">
-                                <div className="row">
-                                  <span className="text-danger">
-                                    <ErrorMessage name="QueryType" />
-                                  </span>
-                                  <div className="col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Query
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="1"
-                                      // onChange={handleChange}
-                                    ></Field>
-                                  </div>
-                                  <div className="mt-1 mt-md-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Fixed Departure
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="2"
-                                      // onChange={handleChange}
-                                    ></Field>
-                                  </div>
-                                  <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Package
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="3"
-                                      // onChange={handleChange}
-                                    ></Field>
-                                  </div>
-                                  <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Duplicate Query
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="4"
-                                      // onChange={handleChange}
-                                    ></Field>
-                                  </div>
-                                  <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Multiple Services
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="5"
-                                      // onChange={handleChange}
-                                    ></Field>
-                                  </div>
-                                  <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Activity
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="QueryType"
-                                      value="6"
-                                      // onChange={handleChange}
-                                    ></Field>
+                          <div
+                            class="accordion"
+                            id="accordionPanelsStayOpenExample"
+                          >
+                            <div class="accordion-item ">
+                              <h2
+                                class="accordion-header"
+                                id="panelsStayOpen-headingOne"
+                              >
+                                <button
+                                  class="accordion-button collapsed py-2 px-3 font-size-14"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#panelsStayOpen-collapseOne"
+                                  aria-expanded="false"
+                                  aria-controls="panelsStayOpen-collapseOne"
+                                >
+                                  Query Type
+                                </button>
+                              </h2>
+                              <div
+                                id="panelsStayOpen-collapseOne"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="panelsStayOpen-headingOne"
+                              >
+                                <div class="accordion-body py-3 px-2">
+                                  <div className="row m-0">
+                                    <span className="text-danger">
+                                      <ErrorMessage name="QueryType" />
+                                    </span>
+                                    <div className="col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Query
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="1"
+                                        onChange={() => setQueryInputs('1')}
+                                      ></Field>
+                                    </div>
+                                    <div className="mt-1 mt-md-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Fixed Departure
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="2"
+                                        onChange={() => setQueryInputs('2')}
+                                      ></Field>
+                                    </div>
+                                    <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Package
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="3"
+                                        onChange={() => setQueryInputs('3')}
+                                      ></Field>
+                                    </div>
+                                    <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Duplicate Query
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="4"
+                                        onChange={() => setQueryInputs('4')}
+                                      ></Field>
+                                    </div>
+                                    <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Multiple Services
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="5"
+                                        onChange={() => setQueryInputs('5')}
+                                      ></Field>
+                                    </div>
+                                    <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
+                                      <label htmlFor="" className="m-0 p-0">
+                                        Activity
+                                      </label>
+                                      <Field
+                                        type="radio"
+                                        name="QueryType"
+                                        value="6"
+                                        onChange={() => setQueryInputs('6')}
+                                      ></Field>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -432,323 +407,385 @@ const Query = () => {
                       {/* value add service selection row */}
                       <div className="row">
                         <div className="col-12">
-                          <div className="card">
-                            <div
-                              className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
-                              onClick={() => dispatch({ type: "VALUE_ADD" })}
-                            >
-                              <h6>Value Added Service Selection</h6>
-                              {state.valueAdd ? (
-                                <i
-                                  className="fa-solid fa-caret-up up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "VALUE_ADD" });
-                                  }}
-                                ></i>
-                              ) : (
-                                <i
-                                  className="fa-solid fa-caret-down up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "VALUE_ADD" });
-                                  }}
-                                ></i>
-                              )}
-                            </div>
-                            {state.valueAdd && (
-                              <div className="card-body">
-                                <div className="row justify-content-md-between mt-2">
-                                  <div className="col-lg-2 col-md-3 col-4 p-0">
-                                    <div className="d-flex align-items-end">
-                                      <label htmlFor="" className="m-0">
-                                        Flight
-                                      </label>
-                                      <i className="fa-solid fa-plane-departure mb-1 pl-md-3 pl-1"></i>
-                                    </div>
-                                    <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                      <label htmlFor="" className="p-0 m-0">
-                                        No
-                                      </label>
-                                      <div className="form-check form-switch">
-                                        <Field
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          name="ValueAddededServices.Flight"
-                                          value="Yes"
-                                          // onChange={handleValueAdded}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-lg-2 col-md-3 col-4 p-0">
-                                    <div className="d-flex align-items-end">
-                                      <label htmlFor="" className="m-0">
-                                        Visa
-                                      </label>
-                                      <i className="fa-brands fa-cc-visa mb-1 pl-md-3 pl-1"></i>
-                                    </div>
-                                    <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                      <label htmlFor="" className="p-0 m-0">
-                                        No
-                                      </label>
-                                      <div className="form-check form-switch">
-                                        <Field
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          name="ValueAddededServices.Visa"
-                                          value="Yes"
-                                          // onChange={handleValueAdded}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-lg-2 col-md-3 col-4 p-0">
-                                    <div className="d-flex align-items-end">
-                                      <label htmlFor="" className="m-0">
-                                        Insurance
-                                      </label>
-                                      <i className="fa-solid fa-shield-halved mb-1 pl-md-3 pl-1"></i>
-                                    </div>
-                                    <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                      <label htmlFor="" className="p-0 m-0">
-                                        No
-                                      </label>
-                                      <div className="form-check form-switch">
-                                        <Field
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          name="ValueAddededServices.Insurance"
-                                          value="Yes"
-                                          // onChange={handleValueAdded}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-lg-2 col-md-3 col-4 p-0">
-                                    <div className="d-flex align-items-end">
-                                      <label htmlFor="" className="m-0">
-                                        Train
-                                      </label>
-                                      <i className="fa-solid fa-train mb-1 pl-md-3 pl-1"></i>
-                                    </div>
-                                    <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                      <label
-                                        htmlFor=""
-                                        className="pValueAddedServices-0 m-0"
-                                      >
-                                        No
-                                      </label>
-                                      <div className="form-check form-switch">
-                                        <Field
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          name="ValueAddededServices.Train"
-                                          value="Yes"
-                                          // onChange={handleValueAdded}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-lg-2 col-md-3 col-4 p-0">
-                                    <div className="d-flex align-items-end">
-                                      <label htmlFor="" className="m-0">
-                                        Transfer
-                                      </label>
-                                      <i className="fa-solid fa-car mb-1 pl-md-3 pl-1"></i>
-                                    </div>
-                                    <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                      <label htmlFor="" className="p-0 m-0">
-                                        No
-                                      </label>
-                                      <div className="form-check form-switch">
-                                        <Field
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          name="ValueAddededServices.Transfer"
-                                          value="Yes"
-                                          // onChange={handleValueAdded}
-                                        ></Field>
+                          <div className="row my-2">
+                            <div className="col-12">
+                              <div
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
+                              >
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingTwo"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseTwo"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseTwo"
+                                    >
+                                      value add service selection
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseTwo"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingTwo"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <div className="row justify-content-md-between mx-0">
+                                        <div className="col-lg-2 col-md-3 col-4 p-0">
+                                          <div className="d-flex align-items-end">
+                                            <label htmlFor="" className="m-0">
+                                              Flight
+                                            </label>
+                                            <i className="fa-solid fa-plane-departure mb-1 pl-md-3 pl-1"></i>
+                                          </div>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              No
+                                            </label>
+                                            <div className="form-check form-switch">
+                                              <Field
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                name="ValueAddededServices.Flight"
+                                                value="Yes"
+                                                // onChange={handleValueAdded}
+                                              ></Field>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 col-md-3 col-4 p-0">
+                                          <div className="d-flex align-items-end">
+                                            <label htmlFor="" className="m-0">
+                                              Visa
+                                            </label>
+                                            <i className="fa-brands fa-cc-visa mb-1 pl-md-3 pl-1"></i>
+                                          </div>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              No
+                                            </label>
+                                            <div className="form-check form-switch">
+                                              <Field
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                name="ValueAddededServices.Visa"
+                                                value="Yes"
+                                                // onChange={handleValueAdded}
+                                              ></Field>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 col-md-3 col-4 p-0">
+                                          <div className="d-flex align-items-end">
+                                            <label htmlFor="" className="m-0">
+                                              Insurance
+                                            </label>
+                                            <i className="fa-solid fa-shield-halved mb-1 pl-md-3 pl-1"></i>
+                                          </div>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              No
+                                            </label>
+                                            <div className="form-check form-switch">
+                                              <Field
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                name="ValueAddededServices.Insurance"
+                                                value="Yes"
+                                                // onChange={handleValueAdded}
+                                              ></Field>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 col-md-3 col-4 p-0">
+                                          <div className="d-flex align-items-end">
+                                            <label htmlFor="" className="m-0">
+                                              Train
+                                            </label>
+                                            <i className="fa-solid fa-train mb-1 pl-md-3 pl-1"></i>
+                                          </div>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="pValueAddedServices-0 m-0"
+                                            >
+                                              No
+                                            </label>
+                                            <div className="form-check form-switch">
+                                              <Field
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                name="ValueAddededServices.Train"
+                                                value="Yes"
+                                                // onChange={handleValueAdded}
+                                              ></Field>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-2 col-md-3 col-4 p-0">
+                                          <div className="d-flex align-items-end">
+                                            <label htmlFor="" className="m-0">
+                                              Transfer
+                                            </label>
+                                            <i className="fa-solid fa-car mb-1 pl-md-3 pl-1"></i>
+                                          </div>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              No
+                                            </label>
+                                            <div className="form-check form-switch">
+                                              <Field
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                name="ValueAddededServices.Transfer"
+                                                value="Yes"
+                                                // onChange={handleValueAdded}
+                                              ></Field>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Travel Info */}
-                      {queryInputs.QueryType !== "5" && (
-                        <div className="row">
-                          <div className="col-12">
-                            <div className="card">
+                      <div className="row">
+                        <div className="col-12">
+                          <div className="row my-2">
+                            <div className="col-12">
                               <div
-                                className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
-                                onClick={() =>
-                                  dispatch({ type: "TRAVEL_INFO" })
-                                }
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
                               >
-                                <h6>
-                                  Travel Info | Domestic | Guest Type - FIT
-                                </h6>
-                                {state.travelInfo ? (
-                                  <i
-                                    className="fa-solid fa-caret-up up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "TRAVEL_INFO" });
-                                    }}
-                                  ></i>
-                                ) : (
-                                  <i
-                                    className="fa-solid fa-caret-down up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "TRAVEL_INFO" });
-                                    }}
-                                  ></i>
-                                )}
-                              </div>
-                              {state.travelInfo && (
-                                <div className="card-body">
-                                  <div className="row justify-content-between mt-2">
-                                    <span className="text-danger">
-                                      <ErrorMessage name="TravelInfo" />
-                                    </span>
-                                    <div className="col-lg-5 col-sm-6 col-5">
-                                      <label htmlFor="" className="m-0">
-                                        Travel Type
-                                      </label>
-                                      <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                        <label htmlFor="" className="p-0 m-0">
-                                          International
-                                        </label>
-                                        <Field
-                                          type="radio"
-                                          name="TravelInfo"
-                                          value="1"
-                                          // onChange={handleQueryInputs}
-                                        ></Field>
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingThree"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseThree"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseThree"
+                                    >
+                                      Travel Info
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseThree"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingThree"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <div className="row justify-content-between mt-2">
+                                        <span className="text-danger">
+                                          <ErrorMessage name="TravelInfo" />
+                                        </span>
+                                        <div className="col-lg-5 col-sm-6 col-5">
+                                          <label htmlFor="" className="m-0">
+                                            Travel Type
+                                          </label>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              International
+                                            </label>
+                                            <Field
+                                              type="radio"
+                                              name="TravelInfo"
+                                              value="1"
+                                              // onChange={handleQueryInputs}
+                                            ></Field>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              Domestic
+                                            </label>
+                                            <Field
+                                              type="radio"
+                                              name="TravelInfo"
+                                              value="2"
+                                              // onChange={handleQueryInputs}
+                                            ></Field>
+                                          </div>
+                                        </div>
                                       </div>
-                                    </div>
-                                    <div className="col-lg-5 col-sm-6 col-5 mt-3">
-                                      <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                        <label htmlFor="" className="p-0 m-0">
-                                          Domestic
-                                        </label>
-                                        <Field
-                                          type="radio"
-                                          name="TravelInfo"
-                                          value="2"
-                                          // onChange={handleQueryInputs}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="row justify-content-between mt-2">
-                                    <span className="text-danger">
-                                      <ErrorMessage name="PaxType" />
-                                    </span>
-                                    <div className="col-lg-5 col-sm-6 col-5">
-                                      <label htmlFor="" className="m-0">
-                                        Pax Type
-                                      </label>
-                                      <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                        <label htmlFor="" className="p-0 m-0">
-                                          GIT
-                                        </label>
-                                        <Field
-                                          type="radio"
-                                          name="PaxType"
-                                          value="1"
-                                          // onChange={handleQueryInputs}
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                    <div className="col-lg-5 col-sm-6 col-5 mt-3">
-                                      <div className="pr-2 form-input d-flex justify-content-between align-items-center">
-                                        <label htmlFor="" className="p-0 m-0">
-                                          FIT
-                                        </label>
-                                        <Field
-                                          type="radio"
-                                          name="PaxType"
-                                          value="2"
-                                          // onChange={handleQueryInputs}
-                                        ></Field>
+                                      <div className="row justify-content-between mt-2">
+                                        <span className="text-danger">
+                                          <ErrorMessage name="PaxType" />
+                                        </span>
+                                        <div className="col-lg-5 col-sm-6 col-5">
+                                          <label htmlFor="" className="m-0">
+                                            Pax Type
+                                          </label>
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              GIT
+                                            </label>
+                                            <Field
+                                              type="radio"
+                                              name="PaxType"
+                                              value="1"
+                                              // onChange={handleQueryInputs}
+                                            ></Field>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-5 col-sm-6 col-5 mt-3">
+                                          <div className="pr-2 form-input d-flex justify-content-between align-items-center">
+                                            <label
+                                              htmlFor=""
+                                              className="p-0 m-0"
+                                            >
+                                              FIT
+                                            </label>
+                                            <Field
+                                              type="radio"
+                                              name="PaxType"
+                                              value="2"
+                                              // onChange={handleQueryInputs}
+                                            ></Field>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      )}
+                      </div>
 
                       {/* Information it will show only on multiple services check */}
                       {queryInputs.QueryType == "5" && (
                         <div className="row">
                           <div className="col-12">
-                            <div className="card">
-                              <div className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center">
-                                <h6>Travel Information</h6>
-                              </div>
-
-                              <div className="card-body">
-                                <div className="row align-items-center mt-2">
-                                  <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
-                                    <p className="m-0">Pax Information</p>
-                                    <p className="m-0 bg-info p-1">
-                                      Total Pax:
-                                    </p>
-                                    <Field
-                                      type="text"
-                                      className="form-input w-25"
-                                    ></Field>
-                                  </div>
-                                </div>
-                                <div className="row  mt-1">
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div className="d-flex justify-content-between align-items-end">
-                                      <label className="m-0">Adult</label>
-                                      <i className="fa-solid fa-person mb-1"></i>
+                            <div className="row my-2">
+                              <div className="col-12">
+                                <div
+                                  class="accordion"
+                                  id="accordionPanelsStayOpenExample"
+                                >
+                                  <div class="accordion-item ">
+                                    <h2
+                                      class="accordion-header"
+                                      id="panelsStayOpen-headingThree"
+                                    >
+                                      <button
+                                        class="accordion-button collapsed py-2 px-3 font-size-14"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseThree"
+                                        aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseThree"
+                                      >
+                                        Travel Info
+                                      </button>
+                                    </h2>
+                                    <div
+                                      id="panelsStayOpen-collapseThree"
+                                      class="accordion-collapse collapse"
+                                      aria-labelledby="panelsStayOpen-headingThree"
+                                    >
+                                      <div class="accordion-body py-3 px-2">
+                                        <div className="row align-items-center mt-2">
+                                          <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
+                                            <p className="m-0">
+                                              Pax Information
+                                            </p>
+                                            <p className="m-0 bg-info p-1">
+                                              Total Pax:
+                                            </p>
+                                            <Field
+                                              type="text"
+                                              className="form-input w-25"
+                                            ></Field>
+                                          </div>
+                                        </div>
+                                        <div className="row  mt-1">
+                                          <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div className="d-flex justify-content-between align-items-end">
+                                              <label className="m-0">
+                                                Adult
+                                              </label>
+                                              <i className="fa-solid fa-person mb-1"></i>
+                                            </div>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="Adult"
+                                              // value={PaxInfo.Adult}
+                                              // onChange={handlePaxInfo}
+                                            ></Field>
+                                          </div>
+                                          <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div className="d-flex justify-content-between align-items-end">
+                                              <label className="m-0">
+                                                Child
+                                              </label>
+                                              <i className="fa-solid fa-child-reaching mb-1"></i>
+                                            </div>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="Child"
+                                              // value={PaxInfo.Child}
+                                              // onChange={handlePaxInfo}
+                                            ></Field>
+                                          </div>
+                                          <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div className="d-flex justify-content-between align-items-end">
+                                              <label className="m-0">
+                                                Infant
+                                              </label>
+                                              <i className="fa-solid fa-baby-carriage mb-1"></i>
+                                            </div>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="Infant"
+                                              // value={PaxInfo.Infant}
+                                              // onChange={handlePaxInfo}
+                                            ></Field>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="Adult"
-                                      // value={PaxInfo.Adult}
-                                      // onChange={handlePaxInfo}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div className="d-flex justify-content-between align-items-end">
-                                      <label className="m-0">Child</label>
-                                      <i className="fa-solid fa-child-reaching mb-1"></i>
-                                    </div>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="Child"
-                                      // value={PaxInfo.Child}
-                                      // onChange={handlePaxInfo}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div className="d-flex justify-content-between align-items-end">
-                                      <label className="m-0">Infant</label>
-                                      <i className="fa-solid fa-baby-carriage mb-1"></i>
-                                    </div>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="Infant"
-                                      // value={PaxInfo.Infant}
-                                      // onChange={handlePaxInfo}
-                                    ></Field>
                                   </div>
                                 </div>
                               </div>
@@ -758,354 +795,400 @@ const Query = () => {
                       )}
 
                       {/* Travel Date */}
-                      {queryInputs.QueryType !== "5" && (
-                        <div className="row">
-                          <div className="col-12">
-                            <div className="card">
-                              <div
-                                className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between"
-                                onClick={() =>
-                                  dispatch({ type: "TRAVEL_DATE" })
-                                }
-                              >
-                                <h6>Travel Date</h6>
-                                {state.travelDate ? (
-                                  <i
-                                    className="fa-solid fa-caret-up up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "TRAVEL_DATE" });
-                                    }}
-                                  ></i>
-                                ) : (
-                                  <i
-                                    className="fa-solid fa-caret-down up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "TRAVEL_DATE" });
-                                    }}
-                                  ></i>
-                                )}
-                              </div>
-                              {state.travelDate && (
-                                <div className="card-body">
-                                  <div className="row mt-2">
-                                    <div className="col-md-6 col-12">
-                                      <Field
-                                        component={"select"}
-                                        className="form-input"
-                                        name="TravelDate.Type"
-                                        // onChange={handleTravelDate}
-                                      >
-                                        <option value="1">Date Wise</option>
-                                        <option value="2">Day Wise</option>
-                                      </Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="TravelDate.Type" />
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="row mt-1">
-                                    <div className="col-lg-3 col-md-6 col-12">
-                                      <label>From Date</label>
-                                      <Field
-                                        type="date"
-                                        className="form-input"
-                                        name="TravelDate.FromDate"
-                                        // value={TravelDate.FromDate}
-                                        // onChange={handleTravelDate}
-                                      ></Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="TravelDate.FromDate" />
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-3 col-md-6 col-12">
-                                      <label>To Date</label>
-                                      <Field
-                                        type="date"
-                                        className="form-input"
-                                        name="TravelDate.ToDate"
-                                        // value={TravelDate.ToDate}
-                                        // onChange={handleTravelDate}
-                                      ></Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="TravelDate.ToDate" />
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-12">
-                                      <label>Total Nights</label>
-                                      <div className="d-flex ">
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="TravelDate.TotalDays"
-                                          // value={TravelDate.TotalDays}
-                                          // onChange={handleTravelDate}
-                                        ></Field>
-                                        <button className="btn btn-info">
-                                          Save
-                                        </button>
-                                      </div>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="TravelDate.TotalDays" />
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Quotation/Itinerary Information */}
-                      {queryInputs.QueryType !== "5" && (
-                        <div className="row">
-                          <div className="col-12">
-                            <div className="card">
-                              <div
-                                className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
-                                onClick={() => dispatch({ type: "QUOTATION" })}
-                              >
-                                <h6>Quotation/Itinerary Information</h6>
-                                {state.quotation ? (
-                                  <i
-                                    className="fa-solid fa-caret-up up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "QUOTATION" });
-                                    }}
-                                  ></i>
-                                ) : (
-                                  <i
-                                    className="fa-solid fa-caret-down up-arrow"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      dispatch({ type: "QUOTATION" });
-                                    }}
-                                  ></i>
-                                )}
-                              </div>
-                              {state.quotation && (
-                                <div className="card-body">
-                                  <div className="row align-items-center mt-2">
-                                    <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
-                                      <p className="m-0">Pax Information</p>
-                                      <p className="m-0 bg-info p-1">
-                                        Total Pax:
-                                      </p>
-                                      <Field
-                                        type="text"
-                                        className="form-input w-25"
-                                      ></Field>
-                                    </div>
-                                  </div>
-                                  <div className="row  mt-1">
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                      <div className="d-flex justify-content-between align-items-end">
-                                        <label className="m-0">Adult</label>
-                                        <i className="fa-solid fa-person mb-1"></i>
-                                      </div>
-                                      <Field
-                                        type="text"
-                                        className="form-input"
-                                        name="PaxInfo.Adult"
-                                        // value={PaxInfo.Adult}
-                                        // onChange={handlePaxInfo}
-                                      ></Field>
-                                      <span className="text-danger err-fs">
-                                        <ErrorMessage name="PaxInfo.Adult" />
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                      <div className="d-flex justify-content-between align-items-end">
-                                        <label className="m-0">Child</label>
-                                        <i className="fa-solid fa-child-reaching mb-1"></i>
-                                      </div>
-                                      <Field
-                                        type="text"
-                                        className="form-input "
-                                        name="PaxInfo.Child"
-                                        // value={PaxInfo.Child}
-                                        // onChange={handlePaxInfo}
-                                      ></Field>
-                                      <span className="text-danger err-fs">
-                                        <ErrorMessage name="PaxInfo.Child" />
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                      <div className="d-flex justify-content-between align-items-end">
-                                        <label className="m-0">Infant</label>
-                                        <i className="fa-solid fa-baby-carriage mb-1"></i>
-                                      </div>
-                                      <Field
-                                        type="text"
-                                        className="form-input"
-                                        name="PaxInfo.Infant"
-                                        // value={PaxInfo.Infant}
-                                        // onChange={handlePaxInfo}
-                                      ></Field>
-                                      <span className="text-danger err-fs">
-                                        <ErrorMessage name="PaxInfo.Infant" />
-                                      </span>
-                                    </div>
-                                  </div>
-                                  {queryInputs.QueryType !== "4" && (
-                                    <div className="row align-items-center mt-4">
-                                      <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
-                                        <p className="m-0">Room Information</p>
-                                        <p className="m-0 bg-info p-1">
-                                          Total Rooms:
-                                        </p>
-                                        <Field
-                                          type="text"
-                                          className="form-input w-25"
-                                        ></Field>
-                                      </div>
-                                    </div>
-                                  )}
-                                  {queryInputs.QueryType !== "4" && (
-                                    <div className="row  mt-1">
-                                      <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                        <label>Single</label>
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="RoomInfo.Single"
-                                          // value={RoomInfo.Single}
-                                          // onChange={handleRoomInfo}
-                                        ></Field>
-                                        <span className="text-danger err-fs">
-                                          <ErrorMessage name="RoomInfo.Single" />
-                                        </span>
-                                      </div>
-                                      <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                        <label>Double</label>
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="RoomInfo.Double"
-                                          // value={RoomInfo.Double}
-                                          // onChange={handleRoomInfo}
-                                        ></Field>
-                                        <span className="text-danger err-fs">
-                                          <ErrorMessage name="RoomInfo.Double" />
-                                        </span>
-                                      </div>
-                                      <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                        <label>Twin</label>
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="RoomInfo.Twin"
-                                          // value={RoomInfo.Twin}
-                                          // onChange={handleRoomInfo}
-                                        ></Field>
-                                        <span className="text-danger err-fs">
-                                          <ErrorMessage name="RoomInfo.Twin" />
-                                        </span>
-                                      </div>
-                                      <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                        <label>Triple</label>
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="RoomInfo.Triple"
-                                          // value={RoomInfo.Triple}
-                                          // onChange={handleRoomInfo}
-                                        ></Field>
-                                        <span className="text-danger err-fs">
-                                          <ErrorMessage name="RoomInfo.Triple" />
-                                        </span>
-                                      </div>
-                                      <div className="col-lg-2 col-md-4 col-sm-6 col-12">
-                                        <label>ExtraBed(A)</label>
-                                        <Field
-                                          type="text"
-                                          className="form-input"
-                                          name="RoomInfo.ExtraBed"
-                                          // value={RoomInfo.ExtraBed}
-                                          // onChange={handleRoomInfo}
-                                        ></Field>
-                                        <span className="text-danger err-fs">
-                                          <ErrorMessage name="RoomInfo.ExtraBed" />
-                                        </span>
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/*Ending Query Type and Assignment columsn */}
-                    </div>
-
-                    {/* Assignment Column */}
-                    <div className="col-sm-6 col-12">
                       <div className="row">
                         <div className="col-12">
-                          <div className="card">
-                            <div
-                              className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
-                              onClick={() => dispatch({ type: "ASSIGNMENT" })}
-                            >
-                              <h6>Assignment</h6>
-                              {state.assignment ? (
-                                <i
-                                  className="fa-solid fa-caret-up up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "ASSIGNMENT" });
-                                  }}
-                                ></i>
-                              ) : (
-                                <i
-                                  className="fa-solid fa-caret-down up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "ASSIGNMENT" });
-                                  }}
-                                ></i>
-                              )}
-                            </div>
-                            {state.assignment && (
-                              <div className="card-body pt-3 pb-4">
-                                <div className="row">
-                                  <div className="col-md-6 col-12 d-flex justify-content-between align-items-center">
-                                    <Field
-                                      type="text"
-                                      placeholder="Sales Person"
-                                      className="form-control"
-                                      name="salesPerson"
-                                    ></Field>
-                                  </div>
-                                </div>
-
-                                <div className="row">
-                                  <div className="col-md-6 col-12">
-                                    <label htmlFor="">Operation Person</label>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="oerationPerson"
-                                      placeholder="Operation Person"
-                                    ></Field>
-                                  </div>
-                                  <div className="col-md-6 col-12">
-                                    <label htmlFor="">Contracting Person</label>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="contractPerson"
-                                      placeholder="Contract Person"
-                                    ></Field>
+                          <div className="row my-2">
+                            <div className="col-12">
+                              <div
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
+                              >
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingFour"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseFour"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseFour"
+                                    >
+                                      Travel Date
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseFour"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingFour"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <div className="row mt-2">
+                                        <div className="col-md-6 col-12">
+                                          <Field
+                                            component={"select"}
+                                            className="form-input"
+                                            name="TravelDate.Type"
+                                            // onChange={handleTravelDate}
+                                          >
+                                            <option value="1">Date Wise</option>
+                                            <option value="2">Day Wise</option>
+                                          </Field>
+                                          <span className="text-danger">
+                                            <ErrorMessage name="TravelDate.Type" />
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <div className="row mt-1">
+                                        <div className="col-lg-3 col-md-6 col-12">
+                                          <label>From Date</label>
+                                          <Field
+                                            type="date"
+                                            className="form-input"
+                                            name="TravelDate.FromDate"
+                                            // value={TravelDate.FromDate}
+                                            // onChange={handleTravelDate}
+                                          ></Field>
+                                          <span className="text-danger">
+                                            <ErrorMessage name="TravelDate.FromDate" />
+                                          </span>
+                                        </div>
+                                        <div className="col-lg-3 col-md-6 col-12">
+                                          <label>To Date</label>
+                                          <Field
+                                            type="date"
+                                            className="form-input"
+                                            name="TravelDate.ToDate"
+                                            // value={TravelDate.ToDate}
+                                            // onChange={handleTravelDate}
+                                          ></Field>
+                                          <span className="text-danger">
+                                            <ErrorMessage name="TravelDate.ToDate" />
+                                          </span>
+                                        </div>
+                                        <div className="col-lg-4 col-md-6 col-12">
+                                          <label>Total Nights</label>
+                                          <div className="d-flex ">
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="TravelDate.TotalDays"
+                                              // value={TravelDate.TotalDays}
+                                              // onChange={handleTravelDate}
+                                            ></Field>
+                                            <button className="btn btn-info">
+                                              Save
+                                            </button>
+                                          </div>
+                                          <span className="text-danger">
+                                            <ErrorMessage name="TravelDate.TotalDays" />
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Quotation/Itinerary Information */}
+                      <div className="row">
+                        <div className="col-12">
+                          <div className="row my-2">
+                            <div className="col-12">
+                              <div
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
+                              >
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingFive"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseFive"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseFive"
+                                    >
+                                      Quotation/Itinerary Information
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseFive"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingFive"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <div className="row align-items-center mt-2">
+                                        <div className="col-lg-6 col-md-12 justify-content-between d-flex align-items-center">
+                                          <p className="m-0">Pax Information</p>
+                                          <p className="m-0 bg-info p-1">
+                                            Total Pax:
+                                          </p>
+                                          <Field
+                                            type="text"
+                                            className="form-input w-25"
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                      <div className="row  mt-1">
+                                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                          <div className="d-flex justify-content-between align-items-end">
+                                            <label className="m-0">Adult</label>
+                                            <i className="fa-solid fa-person mb-1"></i>
+                                          </div>
+                                          <Field
+                                            type="text"
+                                            className="form-input"
+                                            name="PaxInfo.Adult"
+                                            // value={PaxInfo.Adult}
+                                            // onChange={handlePaxInfo}
+                                          ></Field>
+                                          <span className="text-danger err-fs">
+                                            <ErrorMessage name="PaxInfo.Adult" />
+                                          </span>
+                                        </div>
+                                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                          <div className="d-flex justify-content-between align-items-end">
+                                            <label className="m-0">Child</label>
+                                            <i className="fa-solid fa-child-reaching mb-1"></i>
+                                          </div>
+                                          <Field
+                                            type="text"
+                                            className="form-input "
+                                            name="PaxInfo.Child"
+                                            // value={PaxInfo.Child}
+                                            // onChange={handlePaxInfo}
+                                          ></Field>
+                                          <span className="text-danger err-fs">
+                                            <ErrorMessage name="PaxInfo.Child" />
+                                          </span>
+                                        </div>
+                                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                                          <div className="d-flex justify-content-between align-items-end">
+                                            <label className="m-0">
+                                              Infant
+                                            </label>
+                                            <i className="fa-solid fa-baby-carriage mb-1"></i>
+                                          </div>
+                                          <Field
+                                            type="text"
+                                            className="form-input"
+                                            name="PaxInfo.Infant"
+                                            // value={PaxInfo.Infant}
+                                            // onChange={handlePaxInfo}
+                                          ></Field>
+                                          <span className="text-danger err-fs">
+                                            <ErrorMessage name="PaxInfo.Infant" />
+                                          </span>
+                                        </div>
+                                      </div>
+                                      {queryInputs.QueryType !== "4" && (
+                                        <div className="row align-items-center mt-4">
+                                          <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
+                                            <p className="m-0">
+                                              Room Information
+                                            </p>
+                                            <p className="m-0 bg-info p-1">
+                                              Total Rooms:
+                                            </p>
+                                            <Field
+                                              type="text"
+                                              className="form-input w-25"
+                                            ></Field>
+                                          </div>
+                                        </div>
+                                      )}
+                                      {queryInputs.QueryType !== "4" && (
+                                        <div className="row  mt-1">
+                                          <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                            <label>Single</label>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="RoomInfo.Single"
+                                              // value={RoomInfo.Single}
+                                              // onChange={handleRoomInfo}
+                                            ></Field>
+                                            <span className="text-danger err-fs">
+                                              <ErrorMessage name="RoomInfo.Single" />
+                                            </span>
+                                          </div>
+                                          <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                            <label>Double</label>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="RoomInfo.Double"
+                                              // value={RoomInfo.Double}
+                                              // onChange={handleRoomInfo}
+                                            ></Field>
+                                            <span className="text-danger err-fs">
+                                              <ErrorMessage name="RoomInfo.Double" />
+                                            </span>
+                                          </div>
+                                          <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                            <label>Twin</label>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="RoomInfo.Twin"
+                                              // value={RoomInfo.Twin}
+                                              // onChange={handleRoomInfo}
+                                            ></Field>
+                                            <span className="text-danger err-fs">
+                                              <ErrorMessage name="RoomInfo.Twin" />
+                                            </span>
+                                          </div>
+                                          <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                            <label>Triple</label>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="RoomInfo.Triple"
+                                              // value={RoomInfo.Triple}
+                                              // onChange={handleRoomInfo}
+                                            ></Field>
+                                            <span className="text-danger err-fs">
+                                              <ErrorMessage name="RoomInfo.Triple" />
+                                            </span>
+                                          </div>
+                                          <div className="col-lg-2 col-md-4 col-sm-6 col-12">
+                                            <label>ExtraBed(A)</label>
+                                            <Field
+                                              type="text"
+                                              className="form-input"
+                                              name="RoomInfo.ExtraBed"
+                                              // value={RoomInfo.ExtraBed}
+                                              // onChange={handleRoomInfo}
+                                            ></Field>
+                                            <span className="text-danger err-fs">
+                                              <ErrorMessage name="RoomInfo.ExtraBed" />
+                                            </span>
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/*Ending Query Type */}
+                    </div>
+
+                    <div className="col-sm-6 col-12">
+                      {/* Assignment Column */}
+                      <div className="row">
+                        <div className="col-12">
+                          <div className="row my-2">
+                            <div className="col-12">
+                              <div
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
+                              >
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingSix"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseSix"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseSix"
+                                    >
+                                      Assignment
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseSix"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingSix"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <div className="row">
+                                        <div className="col-6 ">
+                                          <div className="form-group">
+                                            <label>Seles Person</label>
+                                            <Field
+                                              name="salesPerson"
+                                              component={"select"}
+                                              data-placeholder="Seles Person"
+                                              className="select ui-wizard-content select2-hidden-accessible"
+                                              tabIndex="-1"
+                                              aria-hidden="true"
+                                            >
+                                              <optgroup label="Europe">
+                                                <option value="8">
+                                                  Croatia
+                                                </option>
+                                                <option value="9">
+                                                  Hungary
+                                                </option>
+                                                <option value="10">
+                                                  Ukraine
+                                                </option>
+                                                <option value="11">
+                                                  Greece
+                                                </option>
+                                                <option value="12">
+                                                  Norway
+                                                </option>
+                                                <option value="13">
+                                                  Germany
+                                                </option>
+                                                <option value="14">
+                                                  United Kingdom
+                                                </option>
+                                              </optgroup>
+                                            </Field>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div className="row">
+                                        <div className="col-md-6 col-12">
+                                          <label htmlFor="">
+                                            Operation Person
+                                          </label>
+                                          <Field
+                                            type="text"
+                                            className="form-input"
+                                            name="oerationPerson"
+                                            placeholder="Operation Person"
+                                          ></Field>
+                                        </div>
+                                        <div className="col-md-6 col-12">
+                                          <label htmlFor="">
+                                            Contracting Person
+                                          </label>
+                                          <Field
+                                            type="text"
+                                            className="form-input"
+                                            name="contractPerson"
+                                            placeholder="Contract Person"
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1113,222 +1196,227 @@ const Query = () => {
                       {/* Priority Preference */}
                       <div className="row">
                         <div className="col-12">
-                          <div className="card">
-                            <div
-                              className="card-header point-cursor px-2 pt-2 pb-0 border d-flex justify-content-between align-items-center"
-                              onClick={() => dispatch({ type: "PRIORITY" })}
-                            >
-                              <h6>Priority Preference</h6>
-                              {state.priority ? (
-                                <i
-                                  className="fa-solid fa-caret-up up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "PRIORITY" });
-                                  }}
-                                ></i>
-                              ) : (
-                                <i
-                                  className="fa-solid fa-caret-down up-arrow"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    dispatch({ type: "PRIORITY" });
-                                  }}
-                                ></i>
-                              )}
-                            </div>
-                            {state.priority && (
-                              <div className="card-body">
-                                <span className="text-danger m-0 p-0">
-                                  <ErrorMessage name="Priority" />
-                                </span>
-                                <div className="mt-2">Priority</div>
-                                <div className="row justify-content-between">
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Normal
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="Priority"
-                                      value="1"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Medium
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="Priority"
-                                      value="2"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      High
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="Priority"
-                                      value="3"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                </div>
-                                <hr className="my-2 p-0" />
-                                <span className="text-danger m-0 p-0">
-                                  <ErrorMessage name="TAT" />
-                                </span>
-                                <div>TAT</div>
-                                <div className="row justify-content-between">
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      24 Hours
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TAT"
-                                      value="24"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      28 Hours
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TAT"
-                                      value="28"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      72 Hours
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TAT"
-                                      value="72"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                </div>
-                                <hr className="my-2" />
-                                <span className="text-danger m-0 p-0">
-                                  <ErrorMessage name="TourType" />
-                                </span>
-                                <div>Tour Type</div>
-                                <div className="row justify-content-between">
-                                  <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Adventure Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="1"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Adventrure Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="2"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Collage Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="3"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Collage Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="4"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Family Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="5"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
-                                    <label htmlFor="" className="m-0 p-0">
-                                      Wildlife Tour
-                                    </label>
-                                    <Field
-                                      type="radio"
-                                      name="TourType"
-                                      value="6"
-                                      // onClick={handleQueryInputs}
-                                    ></Field>
-                                  </div>
-                                </div>
-                                <hr className="my-2" />
-                                <div className="row justify-content-between">
-                                  <div className="col-lg-5 col-6">
-                                    <span className="text-danger m-0 p-0">
-                                      <ErrorMessage name="LeadSource" />
-                                    </span>
-                                    <label>Lead Source</label>
-                                    <Field
-                                      component={"select"}
-                                      className="form-input"
-                                      name="LeadSource"
-                                      // onChange={handleQueryInputs}
+                          <div className="row my-2">
+                            <div className="col-12">
+                              <div
+                                class="accordion"
+                                id="accordionPanelsStayOpenExample"
+                              >
+                                <div class="accordion-item ">
+                                  <h2
+                                    class="accordion-header"
+                                    id="panelsStayOpen-headingSeven"
+                                  >
+                                    <button
+                                      class="accordion-button collapsed py-2 px-3 font-size-14"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#panelsStayOpen-collapseSeven"
+                                      aria-expanded="false"
+                                      aria-controls="panelsStayOpen-collapseSeven"
                                     >
-                                      <option value="1">Select</option>
-                                      <option value="2">Facebook</option>
-                                      <option value="3">Instagram</option>
-                                      <option value="4">Twitter</option>
-                                      <option value="5">Snapchat</option>
-                                      <option value="6">LinkedIn</option>
-                                      <option value="7">Website</option>
-                                      <option value="8">Other</option>
-                                    </Field>
-                                  </div>
-                                  <div className="col-lg-5 col-6">
-                                    <span className="text-danger m-0 p-0">
-                                      <ErrorMessage name="LeadRefrenced" />
-                                    </span>
-                                    <label>Lead Reference</label>
-                                    <Field
-                                      type="text"
-                                      className="form-input"
-                                      name="LeadRefrenced"
-                                      // onChange={handleQueryInputs}
-                                    ></Field>
+                                      Priority Preference
+                                    </button>
+                                  </h2>
+                                  <div
+                                    id="panelsStayOpen-collapseSeven"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingSeven"
+                                  >
+                                    <div class="accordion-body py-3 px-2">
+                                      <span className="text-danger m-0 p-0">
+                                        <ErrorMessage name="Priority" />
+                                      </span>
+                                      <div className="mt-2">Priority</div>
+                                      <div className="row justify-content-between m-0">
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Normal
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="Priority"
+                                            value="1"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Medium
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="Priority"
+                                            value="2"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            High
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="Priority"
+                                            value="3"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                      <hr className="my-2 p-0" />
+                                      <span className="text-danger m-0 p-0">
+                                        <ErrorMessage name="TAT" />
+                                      </span>
+                                      <div>TAT</div>
+                                      <div className="row justify-content-between m-0">
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            24 Hours
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TAT"
+                                            value="24"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            28 Hours
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TAT"
+                                            value="28"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            72 Hours
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TAT"
+                                            value="72"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                      <hr className="my-2" />
+                                      <span className="text-danger m-0 p-0">
+                                        <ErrorMessage name="TourType" />
+                                      </span>
+                                      <div>Tour Type</div>
+                                      <div className="row justify-content-between m-0">
+                                        <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Adventure Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="1"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Adventrure Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="2"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Collage Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="3"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Collage Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="4"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Family Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="5"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
+                                          <label htmlFor="" className="m-0 p-0">
+                                            Wildlife Tour
+                                          </label>
+                                          <Field
+                                            type="radio"
+                                            name="TourType"
+                                            value="6"
+                                            // onClick={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                      <hr className="my-2" />
+                                      <div className="row justify-content-between m-0">
+                                        <div className="col-lg-5 col-6">
+                                          <span className="text-danger m-0 p-0">
+                                            <ErrorMessage name="LeadSource" />
+                                          </span>
+                                          <label>Lead Source</label>
+                                          <Field
+                                            component={"select"}
+                                            className="form-input"
+                                            name="LeadSource"
+                                            // onChange={handleQueryInputs}
+                                          >
+                                            <option value="1">Select</option>
+                                            <option value="2">Facebook</option>
+                                            <option value="3">Instagram</option>
+                                            <option value="4">Twitter</option>
+                                            <option value="5">Snapchat</option>
+                                            <option value="6">LinkedIn</option>
+                                            <option value="7">Website</option>
+                                            <option value="8">Other</option>
+                                          </Field>
+                                        </div>
+                                        <div className="col-lg-5 col-6">
+                                          <span className="text-danger m-0 p-0">
+                                            <ErrorMessage name="LeadRefrenced" />
+                                          </span>
+                                          <label>Lead Reference</label>
+                                          <Field
+                                            type="text"
+                                            className="form-input"
+                                            name="LeadRefrenced"
+                                            // onChange={handleQueryInputs}
+                                          ></Field>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1336,8 +1424,8 @@ const Query = () => {
                       {/* Hotel Preference */}
                       <div className="row">
                         <div className="col-12">
-                          <div className="card">
-                            <div className="card-header px-2 pt-2 pb-0 border">
+                          <div className="card shadow-none border">
+                            <div className="card-header px-2 pt-2 pb-0 border-bottom">
                               <h6>Hotel Preference</h6>
                             </div>
                             <div className="card-body">
