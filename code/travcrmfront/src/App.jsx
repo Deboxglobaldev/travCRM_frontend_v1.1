@@ -25,7 +25,7 @@ const App = () => {
 
             <Route path="/query_list" element={<Protected><QueryList/></Protected>}/>
             <Route path="/query_list/query" element={<Protected><Query/></Protected>}/>
-            <Route path="/query_list/queryview" element={<Protected><QueryView/></Protected>}/>
+            <Route path="/query_list/queryview/:queryid" element={<Protected><QueryView/></Protected>}/>
 
             <Route path="/master" element={<Protected><Master /></Protected>} />
             <Route path="/master/country_master" element={<Protected><CountryMaster /></Protected>} />

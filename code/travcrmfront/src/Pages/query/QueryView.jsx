@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../Component/Layout/Layout";
-import { NavLink } from "react-router-dom";
-import Box from '@mui/material/Box';
+import { NavLink, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
+import axios from "axios";
 
 const QueryView = () => {
 
-  const cardBody = {
-    "MsFlex": "1 1 auto",
-    "flex": "1 1 auto",
-    "padding": "0.8rem 1rem"
-  }
+  const param = useParams();
+  const [getData, setGetData] = useState([]);
+
+  useEffect(() => {
+    const postDataToServer = async () => {
+      try {
+        const { data } = await axios.post(
+          "http://127.0.0.1:8000/api/querymasterlist",
+          {
+            "QueryId" : param.queryid,
+            "Search": "",
+            "Status": 0
+          }
+        );
+
+        console.log('QUERY DATA: ', data.DataList[0]);
+        setGetData(data.DataList[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    postDataToServer();
+  },[]);
+
+
+
   return (
     <Layout>
       <div className="container-fluid mt-3 mb-5">
@@ -20,18 +42,20 @@ const QueryView = () => {
               <div className="card-body navbar-dark">
                 <div className="media">
                   <div className="mr-3 align-self-center">
-                    <h6 className="media-title font-weight-semibold">ID: #856525</h6>
+                    <h6 className="media-title font-weight-semibold">ID: #{getData.QueryId}</h6>
                   </div>
                   <div className="media-body text-right">
                     <span className="opacity-75"><i className="fa fa-clock-o" aria-hidden="true"></i> 24/02/2024 - 10:47 AM</span>
                   </div>
                 </div>
               </div>
-
+              <div className="card-body">
+                some content here
+              </div>
             </div>
             <div className="card">
               <div className="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
-                <span style={{ "fontWeight": 600 }}>Query Information </span>
+                <span style={{ "fontWeight": 500 }}>Query Information </span>
               </div>
               <div className="">
                 <table className="table text-nowrap">
@@ -48,7 +72,7 @@ const QueryView = () => {
                       <div className="d-flex align-items-center" style={{ background: '#f0ffef' }}>
                         <div>
                           <a href="#" className="text-default font-weight-semibold letter-icon-title">Nights</a>
-                          <div className="text-muted font-size-sm"> <i class="fa fa-light fa-moon" style={{ color: 'black', fontSize: '11px' }}></i> 2 </div></div></div>
+                          <div className="text-muted font-size-sm"> <i className="fa fa-light fa-moon" style={{ color: 'black', fontSize: '11px' }}></i> 2 </div></div></div>
                     </td>
                     <td>
                       <div className="d-flex align-items-center" style={{ background: '#f0ffef' }}>
@@ -61,63 +85,27 @@ const QueryView = () => {
                 </table>
               </div>
               <div className="table-responsive">
-              <table className="table text-nowrap">
-	<thead>
-		<tr>
-			<th></th>
-			<th>Destination</th>
-			<th>Date</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Day 1</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Delhi</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Banglore</a>
-					</div>
-				</div>
-			</td>
-		</tr>
-    <tr>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Day 2</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Banglore</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div className="d-flex align-items-center">
-          <div>
-						<a href="#" className="text-default font-weight-semibold letter-icon-title">Mumbai</a>
-					</div>
-				</div>
-			</td>
-		</tr>
-	</tbody>
-</table>
+                <table className="table text-nowrap">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Destination</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Day 1</td>
+                      <td>Delhi</td>
+                      <td>Banglore</td>
+                    </tr>
+                    <tr>
+                      <td>Day 2</td>
+                      <td>Banglore</td>
+                      <td>Mumbai</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -127,7 +115,7 @@ const QueryView = () => {
               <div className="card-body navbar-green">
                 <div className="media">
                   <div className="col-xl-6" style={{ "padding": 0 }}>
-                    <h6 className="media-title font-weight-semibold"><span style={{ color: 'gray', fontSize: '12px' }}>Subject:</span> <span class="badge bg-warning-400 ml-auto">Pending</span> <br /> <span style={{ color: '#16b90e' }}>02-11-2023 DeBox Global Pvt. Ltd.</span>
+                    <h6 className="media-title font-weight-semibold"><span style={{ color: 'gray', fontSize: '12px' }}>Subject:</span> <span className="badge bg-warning-400 ml-auto">Pending</span> <br /> <span style={{ color: '#16b90e' }}>{getData.Subject}</span>
                     </h6>
                   </div>
                   <div className="col-xl-6" style={{ "textAlign": "right", "padding": "0px" }}>
