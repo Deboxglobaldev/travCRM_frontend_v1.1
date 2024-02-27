@@ -134,7 +134,7 @@ const Model = ({
                   Close
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  Save
+                  {isEditing ? 'Update' : 'Save'}
                 </button>
               </div>
             </form>
