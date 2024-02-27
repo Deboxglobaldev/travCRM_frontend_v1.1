@@ -17,7 +17,7 @@ const CountryMaster = () => {
   });
   const [isEditing, setIsEditing] = useState(false)
   const [modalErrMessage, setModalErrMessage] = useState("");
-  
+
   const [inputValue, setInputValue] = useState({
     id: "",
     Name: "",
@@ -43,7 +43,7 @@ const CountryMaster = () => {
   }, []);
 
   useEffect(() => {
-    
+
     const result = getData.filter((item) => {
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
     });
@@ -65,6 +65,7 @@ const CountryMaster = () => {
         data-toggle="modal"
         data-target="#modal_form_vertical"
         onClick={()=> handleEditClick(row)}
+        style={{ color: "red" }}
         ></i> {row.Name}</span>
       ),
       sortable: true,
@@ -120,7 +121,7 @@ const CountryMaster = () => {
       setModalErrMessage("")
     }, 3000);
   }, [modalErrMessage])
-  
+
   return (
     <>
       <Layout>
@@ -186,7 +187,7 @@ const CountryMaster = () => {
                           >
                             <option value={1} selected>Active</option>
                             <option value={0}>Inactive</option>
-                            
+
                           </select>
                         </div>
                         <div className="col-sm-2">
