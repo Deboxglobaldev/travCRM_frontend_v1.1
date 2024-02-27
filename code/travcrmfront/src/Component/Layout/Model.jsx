@@ -10,57 +10,80 @@ const Model = ({
   apiurl,
   setErrorMessage,
   setInputValue,
+  isEditing,
+  setIsEditing
 }) => {
+
   const navigate = useNavigate();
+  
   const [popup, setPopup] = useState(true);
-  const handleCloseModal = () => {
-    document.getElementById("cancel").click();
-  };
 
   const handleSubmit = async (e) => {
-    //console.log(value)
     e.preventDefault();
-    try {
-      const response = await axiosOther.post(apiurl, value);
-      // console.log(response);
-      // console.log('Response is : ',response.data.Status);
-      if (response.data.Status) {
-        // console.log("inside success", response.data.Status)
-        toast.success(`${response.data.Message}`);
-        navigate("/master/country_master");
-        setInputValue({
-          id: "",
-          Name: "",
-          ShortName: "",
-          SetDefault: "0",
-          Status: "1",
-          AddedBy: "1",
-          UpdatedBy: "1",
-        });
-        //handleCloseModal();
-      } else {
-        toast.error(`'First Alert', ${response.data.Name}`);
-        navigate("/master/country_master");
-        setErrorMessage(`${response.data.Name}`);
-        // console.log(`This is Error:  ${response.data.Name}`);
+    if(isEditing){
+      // alert('You Are Editing Value.....');
+      try {
+        const response = await axiosOther.put(apiurl, value);
+        if (response.data.Status) {
+          toast.success(`${response.data.Message}`);
+          navigate("/master/country_master");
+          setInputValue({
+            id: "",
+            Name: "",
+            ShortName: "",
+            SetDefault: "0",
+            Status: "1",
+            AddedBy: "1",
+            UpdatedBy: "1",
+          });
+        } else {
+          toast.error(`${response.data.Name}`);
+          navigate("/master/country_master");
+          setErrorMessage(`${response.data.Name}`);
+        }
+      } catch (err) {
+        console.log(err);
+        setErrorMessage(`${err.message}`);
       }
-    } catch (err) {
-      console.log(err);
-      toast.error(`${err.message}`);
+    }else{
+
+      try {
+        const response = await axiosOther.post(apiurl, value);
+        if (response.data.Status) {
+          toast.success(`${response.data.Message}`);
+          navigate("/master/country_master");
+          setInputValue({
+            id: "",
+            Name: "",
+            ShortName: "",
+            SetDefault: "0",
+            Status: "1",
+            AddedBy: "1",
+            UpdatedBy: "1",
+          });
+        } else {
+          toast.error(`${response.data.Name}`);
+          navigate("/master/country_master");
+          setErrorMessage(`${response.data.Name}`);
+        }
+      } catch (err) {
+        console.log(err);
+        setErrorMessage(`${err.message}`);
+      }
     }
   };
 
-  const closeButton = () =>{
+  const closeButton = () => {
     setInputValue({
-        id: "",
-        Name: "",
-        ShortName: "",
-        SetDefault: "0",
-        Status: "1",
-        AddedBy: "1",
-        UpdatedBy: "1",
-      });
-  }
+      id: "",
+      Name: "",
+      ShortName: "",
+      SetDefault: "0",
+      Status: "1",
+      AddedBy: "1",
+      UpdatedBy: "1",
+    });
+  };
 
   return (
     <>
@@ -69,6 +92,7 @@ const Model = ({
         className="btn bg-teal-400 add-button fs-11 shadow"
         data-toggle="modal"
         data-target="#modal_form_vertical"
+        onClick={()=> setIsEditing(false)}
       >
         <i className="fa fa-plus pr-1" aria-hidden="true"></i>
         Create New
@@ -76,10 +100,10 @@ const Model = ({
 
       {/* <!-- Modal --> */}
       <Toaster />
-      <div className="modal fade" id="modal_form_vertical">
-        <div className="modal-dialog" role="document">
+      <div className="modal fade" id="modal_form_vertical" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div className="modal-dialog" role="document" >
           <div className="modal-content">
-            <div className="modal-header  bg-info-700">
+            <div className="modal-header  bg-info-700" >
               <h5 className="modal-title" id="exampleModalLabel">
                 {heading}
               </h5>

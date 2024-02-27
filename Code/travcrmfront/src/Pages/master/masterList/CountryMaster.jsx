@@ -6,16 +6,17 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 
+
 const CountryMaster = () => {
+
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
+  const [isEditing, setIsEditing] = useState(false)
   const [modalErrMessage, setModalErrMessage] = useState("");
-  // console.log(`This is Error:  ${modalErrMessage}`);
-
   
   const [inputValue, setInputValue] = useState({
     id: "",
@@ -27,20 +28,13 @@ const CountryMaster = () => {
     UpdatedBy: "1",
   });
 
-  const options = [
-    {value:'Active'},
-    {value:'Inactive'}
-  ]
-
-  console.log("Modal Input", inputValue);
-
+  console.log('Modal Inputs Value', inputValue);
   useEffect(() => {
     const postDataToServer = async () => {
       try {
         const { data } = await axiosOther.post("countrylist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
-        console.log("get data is logged here: ", getData);
       } catch (error) {
         console.log(error);
       }
@@ -49,8 +43,8 @@ const CountryMaster = () => {
   }, []);
 
   useEffect(() => {
+    
     const result = getData.filter((item) => {
-      console.log("Filter Console.", item);
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
     });
 
@@ -70,7 +64,7 @@ const CountryMaster = () => {
         <span><i className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
         data-toggle="modal"
         data-target="#modal_form_vertical"
-          onClick={()=> handleEditClick(row)}
+        onClick={()=> handleEditClick(row)}
         ></i> {row.Name}</span>
       ),
       sortable: true,
@@ -118,7 +112,14 @@ const CountryMaster = () => {
       AddedBy: "1",
       UpdatedBy: "1",
     })
+    setIsEditing(true);
   };
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setModalErrMessage("")
+    }, 3000);
+  }, [modalErrMessage])
   
   return (
     <>
@@ -142,11 +143,13 @@ const CountryMaster = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Country"}
+                  heading={isEditing ? 'Edit Country' : 'Add Country'}
                   value={inputValue}
                   setInputValue={setInputValue}
                   apiurl={"addupdatecountry"}
                   setErrorMessage={setModalErrMessage}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <form action="">
@@ -204,8 +207,6 @@ const CountryMaster = () => {
                     </form>
                   </div>
                 </Model>
-
-
               </div>
             </div>
             <div className="card-body">
