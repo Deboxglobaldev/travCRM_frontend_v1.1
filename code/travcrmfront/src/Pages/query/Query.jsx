@@ -18,7 +18,7 @@ const Query = () => {
   const [selectedQueryType, setSelectedQueryType] = useState('');
 
   const handleSubmit = async (postData) => {
-    console.log(postData);
+    // console.log(postData);
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/addupdatequerymaster",

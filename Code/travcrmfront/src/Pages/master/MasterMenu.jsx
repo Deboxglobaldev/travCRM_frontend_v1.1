@@ -19,8 +19,8 @@ const MasterMenu = ({
 }) => {
   return (
     <>
-      <div className="card bg-light w-100">
-        <div className="card-body p-2">
+      <div className="card bg-light w-100 shadow-none border">
+        <div className="card-body p-2 ">
           <p className="text-primary fw-500 m-0 mb-1 d-block .master-head">
             {head}
           </p>
@@ -64,7 +64,7 @@ const DataPiece = ({ list1, list2 }) => {
               <span className="pl-1">{list1}</span>
             </div>
           </NavLink>
-        )}
+        )} 
 
         {list2 == null ? (
           ""

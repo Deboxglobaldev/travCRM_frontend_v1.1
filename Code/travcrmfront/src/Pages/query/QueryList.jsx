@@ -116,7 +116,7 @@ const QueryList = () => {
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card" style={{ marginBottom: "0" }}>
+          <div className="card shadow-none border" style={{ marginBottom: "0" }}>
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
               style={{ padding: "10px" }}
@@ -177,7 +177,7 @@ const QueryList = () => {
 
           {/*******************------Table Card-----*******************/}
 
-          <div className="card">
+          <div className="card shadow-none border mt-2">
             <DataTable
               columns={columns}
               data={filterData}

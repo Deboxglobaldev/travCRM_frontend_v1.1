@@ -15,8 +15,8 @@ const QueryView = () => {
       <div className="container-fluid mt-3 mb-5">
         <div className="row">
           <div className="col-xl-3">
-            <div className="card">
-              <div className="card-body navbar-dark">
+            <div className="card shadow-none border">
+              <div className="card-body rounded navbar-dark">
                 <div className="media">
                   <div className="mr-3 align-self-center">
                     <h6 className="media-title font-weight-semibold">
@@ -32,7 +32,7 @@ const QueryView = () => {
                 </div>
               </div>
             </div>
-            <div className="card">
+            <div className="card shadow-none border">
               <div className="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
                 <span style={{ fontWeight: 600 }}>Query Information </span>
               </div>
@@ -204,7 +204,7 @@ const QueryView = () => {
           </div>
 
           <div className="col-xl-7" style={{ padding: 0 }}>
-            <div className="card">
+            <div className="card shadow-none border">
               <div className="card-body navbar-green">
                 <div className="media">
                   <div className="col-xl-6" style={{ padding: 0 }}>
@@ -307,8 +307,8 @@ const QueryView = () => {
           </div>
 
           <div className="col-xl-2">
-            <div className="card">
-              <div className="card-body navbar-dark">
+            <div className="card shadow-none border">
+              <div className="card-body rounded-top navbar-dark">
                 <div className="media" style={{ float: "left" }}>
                   <div className="align-self-center">
                     <h6 className="media-title font-weight-semibold">
@@ -333,7 +333,7 @@ const QueryView = () => {
                   </Button>
                 </div>
               </div>
-              <div className="card-body p-0">
+              <div className="card-body rounded p-0">
                 <div
                   className="accordion border-none"
                   id="accordionPanelsStayOpenExample"

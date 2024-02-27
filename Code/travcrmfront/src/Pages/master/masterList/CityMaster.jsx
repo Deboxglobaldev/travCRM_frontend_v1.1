@@ -93,7 +93,7 @@ const CityMaster = () => {
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card">
+          <div className="card shadow-none border">
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
               style={{ padding: "10px" }}
@@ -198,7 +198,7 @@ const CityMaster = () => {
             </div>
           </div>
 
-          <div className="card">
+          <div className="card shadow-none border">
           <DataTable
               columns={columns}
               data={

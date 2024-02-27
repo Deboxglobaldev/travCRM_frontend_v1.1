@@ -16,15 +16,21 @@ const CountryMaster = () => {
   const [modalErrMessage, setModalErrMessage] = useState("");
   // console.log(`This is Error:  ${modalErrMessage}`);
 
+  
   const [inputValue, setInputValue] = useState({
     id: "",
     Name: "",
     ShortName: "",
     SetDefault: "0",
-    Status: "0",
+    Status: "1",
     AddedBy: "1",
     UpdatedBy: "1",
   });
+
+  const options = [
+    {value:'Active'},
+    {value:'Inactive'}
+  ]
 
   console.log("Modal Input", inputValue);
 
@@ -53,13 +59,20 @@ const CountryMaster = () => {
 
   const handleInputChange = (e) => {
     const {name, value, type, checked} = e.target;
+    console.log(e.target);
     setInputValue({ ...inputValue, [name]: type === 'checkbox' ? (checked ? 1 : 0) : value});
   };
 
   const columns = [
     {
       name: "Country Name",
-      selector: (row) => row.Name,
+      selector: (row) =>(
+        <span><i className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
+        data-toggle="modal"
+        data-target="#modal_form_vertical"
+          onClick={()=> handleEditClick(row)}
+        ></i> {row.Name}</span>
+      ),
       sortable: true,
     },
     {
@@ -77,7 +90,6 @@ const CountryMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {" "}
             Admin <br /> {row.Created_at}
           </span>
         );
@@ -88,7 +100,6 @@ const CountryMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {" "}
             {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
           </span>
         );
@@ -96,12 +107,24 @@ const CountryMaster = () => {
     },
   ];
 
-
+  const handleEditClick = (value) => {
+    console.log('Clicked edit icon for row with id:', value);
+    setInputValue({
+      id: value.Id,
+      Name: value.Name,
+      ShortName: value.ShortName,
+      SetDefault: value.SetDefault,
+      Status: value.Status,
+      AddedBy: "1",
+      UpdatedBy: "1",
+    })
+  };
+  
   return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card" style={{ marginBottom: "0" }}>
+          <div className="card shadow-none border" style={{ marginBottom: "0" }}>
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
               style={{ padding: "10px" }}
@@ -121,11 +144,11 @@ const CountryMaster = () => {
                 <Model
                   heading={"Add Country"}
                   value={inputValue}
+                  setInputValue={setInputValue}
                   apiurl={"addupdatecountry"}
                   setErrorMessage={setModalErrMessage}
                 >
                   <div className="card-body">
-                    {/* <input type="hidden" name="id" value="" /> */}
                     <form action="">
                       <div className="row">
                         <div className="col-sm-3">
@@ -156,9 +179,11 @@ const CountryMaster = () => {
                             name="Status"
                             className="form-control"
                             onChange={handleInputChange}
+                            value={inputValue.Status}
                           >
+                            <option value={1} selected>Active</option>
                             <option value={0}>Inactive</option>
-                            <option value={1}>Active</option>
+                            
                           </select>
                         </div>
                         <div className="col-sm-2">
@@ -166,7 +191,7 @@ const CountryMaster = () => {
                           <input
                             type="checkbox"
                             name="SetDefault"
-                            value="1"
+                            value={inputValue.SetDefault}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -179,6 +204,8 @@ const CountryMaster = () => {
                     </form>
                   </div>
                 </Model>
+
+
               </div>
             </div>
             <div className="card-body">
@@ -218,7 +245,7 @@ const CountryMaster = () => {
             </div>
           </div>
           {/*******************------Table Card-----*******************/}
-          <div className="card">
+          <div className="card shadow-none border mt-2">
             <DataTable
               columns={columns}
               data={filterData}
