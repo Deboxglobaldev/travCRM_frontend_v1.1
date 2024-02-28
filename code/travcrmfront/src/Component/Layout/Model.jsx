@@ -1,88 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Formik, Form } from "formik";
 
 const Model = ({
   children,
   heading,
-  value,
   apiurl,
-  setErrorMessage,
-  setInputValue,
-  isEditing,
-  setIsEditing
+  initialValues,
+  validationSchema,
 }) => {
-
-  const navigate = useNavigate();
-  
-  const [popup, setPopup] = useState(true);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(isEditing){
-      // alert('You Are Editing Value.....');
-      try {
-        const response = await axiosOther.put(apiurl, value);
-        if (response.data.Status) {
-          toast.success(`${response.data.Message}`);
-          navigate("/master/country_master");
-          setInputValue({
-            id: "",
-            Name: "",
-            ShortName: "",
-            SetDefault: "0",
-            Status: "1",
-            AddedBy: "1",
-            UpdatedBy: "1",
-          });
-        } else {
-          toast.error(`${response.data.Name}`);
-          navigate("/master/country_master");
-          setErrorMessage(`${response.data.Name}`);
-        }
-      } catch (err) {
-        console.log(err);
-        setErrorMessage(`${err.message}`);
+  const handleSubmit = async (value) => {
+    console.log("Modal Values......", value);
+    try {
+      const response = await axiosOther.post(apiurl, value);
+      if (response.data.Status) {
+        toast.success(`Frist Block : ${response.data.Message}`);
+        console.log(response.data.Message);
+      } else {
+        toast.error(`Second Block: ${response.data.Name}`);
       }
-    }else{
-
-      try {
-        const response = await axiosOther.post(apiurl, value);
-        if (response.data.Status) {
-          toast.success(`${response.data.Message}`);
-          navigate("/master/country_master");
-          setInputValue({
-            id: "",
-            Name: "",
-            ShortName: "",
-            SetDefault: "0",
-            Status: "1",
-            AddedBy: "1",
-            UpdatedBy: "1",
-          });
-        } else {
-          toast.error(`${response.data.Name}`);
-          navigate("/master/country_master");
-          setErrorMessage(`${response.data.Name}`);
-        }
-      } catch (err) {
-        console.log(err);
-        setErrorMessage(`${err.message}`);
-      }
+    } catch (err) {
+      console.log(err);
     }
-  };
-
-  const closeButton = () => {
-    setInputValue({
-      id: "",
-      Name: "",
-      ShortName: "",
-      SetDefault: "0",
-      Status: "1",
-      AddedBy: "1",
-      UpdatedBy: "1",
-    });
   };
 
   return (
@@ -92,7 +32,6 @@ const Model = ({
         className="btn bg-teal-400 add-button fs-11 shadow"
         data-toggle="modal"
         data-target="#modal_form_vertical"
-        onClick={()=> setIsEditing(false)}
       >
         <i className="fa fa-plus pr-1" aria-hidden="true"></i>
         Create New
@@ -100,10 +39,15 @@ const Model = ({
 
       {/* <!-- Modal --> */}
       <Toaster />
-      <div className="modal fade" id="modal_form_vertical" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div className="modal-dialog" role="document" >
+      <div
+        className="modal fade"
+        id="modal_form_vertical"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+      >
+        <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <div className="modal-header  bg-info-700" >
+            <div className="modal-header  bg-info-700">
               <h5 className="modal-title" id="exampleModalLabel">
                 {heading}
               </h5>
@@ -116,28 +60,35 @@ const Model = ({
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form method="POST" action="" onSubmit={handleSubmit}>
-              <div className="modal-body">
-                {/* modal body */}
-                {children}
-                {/* /modal body */}
-              </div>
+            <Formik
+              method="POST"
+              action=""
+              onSubmit={handleSubmit}
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+            >
+              <Form>
+                <div className="modal-body">
+                  {/* modal body */}
+                  {children}
+                  {/* /modal body */}
+                </div>
 
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  id="cancel"
-                  className="btn btn-link"
-                  data-dismiss="modal"
-                  onClick={closeButton}
-                >
-                  Close
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  {isEditing ? 'Update' : 'Save'}
-                </button>
-              </div>
-            </form>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    id="cancel"
+                    className="btn btn-link"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Save
+                  </button>
+                </div>
+              </Form>
+            </Formik>
           </div>
         </div>
       </div>

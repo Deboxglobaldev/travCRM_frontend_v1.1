@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Layout from "../../Component/Layout/Layout";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { inputInitialValue, InputSchema } from "./QuerySchema";
 import axios from "axios";
 import "jquery";
@@ -12,13 +12,12 @@ const Query = () => {
     QueryType:''
   });
 
-  console.log(queryInputs)
-
-
+  
   const [selectedQueryType, setSelectedQueryType] = useState('');
-
+  
   const handleSubmit = async (postData) => {
-    // console.log(postData);
+
+    console.log('This is console for inputs.....', postData)
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/addupdatequerymaster",
@@ -33,6 +32,10 @@ const Query = () => {
   $(document).ready(function () {
     $(".select2-hidden-accessible").select2();
   });
+
+  const handleChange = (e) =>{
+    console.log(e.target.value);
+  }
 
   return (
     <>
@@ -334,67 +337,67 @@ const Query = () => {
                                       <label htmlFor="" className="m-0 p-0">
                                         Query
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
-                                        value="1"
-                                        onChange={() => setQueryInputs('1')}
-                                      ></Field>
+                                        value="1" 
+                                        onChange={handleChange}
+                                      />
                                     </div>
                                     <div className="mt-1 mt-md-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Fixed Departure
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
                                         value="2"
-                                        onChange={() => setQueryInputs('2')}
-                                      ></Field>
+                                        onChange={handleChange}
+                                      />
                                     </div>
                                     <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Package
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
                                         value="3"
-                                        onChange={() => setQueryInputs('3')}
-                                      ></Field>
+                                        onKeyUp={handleChange}
+                                      />
                                     </div>
                                     <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Duplicate Query
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
                                         value="4"
-                                        onChange={() => setQueryInputs('4')}
-                                      ></Field>
+                                        onKeyUp={handleChange}
+                                      />
                                     </div>
                                     <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Multiple Services
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
                                         value="5"
-                                        onChange={() => setQueryInputs('5')}
-                                      ></Field>
+                                        onKeyUp={handleChange}
+                                      />
                                     </div>
                                     <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Activity
                                       </label>
-                                      <Field
+                                      <input
                                         type="radio"
                                         name="QueryType"
                                         value="6"
-                                        onChange={() => setQueryInputs('6')}
-                                      ></Field>
+                                        onKeyUp={handleChange}
+                                      />
                                     </div>
                                   </div>
                                 </div>

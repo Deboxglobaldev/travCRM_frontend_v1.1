@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
-
+import { axiosOther } from "../../../http/axios/axios_new";
+import { Field, ErrorMessage } from "formik";
+import { stateInitialValue, stateValidationSchema } from "./MasterValidation";
 const StateMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -13,19 +15,13 @@ const StateMaster = () => {
     Status: "",
   });
 
-  const [modalInputs, setModalInputs] = useState({
-    country: "",
-    state: "",
-    status: "",
-  });
-
   useEffect(() => {
-    const postDataToServer = () => {
+    const postDataToServer = async () => {
       try {
-        const { DataList } = cityList;
-        console.log("datalist", DataList);
-        setGetData(DataList);
-        setFilterData(DataList);
+        const { data } = await axiosOther.post("statelist", postData);
+        console.log("datalist", data.DataList);
+        setGetData(data.DataList);
+        setFilterData(data.DataList);
         console.log("get data is logged here: ", getData);
       } catch (error) {
         console.log(error);
@@ -43,19 +39,10 @@ const StateMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-  const handleInputChange = (e) => {
-    setModalInputs({ ...modalInputs, [e.target.name]: e.target.value });
-  };
-
   const columns = [
     {
       name: "Name",
       selector: (row) => row.Name,
-      sortable: true,
-    },
-    {
-      name: "State Name",
-      selector: (row) => row.StateName,
       sortable: true,
     },
     {
@@ -78,11 +65,15 @@ const StateMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {" "}
             {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
           </span>
         );
       },
+    },
+    {
+      name: "Status",
+      selector: (row) => row.Status,
+      sortable: true,
     },
   ];
 
@@ -107,46 +98,55 @@ const StateMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add State"} value={modalInputs}>
+                <Model
+                  heading={"Add State"}
+                  apiurl={"addupdatestate"}
+                  initialValues={stateInitialValue}
+                  validationSchema={stateValidationSchema}
+                >
                   <div className="card-body">
                     <div className="row">
                       <div className="col-sm-4">
-                        <label htmlFor="country">Select Country</label>
-                        <select
-                          className="form-input"
-                          id="country"
-                          name="country"
-                          value={modalInputs.country}
-                          onChange={handleInputChange}
-                        >
-                          <option>Select Country</option>
-                          <option>India</option>
-                          <option>Iran</option>
-                          <option>China</option>
-                        </select>
-                      </div>
-                      <div className="col-sm-4">
                         <label>Name</label>
-                        <input
+                        <Field
                           type="text"
                           placeholder="State Name"
                           className="form-input"
-                          name="state"
-                          value={modalInputs.state}
-                          onChange={handleInputChange}
+                          name="Name"
                         />
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="Name" />}
+                        </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label htmlFor="country">Select Country</label>
+                        <Field
+                          className="form-input"
+                          component={"select"}
+                          id="country"
+                          name="CountryId"
+                        >
+                          <option value={"1"}>India</option>
+                          <option value={"2"}>Iran</option>
+                          <option value={"3"}>China</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="CountryId" />}
+                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
-                        <select
+                        <Field
                           className="form-input"
-                          name="status"
-                          value={modalInputs.status}
-                          onChange={handleInputChange}
+                          component={"select"}
+                          name="Status"
                         >
-                          <option>Active</option>
-                          <option>Inactive</option>
-                        </select>
+                          <option value={"1"}>Active</option>
+                          <option value={"2"}>Inactive</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="Status" />}
+                        </span>
                       </div>
                     </div>
                   </div>
