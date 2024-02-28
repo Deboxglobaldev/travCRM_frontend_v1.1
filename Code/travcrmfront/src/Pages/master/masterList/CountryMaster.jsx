@@ -15,7 +15,7 @@ const CountryMaster = () => {
     Search: "",
     Status: "",
   });
-  const [isEditing, setIsEditing] = useState(false)
+
   const [modalErrMessage, setModalErrMessage] = useState("");
 
   const [inputValue, setInputValue] = useState({
@@ -23,12 +23,11 @@ const CountryMaster = () => {
     Name: "",
     ShortName: "",
     SetDefault: "0",
-    Status: "1",
+    Status: "",
     AddedBy: "1",
     UpdatedBy: "1",
   });
 
-  console.log('Modal Inputs Value', inputValue);
   useEffect(() => {
     const postDataToServer = async () => {
       try {
@@ -64,7 +63,6 @@ const CountryMaster = () => {
         <span><i className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
         data-toggle="modal"
         data-target="#modal_form_vertical"
-        onClick={()=> handleEditClick(row)}
         style={{ color: "red" }}
         ></i> {row.Name}</span>
       ),
@@ -102,20 +100,6 @@ const CountryMaster = () => {
     },
   ];
 
-  const handleEditClick = (value) => {
-    console.log('Clicked edit icon for row with id:', value);
-    setInputValue({
-      id: value.Id,
-      Name: value.Name,
-      ShortName: value.ShortName,
-      SetDefault: value.SetDefault,
-      Status: value.Status,
-      AddedBy: "1",
-      UpdatedBy: "1",
-    })
-    setIsEditing(true);
-  };
-
   useEffect(()=>{
     setTimeout(()=>{
       setModalErrMessage("")
@@ -144,13 +128,11 @@ const CountryMaster = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={isEditing ? 'Edit Country' : 'Add Country'}
+                  heading={'Add Country'}
                   value={inputValue}
                   setInputValue={setInputValue}
                   apiurl={"addupdatecountry"}
                   setErrorMessage={setModalErrMessage}
-                  isEditing={isEditing}
-                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <form action="">
@@ -185,7 +167,8 @@ const CountryMaster = () => {
                             onChange={handleInputChange}
                             value={inputValue.Status}
                           >
-                            <option value={1} selected>Active</option>
+                            <option value={''}>Select</option>
+                            <option value={1}>Active</option>
                             <option value={0}>Inactive</option>
 
                           </select>
