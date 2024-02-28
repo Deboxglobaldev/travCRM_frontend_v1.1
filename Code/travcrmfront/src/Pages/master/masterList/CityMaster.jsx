@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
+import { Field, ErrorMessage } from "formik";
+import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { axiosOther } from "../../../http/axios/axios_new";
 
 const CityMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -13,22 +16,12 @@ const CityMaster = () => {
     Status: "",
   });
 
-  const [modalInputs, setModalInputs] = useState({
-    countryName:"",
-    stateName:"",
-    cityName:"",
-    status:"0"
-  });
-
-
   useEffect(() => {
-    const postDataToServer = () => {
+    const postDataToServer = async () => {
       try {
-        const { DataList } = cityList;
-        console.log("datalist", DataList);
-        setGetData(DataList);
-        setFilterData(DataList);
-        console.log("get data is logged here: ", getData);
+        const { data } = await axiosOther.post("citylist", postData);
+        setGetData(data.DataList);
+        setFilterData(data.DataList);
       } catch (error) {
         console.log(error);
       }
@@ -38,16 +31,12 @@ const CityMaster = () => {
   }, []);
 
   useEffect(() => {
-    const result = getData.filter((item) =>{
+    const result = getData.filter((item) => {
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
     });
 
     setFilterData(result);
   }, [postData]);
-
-  const handleInputChange = (e) =>{
-    setModalInputs({...modalInputs, [e.target.name]:e.target.value})
-  }
 
   const columns = [
     {
@@ -70,7 +59,6 @@ const CityMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {" "}
             Admin <br /> {row.Created_at}
           </span>
         );
@@ -81,11 +69,15 @@ const CityMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {" "}
             {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
           </span>
         );
       },
+    },
+    {
+      name: "Status",
+      selector: (row) => row.Status,
+      sortable: true,
     },
   ];
 
@@ -110,57 +102,73 @@ const CityMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model heading={"Add City"} value={modalInputs} apiurl={"addupdatecountry"}>
+                <Model
+                  heading={"Add City"}
+                  apiurl={"addupdatecity"}
+                  initialValues={cityInitialValue}
+                  validationSchema={cityValidationSchema}
+                >
                   <div className="card-body">
                     <div className="row">
-                    <div className="col-sm-3">
+                      <div className="col-sm-3">
                         <label htmlFor="country">Country</label>
-                        <select className="form-control" 
-                        id="country"
-                        name="countryName"
-                        value={modalInputs.countryName}
-                        onChange={handleInputChange}
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="countryId"
                         >
-                          <option>Select Country</option>
-                          <option>India</option>
-                          <option>Iran</option>
-                          <option>China</option>
-                        </select>
+                          <option value={"1"}>India</option>
+                          <option value={"2"}>Iran</option>
+                          <option value={"3"}>China</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="countryaId" />
+                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>State</label>
-                        <input
-                          type="text"
-                          placeholder="State Name"
+                        <Field
                           className="form-control"
-                          name="stateName"
-                          value={modalInputs.stateName}
-                          onChange={handleInputChange}
-                        />
+                          component={"select"}
+                          name="stateId"
+                        >
+                          <option value={"1"}>Rajsthan</option>
+                          <option value={"2"}>Hryana</option>
+                          <option value={"4"}>Bihar</option>
+                          <option value={"5"}>West Bangal</option>
+                          <option value={"6"}>Banglore</option>
+                          <option value={"7"}>Uttar Pradesh</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="stateId" />
+                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>Name</label>
-                        <input
+                        <Field
                           type="text"
                           placeholder="City Name"
                           className="form-control"
-                          name="cityName"
-                          value={modalInputs.cityName}
-                          onChange={handleInputChange}
+                          name="Name"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Name" />
+                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>Status</label>
-                        <select className="form-control"
-                          name="status"
-                          value={modalInputs.status}
-                          onChange={handleInputChange}
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="Status"
                         >
-                          <option value="0">Inactive</option>
                           <option value="1">Active</option>
-                        </select>
+                          <option value="0">Inactive</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Status" />
+                        </span>
                       </div>
-
                     </div>
                   </div>
                 </Model>
@@ -175,14 +183,19 @@ const CityMaster = () => {
                     className="search-input focus-ring form-input"
                     name="Search"
                     value={postData.Search}
-                    onChange={(e)=> setPostData({...postData, Search:e.target.value})}
+                    onChange={(e) =>
+                      setPostData({ ...postData, Search: e.target.value })
+                    }
                   />
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <select className="select-input focus-ring form-input"
+                  <select
+                    className="select-input focus-ring form-input"
                     name="Status"
                     value={postData.Status}
-                    onChange={(e)=> setPostData({...postData, Status:e.target.value})}
+                    onChange={(e) =>
+                      setPostData({ ...postData, Status: e.target.value })
+                    }
                   >
                     <option value="0">Select Status</option>
                     <option value="1">Active</option>
@@ -199,7 +212,7 @@ const CityMaster = () => {
           </div>
 
           <div className="card shadow-none border">
-          <DataTable
+            <DataTable
               columns={columns}
               data={
                 postData.Search !== "" || postData.Status !== ""
@@ -211,7 +224,6 @@ const CityMaster = () => {
               fixedHeaderScrollHeight="280px"
               highlightOnHover
             />
-            
           </div>
         </div>
       </Layout>

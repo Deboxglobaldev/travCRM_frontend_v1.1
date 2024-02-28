@@ -127,17 +127,6 @@ a{
 .accordion-item {
   /* border: none; */
 }
-
-/* Remove border from accordion button */
-/* .accordion-button {
-  border: none;
-} */
-
-/* Remove border from accordion collapse */
-/* .accordion-collapse {
-  border: none;
-} */
-
 .nav-pills-bordered .nav-link.active {
   border-color: #ffc115;
 }
@@ -166,3 +155,15 @@ a{
   width: 8px;
 }
 
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none;
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
