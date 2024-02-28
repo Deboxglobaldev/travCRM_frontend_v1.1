@@ -48,7 +48,7 @@ const CountryMaster = () => {
             data-toggle="modal"
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
-          ></i>{" "}
+          ></i>
           {row.Name}
         </span>
       ),
@@ -85,7 +85,6 @@ const CountryMaster = () => {
       },
     },
   ];
-
   return (
     <>
       <Layout>
@@ -155,9 +154,6 @@ const CountryMaster = () => {
                             </option>
                             <option value={0}>Inactive</option>
                           </Field>
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="Status" />
-                          </span>
                         </div>
                         <div className="col-sm-2">
                           <label>Set Default</label>
