@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form } from "formik";
@@ -9,9 +9,9 @@ const Model = ({
   apiurl,
   initialValues,
   validationSchema,
+  valueForEdit,
 }) => {
-  const handleSubmit = async (value) => {
-    console.log("Modal Values......", value);
+  const handleSubmit = async (value, {resetForm}) => {
     try {
       const response = await axiosOther.post(apiurl, value);
       if (response.data.Status) {
@@ -23,6 +23,7 @@ const Model = ({
     } catch (err) {
       console.log(err);
     }
+    resetForm();
   };
 
   return (
@@ -36,7 +37,6 @@ const Model = ({
         <i className="fa fa-plus pr-1" aria-hidden="true"></i>
         Create New
       </button>
-
       {/* <!-- Modal --> */}
       <Toaster />
       <div
@@ -64,8 +64,9 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={initialValues}
+              initialValues={valueForEdit || initialValues}
               validationSchema={validationSchema}
+              enableReinitialize
             >
               <Form>
                 <div className="modal-body">
@@ -73,7 +74,6 @@ const Model = ({
                   {children}
                   {/* /modal body */}
                 </div>
-
                 <div className="modal-footer">
                   <button
                     type="button"

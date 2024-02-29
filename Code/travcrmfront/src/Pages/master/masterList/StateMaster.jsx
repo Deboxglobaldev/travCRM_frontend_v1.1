@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
-import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import { stateInitialValue, stateValidationSchema } from "./MasterValidation";
+
+
 const StateMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -14,6 +15,7 @@ const StateMaster = () => {
     Search: "",
     Status: "",
   });
+  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -39,10 +41,24 @@ const StateMaster = () => {
     setFilterData(result);
   }, [postData]);
 
+  const handleEditClick =(rowValue)=>{
+    setValueForEdit({...rowValue});
+  }
+
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.Name,
+      selector: (row) => (
+        <span>
+          <i
+            className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
+            data-toggle="modal"
+            data-target="#modal_form_vertical"
+            onClick={() => handleEditClick(row)}
+          ></i>
+          {row.Name}
+        </span>
+      ),
       sortable: true,
     },
     {
@@ -103,6 +119,7 @@ const StateMaster = () => {
                   apiurl={"addupdatestate"}
                   initialValues={stateInitialValue}
                   validationSchema={stateValidationSchema}
+                  valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
                     <div className="row">

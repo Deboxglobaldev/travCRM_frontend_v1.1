@@ -15,6 +15,7 @@ const CityMaster = () => {
     Search: "",
     Status: "",
   });
+  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -38,10 +39,24 @@ const CityMaster = () => {
     setFilterData(result);
   }, [postData]);
 
+  const handleEditClick=(rowValue)=>{
+    setValueForEdit({...rowValue});
+  }
+
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.Name,
+      selector: (row) => (
+        <span>
+          <i
+            className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
+            data-toggle="modal"
+            data-target="#modal_form_vertical"
+            onClick={() => handleEditClick(row)}
+          ></i>
+          {row.Name}
+        </span>
+      ),
       sortable: true,
     },
     {
@@ -107,6 +122,7 @@ const CityMaster = () => {
                   apiurl={"addupdatecity"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
+                  valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
                     <div className="row">

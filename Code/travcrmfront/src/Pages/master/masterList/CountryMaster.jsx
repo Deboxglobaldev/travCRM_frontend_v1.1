@@ -9,17 +9,19 @@ import { Field, ErrorMessage } from "formik";
 import {
   countryInitialValue,
   countryValidationSchema,
+  countrySavedValue,
 } from "./MasterValidation";
 
 const CountryMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [postData, setPostData] = useState({
-    Search: "",
-    Status: "",
-  });
+  const [postData, setPostData] = useState({ Search: "", Status: "" });
 
-  console.log(getData.country);
+  const [valueForEdit, setValueForEdit] = useState({});
+
+  const handleEdit = () => {
+    setValueForEdit({ ...countrySavedValue });
+  };
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -41,6 +43,10 @@ const CountryMaster = () => {
 
     setFilterData(result);
   }, [postData]);
+
+  const handleEditClick = (rowValue) => {
+    setValueForEdit({ ...rowValue });
+  };
 
   const columns = [
     {
@@ -90,6 +96,7 @@ const CountryMaster = () => {
       },
     },
   ];
+
   return (
     <>
       <Layout>
@@ -114,61 +121,68 @@ const CountryMaster = () => {
                 >
                   Back
                 </NavLink>
+                {/* <button
+                  onClick={handleEdit}
+                  data-toggle="modal"
+                  data-target="#modal_form_vertical"
+                  className="btn btn-primary"
+                >
+                  Edit
+                </button> */}
                 <Model
                   heading={"Add Country"}
                   apiurl={"addupdatecountry"}
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
+                  valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
-                    <form action="">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <label>Name</label>
-                          <Field
-                            type="text"
-                            name="Name"
-                            placeholder="Enter Name"
-                            className="form-control"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="Name" />
-                          </span>
-                        </div>
-                        <div className="col-sm-3">
-                          <label>Short Name</label>
-                          <Field
-                            type="text"
-                            name="ShortName"
-                            placeholder="Enter Short Name"
-                            className="form-control"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="ShortName" />
-                          </span>
-                        </div>
-                        <div className="col-sm-4">
-                          <label>Status</label>
-                          <Field
-                            name="Status"
-                            className="form-control"
-                            component={"select"}
-                          >
-                            <option value={1} selected>
-                              Active
-                            </option>
-                            <option value={0}>Inactive</option>
-                          </Field>
-                        </div>
-                        <div className="col-sm-2">
-                          <label>Set Default</label>
-                          <Field type="checkbox" name="SetDefault" />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="SetDefault" />
-                          </span>
-                        </div>
+                    <div className="row">
+                      <div className="col-sm-3">
+                        <label>Name</label>
+                        <Field
+                          type="text"
+                          name="Name"
+                          placeholder="Enter Name"
+                          className="form-control"
+                        />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Name" />
+                        </span>
                       </div>
-                    </form>
+                      <div className="col-sm-3">
+                        <label>Short Name</label>
+                        <Field
+                          type="text"
+                          name="ShortName"
+                          placeholder="Enter Short Name"
+                          className="form-control"
+                        />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ShortName" />
+                        </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Status</label>
+                        <Field
+                          name="Status"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={1} selected>
+                            Active
+                          </option>
+                          <option value={0}>Inactive</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-2">
+                        <label>Set Default</label>
+                        <Field type="checkbox" name="SetDefault" />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="SetDefault" />
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </Model>
               </div>
