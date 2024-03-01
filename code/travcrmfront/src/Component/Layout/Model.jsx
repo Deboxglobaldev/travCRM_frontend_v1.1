@@ -10,13 +10,14 @@ const Model = ({
   apiurl,
   initialValues,
   validationSchema,
+  forEdit
 }) => {
 
   const closeModel = () => {
     document.getElementById("cancel").click();
   }
 
-  const handleSubmit = async (value) => {
+  const handleSubmit = async (value, { resetForm } ) => {
 
     console.log("Modal Values......", value);
 
@@ -25,7 +26,9 @@ const Model = ({
       if (response.data.Status) {
         toast.success(`Frist Block : ${response.data.Message}`);
         console.log(response.data.Message);
+        console.log(response.data);
         //navigate("/master/country_master");
+        resetForm();
         closeModel();
       } else {
         toast.error(`Second Block: ${response.data.Name}`);
@@ -75,8 +78,9 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={initialValues}
+              initialValues={forEdit || initialValues}
               validationSchema={validationSchema}
+              enableReinitialize
             >
               <Form>
                 <div className="modal-body">
