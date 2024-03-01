@@ -42,7 +42,6 @@ const CountryMaster = () => {
     });
 
     setFilterData(result);
-
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
@@ -78,6 +77,7 @@ const CountryMaster = () => {
   const columns = [
     {
       name: "Country Name",
+
       selector: (row) => (
         <span>
           <i
@@ -163,65 +163,6 @@ const CountryMaster = () => {
                   valueForEdit={valueForEdit}
                   inputField={inputFieldObject}
                 >
-                  <div className="card-body">
-                    <form action="">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <label>Name</label>
-                          <Field
-                            type="text"
-                            name="Name"
-                            placeholder="Enter Name"
-                            className="form-control"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="Name" />
-                          </span>
-                        </div>
-                        <div className="col-sm-3">
-                          <label>Short Name</label>
-                          <Field
-                            type="text"
-                            name="ShortName"
-                            placeholder="Enter Short Name"
-                            className="form-control"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="ShortName" />
-                          </span>
-                        </div>
-                        <div className="col-sm-4">
-                          <label>Status</label>
-                          <Field
-                            name="Status"
-                            className="form-control"
-                            component={"select"}
-                          >
-                            <option value={1} selected>
-                              Active
-                            </option>
-                            <option value={0}>Inactive</option>
-                          </Field>
-                        </div>
-                        <div className="col-sm-2">
-                          <label>Set Default</label>
-                          <Field
-                            name="SetDefault"
-                            className="form-control"
-                            component={"select"}
-                          >
-                            <option value={0} selected>
-                              No
-                            </option>
-                            <option value={1}>Yes</option>
-                          </Field>
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="SetDefault" />
-                          </span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
                 </Model>
               </div>
             </div>

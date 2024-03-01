@@ -3,7 +3,6 @@ import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-
 const Model = ({
   children,
   heading,
@@ -13,26 +12,18 @@ const Model = ({
   valueForEdit,
   inputField,
 }) => {
-
-  const closeModel = () => {
-    document.getElementById("cancel").click();
-  }
-
   const handleSubmit = async (value, { resetForm }) => {
     try {
       const response = await axiosOther.post(apiurl, value);
       if (response.data.Status) {
         toast.success(`Frist Block : ${response.data.Message}`);
         console.log(response.data.Message);
-        //navigate("/master/country_master");
-        closeModel();
       } else {
         toast.error(`Second Block: ${response.data.Name}`);
       }
     } catch (err) {
       console.log(err);
     }
-
     resetForm();
   };
 
