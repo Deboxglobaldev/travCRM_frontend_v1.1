@@ -37,7 +37,9 @@ const Query = () => {
   return (
     <>
       <Layout>
-        <div className="p-3 mb-4 back-ground-color">
+        <div className="py-3 mb-4 back-ground-color" style={{padding:'0 35px'}}>
+            <Formik initialValues={inputInitialValue} onSubmit={handleSubmit}>
+              <Form>
           <div>
             <div className="row justify-content-between border-bottom m-0 p-0">
               <div
@@ -52,8 +54,6 @@ const Query = () => {
                 </button>
               </div>
             </div>
-            <Formik initialValues={inputInitialValue} onSubmit={handleSubmit}>
-              <Form>
                 {/* contact-information */}
                 <div className="row mt-2 border-bottom pb-4 m-0">
                   <div className="col-12 p-0">
@@ -1505,9 +1505,9 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
+          </div>
               </Form>
             </Formik>
-          </div>
         </div>
       </Layout>
     </>
