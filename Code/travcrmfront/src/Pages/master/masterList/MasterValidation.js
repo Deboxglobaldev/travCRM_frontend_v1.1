@@ -43,8 +43,8 @@ export const cityInitialValue = {
 }
 
 export const countryValidationSchema = yup.object().shape({
-    Name:yup.string().min(3).max(20).required('Name Required'),
-    ShortName:yup.string().required('ShortName Required')
+    Name:yup.string().min(3).max(20).required('Required'),
+    ShortName:yup.string().required('Required')
 })
 
 export const stateValidationSchema = yup.object().shape({
