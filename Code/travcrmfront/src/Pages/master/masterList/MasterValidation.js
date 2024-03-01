@@ -48,14 +48,12 @@ export const countryValidationSchema = yup.object().shape({
 })
 
 export const stateValidationSchema = yup.object().shape({
-    Name:yup.string().min(3).max(20).required('State Name Required'),
-    CountryId:yup.string().required('Select Country'),
-    Status:yup.string().required('Select Status'),
+    Name:yup.string().min(3).max(20).required('Required'),
+    CountryId:yup.string().required('Required')
 })
 
 export const cityValidationSchema = yup.object().shape({
-    Name:yup.string().required('City Name Required'),
-    StateId:yup.string().required('Select State Name'),
-    CountryId:yup.string().required('Select Country Name'),
-    Status:yup.string().required('Select Status')
+    Name:yup.string().required('Required'),
+    StateId:yup.string().required('Required'),
+    CountryId:yup.string().required('Required')
 })

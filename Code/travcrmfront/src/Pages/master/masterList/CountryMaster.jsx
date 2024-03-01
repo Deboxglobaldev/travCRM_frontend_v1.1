@@ -9,19 +9,15 @@ import { Field, ErrorMessage } from "formik";
 import {
   countryInitialValue,
   countryValidationSchema,
-  countrySavedValue,
 } from "./MasterValidation";
 
 const CountryMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [postData, setPostData] = useState({ Search: "", Status: "" });
-
-  const [valueForEdit, setValueForEdit] = useState({});
-
-  const handleEdit = () => {
-    setValueForEdit({ ...countrySavedValue });
-  };
+  const [postData, setPostData] = useState({
+    Search: "",
+    Status: "",
+  });
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -34,7 +30,7 @@ const CountryMaster = () => {
       }
     };
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -42,42 +38,12 @@ const CountryMaster = () => {
     });
 
     setFilterData(result);
+
   }, [postData]);
 
-  const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
-  };
-  
-  const inputFieldObject = {
-    text: [
-      { Label:"Name", Name: "Name", Type: "text", Placeholder: "Enter Name" },
-      {
-        Label:"Short Name",
-        Name: "ShortName",
-        Type: "text",
-        Placeholder: "ShortName",
-      },
-    ],
-    select:[
-      {
-        Label:"Status",
-        Name:"Status",
-        Type:'select',
-        option:[{Name:'Active', value:'1'},
-                {Name:'Inactive', value:'0'}]
-      }
-    ],
-    checkbox:[
-      { Label:"Set Default",
-        Name: "SetDefault",
-        Type: "checkbox",
-      }
-    ],
-  }
   const columns = [
     {
       name: "Country Name",
-
       selector: (row) => (
         <span>
           <i
@@ -122,7 +88,6 @@ const CountryMaster = () => {
       },
     },
   ];
-
   return (
     <>
       <Layout>
@@ -147,22 +112,71 @@ const CountryMaster = () => {
                 >
                   Back
                 </NavLink>
-                {/* <button
-                  onClick={handleEdit}
-                  data-toggle="modal"
-                  data-target="#modal_form_vertical"
-                  className="btn btn-primary"
-                >
-                  Edit
-                </button> */}
                 <Model
                   heading={"Add Country"}
                   apiurl={"addupdatecountry"}
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
-                  valueForEdit={valueForEdit}
-                  inputField={inputFieldObject}
                 >
+                  <div className="card-body">
+                    <form action="">
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <label>Name</label>
+                          <Field
+                            type="text"
+                            name="Name"
+                            placeholder="Enter Name"
+                            className="form-control"
+                          />
+                          <span className="font-size-10 text-danger">
+                            <ErrorMessage name="Name" />
+                          </span>
+                        </div>
+                        <div className="col-sm-3">
+                          <label>Short Name</label>
+                          <Field
+                            type="text"
+                            name="ShortName"
+                            placeholder="Enter Short Name"
+                            className="form-control"
+                          />
+                          <span className="font-size-10 text-danger">
+                            <ErrorMessage name="ShortName" />
+                          </span>
+                        </div>
+                        <div className="col-sm-4">
+                          <label>Status</label>
+                          <Field
+                            name="Status"
+                            className="form-control"
+                            component={"select"}
+                          >
+                            <option value={1} selected>
+                              Active
+                            </option>
+                            <option value={0}>Inactive</option>
+                          </Field>
+                        </div>
+                        <div className="col-sm-2">
+                          <label>Set Default</label>
+                          <Field
+                            name="SetDefault"
+                            className="form-control"
+                            component={"select"}
+                          >
+                            <option value={0} selected>
+                              No
+                            </option>
+                            <option value={1}>Yes</option>
+                          </Field>
+                          <span className="font-size-10 text-danger">
+                            <ErrorMessage name="SetDefault" />
+                          </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </Model>
               </div>
             </div>
@@ -220,4 +234,3 @@ const CountryMaster = () => {
 };
 
 export default CountryMaster;
-
