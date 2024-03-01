@@ -48,6 +48,31 @@ const CountryMaster = () => {
     setValueForEdit({ ...rowValue });
   };
 
+  const inputFieldObject = {
+    text: [
+      { Label:"Name", Name: "Name", Type: "text", Placeholder: "Enter Name" },
+      {
+        Label:"Short Name",
+        Name: "ShortName",
+        Type: "text",
+        Placeholder: "ShortName",
+      },
+    ],
+    select:[
+      {
+        Label:"Status",
+        Name:"Status",
+        option:[{Name:'Active', value:'1'},
+                {Name:'Inactive', value:'0'}]
+      }
+    ],
+    checkbox:[
+      { Label:"Set Default",
+        Name: "SetDefault",
+        Type: "checkbox",
+      }
+    ],
+  }
   const columns = [
     {
       name: "Country Name",
@@ -135,55 +160,8 @@ const CountryMaster = () => {
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
                   valueForEdit={valueForEdit}
+                  inputField={inputFieldObject}
                 >
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
-                        <Field
-                          type="text"
-                          name="Name"
-                          placeholder="Enter Name"
-                          className="form-control"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Short Name</label>
-                        <Field
-                          type="text"
-                          name="ShortName"
-                          placeholder="Enter Short Name"
-                          className="form-control"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Status</label>
-                        <Field
-                          name="Status"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={1} selected>
-                            Active
-                          </option>
-                          <option value={0}>Inactive</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field type="checkbox" name="SetDefault" />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="SetDefault" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
                 </Model>
               </div>
             </div>
@@ -241,3 +219,4 @@ const CountryMaster = () => {
 };
 
 export default CountryMaster;
+

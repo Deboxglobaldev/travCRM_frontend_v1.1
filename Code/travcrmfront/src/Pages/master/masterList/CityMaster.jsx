@@ -39,9 +39,43 @@ const CityMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-  const handleEditClick=(rowValue)=>{
-    setValueForEdit({...rowValue});
-  }
+  const handleEditClick = (rowValue) => {
+    setValueForEdit({ ...rowValue });
+  };
+
+  const inputFieldObject = {
+    select: [
+      {
+        Label: "Select Country",
+        Name: "countryId",
+        option: [
+          { Name: "India", value: "1" },
+          { Name: "Iran", value: "2" },
+          { Name: "Australia", value: "3" },
+        ],
+      },
+      {
+        Label: "Select State",
+        Name: "stateId",
+        option: [
+          { Name: "Mumbai", value: "1" },
+          { Name: "Delhi", value: "2" },
+          { Name: "Banglore", value: "3" },
+        ],
+      },
+      {
+        Label: "Status",
+        Name: "Status",
+        option: [
+          { Name: "Active", value: "1" },
+          { Name: "Inactive", value: "0" },
+        ],
+      },
+    ],
+    text: [
+      { Label: "Name", Name: "Name", Type: "text", Placeholder: "Enter State" },
+    ],
+  };
 
   const columns = [
     {
@@ -123,71 +157,8 @@ const CityMaster = () => {
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
                   valueForEdit={valueForEdit}
-                >
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <label htmlFor="country">Country</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="countryId"
-                        >
-                          <option value={"1"}>India</option>
-                          <option value={"2"}>Iran</option>
-                          <option value={"3"}>China</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="countryaId" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>State</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="stateId"
-                        >
-                          <option value={"1"}>Rajsthan</option>
-                          <option value={"2"}>Hryana</option>
-                          <option value={"4"}>Bihar</option>
-                          <option value={"5"}>West Bangal</option>
-                          <option value={"6"}>Banglore</option>
-                          <option value={"7"}>Uttar Pradesh</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="stateId" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Name</label>
-                        <Field
-                          type="text"
-                          placeholder="City Name"
-                          className="form-control"
-                          name="Name"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Status</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="Status"
-                        >
-                          <option value="1">Active</option>
-                          <option value="0">Inactive</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Model>
+                  inputField={inputFieldObject}
+                ></Model>
               </div>
             </div>
             <div className="card-body">
