@@ -47,7 +47,7 @@ const CountryMaster = () => {
   const handleEditClick = (rowValue) => {
     setValueForEdit({ ...rowValue });
   };
-
+  
   const inputFieldObject = {
     text: [
       { Label:"Name", Name: "Name", Type: "text", Placeholder: "Enter Name" },
@@ -62,6 +62,7 @@ const CountryMaster = () => {
       {
         Label:"Status",
         Name:"Status",
+        Type:'select',
         option:[{Name:'Active', value:'1'},
                 {Name:'Inactive', value:'0'}]
       }

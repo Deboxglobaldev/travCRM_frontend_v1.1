@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
-import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
-import { Field, ErrorMessage } from "formik";
 import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
@@ -90,6 +88,7 @@ const CityMaster = () => {
           ></i>
           {row.Name}
         </span>
+
       ),
       sortable: true,
     },
