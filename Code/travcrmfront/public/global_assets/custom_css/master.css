@@ -35,13 +35,33 @@
 .font-size-15{
   font-size: 15px;
 }
-.bg-for-query-view{
+
+/* Style For Query Form-2 */
+
+/* .bg-for-query-view{
   background-color:rgb(69, 158, 114) ;
 }
 .text-color-query-view{
   color:rgb(69, 158, 114) ;
 }
-
+.back-ground-color{
+  background-color: rgb(248, 255, 255);
+}
+.accordians-background-color{
+  background-color: rgb(244, 255, 255);
+}
+.input-bg-color{
+  background: rgb(247, 255, 255);
+}
+.input-border{
+  border: 1px solid rgb(100, 201, 202);
+}
+.text-bg{
+  background-color: rgb(28, 48, 49);
+}
+.head-bg{
+  background-color: rgb(24, 206, 209);
+} */
 /* ------------------/custom global css/----------------  */
 
 .navbar-nav-link {
@@ -75,8 +95,8 @@ a{
 /*  form input custom style*/
 .form-input{
   width: 100%;
-  border: 1px solid rgb(209, 207, 207);
   outline: none;
+  border:1px solid rgb(218, 215, 215);
   border-radius: 2px;
   height: 37px;
   padding-left: 10px;

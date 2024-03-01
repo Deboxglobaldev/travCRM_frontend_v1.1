@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
-import { cityList } from "../../../data";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import { stateInitialValue, stateValidationSchema } from "./MasterValidation";
+
 const StateMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -14,6 +14,7 @@ const StateMaster = () => {
     Search: "",
     Status: "",
   });
+  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -39,10 +40,49 @@ const StateMaster = () => {
     setFilterData(result);
   }, [postData]);
 
+  const handleEditClick = (rowValue) => {
+    setValueForEdit({ ...rowValue });
+  };
+
+  const inputFieldObject = {
+    text: [
+      { Label: "Name", Name: "Name", Type: "text", Placeholder: "Enter State" },
+    ],
+    select: [
+      {
+        Label: "Select Country",
+        Name: "CountryId",
+        option: [
+          { Name: "India", value: "1" },
+          { Name: "Iran", value: "2" },
+          { Name: "Australia", value: "3" },
+        ],
+      },
+      {
+        Label: "Status",
+        Name: "Status",
+        option: [
+          { Name: "Active", value: "1" },
+          { Name: "Inactive", value: "0" },
+        ],
+      },
+    ],
+  };
+
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.Name,
+      selector: (row) => (
+        <span>
+          <i
+            className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
+            data-toggle="modal"
+            data-target="#modal_form_vertical"
+            onClick={() => handleEditClick(row)}
+          ></i>
+          {row.Name}
+        </span>
+      ),
       sortable: true,
     },
     {
@@ -103,54 +143,9 @@ const StateMaster = () => {
                   apiurl={"addupdatestate"}
                   initialValues={stateInitialValue}
                   validationSchema={stateValidationSchema}
-                >
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-4">
-                        <label>Name</label>
-                        <Field
-                          type="text"
-                          placeholder="State Name"
-                          className="form-input"
-                          name="Name"
-                        />
-                        <span className="font-size-10 text-danger">
-                          {<ErrorMessage name="Name" />}
-                        </span>
-                      </div>
-                      <div className="col-sm-4">
-                        <label htmlFor="country">Select Country</label>
-                        <Field
-                          className="form-input"
-                          component={"select"}
-                          id="country"
-                          name="CountryId"
-                        >
-                          <option value={"1"}>India</option>
-                          <option value={"2"}>Iran</option>
-                          <option value={"3"}>China</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          {<ErrorMessage name="CountryId" />}
-                        </span>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Status</label>
-                        <Field
-                          className="form-input"
-                          component={"select"}
-                          name="Status"
-                        >
-                          <option value={"1"}>Active</option>
-                          <option value={"2"}>Inactive</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          {<ErrorMessage name="Status" />}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Model>
+                  valueForEdit={valueForEdit}
+                  inputField={inputFieldObject}
+                ></Model>
               </div>
             </div>
             <div className="card-body">
@@ -212,3 +207,50 @@ const StateMaster = () => {
 };
 
 export default StateMaster;
+
+{
+  /* <div className="row">
+<div className="col-sm-4">
+  <label>Name</label>
+  <Field
+    type="text"
+    placeholder="State Name"
+    className="form-input"
+    name="Name"
+  />
+  <span className="font-size-10 text-danger">
+    {<ErrorMessage name="Name" />}
+  </span>
+</div>
+<div className="col-sm-4">
+  <label htmlFor="country">Select Country</label>
+  <Field
+    className="form-input"
+    component={"select"}
+    id="country"
+    name="CountryId"
+  >
+    <option value={"1"}>India</option>
+    <option value={"2"}>Iran</option>
+    <option value={"3"}>China</option>
+  </Field>
+  <span className="font-size-10 text-danger">
+    {<ErrorMessage name="CountryId" />}
+  </span>
+</div>
+<div className="col-sm-4">
+  <label>Status</label>
+  <Field
+    className="form-input"
+    component={"select"}
+    name="Status"
+  >
+    <option value={"1"}>Active</option>
+    <option value={"2"}>Inactive</option>
+  </Field>
+  <span className="font-size-10 text-danger">
+    {<ErrorMessage name="Status" />}
+  </span>
+</div>
+</div> */
+}

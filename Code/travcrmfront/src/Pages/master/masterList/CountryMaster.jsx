@@ -9,17 +9,19 @@ import { Field, ErrorMessage } from "formik";
 import {
   countryInitialValue,
   countryValidationSchema,
+  countrySavedValue,
 } from "./MasterValidation";
 
 const CountryMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [postData, setPostData] = useState({
-    Search: "",
-    Status: "",
-  });
+  const [postData, setPostData] = useState({ Search: "", Status: "" });
 
-  console.log(getData.country);
+  const [valueForEdit, setValueForEdit] = useState({});
+
+  const handleEdit = () => {
+    setValueForEdit({ ...countrySavedValue });
+  };
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -43,6 +45,35 @@ const CountryMaster = () => {
 
   }, [postData]);
 
+  const handleEditClick = (rowValue) => {
+    setValueForEdit({ ...rowValue });
+  };
+
+  const inputFieldObject = {
+    text: [
+      { Label:"Name", Name: "Name", Type: "text", Placeholder: "Enter Name" },
+      {
+        Label:"Short Name",
+        Name: "ShortName",
+        Type: "text",
+        Placeholder: "ShortName",
+      },
+    ],
+    select:[
+      {
+        Label:"Status",
+        Name:"Status",
+        option:[{Name:'Active', value:'1'},
+                {Name:'Inactive', value:'0'}]
+      }
+    ],
+    checkbox:[
+      { Label:"Set Default",
+        Name: "SetDefault",
+        Type: "checkbox",
+      }
+    ],
+  }
   const columns = [
     {
       name: "Country Name",
@@ -90,6 +121,7 @@ const CountryMaster = () => {
       },
     },
   ];
+
   return (
     <>
       <Layout>
@@ -114,11 +146,21 @@ const CountryMaster = () => {
                 >
                   Back
                 </NavLink>
+                {/* <button
+                  onClick={handleEdit}
+                  data-toggle="modal"
+                  data-target="#modal_form_vertical"
+                  className="btn btn-primary"
+                >
+                  Edit
+                </button> */}
                 <Model
                   heading={"Add Country"}
                   apiurl={"addupdatecountry"}
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
+                  valueForEdit={valueForEdit}
+                  inputField={inputFieldObject}
                 >
                   <div className="card-body">
                     <form action="">
@@ -236,3 +278,4 @@ const CountryMaster = () => {
 };
 
 export default CountryMaster;
+

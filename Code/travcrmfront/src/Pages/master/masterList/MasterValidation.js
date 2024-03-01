@@ -10,6 +10,16 @@ export const countryInitialValue = {
     UpdatedBy: "1",
 }
 
+export const countrySavedValue = {
+    id:"1",
+    Name:"India",
+    ShortName:"IND",
+    SetDefault:"1",
+    Status:"1",
+    AddedBy:"1",
+    UpdatedBy:"1"
+}
+
 export const stateInitialValue = {
     id:"",
     Name: "",
