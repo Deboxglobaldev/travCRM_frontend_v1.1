@@ -14,7 +14,7 @@ const axiosOther = axios.create({
   },
 });
 
-console.log('This is axios testing ', axiosOther);
+
 export {
   axiosNew,
   axiosOther

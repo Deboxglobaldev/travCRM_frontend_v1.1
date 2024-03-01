@@ -40,12 +40,12 @@ const CountryMaster = () => {
     });
 
     setFilterData(result);
+
   }, [postData]);
 
   const columns = [
     {
       name: "Country Name",
-
       selector: (row) => (
         <span>
           <i
@@ -162,7 +162,16 @@ const CountryMaster = () => {
                         </div>
                         <div className="col-sm-2">
                           <label>Set Default</label>
-                          <Field type="checkbox" name="SetDefault" />
+                          <Field
+                            name="SetDefault"
+                            className="form-control"
+                            component={"select"}
+                          >
+                            <option value={0} selected>
+                              No
+                            </option>
+                            <option value={1}>Yes</option>
+                          </Field>
                           <span className="font-size-10 text-danger">
                             <ErrorMessage name="SetDefault" />
                           </span>
