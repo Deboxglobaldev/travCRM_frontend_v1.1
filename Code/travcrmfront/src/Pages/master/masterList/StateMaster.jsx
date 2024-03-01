@@ -44,30 +44,6 @@ const StateMaster = () => {
     setValueForEdit({ ...rowValue });
   };
 
-  const inputFieldObject = {
-    text: [
-      { Label: "Name", Name: "Name", Type: "text", Placeholder: "Enter State" },
-    ],
-    select: [
-      {
-        Label: "Select Country",
-        Name: "CountryId",
-        option: [
-          { Name: "India", value: "1" },
-          { Name: "Iran", value: "2" },
-          { Name: "Australia", value: "3" },
-        ],
-      },
-      {
-        Label: "Status",
-        Name: "Status",
-        option: [
-          { Name: "Active", value: "1" },
-          { Name: "Inactive", value: "0" },
-        ],
-      },
-    ],
-  };
 
   const columns = [
     {
@@ -144,8 +120,54 @@ const StateMaster = () => {
                   initialValues={stateInitialValue}
                   validationSchema={stateValidationSchema}
                   valueForEdit={valueForEdit}
-                  inputField={inputFieldObject}
-                ></Model>
+                >
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-sm-4">
+                        <label>Name</label>
+                        <Field
+                          type="text"
+                          placeholder="State Name"
+                          className="form-control"
+                          name="Name"
+                        />
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="Name" />}
+                        </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label htmlFor="country">Select Country</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          id="country"
+                          name="CountryId"
+                        >
+                          <option value={"1"}>India</option>
+                          <option value={"2"}>Iran</option>
+                          <option value={"3"}>China</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="CountryId" />}
+                        </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Status</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="Status"
+                        >
+                          <option value={"1"}>Active</option>
+                          <option value={"2"}>Inactive</option>
+                        </Field>
+                        <span className="font-size-10 text-danger">
+                          {<ErrorMessage name="Status" />}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Model>
               </div>
             </div>
             <div className="card-body">
@@ -207,5 +229,3 @@ const StateMaster = () => {
 };
 
 export default StateMaster;
-
-  
