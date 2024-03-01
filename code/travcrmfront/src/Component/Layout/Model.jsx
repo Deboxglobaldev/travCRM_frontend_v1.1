@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 
 const Model = ({
   children,
@@ -10,7 +10,6 @@ const Model = ({
   initialValues,
   validationSchema,
   valueForEdit,
-  inputField,
 }) => {
   const handleSubmit = async (value, { resetForm }) => {
     try {
@@ -73,58 +72,8 @@ const Model = ({
                 <div className="modal-body">
                   {/* modal body */}
 
-                  {/* {children} */}
-                  <div className="row">
-                    {inputField?.text?.map((v) => {
-                      return (
-                        <div className="col">
-                          <label>{v.Label}</label>
-                          <Field
-                            type={v.Type}
-                            name={v.Name}
-                            placeholder={v.Placeholder}
-                            className="form-control"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name={v.Name} />
-                          </span>
-                        </div>
-                      );
-                    })}
-                    {inputField?.select?.map((v) => {
-                      return (
-                        <div className="col">
-                          <label>{v.Label}</label>
-                          <Field
-                            className="form-control"
-                            component={"select"}
-                            id="country"
-                            name={v.Name}
-                          >
-                            {v.option.map((v) => {
-                              return <option value={v.value}>{v.Name}</option>;
-                            })}
-                          </Field>
-                        </div>
-                      );
-                    })}
-                    {inputField?.checkbox?.map((v) => {
-                      return (
-                        <div className="col d-flex flex-column">
-                          <label className="">{v.Label}</label>
-                          <Field
-                            type={v.Type}
-                            name="SetDefault"
-                            className="mt-3"
-                          />
-                          <span className="font-size-10 text-danger">
-                            <ErrorMessage name="SetDefault" />
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-
+                  {children}
+                  
                   {/* /modal body */}
                 </div>
                 <div className="modal-footer">
