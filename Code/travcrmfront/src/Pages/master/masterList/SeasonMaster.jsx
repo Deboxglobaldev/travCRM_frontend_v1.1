@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from "react";
-import "reactjs-popup/dist/index.css";
+import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
-import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
+import {
+  seasonTypeInitialValue,
+  seasonTypeValidationSchema,
+} from "./MasterValidation";
+import { axiosOther } from "../../../http/axios/axios_new";
 
-
-const CountryMaster = () => {
+const SeasonMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [editData, setEditData] = useState({});
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
+  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("seasonlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
         console.log(error);
       }
     };
+
     postDataToServer();
-  }, [getData]);
+  }, []);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -40,20 +42,12 @@ const CountryMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
-    });
+    setValueForEdit({ ...rowValue });
   };
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Season Name",
       selector: (row) => (
         <span>
           <i
@@ -68,122 +62,111 @@ const CountryMaster = () => {
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "From Date",
+      selector: (row) => row.FromDate,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "To Date",
+      selector: (row) => row.ToDate,
       sortable: true,
     },
     {
-      name: "Added By",
+      name: "Status",
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            Admin <br /> {row.Status}
           </span>
         );
       },
     },
   ];
+
   return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div
-            className="card shadow-none border"
-            style={{ marginBottom: "0" }}
-          >
+          <div className="card shadow-none border">
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Country Master</h5>
+                <h5 className="card-title d-none d-sm-block">Season Type</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
-                {/*Bootstrap Modal*/}
+                {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn mr-2 btn-gray fs-11 shadow"
+                  className="btn btn-gray mr-2 fs-11 shadow"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Country"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
-                  forEdit={editData}
+                  heading={"Add Season Type"}
+                  apiurl={"addupdateseason"}
+                  initialValues={seasonTypeInitialValue}
+                  validationSchema={seasonTypeValidationSchema}
+                  valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
+
                     <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
+                    <div className="col-sm-3">
+                        <label htmlFor="Season">Season Name</label>
                         <Field
-                          type="text"
+                          className="form-control"
+                          component={"select"}
+                          id="Season"
                           name="Name"
-                          placeholder="Enter Name"
-                          className="form-control"
-                        />
+                        >
+                          <option value={1}>Summer</option>
+                          <option value={2}>Winter</option>
+                          <option value={3}>All</option>
+                        </Field>
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          {<ErrorMessage name="Name" />}
                         </span>
                       </div>
                       <div className="col-sm-3">
-                        <label>Short Name</label>
+                        <label htmlFor="country">From Date</label>
                         <Field
-                          type="text"
-                          name="ShortName"
-                          placeholder="Enter Short Name"
+                          type="date"
+                          placeholder="Name"
                           className="form-control"
+                          name="FromDate"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
+                          <ErrorMessage name="FromDate" />
                         </span>
                       </div>
-                      <div className="col-sm-4">
+                      <div className="col-sm-3">
+                        <label htmlFor="country">To Date</label>
+                        <Field
+                          type="date"
+                          placeholder="Name"
+                          className="form-control"
+                          name="ToDate"
+                        />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ToDate" />
+                        </span>
+                      </div>
+
+                      <div className="col-sm-3">
                         <label>Status</label>
                         <Field
+                          className="form-control"
+                          component={"select"}
                           name="Status"
-                          className="form-control"
-                          component={"select"}
                         >
-                          <option value={1} selected>
-                            Active
-                          </option>
-                          <option value={0}>Inactive</option>
+                          <option value="1">Active</option>
+                          <option value="0">Inactive</option>
                         </Field>
                       </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0} selected>
-                            No
-                          </option>
-                          <option value={1}>Yes</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="SetDefault" />
-                        </span>
-                      </div>
+
                     </div>
                   </div>
                 </Model>
@@ -194,9 +177,9 @@ const CountryMaster = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
-                    name="Search"
-                    placeholder="Search here.."
+                    placeholder="Search"
                     className="search-input focus-ring form-input"
+                    name="Search"
                     value={postData.Search}
                     onChange={(e) =>
                       setPostData({ ...postData, Search: e.target.value })
@@ -212,9 +195,9 @@ const CountryMaster = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option>Select Status</option>
-                    <option value={0}>Inactive</option>
-                    <option value={1}>Active</option>
+                    <option value="0">Select Status</option>
+                    <option value="1">Active</option>
+                    <option value="2">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -226,11 +209,14 @@ const CountryMaster = () => {
             </div>
           </div>
 
-          {/*******************------Table Card-----*******************/}
-          <div className="card shadow-none border mt-2">
+          <div className="card shadow-none border">
             <DataTable
               columns={columns}
-              data={filterData}
+              data={
+                postData.Search !== "" || postData.Status !== ""
+                  ? filterData
+                  : getData
+              }
               pagination
               fixedHeader
               fixedHeaderScrollHeight="280px"
@@ -243,4 +229,4 @@ const CountryMaster = () => {
   );
 };
 
-export default CountryMaster;
+export default SeasonMaster;

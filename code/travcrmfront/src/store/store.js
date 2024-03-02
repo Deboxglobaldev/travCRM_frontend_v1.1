@@ -5,7 +5,6 @@ import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import { combineReducers } from "redux";
 
-
 const reducers = combineReducers({
     auth: authReducers,
 });
