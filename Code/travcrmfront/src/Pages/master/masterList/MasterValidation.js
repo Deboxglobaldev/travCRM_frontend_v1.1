@@ -159,6 +159,6 @@ export const tourtypeValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
 });
 export const seasonTypeValidationSchema = yup.object().shape({
-  FromDate: yup.string().required('Required'),
-  ToDate: yup.string().required("Required")
-})
+  FromDate: yup.string().required("Required"),
+  ToDate: yup.string().required("Required"),
+});

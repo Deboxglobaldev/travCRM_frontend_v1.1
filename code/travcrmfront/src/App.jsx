@@ -22,168 +22,56 @@ import MarketType from "./Pages/master/masterList/MarketType";
 import DivisionMaster from "./Pages/master/masterList/DivisionMaster";
 import TourType from "./Pages/master/masterList/TourType";
 import SeasonMaster from "./Pages/master/masterList/SeasonMaster";
+import RoomMaster from "./Pages/master/masterList/RoomMaster";
+import HotelRateSheet from "./Pages/master/masterList/HotelRateSheet";
+import RoomType from "./Pages/master/masterList/RoomType";
+import Amenties from "./Pages/master/masterList/Amenties";
+import HotelType from "./Pages/master/masterList/HotelType";
+import HotelMeal from "./Pages/master/masterList/HotelMeal";
+import Weekend from "./Pages/master/masterList/Weekend";
+import HotelCategory from "./Pages/master/masterList/HotelCategory";
+import HotelAdditional from "./Pages/master/masterList/HotelAdditional";
+import HotelChain from "./Pages/master/masterList/HotelChain";
+import Resturant from "./Pages/master/masterList/Resturant";
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Protected>
-                <Home />
-              </Protected>
-            }
-          />
-          <Route
-            path="/mail"
-            element={
-              <Protected>
-                <Mail />
-              </Protected>
-            }
-          />
+          <Route path="/" element={<Protected><Home /></Protected>}/>
+          <Route path="/mail" element={  <Protected><Mail /></Protected>}/>
+          <Route path="/query_list" element={ <Protected>  <QueryList />  </Protected>}/>
+          <Route path="/query_list/query" element={ <Protected> <Query /></Protected>}/>
+          <Route path="/query_list/queryview/:queryid" element={ <Protected> <QueryView /></Protected>}/>
 
-          <Route
-            path="/query_list"
-            element={
-              <Protected>
-                <QueryList />
-              </Protected>
-            }
-          />
-          <Route
-            path="/query_list/query"
-            element={
-              <Protected>
-                <Query />
-              </Protected>
-            }
-          />
-          <Route
-            path="/query_list/queryview/:queryid"
-            element={
-              <Protected>
-                <QueryView />
-              </Protected>
-            }
-          />
+          <Route path="/master" element={ <Protected> <Master /> </Protected>}/>
+          <Route path="/master/country_master" element={ <Protected> <CountryMaster /></Protected>}/>
+          <Route path="/master/state_master" element={<Protected><StateMaster /></Protected>} />
+          <Route path="/master/city_master" element={ <Protected> <CityMaster /></Protected>}/>
+          <Route path="/master/lead_source" element={ <Protected> <LeadSource /></Protected>}/>
+          <Route path="/master/destination_master" element={ <Protected> <DestinationMaster /> </Protected>}/>
+          <Route path="/master/business_type" element={ <Protected> <BusinessType /></Protected> } />
+          <Route path="/master/language_master" element={ <Protected> <Language /></Protected>} />
+          <Route path="/master/market_type_master" element={ <Protected> <MarketType /> </Protected> } />
+          <Route path="/master/division_master" element={ <Protected> <DivisionMaster /> </Protected>}/>
+          <Route path="/master/tour_type_master" element={ <Protected> <TourType /> </Protected>} />
+          <Route path="/master/season_master" element={ <Protected><SeasonMaster /> </Protected>}/>
+          <Route path="/master/roommaster" element={<RoomMaster/>}></Route>
+          <Route path="/master/hotel_ratesheet" element={<HotelRateSheet/>}></Route>
+          <Route path="/master/roomtype" element={<RoomType/>}></Route>
+          <Route path="/master/amenties" element={<Amenties/>}></Route>
+          <Route path="/master/hoteltype" element={<HotelType/>}></Route>
+          <Route path="/master/hotelmeal" element={<HotelMeal/>}></Route>
+          <Route path="/master/weekend" element={<Weekend/>}></Route>
+          <Route path="/master/hotelcategory" element={<HotelCategory/>}></Route>
+          <Route path="/master/hoteladditional" element={<HotelAdditional/>}></Route>
+          <Route path="/master/hotelchain" element={<HotelChain/>}></Route>
+          <Route path="/master/resturant" element={<Resturant/>}></Route>
 
-          <Route
-            path="/master"
-            element={
-              <Protected>
-                <Master />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/country_master"
-            element={
-              <Protected>
-                <CountryMaster />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/state_master"
-            element={
-              <Protected>
-                <StateMaster />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/city_master"
-            element={
-              <Protected>
-                <CityMaster />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/lead_source"
-            element={
-              <Protected>
-                <LeadSource />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/destination_master"
-            element={
-              <Protected>
-                <DestinationMaster />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/business_type"
-            element={
-              <Protected>
-                <BusinessType />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/language_master"
-            element={
-              <Protected>
-                <Language />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/market_type_master"
-            element={
-              <Protected>
-                <MarketType />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/division_master"
-            element={
-              <Protected>
-                <DivisionMaster />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/tour_type_master"
-            element={
-              <Protected>
-                <TourType />
-              </Protected>
-            }
-          />
-          <Route
-            path="/master/season_master"
-            element={
-              <Protected>
-                <SeasonMaster />
-              </Protected>
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <Protected>
-                <Profile />
-              </Protected>
-            }
-          ></Route>
+          <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/logout"
-            element={
-              <Protected>
-                <Logout />
-              </Protected>
-            }
-          />
+          <Route path="/logout"element={<Protected><Logout /></Protected>}/>
         </Routes>
       </Router>
     </>
