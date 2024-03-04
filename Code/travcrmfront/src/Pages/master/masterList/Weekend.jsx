@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { weekendInitialValue, weekendValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const Weekend = () => {
@@ -19,7 +19,7 @@ const Weekend = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("weekendlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -60,7 +60,7 @@ const Weekend = () => {
     },
     {
       name: "Weekend Days",
-      selector: (row) => row.weekdays,
+      selector: (row) => row.WeekendDays,
       sortable: true,
     },
     {
@@ -95,9 +95,9 @@ const Weekend = () => {
                 </NavLink>
                 <Model
                   heading={"Add Weekend"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdateweekend"}
+                  initialValues={weekendInitialValue}
+                  validationSchema={weekendValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -120,8 +120,11 @@ const Weekend = () => {
                           type="text"
                           placeholder="Weekend Days"
                           className="form-control"
-                          name="Name"
+                          name="WeekendDays"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="WeekendDays" />
+                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
@@ -133,9 +136,6 @@ const Weekend = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                     </div>
                   </div>

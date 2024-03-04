@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import {  resturantInitialValue, resturantValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const Resturant = () => {
@@ -19,14 +19,13 @@ const Resturant = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("restaurantmasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
         console.log(error);
       }
     };
-
     postDataToServer();
   }, []);
 
@@ -74,7 +73,7 @@ const Resturant = () => {
       sortable: true,
     },
     {
-      name: "Rate Shift",
+      name: "Rate Sheet",
       selector: (row) => row.Shift,
       sortable: true,
     },
@@ -108,9 +107,9 @@ const Resturant = () => {
                 </NavLink>
                 <Model
                   heading={"Add Resturant"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdaterestaurantmaster"}
+                  initialValues={resturantInitialValue}
+                  validationSchema={resturantValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -132,7 +131,7 @@ const Resturant = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="stateId"
+                          name="DestinationId"
                         >
                           <option value={"0"}>Select Destination</option>
                           <option value={"1"}>Rajsthan</option>
@@ -149,10 +148,10 @@ const Resturant = () => {
                           type="text"
                           placeholder="Address"
                           className="form-control"
-                          name="Name"
+                          name="Address"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Address" />
                         </span>
                       </div>
                       <div className="col-sm-4">
@@ -160,7 +159,7 @@ const Resturant = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="stateId"
+                          name="CountryId"
                         >
                           <option value={"0"}>Select Destination</option>
                           <option value={"1"}>India</option>
@@ -173,7 +172,7 @@ const Resturant = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="stateId"
+                          name="StateId"
                         >
                           <option value={"0"}>Select Destination</option>
                           <option value={"1"}>Rajsthan</option>
@@ -190,7 +189,7 @@ const Resturant = () => {
                         <Field
                           className="form-control px-1"
                           component={"select"}
-                          name="stateId"
+                          name="CityId"
                         >
                           <option value={""}>Select City</option>
                           <option value={"2"}>Gurgaon</option>
@@ -204,14 +203,11 @@ const Resturant = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="Status"
+                          name="SelfSupplier"
                         >
                           <option value="1">Yes</option>
                           <option value="0">No</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
 
                       <div className="col-sm-4">
@@ -220,10 +216,10 @@ const Resturant = () => {
                           type="text"
                           placeholder="Pin Code"
                           className="form-control"
-                          name="Name"
+                          name="PinCode"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="PinCode" />
                         </span>
                       </div>
                       <div className="col-sm-4">
@@ -232,14 +228,14 @@ const Resturant = () => {
                           type="text"
                           placeholder="GSTN"
                           className="form-control"
-                          name="Name"
+                          name="GSTN"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="GSTN" />
                         </span>
                       </div>
                       <div className="col-sm-4">
-                        <label>GSTN</label>
+                        <label>Image Upload</label>
                         <Field
                           type="file"
                           id="file"
@@ -247,7 +243,7 @@ const Resturant = () => {
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Image"/>
                         </span>
                       </div>
                       <div className="col-sm-4">
@@ -271,7 +267,7 @@ const Resturant = () => {
                         <Field
                           className="form-control px-1"
                           component={"select"}
-                          name="stateId"
+                          name="ContactType"
                         >
                           <option value={""}>Select Division</option>
                           <option value={"2"}>Accounts</option>
@@ -289,56 +285,77 @@ const Resturant = () => {
                           type="text"
                           placeholder="Contact Person"
                           className="form-control"
-                          name="Name"
+                          name="ContactName"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactName"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 px-1">
                         <Field
                           type="text"
                           placeholder="Designation"
                           className="form-control"
-                          name="Name"
+                          name="ContactDesignation"
                         />
+                         <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactDesignation"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 px-1">
                         <Field
                           type="text"
                           placeholder="+91"
                           className="form-control"
-                          name="Name"
+                          name="CountryCode"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="CountryCode"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 px-1">
                         <Field
                           type="text"
                           placeholder="Phone 1"
                           className="form-control"
-                          name="Name"
+                          name="Phone1"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Phone1"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 px-1">
                         <Field
                           type="text"
                           placeholder="Phone 2"
                           className="form-control"
-                          name="Name"
+                          name="Phone2"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Phone2"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 ">
                         <Field
                           type="text"
                           placeholder="Phone 3"
                           className="form-control"
-                          name="Name"
+                          name="Phone3"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Phone3"/>
+                        </span>
                       </div>
                       <div className="col-sm-3 px-1">
                         <Field
-                          type="text"
+                          type="email"
                           placeholder="Email"
                           className="form-control"
-                          name="Name"
+                          name="ContactEmail"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactEmail"/>
+                        </span>
                       </div>
                     </div>
                   </div>

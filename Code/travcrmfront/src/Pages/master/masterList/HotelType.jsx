@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { hotelTypeInitialValue, hotelTypeValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelType = () => {
@@ -19,7 +19,7 @@ const HotelType = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hoteltypelist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,7 +44,7 @@ const HotelType = () => {
 
   const columns = [
     {
-      name: "Meal Name",
+      name: "Name",
       selector: (row) => (
         <span>
           <i
@@ -56,6 +56,11 @@ const HotelType = () => {
           {row.Name}
         </span>
       ),
+      sortable: true,
+    },
+    {
+      name: "Upload Keyword",
+      selector: (row) => row.AddedBy,
       sortable: true,
     },
     {
@@ -98,18 +103,18 @@ const HotelType = () => {
                 </NavLink>
                 <Model
                   heading={"Add Hotel Type"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdatehoteltype"}
+                  initialValues={hotelTypeInitialValue}
+                  validationSchema={hotelTypeValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
                     <div className="row">
                       <div className="col-sm-4">
-                        <label>Meal Name</label>
+                        <label>Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Name"
                           className="form-control"
                           name="Name"
                         />
@@ -117,6 +122,30 @@ const HotelType = () => {
                           <ErrorMessage name="Name" />
                         </span>
                       </div>
+                      <div className="col-sm-4">
+                        <label>Upload Keyword</label>
+                        <Field
+                          type="text"
+                          placeholder="Name"
+                          className="form-control"
+                          name="UploadKeyword"
+                        />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="UploadKeyword" />
+                        </span>
+                      </div>
+                      {/* <div className="col-sm-4">
+                        <label>Proposal Priority</label>
+                        <Field
+                          type="text"
+                          placeholder="Name"
+                          className="form-control"
+                          name="ProposalPriority"
+                        />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ProposalPriority" />
+                        </span>
+                      </div> */}
                       <div className="col-sm-4">
                         <label>Status</label>
                         <Field
@@ -129,22 +158,6 @@ const HotelType = () => {
                         </Field>
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Status" />
-                        </span>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0} selected>
-                            No
-                          </option>
-                          <option value={1}>Yes</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="SetDefault" />
                         </span>
                       </div>
                     </div>

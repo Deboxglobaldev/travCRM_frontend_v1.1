@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { roomMasterInitialValue, roomMasterValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const RoomMaster = () => {
@@ -19,7 +19,7 @@ const RoomMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("roomlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -88,9 +88,9 @@ const RoomMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Room"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdateroom"}
+                  initialValues={roomMasterInitialValue}
+                  validationSchema={roomMasterValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -99,7 +99,7 @@ const RoomMaster = () => {
                         <label>Room Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Room Name"
                           className="form-control"
                           name="Name"
                         />
@@ -117,9 +117,6 @@ const RoomMaster = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                     </div>
                   </div>

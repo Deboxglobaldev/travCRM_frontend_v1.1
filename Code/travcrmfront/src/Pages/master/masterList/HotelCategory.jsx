@@ -44,7 +44,7 @@ const HotelCategory = () => {
 
   const columns = [
     {
-      name: "Weekend Name",
+      name: "Hotel Category",
       selector: (row) => (
         <span>
           <i
@@ -59,8 +59,18 @@ const HotelCategory = () => {
       sortable: true,
     },
     {
-      name: "Weekend Days",
-      selector: (row) => row.weekdays,
+      name: "Upload Keyword",
+      selector: (row) => row.UploadKeyword,
+      sortable: true,
+    },
+    {
+      name: "Added By",
+      selector: (row) => row.AddedBy,
+      sortable: true,
+    },
+    {
+      name: "Updated By",
+      selector: (row) => row.UpdatedBy,
       sortable: true,
     },
     {
@@ -103,7 +113,7 @@ const HotelCategory = () => {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-sm-4">
-                        <label>Weekend Name</label>
+                        <label>Hotel Category</label>
                         <Field
                           type="text"
                           placeholder="Weekend Name"

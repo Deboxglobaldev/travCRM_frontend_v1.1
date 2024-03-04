@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { amentiesInitialValue, amentiesValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const Amenties = () => {
@@ -19,7 +19,7 @@ const Amenties = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("amenitieslist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,7 +44,7 @@ const Amenties = () => {
 
   const columns = [
     {
-      name: "Aminity Master",
+      name: "Aminity Image",
       selector: (row) => (
         <span>
           <i
@@ -110,9 +110,9 @@ const Amenties = () => {
                 </NavLink>
                 <Model
                   heading={"Add City"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdateamenities"}
+                  initialValues={amentiesInitialValue}
+                  validationSchema={amentiesValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -139,9 +139,6 @@ const Amenties = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Amenty Image</label>

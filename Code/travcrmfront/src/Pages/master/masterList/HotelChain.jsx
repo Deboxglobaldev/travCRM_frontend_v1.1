@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { hotelChainInitialValue, hotelChainValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelChain = () => {
@@ -19,7 +19,7 @@ const HotelChain = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hotelchainlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -120,9 +120,9 @@ const HotelChain = () => {
                 </NavLink>
                 <Model
                   heading={"Add Hotel Chain"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdatehotelchain"}
+                  initialValues={hotelChainInitialValue}
+                  validationSchema={hotelChainValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -145,10 +145,10 @@ const HotelChain = () => {
                           type="text"
                           placeholder="Location"
                           className="form-control"
-                          name="Name"
+                          name="Location"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Location" />
                         </span>
                       </div>
                       <div className="col-sm-3">
@@ -157,10 +157,10 @@ const HotelChain = () => {
                           type="text"
                           placeholder="Hotel Website"
                           className="form-control"
-                          name="Name"
+                          name="HotelWebsite"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="HotelWebsite" />
                         </span>
                       </div>
                       <div className="col-sm-3">
@@ -169,10 +169,10 @@ const HotelChain = () => {
                           type="text"
                           placeholder="Self Supplier"
                           className="form-control"
-                          name="Name"
+                          name="SelfSupplier"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="SelfSupplier" />
                         </span>
                       </div>
                     </div>
@@ -182,7 +182,7 @@ const HotelChain = () => {
                         <Field
                           className="form-control px-1"
                           component={"select"}
-                          name="stateId"
+                          name="ContactType"
                         >
                           <option value={""}>Select Division</option>
                           <option value={"2"}>Accounts</option>
@@ -200,40 +200,55 @@ const HotelChain = () => {
                           type="text"
                           placeholder="Contact Person"
                           className="form-control"
-                          name="Name"
+                          name="ContactName"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactName" />
+                        </span>
                       </div>
                       <div className="col-sm-2 px-1">
                         <Field
                           type="text"
                           placeholder="Designation"
                           className="form-control"
-                          name="Name"
+                          name="ContactDesignation"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactDesignation" />
+                        </span>
                       </div>
                       <div className="col-sm-2 px-1">
                         <Field
                           type="text"
                           placeholder="+91"
                           className="form-control"
-                          name="Name"
+                          name="ContactCountryCode"
                         />
+                         <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactCountryCode" />
+                        </span>
                       </div>
                       <div className="col-sm-2 px-1">
                         <Field
                           type="text"
                           placeholder="Phone"
                           className="form-control"
-                          name="Name"
+                          name="ContactMobile"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactMobile" />
+                        </span>
                       </div>
                       <div className="col-sm-2 px-1">
                         <Field
                           type="text"
                           placeholder="Email"
                           className="form-control"
-                          name="Name"
+                          name="ContactEmail"
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="ContactEmail" />
+                        </span>
                       </div>
                     </div>
                     <div className="row mt-2">

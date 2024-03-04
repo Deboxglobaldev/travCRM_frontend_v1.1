@@ -14,6 +14,7 @@ const HotelMeal = () => {
     Search: "",
     Status: "",
   });
+
   const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const HotelMeal = () => {
 
   const columns = [
     {
-      name: "Name",
+      name: "Meal Name",
       selector: (row) => (
         <span>
           <i
@@ -56,11 +57,6 @@ const HotelMeal = () => {
           {row.Name}
         </span>
       ),
-      sortable: true,
-    },
-    {
-      name: "Upload Keyword",
-      selector: (row) => row.uploadkeyword,
       sortable: true,
     },
     {
@@ -85,7 +81,7 @@ const HotelMeal = () => {
     },
   ];
 
-  return (
+  return(
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
@@ -121,31 +117,13 @@ const HotelMeal = () => {
                         <label>Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Name"
                           className="form-control"
                           name="Name"
                         />
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Name" />
                         </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Upload Keyword</label>
-                        <Field
-                          type="text"
-                          placeholder="City Name"
-                          className="form-control"
-                          name="Name"
-                        />
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Proposal Priority</label>
-                        <Field
-                          type="text"
-                          placeholder="City Name"
-                          className="form-control"
-                          name="Name"
-                        />
                       </div>
                       <div className="col-sm-3">
                         <label>Status</label>
@@ -160,6 +138,19 @@ const HotelMeal = () => {
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Status" />
                         </span>
+                      </div>
+                      <div className="col-sm-2">
+                        <label>Set Default</label>
+                        <Field
+                          name="SetDefault"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={0} selected>
+                            No
+                          </option>
+                          <option value={1}>Yes</option>
+                        </Field>
                       </div>
                     </div>
                   </div>

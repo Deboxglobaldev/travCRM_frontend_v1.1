@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { hotelAdditonalInitialValue, hotelAdditionalValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelAdditional = () => {
@@ -19,7 +19,7 @@ const HotelAdditional = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hoteladditionlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -110,9 +110,9 @@ const HotelAdditional = () => {
                 </NavLink>
                 <Model
                   heading={"Add Additional"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdatehoteladdition"}
+                  initialValues={hotelAdditonalInitialValue}
+                  validationSchema={hotelAdditionalValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -137,13 +137,16 @@ const HotelAdditional = () => {
                           className="form-control"
                           style={{height:'38px'}}
                         />
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="Details" />
+                        </span>
                       </div>
                       <div className="col-sm-4">
-                        <label>Details</label>
+                        <label>Image</label>
                         <Field
                           type="file"
                           id="file"
-                          name="Details"
+                          name="Image"
                           className="form-control"
                         />
                       </div>
@@ -157,9 +160,6 @@ const HotelAdditional = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                     </div>
                   </div>

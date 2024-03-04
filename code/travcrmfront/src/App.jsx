@@ -33,6 +33,7 @@ import HotelCategory from "./Pages/master/masterList/HotelCategory";
 import HotelAdditional from "./Pages/master/masterList/HotelAdditional";
 import HotelChain from "./Pages/master/masterList/HotelChain";
 import Resturant from "./Pages/master/masterList/Resturant";
+import ResturantMealPlan from "./Pages/master/masterList/ResturantMealPlan";
 
 const App = () => {
   return (
@@ -46,17 +47,17 @@ const App = () => {
           <Route path="/query_list/queryview/:queryid" element={ <Protected> <QueryView /></Protected>}/>
 
           <Route path="/master" element={ <Protected> <Master /> </Protected>}/>
-          <Route path="/master/country_master" element={ <Protected> <CountryMaster /></Protected>}/>
-          <Route path="/master/state_master" element={<Protected><StateMaster /></Protected>} />
-          <Route path="/master/city_master" element={ <Protected> <CityMaster /></Protected>}/>
+          <Route path="/master/country" element={ <Protected> <CountryMaster /></Protected>}/>
+          <Route path="/master/state" element={<Protected><StateMaster /></Protected>} />
+          <Route path="/master/city" element={ <Protected> <CityMaster /></Protected>}/>
           <Route path="/master/lead_source" element={ <Protected> <LeadSource /></Protected>}/>
-          <Route path="/master/destination_master" element={ <Protected> <DestinationMaster /> </Protected>}/>
+          <Route path="/master/destination" element={ <Protected> <DestinationMaster /> </Protected>}/>
           <Route path="/master/business_type" element={ <Protected> <BusinessType /></Protected> } />
-          <Route path="/master/language_master" element={ <Protected> <Language /></Protected>} />
-          <Route path="/master/market_type_master" element={ <Protected> <MarketType /> </Protected> } />
-          <Route path="/master/division_master" element={ <Protected> <DivisionMaster /> </Protected>}/>
-          <Route path="/master/tour_type_master" element={ <Protected> <TourType /> </Protected>} />
-          <Route path="/master/season_master" element={ <Protected><SeasonMaster /> </Protected>}/>
+          <Route path="/master/language" element={ <Protected> <Language /></Protected>} />
+          <Route path="/master/market_type" element={ <Protected> <MarketType /> </Protected> } />
+          <Route path="/master/division" element={ <Protected> <DivisionMaster /> </Protected>}/>
+          <Route path="/master/tour_type" element={ <Protected> <TourType /> </Protected>} />
+          <Route path="/master/season" element={ <Protected><SeasonMaster /> </Protected>}/>
           <Route path="/master/roommaster" element={<RoomMaster/>}></Route>
           <Route path="/master/hotel_ratesheet" element={<HotelRateSheet/>}></Route>
           <Route path="/master/roomtype" element={<RoomType/>}></Route>
@@ -65,9 +66,10 @@ const App = () => {
           <Route path="/master/hotelmeal" element={<HotelMeal/>}></Route>
           <Route path="/master/weekend" element={<Weekend/>}></Route>
           <Route path="/master/hotelcategory" element={<HotelCategory/>}></Route>
-          <Route path="/master/hoteladditional" element={<HotelAdditional/>}></Route>
+          <Route path="/master/hotel_additional" element={<HotelAdditional/>}></Route>
           <Route path="/master/hotelchain" element={<HotelChain/>}></Route>
           <Route path="/master/resturant" element={<Resturant/>}></Route>
+          <Route path="/master/resturant_mealplan" element={<ResturantMealPlan/>}></Route>
 
           <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
           <Route path="/login" element={<Login />} />
