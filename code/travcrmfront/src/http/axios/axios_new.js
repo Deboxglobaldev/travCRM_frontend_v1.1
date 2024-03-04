@@ -8,7 +8,7 @@ const axiosNew = axios.create({
 });
 
 const axiosOther = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: "http://20.198.9.47/api/",
   headers: {
     "Content-Type": "application/json",
   },
