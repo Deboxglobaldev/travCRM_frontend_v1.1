@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "reactjs-popup/dist/index.css";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
@@ -54,6 +53,7 @@ const CountryMaster = () => {
       UpdatedBy: rowValue.UpdatedBy,
     });
   };
+
 
 
   const columns = [
@@ -167,9 +167,7 @@ const CountryMaster = () => {
                           className="form-control"
                           component={"select"}
                         >
-                          <option value={1} selected>
-                            Active
-                          </option>
+                          <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
                         </Field>
                       </div>
@@ -180,9 +178,7 @@ const CountryMaster = () => {
                           className="form-control"
                           component={"select"}
                         >
-                          <option value={0} selected>
-                            No
-                          </option>
+                          <option value={0}>No</option>
                           <option value={1}>Yes</option>
                         </Field>
                         <span className="font-size-10 text-danger">

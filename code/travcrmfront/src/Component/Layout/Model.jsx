@@ -78,7 +78,7 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={forEdit || initialValues}
+              initialValues={initialValues}
               validationSchema={validationSchema}
               enableReinitialize
             >
