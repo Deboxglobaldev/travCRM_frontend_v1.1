@@ -3,7 +3,6 @@ import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form } from "formik";
 
-
 const Model = ({
   children,
   heading,
@@ -16,7 +15,6 @@ const Model = ({
   const closeModel = () => {
     document.getElementById("cancel").click();
   }
-
   const handleSubmit = async (value, { resetForm } ) => {
 
     console.log("Modal Values......", value);
@@ -80,7 +78,6 @@ const Model = ({
               onSubmit={handleSubmit}
               initialValues={initialValues}
               validationSchema={validationSchema}
-              enableReinitialize
             >
               <Form>
                 <div className="modal-body">
