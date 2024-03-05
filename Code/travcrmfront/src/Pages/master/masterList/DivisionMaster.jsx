@@ -114,7 +114,7 @@ const DivisionMaster = () => {
                         <label>Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Divison Name"
                           className="form-control"
                           name="Name"
                         />

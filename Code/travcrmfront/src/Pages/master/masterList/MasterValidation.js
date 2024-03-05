@@ -1,22 +1,22 @@
 import * as yup from "yup";
 
 export const countryInitialValue = {
-    id: "",
-    Name: "",
-    ShortName: "",
-    SetDefault: "0",
-    Status: "1",
-    AddedBy: "1",
-    UpdatedBy: "0"
-}
+  id: "",
+  Name: "",
+  ShortName: "",
+  SetDefault: "0",
+  Status: "1",
+  AddedBy: "1",
+  UpdatedBy: "0",
+};
 
 export const stateInitialValue = {
-    id:"",
-    Name: "",
-    CountryId:"",
-    Status: "1",
-    AddedBy:"1"
-}
+  id: "",
+  Name: "",
+  CountryId: "",
+  Status: "1",
+  AddedBy: "1",
+};
 
 export const cityInitialValue = {
   Id: "",
@@ -217,6 +217,17 @@ export const weekendInitialValue = {
   Created_at: "2024-03-04 05:56:16",
   Updated_at: null,
 };
+export const hotelMealInitialValue = {
+  Id: 3,
+  Name: "",
+  ShortName: "",
+  SetDefault: 0,
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
+  Created_at: "2024-03-04 17:22:42",
+  Updated_at: null,
+};
 
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 
@@ -315,6 +326,6 @@ export const weekendValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
   WeekendDays: yup.string().required("Required"),
 });
-export const hotelMealMasterValidationSchema = {
-  Name: yup.string().required('Required'),
-}
+export const hotelMealValidationSchema = yup.object().shape({
+  Name : yup.string().required("Required")
+});

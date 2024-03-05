@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { hotelMealInitialValue, hotelMealValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelMeal = () => {
@@ -20,7 +20,7 @@ const HotelMeal = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hotelmealplanlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -105,10 +105,10 @@ const HotelMeal = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Hotel Type"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  heading={"Add Hotel Meal"}
+                  apiurl={"addupdatehotelmealplan"}
+                  initialValues={hotelMealInitialValue}
+                  validationSchema={hotelMealValidationSchema}
                   valueForEdit={valueForEdit}
                 >
                   <div className="card-body">
@@ -135,9 +135,6 @@ const HotelMeal = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                       <div className="col-sm-2">
                         <label>Set Default</label>

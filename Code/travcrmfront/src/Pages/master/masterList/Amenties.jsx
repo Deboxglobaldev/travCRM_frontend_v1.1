@@ -121,7 +121,7 @@ const Amenties = () => {
                         <label>Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Amenity Name"
                           className="form-control"
                           name="Name"
                         />

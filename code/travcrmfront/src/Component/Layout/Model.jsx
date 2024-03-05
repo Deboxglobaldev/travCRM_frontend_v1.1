@@ -23,8 +23,9 @@ const Model = ({
       const response = await axiosOther.post(apiurl, value);
       if (response.data.Status) {
         toast.success(`Frist Block : ${response.data.Message}`);
-        console.log(response.data.Message);
-        console.log(response.data);
+        console.log(response);
+        console.log(response.config.data);
+        // console.log(response.data);
         //navigate("/master/country_master");
         resetForm();
         closeModel();
@@ -76,8 +77,9 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={initialValues}
+              initialValues={forEdit || initialValues}
               validationSchema={validationSchema}
+              enableReinitialize
             >
               <Form>
                 <div className="modal-body">
