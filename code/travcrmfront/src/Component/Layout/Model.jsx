@@ -1,7 +1,7 @@
 import React from "react";
 import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
-import { Formik, Form } from "formik";
+import { Formik, Form, useFormik } from "formik";
 
 const Model = ({
   children,
@@ -9,7 +9,9 @@ const Model = ({
   apiurl,
   initialValues,
   validationSchema,
-  forEdit
+  forEdit,
+  isEditing,
+  setIsEditing
 }) => {
 
   const closeModel = () => {
@@ -25,8 +27,6 @@ const Model = ({
         toast.success(`Frist Block : ${response.data.Message}`);
         console.log(response);
         console.log(response.config.data);
-        // console.log(response.data);
-        //navigate("/master/country_master");
         resetForm();
         closeModel();
       } else {
@@ -38,6 +38,14 @@ const Model = ({
 
   };
 
+  // const formik = useFormik({
+  //   initialValues: isEditing?  forEdit : initialValues,
+  //   validationSchema:validationSchema,
+  //   onSubmit:handleSubmit,
+  //   enableReinitialize
+  // })
+
+
   return (
     <>
       <button
@@ -45,6 +53,7 @@ const Model = ({
         className="btn bg-teal-400 add-button fs-11 shadow"
         data-toggle="modal"
         data-target="#modal_form_vertical"
+        onClick={()=> setIsEditing(false)}
       >
         <i className="fa fa-plus pr-1" aria-hidden="true"></i>
         Create New
@@ -77,10 +86,10 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={forEdit || initialValues}
+              initialValues={ isEditing? forEdit : initialValues }
               validationSchema={validationSchema}
-              enableReinitialize
-            >
+              enableReinitialize  
+          >
               <Form>
                 <div className="modal-body">
                   {/* modal body */}

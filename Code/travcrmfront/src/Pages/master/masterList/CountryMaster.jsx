@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, Formik } from "formik";
 import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
 
 
@@ -12,6 +12,7 @@ const CountryMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -38,6 +39,7 @@ const CountryMaster = () => {
     setFilterData(result);
   }, [postData]);
 
+
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
@@ -48,6 +50,7 @@ const CountryMaster = () => {
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -127,6 +130,8 @@ const CountryMaster = () => {
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
                   forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
@@ -175,9 +180,6 @@ const CountryMaster = () => {
                           <option value={0}>No</option>
                           <option value={1}>Yes</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="SetDefault" />
-                        </span>
                       </div>
                     </div>
                   </div>

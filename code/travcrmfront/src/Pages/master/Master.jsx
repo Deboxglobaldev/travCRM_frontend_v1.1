@@ -8,7 +8,21 @@ const Master = () => {
     <Layout>
       <div className="master container-fluid">
         <div className="row px-2 py-4 bg-light mb-4">
-          <MasterMenu
+        <MasterMenu
+            img={'/public/assets/icons/main-menu.png'}
+            head='GENERAL'
+            list1='Country Master'
+            list2='Business Type Master'
+            list3='State Master'
+            list4='Language Master'
+            list5='City Master'
+            list6='Division Master'
+            list7='Lead Source Master'
+            list8='Tour Type'
+            list9='Destination Master'
+            list10='Season Master'
+          />
+          {/* <MasterMenu
             img={'/public/assets/icons/main-menu.png'}
             head='GENERAL'
             list1='Country Master'
@@ -111,7 +125,7 @@ const Master = () => {
             list6='Payment Type Master'
             list7='Expense Type Master'
             list8='Expense Head Master'
-          />
+          /> */}
         </div>
       </div>
       </Layout>
