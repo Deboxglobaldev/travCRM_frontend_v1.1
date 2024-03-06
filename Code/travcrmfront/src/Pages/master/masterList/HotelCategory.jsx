@@ -10,6 +10,8 @@ import { axiosOther } from "../../../http/axios/axios_new";
 const HotelCategory = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -39,7 +41,9 @@ const HotelCategory = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({
+      
+    })
   };
 
   const columns = [

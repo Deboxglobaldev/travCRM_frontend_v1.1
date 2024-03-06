@@ -13,11 +13,12 @@ import { axiosOther } from "../../../http/axios/axios_new";
 const SeasonMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -25,6 +26,7 @@ const SeasonMaster = () => {
         const { data } = await axiosOther.post("seasonlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
+        console.log('Data of Season Master', data.DataList);
       } catch (error) {
         console.log(error);
       }
@@ -42,7 +44,18 @@ const SeasonMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      FromDate: rowValue.FromDate,
+      ToDate: rowValue.ToDate,
+      Status: rowValue.Status==="Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -109,12 +122,13 @@ const SeasonMaster = () => {
                   apiurl={"addupdateseason"}
                   initialValues={seasonTypeInitialValue}
                   validationSchema={seasonTypeValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
-
                     <div className="row">
-                    <div className="col-sm-3">
+                      <div className="col-sm-3">
                         <label htmlFor="Season">Season Name</label>
                         <Field
                           className="form-control"
@@ -166,7 +180,6 @@ const SeasonMaster = () => {
                           <option value="0">Inactive</option>
                         </Field>
                       </div>
-
                     </div>
                   </div>
                 </Model>

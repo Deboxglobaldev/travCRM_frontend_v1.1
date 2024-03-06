@@ -4,12 +4,17 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { amentiesInitialValue, amentiesValidationSchema } from "./MasterValidation";
+import {
+  amentiesInitialValue,
+  amentiesValidationSchema,
+} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const Amenties = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -39,7 +44,17 @@ const Amenties = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      SetDefault: rowValue.SetDefault==="Yes"? 1:0,
+      Status: rowValue.SetDefault==="Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -113,7 +128,9 @@ const Amenties = () => {
                   apiurl={"addupdateamenities"}
                   initialValues={amentiesInitialValue}
                   validationSchema={amentiesValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

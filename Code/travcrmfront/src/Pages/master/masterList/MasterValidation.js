@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const countryInitialValue = {
-  id: "",
+  Id: "",
   Name: "",
   ShortName: "",
   SetDefault: "0",
@@ -9,15 +9,16 @@ export const countryInitialValue = {
   AddedBy: "1",
   UpdatedBy: "0",
 };
-
 export const stateInitialValue = {
-  id: "",
+  Id: "",
   Name: "",
-  CountryId: "",
+  CountryId:"1",
   Status: "1",
   AddedBy: "1",
+  UpdatedBy:"",
+  Created_at:"",
+  Updated_at:"",
 };
-
 export const cityInitialValue = {
   Id: "",
   CountryId: "1",
@@ -33,7 +34,7 @@ export const leadSourceInitialValue = {
   Id: "",
   Name: "",
   SetDefault: "0",
-  Status: "1",
+  Status: 1,
   AddedBy: 2,
   UpdatedBy: 0,
   Created_at: "2023-12-13T07:21:06.000000Z",
@@ -141,7 +142,7 @@ export const roomMasterInitialValue = {
   Updated_at: null,
 };
 export const hotelChainInitialValue = {
-  id: "",
+  Id: "",
   Name: "",
   Location: "",
   HotelWebsite: "",
@@ -156,7 +157,7 @@ export const hotelChainInitialValue = {
   AddedBy: "1",
 };
 export const resturantInitialValue = {
-  id: "",
+  Id: "",
   Name: "",
   DestinationId: "",
   Address: "",
@@ -237,7 +238,6 @@ export const countryValidationSchema = yup.object().shape({
 });
 export const stateValidationSchema = yup.object().shape({
   Name: yup.string().min(3).max(20).required("Required"),
-  CountryId: yup.string().required("Required"),
 });
 export const cityValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),

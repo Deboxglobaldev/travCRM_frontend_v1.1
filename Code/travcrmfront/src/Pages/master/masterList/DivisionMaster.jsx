@@ -13,11 +13,12 @@ import { axiosOther } from "../../../http/axios/axios_new";
 const DivisionMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -42,7 +43,16 @@ const DivisionMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      Status: rowValue.Status ==="Active"?1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -106,7 +116,9 @@ const DivisionMaster = () => {
                   apiurl={"addupdatedivision"}
                   initialValues={divisionInitialValue}
                   validationSchema={divisionValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

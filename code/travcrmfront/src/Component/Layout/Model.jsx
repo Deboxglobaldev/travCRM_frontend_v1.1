@@ -38,12 +38,6 @@ const Model = ({
 
   };
 
-  // const formik = useFormik({
-  //   initialValues: isEditing?  forEdit : initialValues,
-  //   validationSchema:validationSchema,
-  //   onSubmit:handleSubmit,
-  //   enableReinitialize
-  // })
 
 
   return (

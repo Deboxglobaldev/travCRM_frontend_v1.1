@@ -19,7 +19,7 @@ const RoomType = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("roomtypelist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -123,7 +123,7 @@ const RoomType = () => {
                 </NavLink>
                 <Model
                   heading={"Add Hotel Rate"}
-                  apiurl={"addupdatecity"}
+                  apiurl={"addupdateroomtype"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
                   valueForEdit={valueForEdit}
@@ -148,7 +148,7 @@ const RoomType = () => {
                           as="textarea"
                           placeholder="Max Occupancy"
                           className="form-control"
-                          name="Name"
+                          name="MaxOccupancy"
                           style={{height:'38px'}}
                         />
                         <span className="font-size-10 text-danger">
@@ -161,7 +161,7 @@ const RoomType = () => {
                           type="text"
                           placeholder="Bedding"
                           className="form-control"
-                          name="Name"
+                          name="Bedding"
                         />
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Name" />
@@ -173,7 +173,7 @@ const RoomType = () => {
                           type="text"
                           placeholder="Size"
                           className="form-control"
-                          name="Name"
+                          name="Size"
                         />
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Name" />

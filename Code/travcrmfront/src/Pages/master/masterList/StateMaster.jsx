@@ -12,6 +12,7 @@ const StateMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -38,6 +39,7 @@ const StateMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
+    console.log(rowValue);
     setEditData({
       id: rowValue.Id,
       Name: rowValue.Name,
@@ -45,6 +47,7 @@ const StateMaster = () => {
       Status: (rowValue.Status==='Active') ? 1 : 0,
       UpdatedBy: 1,
     });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -65,7 +68,7 @@ const StateMaster = () => {
     },
     {
       name: "Country Name",
-      selector: (row) => row.CountryId,
+      selector: (row) => row.CountryName,
       sortable: true,
     },
     {
@@ -122,6 +125,8 @@ const StateMaster = () => {
                   initialValues={stateInitialValue}
                   validationSchema={stateValidationSchema}
                   forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setEditData}
                 >
                   <div className="card-body">
                     <div className="row">
@@ -132,13 +137,9 @@ const StateMaster = () => {
                           className="form-control"
                           component={"select"}
                         >
-                          <option value=''>Select</option>
                           <option value={1}>India</option>
                           <option value={2}>America</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="CountryId" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Name</label>

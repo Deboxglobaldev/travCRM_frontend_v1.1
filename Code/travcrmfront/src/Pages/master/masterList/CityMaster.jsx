@@ -10,11 +10,13 @@ import { axiosOther } from "../../../http/axios/axios_new";
 const CityMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -39,7 +41,19 @@ const CityMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    console.log(rowValue);
+    setEditData({
+      id: rowValue.Id,
+      CountryId: rowValue.CountryId,
+      StateId: rowValue.StateId,
+      Name: rowValue.Name,
+      Status: rowValue.Status === "Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.UpdatedBy,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -121,7 +135,9 @@ const CityMaster = () => {
                   apiurl={"addupdatecity"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

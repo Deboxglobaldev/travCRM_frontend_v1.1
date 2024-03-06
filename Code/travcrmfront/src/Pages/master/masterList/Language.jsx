@@ -4,17 +4,21 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { languageInitialValue, languageValidationSchema } from "./MasterValidation";
+import {
+  languageInitialValue,
+  languageValidationSchema,
+} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const Language = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -39,7 +43,17 @@ const Language = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    console.log(rowValue);
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      Status: rowValue.Status ==="Active" ? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -95,7 +109,9 @@ const Language = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Language Master</h5>
+                <h5 className="card-title d-none d-sm-block">
+                  Language Master
+                </h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -111,7 +127,9 @@ const Language = () => {
                   apiurl={"addupdatelanguage"}
                   initialValues={languageInitialValue}
                   validationSchema={languageValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

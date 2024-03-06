@@ -4,17 +4,21 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { leadSourceInitialValue, leadSourceValidationSchema } from "./MasterValidation";
+import {
+  leadSourceInitialValue,
+  leadSourceValidationSchema,
+} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const LeadSource = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -39,7 +43,18 @@ const LeadSource = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    console.log(rowValue);
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -102,11 +117,13 @@ const LeadSource = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add City"}
+                  heading={"Add Lead Source"}
                   apiurl={"addupdatelead"}
                   initialValues={leadSourceInitialValue}
                   validationSchema={leadSourceValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
@@ -129,8 +146,8 @@ const LeadSource = () => {
                           component={"select"}
                           name="Status"
                         >
-                          <option value="1">Active</option>
-                          <option value="0">Inactive</option>
+                          <option value={1}>Active</option>
+                          <option value={0}>Inactive</option>
                         </Field>
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Status" />
@@ -143,10 +160,10 @@ const LeadSource = () => {
                           className="form-control"
                           component={"select"}
                         >
-                          <option value={'0'} selected>
+                          <option value={"0"} selected>
                             No
                           </option>
-                          <option value={'1'}>Yes</option>
+                          <option value={"1"}>Yes</option>
                         </Field>
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="SetDefault" />

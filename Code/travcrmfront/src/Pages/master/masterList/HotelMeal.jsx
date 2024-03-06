@@ -4,12 +4,17 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { hotelMealInitialValue, hotelMealValidationSchema } from "./MasterValidation";
+import {
+  hotelMealInitialValue,
+  hotelMealValidationSchema,
+} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelMeal = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -40,7 +45,18 @@ const HotelMeal = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      ShortName: rowValue.ShortName,
+      SetDefault: rowValue.SetDefault==="Yes"?1:0,
+      Status: rowValue.Status==="Active"?1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -81,7 +97,7 @@ const HotelMeal = () => {
     },
   ];
 
-  return(
+  return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
@@ -92,7 +108,7 @@ const HotelMeal = () => {
             >
               <div className="col-xl-10 d-flex align-items-center">
                 <h5 className="card-title d-none d-sm-block">
-                 Hotel Meal Master
+                  Hotel Meal Master
                 </h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
@@ -109,7 +125,9 @@ const HotelMeal = () => {
                   apiurl={"addupdatehotelmealplan"}
                   initialValues={hotelMealInitialValue}
                   validationSchema={hotelMealValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

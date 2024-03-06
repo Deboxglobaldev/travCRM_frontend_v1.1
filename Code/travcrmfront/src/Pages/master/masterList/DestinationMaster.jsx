@@ -9,15 +9,18 @@ import {
   destinationValidationSchema,
 } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
+import { isDeepEqual } from "@mui/x-data-grid/internals";
 
 const DestinationMaster = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -42,7 +45,23 @@ const DestinationMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    console.log(rowValue);
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      StateName: rowValue.StateName,
+      CountryName: rowValue.CountryName,
+      CountryId: rowValue.CountryId,
+      StateId: rowValue.StateId,
+      Description: rowValue.Description,
+      SetDefault: rowValue.SetDefault ==="Yes"? 1: 0,
+      Status: rowValue.Status === "Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -146,7 +165,9 @@ const DestinationMaster = () => {
                   apiurl={"addupdatedestination"}
                   initialValues={destinationInitialValue}
                   validationSchema={destinationValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row row-gap-3">
@@ -157,9 +178,9 @@ const DestinationMaster = () => {
                           component={"select"}
                           name="CountryId"
                         >
-                          <option value={'1'}>India</option>
-                          <option value={'2'}>Iran</option>
-                          <option value={'3'}>China</option>
+                          <option value={"1"}>India</option>
+                          <option value={"2"}>Iran</option>
+                          <option value={"3"}>China</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">
