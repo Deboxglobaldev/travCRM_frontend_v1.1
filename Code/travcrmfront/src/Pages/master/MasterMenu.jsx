@@ -223,13 +223,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/monument">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/monument.png" alt="image"/>
                       <span className="pl-1">Monument Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/sightseeing">
                     <div className="master-list-icon">
                       <img src="assets/icons/binocular.png" alt="image" />
                       <span className="pl-1">Sightseeing Master</span>
@@ -251,13 +251,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/tourescort">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/customer.png" alt="image"/>
                       <span className="pl-1">Tour Escort Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/tourescortprice">
                     <div className="master-list-icon">
                       <img src="assets/icons/technical-support.png" alt="image"/>
                       <span className="pl-1">Tour Escort Price Master</span>
@@ -279,13 +279,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/visatype">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/boarding-pass.png" alt="image"/>
                       <span className="pl-1">Visa Type</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/visacost">
                     <div className="master-list-icon">
                       <img src="assets/icons/visa.png" alt="image" />
                       <span className="pl-1">Visa Cost</span>
@@ -307,13 +307,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/insurancetype">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/family.png" alt="image"/>
                       <span className="pl-1">Insurance Type</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/insurancecost">
                     <div className="master-list-icon">
                       <img src="assets/icons/insur.png" alt="image" />
                       <span className="pl-1">Insurance Cost</span>

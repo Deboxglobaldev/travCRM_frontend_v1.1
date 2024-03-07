@@ -12,12 +12,12 @@ export const countryInitialValue = {
 export const stateInitialValue = {
   Id: "",
   Name: "",
-  CountryId:"1",
+  CountryId: "1",
   Status: "1",
   AddedBy: "1",
-  UpdatedBy:"",
-  Created_at:"",
-  Updated_at:"",
+  UpdatedBy: "",
+  Created_at: "",
+  Updated_at: "",
 };
 export const cityInitialValue = {
   Id: "",
@@ -219,7 +219,7 @@ export const weekendInitialValue = {
   Updated_at: null,
 };
 export const hotelMealInitialValue = {
-  Id: 3,
+  Id: "",
   Name: "",
   ShortName: "",
   SetDefault: 0,
@@ -228,6 +228,34 @@ export const hotelMealInitialValue = {
   UpdatedBy: 0,
   Created_at: "2024-03-04 17:22:42",
   Updated_at: null,
+};
+export const monumentInitialValue = {
+  Id: "",
+  MonumentName: "",
+  Destination: 1,
+  TransferType: 1,
+  ClosedOnDays: 1,
+  DefaultQuotation: "",
+  DefaultProposal: "",
+  WeekendDays: "",
+  Description: "",
+  Status: 1,
+  AddedBy: "",
+  UpdatedBy: "",
+};
+export const sightseeingInitialValue = {
+  Id: "",
+  SightseeingName: "",
+  Destination: "",
+  TransferType: "",
+  DefaultQuotation: "",
+  DefaultProposal: "",
+  Description: "",
+  InclusionsExclusionsTiming: "",
+  ImportantNote: "",
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 1,
 };
 
 // ------------------------VALIDATION SCHEMAS-------------------------- //
@@ -327,5 +355,11 @@ export const weekendValidationSchema = yup.object().shape({
   WeekendDays: yup.string().required("Required"),
 });
 export const hotelMealValidationSchema = yup.object().shape({
-  Name : yup.string().required("Required")
+  Name: yup.string().required("Required"),
+});
+export const monumentValidatinSchema = yup.object().shape({
+  MonumentName: yup.string().required("Required"),
+});
+export const sightseeingValidationSchema = yup.object().shape({
+  SightseeingName: yup.string().required("Required"),
 });

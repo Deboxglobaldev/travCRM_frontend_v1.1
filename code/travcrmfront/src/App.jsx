@@ -34,6 +34,14 @@ import HotelAdditional from "./Pages/master/masterList/HotelAdditional";
 import HotelChain from "./Pages/master/masterList/HotelChain";
 import Resturant from "./Pages/master/masterList/Resturant";
 import ResturantMealPlan from "./Pages/master/masterList/ResturantMealPlan";
+import Monument from "./Pages/master/masterList/Monument";
+import Sightseeing from "./Pages/master/masterList/Sightseeing";
+import TourEscort from "./Pages/master/masterList/TourEscrot";
+import TourEscortPrice from "./Pages/master/masterList/TourEscortPrice";
+import VisaType from "./Pages/master/masterList/VisaType";
+import VisaCost from "./Pages/master/masterList/VisaCost";
+import InsuranceType from "./Pages/master/masterList/InsuranceType";
+import InsuranceCost from "./Pages/master/masterList/InsuranceCost";
 
 const App = () => {
   return (
@@ -70,6 +78,14 @@ const App = () => {
           <Route path="/master/hotelchain" element={<HotelChain/>}></Route>
           <Route path="/master/resturant" element={<Resturant/>}></Route>
           <Route path="/master/resturant_mealplan" element={<ResturantMealPlan/>}></Route>
+          <Route path="/master/monument" element={<Monument/>}></Route>
+          <Route path="/master/sightseeing" element={<Sightseeing/>}></Route>
+          <Route path="/master/tourescort" element={<TourEscort/>}></Route>
+          <Route path="/master/tourescortprice" element={<TourEscortPrice/>}></Route>
+          <Route path="/master/visatype" element={<VisaType/>}></Route>
+          <Route path="/master/visacost" element={<VisaCost/>}></Route>
+          <Route path="/master/insurancetype" element={<InsuranceType/>}></Route>
+          <Route path="/master/insurancecost" element={<InsuranceCost/>}></Route>
 
           <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
           <Route path="/login" element={<Login />} />

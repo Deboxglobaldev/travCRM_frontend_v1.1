@@ -1124,7 +1124,7 @@ const Query = () => {
                                   >
                                     <div className="accordion-body py-3 px-2">
                                       <div className="row">
-                                        <div className="col-6 ">
+                                        <div className="col-6">
                                           <div className="form-group">
                                             <label>Seles Person</label>
                                             <Field
