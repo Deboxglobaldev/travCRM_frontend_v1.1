@@ -34,6 +34,11 @@ const SeasonMaster = () => {
 
     postDataToServer();
   }, []);
+  useEffect(()=>{
+    getData.map((v)=>{
+      console.log(v["Status"]);
+    })
+  })
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -76,12 +81,12 @@ const SeasonMaster = () => {
     },
     {
       name: "From Date",
-      selector: (row) => row.FromDate,
+      selector: (row) => row["FromDate"],
       sortable: true,
     },
     {
       name: "To Date",
-      selector: (row) => row.ToDate,
+      selector: (row) => row["ToDate"],
       sortable: true,
     },
     {

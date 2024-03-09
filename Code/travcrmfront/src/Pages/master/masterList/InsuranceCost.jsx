@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage, Formik } from "formik";
+import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  insuranceCostInitialValue,
+  insuranceCostValidationSchema,
 } from "./MasterValidation";
 
 const InsuranceCost = () => {
@@ -23,7 +23,7 @@ const InsuranceCost = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("insurancecostlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,10 +44,9 @@ const InsuranceCost = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      InsuranceName: rowValue.InsuranceName,
+      InsuranceType: rowValue.InsuranceType,
+      Status: rowValue.Status === "Active" ?1:0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -56,7 +55,7 @@ const InsuranceCost = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Insurance Name",
       selector: (row) => (
         <span>
           <i
@@ -65,42 +64,28 @@ const InsuranceCost = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.InsuranceName}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Insurance Type",
+      selector: (row) => row.InsuranceType,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Rate Sheet",
+      selector: (row) => (<button className="btn btn-primary">+Add/View</button>),
       sortable: true,
     },
     {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
-    },
+      name: "Status",
+      selector: (row) =>row.Status,
+      sortable: true
+    }
   ];
+  
   return (
     <>
       <Layout>
@@ -127,9 +112,9 @@ const InsuranceCost = () => {
                 </NavLink>
                 <Model
                   heading={"Add Insurance Cost"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdateinsurancecost"}
+                  initialValues={insuranceCostInitialValue}
+                  validationSchema={insuranceCostValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -140,24 +125,24 @@ const InsuranceCost = () => {
                         <label>Insurance Name</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="InsuranceName"
                           placeholder="Insurance Cost"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="InsuranceName" />
                         </span>
                       </div>
                       <div className="col-sm-6">
                         <label>Insurance Type</label>
                         <Field
-                          name="Status"
+                          name="InsuranceType"
                           className="form-control"
                           component={"select"}
                         >
                           <option value={1}>Senior Citizen Travel Ins</option>
-                          <option value={1}>Family Travel Insurance</option>
-                          <option value={0}>Student Travel Insurance</option>
+                          <option value={2}>Family Travel Insurance</option>
+                          <option value={3}>Student Travel Insurance</option>
                         </Field>
                       </div>
                       <div className="col-sm-6">

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const countryInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   ShortName: "",
   SetDefault: "0",
@@ -10,75 +10,61 @@ export const countryInitialValue = {
   UpdatedBy: "0",
 };
 export const stateInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   CountryId: "1",
   Status: "1",
   AddedBy: "1",
   UpdatedBy: "",
-  Created_at: "",
-  Updated_at: "",
 };
 export const cityInitialValue = {
-  Id: "",
+  id: "",
   CountryId: "1",
   StateId: "1",
   Name: "",
   Status: "1",
   AddedBy: "1",
   UpdatedBy: "1",
-  Created_at: "2024-02-26 08:54:31",
-  Updated_at: null,
 };
 export const leadSourceInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   SetDefault: "0",
   Status: 1,
   AddedBy: 2,
   UpdatedBy: 0,
-  Created_at: "2023-12-13T07:21:06.000000Z",
-  Updated_at: "2023-12-13T07:21:06.000000Z",
 };
 export const businessTypeInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   SetDefault: 0,
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-02-09 07:11:58",
-  Updated_at: null,
 };
 export const divisionInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2023-12-13T07:22:10.000000Z",
-  Updated_at: "2023-12-13T07:22:10.000000Z",
 };
 export const marketTypeInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-01-09 07:59:45",
-  Updated_at: null,
 };
 export const languageInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Status: "1",
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-02-09 10:39:24",
-  Updated_at: null,
 };
 export const destinationInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   StateName: "",
   CountryName: "",
@@ -89,60 +75,48 @@ export const destinationInitialValue = {
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-02-09 13:30:42",
-  Updated_at: null,
 };
 export const tourtypeInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 1,
-  Created_at: "2024-02-10 08:51:54",
-  Updated_at: "2024-02-10 08:52:11",
 };
 export const seasonTypeInitialValue = {
-  Id: "",
+  id: "",
   Name: 1,
   FromDate: "",
   ToDate: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 1,
-  Created_at: "2024-02-10 08:59:50",
-  Updated_at: "2024-02-10 09:00:03",
 };
 export const hotelCategoryInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   UploadKeyword: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 1,
-  Created_at: "2024-02-12 12:41:55",
-  Updated_at: "2024-02-12 12:42:06",
 };
 export const hotelAdditonalInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Details: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 1,
-  Created_at: "2024-02-12 12:35:31",
-  Updated_at: "2024-02-12 12:35:54",
 };
 export const roomMasterInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Status: 1,
   AddedBy: 0,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 05:49:07",
-  Updated_at: null,
 };
 export const hotelChainInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   Location: "",
   HotelWebsite: "",
@@ -157,7 +131,7 @@ export const hotelChainInitialValue = {
   AddedBy: "1",
 };
 export const resturantInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   DestinationId: "",
   Address: "",
@@ -180,57 +154,47 @@ export const resturantInitialValue = {
   AddedBy: 1,
 };
 export const restaurantMealInitialValue = {
-  Id: 2,
+  id: 2,
   Name: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 05:50:37",
-  Updated_at: null,
 };
 export const amentiesInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   SetDefault: 0,
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 11:24:25",
-  Updated_at: null,
 };
 export const hotelTypeInitialValue = {
-  Id: 3,
+  id: 3,
   Name: "",
   UploadKeyword: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 11:17:06",
-  Updated_at: null,
 };
 export const weekendInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   WeekendDays: "",
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 05:56:16",
-  Updated_at: null,
 };
 export const hotelMealInitialValue = {
-  Id: "",
+  id: "",
   Name: "",
   ShortName: "",
   SetDefault: 0,
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
-  Created_at: "2024-03-04 17:22:42",
-  Updated_at: null,
 };
 export const monumentInitialValue = {
-  Id: "",
+  id: "",
   MonumentName: "",
   Destination: 1,
   TransferType: 1,
@@ -244,7 +208,7 @@ export const monumentInitialValue = {
   UpdatedBy: "",
 };
 export const sightseeingInitialValue = {
-  Id: "",
+  id: "",
   SightseeingName: "",
   Destination: "",
   TransferType: "",
@@ -257,7 +221,74 @@ export const sightseeingInitialValue = {
   AddedBy: 1,
   UpdatedBy: 1,
 };
-
+export const visaCostInitialValue = {
+  id: "",
+  Country: 1,
+  VisaType: 1,
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
+};
+export const visaTypeInitialValue = {
+  id: "",
+  VisaType: "",
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 1,
+};
+export const insuranceTypeInitialValue = {
+  id: "",
+  InsuranceType: "",
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
+};
+export const insuranceCostInitialValue = {
+  id: "",
+  InsuranceName: "",
+  InsuranceType: 1,
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 1,
+};
+export const tourEscrotPriceInitialValue = {
+  id: "",
+  ServiceType: 0,
+  Destination: 1,
+  TourEscortService: "",
+  Status: 1,
+  Default: 0,
+  AddedBy: 1,
+  UpdatedBy: 0,
+};
+export const tourEscortInitialValue = {
+  id: "",
+  ServiceType: 1,
+  Name: "",
+  MobileNumber: "",
+  WhatsAppNumber: "",
+  AlternateNumber: "",
+  Email: "",
+  TourEscortLicenseOne: "",
+  LicenseExpiry: "",
+  Destination: "",
+  Language: "",
+  TourEscortImageName: "",
+  TourEscortImageData: "",
+  Supplier: 1,
+  TourEscortLicenseTwo: "",
+  ContactPerson: "",
+  Designation: "",
+  Country: 1,
+  State: 1,
+  City: 1,
+  PinCode: "",
+  Detail: "",
+  Address: "",
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
+};
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 
 export const countryValidationSchema = yup.object().shape({
@@ -269,8 +300,6 @@ export const stateValidationSchema = yup.object().shape({
 });
 export const cityValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
-  StateId: yup.string().required("Required"),
-  CountryId: yup.string().required("Required"),
 });
 export const leadSourceValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
@@ -363,3 +392,22 @@ export const monumentValidatinSchema = yup.object().shape({
 export const sightseeingValidationSchema = yup.object().shape({
   SightseeingName: yup.string().required("Required"),
 });
+export const visaTypeValidationSchema = yup.object().shape({
+  VisaType: yup.string().required("Required"),
+});
+export const insuranceTypeValidationSchema = yup.object().shape({
+  InsuranceType: yup.string().required("Required"),
+});
+export const insuranceCostValidationSchema = yup.object().shape({
+  InsuranceName: yup.string().required("Required"),
+});
+export const tourEscortPriceValidationSchema = yup.object().shape({
+  TourEscortService: yup.string().required("Required"),
+});
+export const tourEscortValidationSchema = yup.object().shape({
+  Name: yup.string().required('Required'),
+  MobileNumber : yup.string().required('Required'),
+  Email: yup.string().required('Required'),
+  Destination : yup.string().required('Required'),
+  Address : yup.string().required('Required')
+})

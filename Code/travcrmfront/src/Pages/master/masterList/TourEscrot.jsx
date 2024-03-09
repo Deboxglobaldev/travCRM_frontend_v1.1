@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage, Formik } from "formik";
+import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  tourEscortInitialValue,
+  tourEscortValidationSchema,
 } from "./MasterValidation";
 import "jquery";
 import "select2";
@@ -46,10 +46,29 @@ const TourEscort = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
+      ServiceType:rowValue.ServiceType,
       Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      MobileNumber: rowValue.MobileNumber,
+      WhatsAppNumber: rowValue.WhatsAppNumber,
+      AlternateNumber: rowValue.AlternateNumber,
+      Email: rowValue.Email,
+      TourEscortLicenseOne: rowValue.TourEscortLicenseOne,
+      LicenseExpiry: rowValue.LicenseExpiry,
+      Destination: rowValue.Destination,
+      Language: rowValue.Language,
+      TourEscortImageName: rowValue.TourEscortImageName,
+      TourEscortImageData: rowValue.TourEscortImageData,
+      Supplier: rowValue.Supplier,
+      TourEscortLicenseTwo: rowValue.TourEscortLicenseTwo,
+      ContactPerson: rowValue.ContactPerson,
+      Designation: rowValue.Designation,
+      Country: rowValue.Country,
+      State: rowValue.State,
+      City: rowValue.City,
+      PinCode: rowValue.PinCode,
+      Detail: rowValue.Detail,
+      Address: rowValue.Address,
+      Status: rowValue.Status,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -58,7 +77,7 @@ const TourEscort = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Image",
       selector: (row) => (
         <span>
           <i
@@ -67,14 +86,49 @@ const TourEscort = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.Image}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Name",
+      selector: (row) => row.Name,
+      sortable: true,
+    },
+    {
+      name: "Service Type",
+      selector: (row) => row.ServiceType,
+      sortable: true,
+    },
+    {
+      name: "Email/Phone",
+      selector: (row) => (
+        <>
+        <span>{row.Email}</span>/
+        <span>{row.MobileNumber}</span>
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Address",
+      selector: (row) => row.Address,
+      sortable: true,
+    },
+    {
+      name: "Language",
+      selector: (row) => row.Language,
+      sortable: true,
+    },
+    {
+      name: "Destination",
+      selector: (row) => row.Destination,
+      sortable: true,
+    },
+    {
+      name: "Details",
+      selector: (row) => row.Details,
       sortable: true,
     },
     {
@@ -82,27 +136,8 @@ const TourEscort = () => {
       selector: (row) => row.Status,
       sortable: true,
     },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
-    },
   ];
+
   return (
     <>
       <Layout>
@@ -130,8 +165,8 @@ const TourEscort = () => {
                 <Model
                   heading={"Add Tour Escort / Tour Manager"}
                   apiurl={"addupdatemonumentmaster"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  initialValues={tourEscortInitialValue}
+                  validationSchema={tourEscortValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -141,7 +176,7 @@ const TourEscort = () => {
                       <div className="col-sm-4">
                         <label>Service Type</label>
                         <Field
-                          name="Status"
+                          name="ServiceType"
                           className="form-control"
                           component={"select"}
                         >
@@ -165,73 +200,81 @@ const TourEscort = () => {
                         <label>Mobile Number</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="MobileNumber"
                           placeholder="Number"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="MobileNumber" />
                         </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Whatsapp Number</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="WhatsAppNumber"
                           placeholder="Number"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Alternate Number</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="AlternateNumber"
                           placeholder="Number"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Email</label>
                         <Field
                           type="email"
-                          name="Name"
+                          name="Email"
                           placeholder="Email"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Email" />
                         </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Tour Escort License</label>
                         <Field
-                          type="email"
-                          name="Name"
+                          type="text"
+                          name="TourEscortLicenseOne"
                           placeholder="Licence"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>License Expiry</label>
                         <Field
                           type="date"
-                          name="LicenseExpire"
-                          placeholder="Licence"
+                          name="LicenseExpiry"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Destination</label>
+                        <Field
+                          type="text"
+                          name="Destination"
+                          placeholder="Destination"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Destination" />
                         </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Language</label>
+                        <Field
+                          type="text"
+                          name="Language"
+                          placeholder="Language"
+                          className="form-control"
+                        />
                       </div>
                       <div className="col-sm-4">
                         <label className="font-size-10">
@@ -239,18 +282,14 @@ const TourEscort = () => {
                         </label>
                         <Field
                           type="file"
-                          name="LicenseExpire"
-                          placeholder="Licence"
+                          name="TourEscortImageData"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Supplier</label>
                         <Field
-                          name="Status"
+                          name="Supplier"
                           className="form-control"
                           component={"select"}
                         >
@@ -262,42 +301,33 @@ const TourEscort = () => {
                         <label>Tour Escort License</label>
                         <Field
                           type="text"
-                          name="Name"
-                          placeholder="Name"
+                          name="TourEscortLicenseTwo"
+                          placeholder="Licence"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Contact Person</label>
                         <Field
                           type="text"
-                          name="Name"
-                          placeholder="Name"
+                          name="ContactPerson"
+                          placeholder="Person"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Designation</label>
                         <Field
                           type="text"
-                          name="Name"
-                          placeholder="Name"
+                          name="Designation"
+                          placeholder="Designation"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Country</label>
                         <Field
-                          name="Status"
+                          name="Country"
                           className="form-control"
                           component={"select"}
                         >
@@ -312,7 +342,7 @@ const TourEscort = () => {
                       <div className="col-sm-4">
                         <label>State</label>
                         <Field
-                          name="Status"
+                          name="State"
                           className="form-control"
                           component={"select"}
                         >
@@ -327,7 +357,7 @@ const TourEscort = () => {
                       <div className="col-sm-4">
                         <label>City</label>
                         <Field
-                          name="Status"
+                          name="City"
                           className="form-control"
                           component={"select"}
                         >
@@ -343,52 +373,33 @@ const TourEscort = () => {
                         <label>Pin Code</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="PinCode"
                           placeholder="Pin Code"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Details</label>
                         <Field
                           as="textarea"
-                          name="Name"
+                          name="Detail"
                           placeholder="Details"
                           className="form-control"
                           style={{ height: "38px" }}
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Address</label>
                         <Field
                           as="textarea"
-                          name="Name"
+                          name="Address"
                           placeholder="Address"
                           className="form-control"
                           style={{ height: "38px" }}
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Address" />
                         </span>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Transfer Type</label>
-                        <Field
-                          name="Status"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={1}>Ticket Only</option>
-                          <option value={0}>ALL</option>
-                          <option value={0}>SIC</option>
-                          <option value={0}>PVT</option>
-                        </Field>
                       </div>
                     </div>
                   </div>

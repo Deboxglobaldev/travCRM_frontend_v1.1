@@ -4,11 +4,8 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage, Formik } from "formik";
-import {
-  countryInitialValue,
-  countryValidationSchema,
-} from "./MasterValidation";
+import { Field } from "formik";
+import { visaCostInitialValue } from "./MasterValidation";
 
 const VisaCost = () => {
   const [getData, setGetData] = useState([]);
@@ -23,7 +20,7 @@ const VisaCost = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("visacostlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,9 +41,8 @@ const VisaCost = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      Country: rowValue.Country,
+      VisaType: rowValue.VisaType,
       Status: rowValue.Status === "Active" ? 1 : 0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
@@ -56,7 +52,7 @@ const VisaCost = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Country",
       selector: (row) => (
         <span>
           <i
@@ -65,42 +61,28 @@ const VisaCost = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.Country}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Visa Type",
+      selector: (row) => row.VisaType,
       sortable: true,
     },
     {
-      name: "Status Name",
+      name: "Rate Sheet",
+      selector: (row) => <button className="btn brn-primary">+Add/View</button>,
+      sortable: true,
+    },
+    {
+      name: "Status",
       selector: (row) => row.Status,
       sortable: true,
     },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
-    },
   ];
+
   return (
     <>
       <Layout>
@@ -127,20 +109,18 @@ const VisaCost = () => {
                 </NavLink>
                 <Model
                   heading={"Add Visa Cost"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatevisacost"}
+                  initialValues={visaCostInitialValue}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
-                    
-                      <div className="col-sm-6">
+                      <div className="col-sm-4">
                         <label>Country</label>
                         <Field
-                          name="Status"
+                          name="Country"
                           className="form-control"
                           component={"select"}
                         >
@@ -149,23 +129,23 @@ const VisaCost = () => {
                           <option value={3}>Germany</option>
                         </Field>
                       </div>
-                      <div className="col-sm-6">
+                      <div className="col-sm-4">
                         <label>Visa Type</label>
                         <Field
-                          name="Status"
+                          name="VisaType"
                           className="form-control"
                           component={"select"}
                         >
                           <option value={1}>Work Permit Visa</option>
-                          <option value={0}>Tourist Visa</option>
-                          <option value={0}>H-1 B-1 Visa</option>
-                          <option value={0}>Single Entry Visa</option>
-                          <option value={0}>Tourist Visa</option>
-                          <option value={0}>Business Visa</option>
-                          <option value={0}>Student Visa</option>
+                          <option value={2}>Tourist Visa</option>
+                          <option value={3}>H-1 B-1 Visa</option>
+                          <option value={4}>Single Entry Visa</option>
+                          <option value={5}>Tourist Visa</option>
+                          <option value={6}>Business Visa</option>
+                          <option value={7}>Student Visa</option>
                         </Field>
                       </div>
-                      <div className="col-sm-6">
+                      <div className="col-sm-4">
                         <label>Status</label>
                         <Field
                           name="Status"
@@ -177,7 +157,6 @@ const VisaCost = () => {
                         </Field>
                       </div>
                     </div>
-
                   </div>
                 </Model>
               </div>

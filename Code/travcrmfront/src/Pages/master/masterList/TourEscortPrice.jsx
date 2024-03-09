@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage, Formik } from "formik";
+import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  tourEscrotPriceInitialValue,
+  tourEscortPriceValidationSchema
 } from "./MasterValidation";
 import "jquery";
 import "select2";
@@ -25,7 +25,7 @@ const TourEscortPrice = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("monumentmasterlist", postData);
+        const { data } = await axiosOther.post("tourescortlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -46,10 +46,11 @@ const TourEscortPrice = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      ServiceType: rowValue.ServiceType,
+      Destination: rowValue.Destination,
+      TourEscortService: rowValue.TourEscortService,
       Status: rowValue.Status === "Active" ? 1 : 0,
+      Default: rowValue.Default === "Yes" ? 1 : 0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -58,7 +59,7 @@ const TourEscortPrice = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Guide/Porter Service",
       selector: (row) => (
         <span>
           <i
@@ -67,42 +68,33 @@ const TourEscortPrice = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.TourEscortService}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Destination",
+      selector: (row) => row.Destination,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Service Type",
+      selector: (row) => row.ServiceType,
       sortable: true,
     },
     {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
+      name: "Rate Sheet",
+      selector: (row) => <button className="btn btn-primary">+Add/View</button>,
     },
     {
-      name: "Updated By",
+      name: "Status",
       selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
+        row.Status, sortable;
       },
     },
   ];
+
   return (
     <>
       <Layout>
@@ -131,19 +123,19 @@ const TourEscortPrice = () => {
                 </NavLink>
                 <Model
                   heading={"Add Tour Escort Service"}
-                  apiurl={"addupdatemonumentmaster"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatetourescort"}
+                  initialValues={tourEscrotPriceInitialValue}
+                  validationSchema={tourEscortPriceValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row row-gap-3">
-                    <div className="col-sm-3">
+                      <div className="col-sm-3">
                         <label>Service Type</label>
                         <Field
-                          name="Status"
+                          name="ServiceType"
                           className="form-control"
                           component={"select"}
                         >
@@ -154,7 +146,7 @@ const TourEscortPrice = () => {
                       <div className="col-sm-3">
                         <label>Destination</label>
                         <Field
-                          name="Status"
+                          name="Destination"
                           className="form-control"
                           component={"select"}
                         >
@@ -170,12 +162,12 @@ const TourEscortPrice = () => {
                         <label>Tour Escort Service</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="TourEscortService"
                           placeholder="Monument Name"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Name"/>
                         </span>
                       </div>
                       <div className="col-sm-3">

@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
-import { Field, ErrorMessage, Formik } from "formik";
+import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  visaTypeInitialValue,
+  visaTypeValidationSchema,
 } from "./MasterValidation";
 
 const VisaType = () => {
@@ -23,7 +23,7 @@ const VisaType = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("visatypelist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,9 +44,7 @@ const VisaType = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      VisaType: rowValue.VisaType,
       Status: rowValue.Status === "Active" ? 1 : 0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
@@ -56,7 +54,7 @@ const VisaType = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Visa Type",
       selector: (row) => (
         <span>
           <i
@@ -65,42 +63,18 @@ const VisaType = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.VisaType}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
-      sortable: true,
-    },
-    {
-      name: "Status Name",
+      name: "Status",
       selector: (row) => row.Status,
       sortable: true,
     },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
-    },
   ];
+
   return (
     <>
       <Layout>
@@ -127,9 +101,9 @@ const VisaType = () => {
                 </NavLink>
                 <Model
                   heading={"Add Visa Type"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatevisatype"}
+                  initialValues={visaTypeInitialValue}
+                  validationSchema={visaTypeValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -140,12 +114,12 @@ const VisaType = () => {
                         <label>Visa Type</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="VisaType"
                           placeholder="Visa Type"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="VisaType" />
                         </span>
                       </div>
                       <div className="col-sm-6">

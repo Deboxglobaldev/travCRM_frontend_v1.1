@@ -17,7 +17,6 @@ const CityMaster = () => {
     Status: "",
   });
 
-
   useEffect(() => {
     const postDataToServer = async () => {
       try {
@@ -39,19 +38,17 @@ const CityMaster = () => {
 
     setFilterData(result);
   }, [postData]);
-
+  
   const handleEditClick = (rowValue) => {
     console.log(rowValue);
     setEditData({
       id: rowValue.Id,
-      CountryId: rowValue.CountryId,
-      StateId: rowValue.StateId,
+      CountryId: rowValue.CountryName === "India" ? "1" : "2",
+      StateId: rowValue.StateName === "Rajsthan" ? "1" : "2",
       Name: rowValue.Name,
-      Status: rowValue.Status === "Active"? 1:0,
+      Status: rowValue.Status === "Active" ? 1 : 0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
-      Created_at: rowValue.Created_at,
-      Updated_at: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };
@@ -152,9 +149,6 @@ const CityMaster = () => {
                           <option value={"2"}>Iran</option>
                           <option value={"3"}>China</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="countryaId" />
-                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>State</label>
@@ -170,9 +164,6 @@ const CityMaster = () => {
                           <option value={"6"}>Banglore</option>
                           <option value={"7"}>Uttar Pradesh</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="stateId" />
-                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>Name</label>
@@ -196,9 +187,6 @@ const CityMaster = () => {
                           <option value="1">Active</option>
                           <option value="0">Inactive</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Status" />
-                        </span>
                       </div>
                     </div>
                   </div>

@@ -6,8 +6,8 @@ import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage, Formik } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  insuranceTypeInitialValue,
+  insuranceTypeValidationSchema,
 } from "./MasterValidation";
 
 const InsuranceType = () => {
@@ -23,7 +23,7 @@ const InsuranceType = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("insurancetypelist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,10 +44,8 @@ const InsuranceType = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      InsuranceType: rowValue.InsuranceType,
+      Status: rowValue.Status === "Active" ? 1:0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -56,7 +54,7 @@ const InsuranceType = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Insurance Name",
       selector: (row) => (
         <span>
           <i
@@ -65,40 +63,15 @@ const InsuranceType = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.InsuranceType}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
-      sortable: true,
-    },
-    {
-      name: "Status Name",
+      name: "Status",
       selector: (row) => row.Status,
       sortable: true,
-    },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
     },
   ];
   return (
@@ -127,9 +100,9 @@ const InsuranceType = () => {
                 </NavLink>
                 <Model
                   heading={"Add Insurance Type"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdateinsurancetype"}
+                  initialValues={insuranceTypeInitialValue}
+                  validationSchema={insuranceTypeValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -140,12 +113,12 @@ const InsuranceType = () => {
                         <label>Insurance Type</label>
                         <Field
                           type="text"
-                          name="Name"
+                          name="InsuranceType"
                           placeholder="Insurance Type"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="InsuranceType" />
                         </span>
                       </div>
                       <div className="col-sm-6">
