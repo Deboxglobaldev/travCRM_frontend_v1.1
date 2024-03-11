@@ -42,6 +42,20 @@ import VisaType from "./Pages/master/masterList/VisaType";
 import VisaCost from "./Pages/master/masterList/VisaCost";
 import InsuranceType from "./Pages/master/masterList/InsuranceType";
 import InsuranceCost from "./Pages/master/masterList/InsuranceCost";
+import PassportType from "./Pages/master/masterList/PassportType";
+import PassportCost from "./Pages/master/masterList/PassportCost";
+import TrainMaster from "./Pages/master/masterList/TrainMaster";
+import AirlineMaster from "./Pages/master/masterList/AirlineMaster";
+import AdditionalRequirement from "./Pages/master/masterList/AdditionalRequirement";
+import OperationRestriction from "./Pages/master/masterList/OperationRestriction";
+import TransferMaster from "./Pages/master/masterList/TransferMaster";
+import VehicleType from "./Pages/master/masterList/VehicleType";
+import TransferType from "./Pages/master/masterList/TransferType";
+import VehicleBrand from "./Pages/master/masterList/VehicleBrand";
+import TransportMaster from "./Pages/master/masterList/TransportMaster";
+import DriverMaster from "./Pages/master/masterList/DriverMaster";
+import VehicleMaster from "./Pages/master/masterList/VehicleMaster";
+import FleetMaster from "./Pages/master/masterList/FleetMaster";
 
 const App = () => {
   return (
@@ -84,8 +98,22 @@ const App = () => {
           <Route path="/master/tourescortprice" element={<TourEscortPrice/>}></Route>
           <Route path="/master/visatype" element={<VisaType/>}></Route>
           <Route path="/master/visacost" element={<VisaCost/>}></Route>
-          <Route path="/master/insurancetype" element={<InsuranceType/>}></Route>
           <Route path="/master/insurancecost" element={<InsuranceCost/>}></Route>
+          <Route path="/master/insurancetype" element={<InsuranceType/>}></Route>
+          <Route path="/master/passporttype" element={<PassportType/>}></Route>
+          <Route path="/master/passportcost" element={<PassportCost/>}></Route>
+          <Route path="/master/train" element={<TrainMaster/>}></Route>
+          <Route path="/master/airline" element={<AirlineMaster/>}></Route>
+          <Route path="/master/additionalrequirement" element={<AdditionalRequirement/>}></Route>
+          <Route path="/master/operationrestriction" element={<OperationRestriction/>}></Route>
+          <Route path="/master/transfermaster" element={<TransferMaster/>}></Route>
+          <Route path="/master/vehicletype" element={<VehicleType/>}></Route>
+          <Route path="/master/transfertype" element={<TransferType/>}></Route>
+          <Route path="/master/vehiclebrand" element={<VehicleBrand/>}></Route>
+          <Route path="/master/transport" element={<TransportMaster/>}></Route>
+          <Route path="/master/driver" element={<DriverMaster/>}></Route>
+          <Route path="/master/vehiclemaster" element={<VehicleMaster/>}></Route>
+          <Route path="/master/fleet" element={<FleetMaster/>}></Route>
 
           <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
           <Route path="/login" element={<Login />} />

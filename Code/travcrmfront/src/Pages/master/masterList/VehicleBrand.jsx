@@ -3,12 +3,11 @@ import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
-import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { stateInitialValue, stateValidationSchema } from "./MasterValidation";
+import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { axiosOther } from "../../../http/axios/axios_new";
 
-const StateMaster = () => {
-
+const VehicleBrand = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
@@ -21,31 +20,35 @@ const StateMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("statelist", postData);
+        const { data } = await axiosOther.post("citylist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
         console.log(error);
       }
     };
+
     postDataToServer();
-  }, [getData]);
+  }, []);
 
   useEffect(() => {
     const result = getData.filter((item) => {
       return item.Name.toLowerCase().match(postData.Search.toLowerCase());
     });
+
     setFilterData(result);
   }, [postData]);
-
+  
   const handleEditClick = (rowValue) => {
     console.log(rowValue);
     setEditData({
       id: rowValue.Id,
+      CountryId: rowValue.CountryName === "India" ? "1" : "2",
+      StateId: rowValue.StateName === "Rajsthan" ? "1" : "2",
       Name: rowValue.Name,
-      CountryId: rowValue.CountryId,
-      Status: (rowValue.Status==='Active') ? 1 : 0,
-      UpdatedBy: 1,
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };
@@ -67,13 +70,13 @@ const StateMaster = () => {
       sortable: true,
     },
     {
-      name: "Country Name",
-      selector: (row) => row.CountryName,
+      name: "State Name",
+      selector: (row) => row.StateName,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Country Name",
+      selector: (row) => row.CountryName,
       sortable: true,
     },
     {
@@ -95,7 +98,12 @@ const StateMaster = () => {
           </span>
         );
       },
-    }
+    },
+    {
+      name: "Status",
+      selector: (row) => row.Status,
+      sortable: true,
+    },
   ];
 
   return (
@@ -108,7 +116,7 @@ const StateMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">State Master</h5>
+                <h5 className="card-title d-none d-sm-block">Vehicle Brand</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -120,48 +128,64 @@ const StateMaster = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add State"}
-                  apiurl={"addupdatestate"}
-                  initialValues={stateInitialValue}
-                  validationSchema={stateValidationSchema}
+                  heading={"Add Vehicle"}
+                  apiurl={"addupdatecity"}
+                  initialValues={cityInitialValue}
+                  validationSchema={cityValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
-                  setIsEditing={setEditData}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
-                    <div className="col-sm-4">
-                        <label>Country</label>
+                      <div className="col-sm-3">
+                        <label htmlFor="country">Country</label>
                         <Field
-                          name="CountryId"
                           className="form-control"
                           component={"select"}
+                          name="countryId"
                         >
-                          <option value={1}>India</option>
-                          <option value={2}>America</option>
+                          <option value={"1"}>India</option>
+                          <option value={"2"}>Iran</option>
+                          <option value={"3"}>China</option>
                         </Field>
                       </div>
-                      <div className="col-sm-4">
+                      <div className="col-sm-3">
+                        <label>State</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="stateId"
+                        >
+                          <option value={"1"}>Rajsthan</option>
+                          <option value={"2"}>Hryana</option>
+                          <option value={"4"}>Bihar</option>
+                          <option value={"5"}>West Bangal</option>
+                          <option value={"6"}>Banglore</option>
+                          <option value={"7"}>Uttar Pradesh</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-3">
                         <label>Name</label>
                         <Field
                           type="text"
-                          name="Name"
-                          placeholder="Enter Name"
+                          placeholder="City Name"
                           className="form-control"
+                          name="Name"
                         />
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Name" />
                         </span>
                       </div>
-                      <div className="col-sm-4">
+                      <div className="col-sm-3">
                         <label>Status</label>
                         <Field
-                          name="Status"
                           className="form-control"
                           component={"select"}
+                          name="Status"
                         >
-                          <option value={1}>Active</option>
-                          <option value={0}>Inactive</option>
+                          <option value="1">Active</option>
+                          <option value="0">Inactive</option>
                         </Field>
                       </div>
                     </div>
@@ -174,9 +198,9 @@ const StateMaster = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
-                    name="Search"
-                    placeholder="Search here.."
+                    placeholder="Search"
                     className="search-input focus-ring form-input"
+                    name="Search"
                     value={postData.Search}
                     onChange={(e) =>
                       setPostData({ ...postData, Search: e.target.value })
@@ -186,12 +210,11 @@ const StateMaster = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <select
                     className="select-input focus-ring form-input"
-                    onChange={(e) => {
-                      setPostData({
-                        ...postData,
-                        Status: e.target.value,
-                      });
-                    }}
+                    name="Status"
+                    value={postData.Status}
+                    onChange={(e) =>
+                      setPostData({ ...postData, Status: e.target.value })
+                    }
                   >
                     <option value="0">Select Status</option>
                     <option value="1">Active</option>
@@ -210,7 +233,11 @@ const StateMaster = () => {
           <div className="card shadow-none border">
             <DataTable
               columns={columns}
-              data={filterData}
+              data={
+                postData.Search !== "" || postData.Status !== ""
+                  ? filterData
+                  : getData
+              }
               pagination
               fixedHeader
               fixedHeaderScrollHeight="280px"
@@ -223,5 +250,4 @@ const StateMaster = () => {
   );
 };
 
-export default StateMaster;
-
+export default VehicleBrand;

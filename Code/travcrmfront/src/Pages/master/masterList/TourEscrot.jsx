@@ -7,7 +7,7 @@ import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import {
   tourEscortInitialValue,
-  tourEscortValidationSchema,
+  tourEscortValidationSchema
 } from "./MasterValidation";
 import "jquery";
 import "select2";
@@ -105,8 +105,8 @@ const TourEscort = () => {
       name: "Email/Phone",
       selector: (row) => (
         <>
-        <span>{row.Email}</span>/
-        <span>{row.MobileNumber}</span>
+        <span className="font-size-10">{row.Email} /</span>
+        <span className="font-size-10">{row.MobileNumber}</span>
         </>
       ),
       sortable: true,

@@ -342,13 +342,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/passporttype">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/passport5.png" alt="image"/>
                       <span className="pl-1">Passport Type</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/passportcost">
                     <div className="master-list-icon">
                       <img src="assets/icons/passport7.png" alt="image" />
                       <span className="pl-1">Passport Cost</span>
@@ -370,13 +370,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/train">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/rail.png" alt="image"/>
                       <span className="pl-1">Train Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/airline">
                     <div className="master-list-icon">
                       <img src="assets/icons/travelling.png" alt="image"/>
                       <span className="pl-1">Airline Master</span>
@@ -398,13 +398,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   ></img>
                 </div>
                 <div className="col-7 p-0 ml-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/additionalrequirement">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/gear.png" alt="image"/>
                       <span className="pl-1">Additional Requirement</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/operationrestriction">
                     <div className="master-list-icon">
                       <img src="assets/icons/hotel1.png" alt="image" />
                       <span className="pl-1">Operation Restriction</span>
@@ -435,13 +435,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
             <div className="col-xl-11 col-lg-10 col-md-10 col-sm-10">
               <div className="row">
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/transfermaster">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/document.png" alt="image" />
                       <span className="pl-1">Transfer Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelcategory">
+                  <NavLink to="/master/vehicletype">
                     <div className="master-list-icon">
                       <img src="assets/icons/hotel1.png" alt="image" />
                       <span className="pl-1">Vehicle Type Master</span>
@@ -449,13 +449,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/roomtype">
+                  <NavLink to="/master/transfertype">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/living-room.png" alt="image" />
                       <span className="pl-1">Transfer Type</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotel_additional">
+                  <NavLink to="/master/vehiclebrand">
                     <div className="master-list-icon">
                       <img src="assets/icons/hotel3.png" alt="image" />
                       <span className="pl-1">Vehicle Brand Master</span>
@@ -463,13 +463,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/amenties">
+                  <NavLink to="/master/transport">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/amenities.png" alt="image" />
                       <span className="pl-1">Transport Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/room_master">
+                  <NavLink to="/master/driver">
                     <div className="master-list-icon">
                       <img src="assets/icons/room.png" alt="image" />
                       <span className="pl-1">Driver Master</span>
@@ -477,13 +477,13 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hoteltype">
+                  <NavLink to="/master/vehiclemaster">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/hotel2.png" alt="image" />
                       <span className="pl-1">Vehicle Master</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotelchain">
+                  <NavLink to="/master/fleet">
                     <div className="master-list-icon">
                       <img src="assets/icons/building.png" alt="image" />
                       <span className="pl-1">Fleet Master</span>
