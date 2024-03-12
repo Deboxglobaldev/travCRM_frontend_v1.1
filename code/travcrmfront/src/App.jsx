@@ -76,6 +76,7 @@ import ItenaryOverview from "./Pages/master/masterList/ItenaryOverview.jsx";
 import FIT from "./Pages/master/masterList/FIT.jsx";
 import GIT from "./Pages/master/masterList/GIT.jsx";
 import LetterMaster from "./Pages/master/masterList/LetterMaster.jsx";
+import Users from "./Component/Layout/Users.jsx";
 
 const App = () => {
   return (
@@ -156,6 +157,7 @@ const App = () => {
           <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
           <Route path="/profile" element={<Protected><Profile/></Protected>}></Route>
+          <Route path="/users" element={<Protected><Users/></Protected>}></Route>
           <Route path="/login" element={<Login/>}/>
           <Route path="/logout"element={<Protected><Logout/></Protected>}/>
         </Routes>

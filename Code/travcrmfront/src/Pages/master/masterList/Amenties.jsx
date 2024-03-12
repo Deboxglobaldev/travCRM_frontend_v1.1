@@ -19,7 +19,6 @@ const Amenties = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -153,8 +152,8 @@ const Amenties = () => {
                           component={"select"}
                           name="Status"
                         >
-                          <option value="1">Active</option>
-                          <option value="0">Inactive</option>
+                          <option value={1}>Active</option>
+                          <option value={2}>Inactive</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">
@@ -206,9 +205,9 @@ const Amenties = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option value="0">Select Status</option>
-                    <option value="1">Active</option>
-                    <option value="2">Inactive</option>
+                    <option value={0}>Select Status</option>
+                    <option value={1}>Active</option>
+                    <option value={2}>Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">

@@ -195,7 +195,7 @@ const VehicleType = () => {
                     name="Status"
                     value={postData.Status}
                     onChange={(e) =>
-                      setPostData({ ...postData, Status: e.target.value })
+                      setPostData({ ...postData, Status:e.target.value })
                     }
                   >
                     <option>Select Status</option>

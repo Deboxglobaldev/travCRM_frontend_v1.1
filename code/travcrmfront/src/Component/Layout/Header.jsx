@@ -237,9 +237,12 @@ const Header = () => {
               </a>
 
               <div className="dropdown-menu dropdown-menu-right">
-                <Link to="/profile" className="dropdown-item">
-                  <i className="icon-user-plus"></i> My profile
-                </Link>
+                <NavLink to="/profile" className="dropdown-item">
+                <i className="fa-solid fa-user"></i> My profile
+                </NavLink>
+                <NavLink to="/users" className="dropdown-item">
+                  <i className="icon-user-plus"></i> Users
+                </NavLink>
                 <a href="/#" className="dropdown-item">
                   <i className="icon-comment-discussion"></i> Messages
                   <span className="badge badge-pill bg-blue ml-auto">58</span>
@@ -248,9 +251,9 @@ const Header = () => {
                 <a href="/#" className="dropdown-item">
                   <i className="icon-cog5"></i> Account settings
                 </a>
-                <Link to="/logout" className="dropdown-item">
+                <NavLink to="/logout" className="dropdown-item">
                   <i className="icon-switch2"></i> Logout
-                </Link>
+                </NavLink>
               </div>
             </li>
           </ul>

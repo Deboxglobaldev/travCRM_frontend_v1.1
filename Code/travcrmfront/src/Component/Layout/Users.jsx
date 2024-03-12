@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
-import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
+import Layout from "./Layout";
+import Model from "./Model";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
-import { axiosOther } from "../../../http/axios/axios_new";
+import {
+  amentiesInitialValue,
+  amentiesValidationSchema,
+} from "../../Pages/master/masterList/MasterValidation";
+import { axiosOther } from "../../http/axios/axios_new";
 
-const CityMaster = () => {
+
+const Users = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
@@ -20,7 +24,7 @@ const CityMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("amenitieslist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -38,24 +42,24 @@ const CityMaster = () => {
 
     setFilterData(result);
   }, [postData]);
-  
+
   const handleEditClick = (rowValue) => {
-    console.log(rowValue);
     setEditData({
       id: rowValue.Id,
-      CountryId: rowValue.CountryName === "India" ? "1" : "2",
-      StateId: rowValue.StateName === "Rajsthan" ? "1" : "2",
       Name: rowValue.Name,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      Status: rowValue.SetDefault === "Active" ? 1 : 0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
     });
     setIsEditing(true);
   };
 
   const columns = [
     {
-      name: "Name",
+      name: "User Code",
       selector: (row) => (
         <span>
           <i
@@ -64,44 +68,44 @@ const CityMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.AmenityImage}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "State Name",
-      selector: (row) => row.StateName,
+      name: "User Name",
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: "Country Name",
-      selector: (row) => row.CountryName,
+      name: "Email Address",
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
+      name: "Role",
+      selector: (row) => row.Name,
+      sortable: true,
     },
     {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
+      name: "User Type",
+      selector: (row) => row.Name,
+      sortable: true,
+    },
+    {
+      name: "Profile",
+      selector: (row) => row.Name,
+      sortable: true,
+    },
+    {
+      name: "Reporting Manager",
+      selector: (row) => row.Name,
+      sortable: true,
     },
     {
       name: "Status",
-      selector: (row) => row.Status,
+      selector: (row) => row.Name,
       sortable: true,
     },
   ];
@@ -116,7 +120,7 @@ const CityMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">City Master</h5>
+                <h5 className="card-title d-none d-sm-block">Users</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -129,9 +133,9 @@ const CityMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add City"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdateamenities"}
+                  initialValues={amentiesInitialValue}
+                  validationSchema={amentiesValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -139,37 +143,10 @@ const CityMaster = () => {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-sm-3">
-                        <label htmlFor="country">Country</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="countryId"
-                        >
-                          <option value={1}>India</option>
-                          <option value={2}>Iran</option>
-                          <option value={3}>China</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>State</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="stateId"
-                        >
-                          <option value={1}>Rajsthan</option>
-                          <option value={2}>Hryana</option>
-                          <option value={4}>Bihar</option>
-                          <option value={5}>West Bangal</option>
-                          <option value={6}>Banglore</option>
-                          <option value={7}>Uttar Pradesh</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-3">
                         <label>Name</label>
                         <Field
                           type="text"
-                          placeholder="City Name"
+                          placeholder="Amenity Name"
                           className="form-control"
                           name="Name"
                         />
@@ -186,6 +163,27 @@ const CityMaster = () => {
                         >
                           <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Amenty Image</label>
+                        <Field
+                          type="file"
+                          name="AmentyImage"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="col-sm-2">
+                        <label>Set Default</label>
+                        <Field
+                          name="SetDefault"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={0} selected>
+                            No
+                          </option>
+                          <option value={1}>Yes</option>
                         </Field>
                       </div>
                     </div>
@@ -216,14 +214,14 @@ const CityMaster = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option value="0">Select Status</option>
-                    <option value="1">Active</option>
-                    <option value="2">Inactive</option>
+                    <option value={0}>Select Status</option>
+                    <option value={1}>Active</option>
+                    <option value={2}>Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <button className="btn bg-teal-400 w-75 custom-h-37">
-                    Search
+                   Search
                   </button>
                 </div>
               </div>
@@ -250,4 +248,4 @@ const CityMaster = () => {
   );
 };
 
-export default CityMaster;
+export default Users;

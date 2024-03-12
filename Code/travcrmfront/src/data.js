@@ -550,5 +550,26 @@ const newMasterList = {
     ]
 }
 
+const userJson ={
+    UserCode:"",
+    FristName:"",
+    LastName:"",
+    Email:"",
+    Phone:"",
+    Mobile:"",
+    Password:"",
+    PIN:"",
+    Role:"",
+    Street:"",
+    LanguageKnown:"",
+    TimeFormat:"",
+    Profile:"",
+    Destination:"",
+    UsersDepartment:"",
+    ReportingManager:"",
+    UserType:"",
+    UserLoginType:"",
+}
+
 export default stateData;
 export {countryData, cityList, newMasterList}

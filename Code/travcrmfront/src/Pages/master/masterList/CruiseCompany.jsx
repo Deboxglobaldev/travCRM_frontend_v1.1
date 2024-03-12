@@ -154,10 +154,10 @@ const CruiseCompany = () => {
                           component={"select"}
                         >
                           <option value={1}>Noida</option>
-                          <option value={1}>Mumbai</option>
-                          <option value={1}>Delhi</option>
-                          <option value={2}>Gurgaon</option>
-                          <option value={2}>Kolkata</option>
+                          <option value={2}>Mumbai</option>
+                          <option value={3}>Delhi</option>
+                          <option value={4}>Gurgaon</option>
+                          <option value={5}>Kolkata</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">

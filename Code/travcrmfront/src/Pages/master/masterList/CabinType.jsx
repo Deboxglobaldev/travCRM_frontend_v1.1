@@ -145,9 +145,9 @@ const CabinType = () => {
                           component={"select"}
                           name="countryId"
                         >
-                          <option value={"1"}>Select Cruise Name</option>
-                          <option value={"2"}>DEF</option>
-                          <option value={"3"}>GHJ</option>
+                          <option value={0}>Select Cruise Name</option>
+                          <option value={1}>DEF</option>
+                          <option value={2}>GHJ</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">
@@ -169,8 +169,8 @@ const CabinType = () => {
                           component={"select"}
                           name="Status"
                         >
-                          <option value="1">Active</option>
-                          <option value="0">Inactive</option>
+                          <option value={1}>Active</option>
+                          <option value={0}>Inactive</option>
                         </Field>
                       </div>
                     </div>
@@ -201,9 +201,9 @@ const CabinType = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option value="0">Select Status</option>
-                    <option value="1">Active</option>
-                    <option value="2">Inactive</option>
+                    <option value={0}>Select Status</option>
+                    <option value={1}>Active</option>
+                    <option value={2}>Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">

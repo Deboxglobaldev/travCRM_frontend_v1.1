@@ -114,9 +114,7 @@ const LetterMaster = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">
-                  Letter Master
-                </h5>
+                <h5 className="card-title d-none d-sm-block">Letter Master</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/*Bootstrap Modal*/}
@@ -235,5 +233,4 @@ const LetterMaster = () => {
     </>
   );
 };
-
 export default LetterMaster;
