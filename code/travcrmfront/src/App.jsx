@@ -56,6 +56,22 @@ import TransportMaster from "./Pages/master/masterList/TransportMaster";
 import DriverMaster from "./Pages/master/masterList/DriverMaster";
 import VehicleMaster from "./Pages/master/masterList/VehicleMaster";
 import FleetMaster from "./Pages/master/masterList/FleetMaster";
+import CruiseCompany from "./Pages/master/masterList/CruiseCompany";
+import CruiseNameCompany from "./Pages/master/masterList/CruiseNameCompany";
+import CabinType from "./Pages/master/masterList/CabinType";
+import CabinCategory from "./Pages/master/masterList/CabinCategory";
+import CruiseMaster from "./Pages/master/masterList/CruiseMaster";
+import FerryCompany from "./Pages/master/masterList/FerryCompany";
+import FerryMaster from "./Pages/master/masterList/FerryMaster";
+import FerrySeat from "./Pages/master/masterList/FerrySeat";
+import FerryPrice from "./Pages/master/masterList/FerryPrice";
+import CurrencyMaster from "./Pages/master/masterList/CurrencyMaster";
+import TaxMaster from "./Pages/master/masterList/TaxMaster";
+import ExpenseType from "./Pages/master/masterList/ExpenseType";
+import ExpenseHead from "./Pages/master/masterList/ExpenseHead";
+import SACCode from "./Pages/master/masterList/SACCode.JSX";
+import PaymentType from "./Pages/master/masterList/PaymentType.jsx";
+import BankMaster from "./Pages/master/masterList/BankMaster.jsx";
 
 const App = () => {
   return (
@@ -114,10 +130,26 @@ const App = () => {
           <Route path="/master/driver" element={<DriverMaster/>}></Route>
           <Route path="/master/vehiclemaster" element={<VehicleMaster/>}></Route>
           <Route path="/master/fleet" element={<FleetMaster/>}></Route>
+          <Route path="/master/cruisecompany" element={<CruiseCompany/>}></Route>
+          <Route path="/master/cruisenamecompany" element={<CruiseNameCompany/>}></Route>
+          <Route path="/master/cabintype" element={<CabinType/>}></Route>
+          <Route path="/master/cabincategory" element={<CabinCategory/>}></Route>
+          <Route path="/master/cruisemaster" element={<CruiseMaster/>}></Route>
+          <Route path="/master/ferrycompany" element={<FerryCompany/>}></Route>
+          <Route path="/master/ferrymaster" element={<FerryMaster/>}></Route>
+          <Route path="/master/ferryseat" element={<FerrySeat/>}></Route>
+          <Route path="/master/ferryprice" element={<FerryPrice/>}></Route>
+          <Route path="/master/currencymaster" element={<CurrencyMaster/>}></Route>
+          <Route path="/master/taxmaster" element={<TaxMaster/>}></Route>
+          <Route path="/master/expensetype" element={<ExpenseType/>}></Route>
+          <Route path="/master/expensehead" element={<ExpenseHead/>}></Route>
+          <Route path="/master/saccode" element={<SACCode/>}></Route>
+          <Route path="/master/paymenttype" element={<PaymentType/>}></Route>
+          <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
-          <Route path="/profile" element={<Protected><Profile /></Protected>}></Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout"element={<Protected><Logout /></Protected>}/>
+          <Route path="/profile" element={<Protected><Profile/></Protected>}></Route>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/logout"element={<Protected><Logout/></Protected>}/>
         </Routes>
       </Router>
     </>
