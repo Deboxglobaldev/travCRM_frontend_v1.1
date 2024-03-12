@@ -69,9 +69,13 @@ import CurrencyMaster from "./Pages/master/masterList/CurrencyMaster";
 import TaxMaster from "./Pages/master/masterList/TaxMaster";
 import ExpenseType from "./Pages/master/masterList/ExpenseType";
 import ExpenseHead from "./Pages/master/masterList/ExpenseHead";
-import SACCode from "./Pages/master/masterList/SACCode.JSX";
+import SACCode from "./Pages/master/masterList/SACCode.jsx";
 import PaymentType from "./Pages/master/masterList/PaymentType.jsx";
 import BankMaster from "./Pages/master/masterList/BankMaster.jsx";
+import ItenaryOverview from "./Pages/master/masterList/ItenaryOverview.jsx";
+import FIT from "./Pages/master/masterList/FIT.jsx";
+import GIT from "./Pages/master/masterList/GIT.jsx";
+import LetterMaster from "./Pages/master/masterList/LetterMaster.jsx";
 
 const App = () => {
   return (
@@ -139,6 +143,10 @@ const App = () => {
           <Route path="/master/ferrymaster" element={<FerryMaster/>}></Route>
           <Route path="/master/ferryseat" element={<FerrySeat/>}></Route>
           <Route path="/master/ferryprice" element={<FerryPrice/>}></Route>
+          <Route path="/master/itenararyoverview" element={<ItenaryOverview/>}></Route>
+          <Route path="/master/lettermaster" element={<LetterMaster/>}></Route>
+          <Route path="/master/fit" element={<FIT/>}></Route>
+          <Route path="/master/git" element={<GIT/>}></Route>
           <Route path="/master/currencymaster" element={<CurrencyMaster/>}></Route>
           <Route path="/master/taxmaster" element={<TaxMaster/>}></Route>
           <Route path="/master/expensetype" element={<ExpenseType/>}></Route>

@@ -638,7 +638,7 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                       <span className="pl-1">Itenarary Requirement</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/lettermaster">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/letter.png" alt="image" />
                       <span className="pl-1">Letter Master</span>
@@ -647,7 +647,7 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/roomtype">
+                  <NavLink to="/master/itenararyoverview">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/itinerary2.png" alt="image" />
                       <span className="pl-1">Itenarary Overview</span>
@@ -669,7 +669,7 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hoteltype">
+                  <NavLink to="/master/fit">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/t&c2.png" alt="image" />
                       <span className="pl-1">FIT Inc&Exc/T&C</span>
@@ -677,7 +677,7 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hoteltype">
+                  <NavLink to="/master/git">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/t&c1.png" alt="image" />
                       <span className="pl-1">GIT Inc&Exc/T&C</span>
