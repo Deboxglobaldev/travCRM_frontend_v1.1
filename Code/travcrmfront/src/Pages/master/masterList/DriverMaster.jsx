@@ -5,7 +5,10 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
+import {
+  driverMasterInitialValue,
+  driverMasterValidationSchema,
+} from "./MasterValidation";
 
 const DriverMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -20,7 +23,7 @@ const DriverMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("drivermasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -38,15 +41,22 @@ const DriverMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
+      id: romwValue.Id,
+      Country: rowValue.Country,
+      DriverName: rowValue.DriverName,
+      MobileNumber: rowValue.MobileNumber,
+      AlternateMobileNo: rowValue.AlternateMobileNo,
+      WhatsappNumber: rowValue.WhatsappNumber,
+      LicenseNumber: rowValue.LicenseNumber,
+      BirthDate: rowValue.BirthDate,
+      ValidUpto: rowValue.ValidUpto,
+      PassportNumber: rowValue.PassportNumber,
+      LicenseName: rowValue.LicenseName,
+      LicenseData: rowValue.LicenseData,
+      Status:rowValue.Status==="Active"? 1:0,
+      Address: rowValue.Address,
       UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
@@ -54,7 +64,7 @@ const DriverMaster = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Profile",
       selector: (row) => (
         <span>
           <i
@@ -63,37 +73,67 @@ const DriverMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.Profile}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Document",
+      selector: (row) => row.Document,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Driver Name",
+      selector: (row) => row.DriverName,
       sortable: true,
     },
     {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
+      name: "Country",
+      selector: (row) => row.Country,
+      sortable: true,
     },
     {
-      name: "Updated By",
+      name: "Emiratees Id/License Number",
+      selector: (row) => row.LicenseNumber,
+      sortable: true,
+    },
+    {
+      name: "Mobile Number",
+      selector: (row) => row.MobileNumber,
+      sortable: true,
+    },
+    {
+      name: "Alt Number",
+      selector: (row) => row.AlternateMobileNo,
+      sortable: true,
+    },
+    {
+      name: "Whatsapp Number",
+      selector: (row) => row.WhatsappNumber,
+      sortable: true,
+    },
+    {
+      name: "Passport Number",
+      selector: (row) => row.WhatsappNumber,
+      sortable: true,
+    },
+    {
+      name: "Vehicles",
+      selector: (row) => row.Vehicle,
+      sortable: true,
+    },
+    {
+      name: "Seating Capacity",
+      selector: (row) => row.Vehicle,
+      sortable: true,
+    },
+    {
+      name: "Status",
       selector: (row) => {
         return (
           <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Status}
           </span>
         );
       },
@@ -125,19 +165,19 @@ const DriverMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Airline"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatedrivermaster"}
+                  initialValues={driverMasterInitialValue}
+                  validationSchema={driverMasterValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row row-gap-3">
-                    <div className="col-sm-4">
+                      <div className="col-sm-4">
                         <label>Country</label>
                         <Field
-                          name="SetDefault"
+                          name="Country"
                           className="form-control"
                           component={"select"}
                         >
@@ -152,12 +192,12 @@ const DriverMaster = () => {
                         <label>Driver Name</label>
                         <Field
                           type="text"
-                          name="ShortName"
+                          name="DriverName"
                           placeholder="Driver Name"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
+                          <ErrorMessage name="DriverName" />
                         </span>
                       </div>
                       <div className="col-sm-4">
@@ -169,7 +209,7 @@ const DriverMaster = () => {
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="MobileNumber" />
                         </span>
                       </div>
                       <div className="col-sm-4">
@@ -177,36 +217,30 @@ const DriverMaster = () => {
                         <Field
                           type="text"
                           name="ShortName"
-                          placeholder="WhatsApp Number"
+                          placeholder="WhatsAppNumber"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
+                          <ErrorMessage name="WhatsAppNumber" />
                         </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Alternate Mobile Number</label>
                         <Field
                           type="text"
-                          name="ShortName"
+                          name="AlternateMobileNo"
                           placeholder="Enter Short Name"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>License Number</label>
                         <Field
                           type="text"
-                          name="ShortName"
+                          name="LicenseNumber"
                           placeholder="License Number"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Birthdate</label>
@@ -215,32 +249,23 @@ const DriverMaster = () => {
                           name="BirthDate"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Valid Upto</label>
                         <Field
                           type="date"
-                          name="ShortName"
+                          name="ValidUpto"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Passport Number</label>
                         <Field
                           type="text"
-                          name="ShortName"
+                          name="PassportNumber"
                           placeholder="Enter Short Name"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Address</label>
@@ -251,30 +276,24 @@ const DriverMaster = () => {
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
+                          <ErrorMessage name="Address" />
                         </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Upload License</label>
                         <Field
                           type="file"
-                          name="ShortName"
+                          name="LicenseName"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Image</label>
                         <Field
                           type="file"
-                          name="ShortName"
+                          name="LicenseData"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>

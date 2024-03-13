@@ -289,6 +289,55 @@ export const tourEscortInitialValue = {
   AddedBy: 1,
   UpdatedBy: 0,
 };
+export const vehicleTypeInitialValue = {
+  id: "",
+  Name: "",
+  PaxCapacity: "",
+  Status: 1,
+  AddedBy: 1,
+};
+export const additionalRequiremntInitialValue = {
+  id: "",
+  Name: "",
+  DestinationId: "1",
+  CurrencyId: "1",
+  CostType: "1",
+  TaxSlab: "",
+  MarkupApply: "",
+  ShowInProposal: "",
+  AdultCost: "",
+  ChildCost: "",
+  InfantCost: "",
+  ImageName: "",
+  Details: "",
+  Status: "",
+  AddedBy: "",
+  ImageData: "",
+};
+export const driverMasterInitialValue = {
+  id: "",
+  Country: "",
+  DriverName: "",
+  MobileNumber: "",
+  AlternateMobileNo: "",
+  WhatsappNumber: "",
+  LicenseNumber: "",
+  BirthDate: "",
+  ValidUpto: "",
+  PassportNumber: "",
+  LicenseName: "",
+  LicenseData: "",
+  Address: "",
+  UpdatedBy: 1,
+};
+export const trainMasterInitialValue = {
+  id: "",
+  Name: "",
+  ImageName: "",
+  ImageData:"",
+  Status: 1,
+  UpdatedBy: 1,
+};
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 
 export const countryValidationSchema = yup.object().shape({
@@ -405,9 +454,24 @@ export const tourEscortPriceValidationSchema = yup.object().shape({
   TourEscortService: yup.string().required("Required"),
 });
 export const tourEscortValidationSchema = yup.object().shape({
-  Name: yup.string().required('Required'),
-  MobileNumber : yup.string().required('Required'),
-  Email: yup.string().required('Required'),
-  Destination : yup.string().required('Required'),
-  Address : yup.string().required('Required')
+  Name: yup.string().required("Required"),
+  MobileNumber: yup.string().required("Required"),
+  Email: yup.string().required("Required"),
+  Destination: yup.string().required("Required"),
+  Address: yup.string().required("Required"),
+});
+export const vehicleTypeValidationSchema = yup.object().shape({
+  Name: yup.string().required("Required"),
+});
+export const additionaRequirementValidationSchema = yup.object().shape({
+  Name: yup.string().required("Required"),
+});
+export const driverMasterValidationSchema = yup.object().shape({
+  DriverName: yup.string().required("Required"),
+  MobileNumber: yup.number().required("Required"),
+  WhatsappNumber: yup.number().required("Required"),
+  Address: yup.string().required("Address"),
+});
+export const trainMasterValidationSchema =yup.object().shape({
+  Name:yup.string().required('Required')
 })

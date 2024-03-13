@@ -5,7 +5,7 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
+import { vehicleTypeInitialValue, vehicleTypeValidationSchema } from "./MasterValidation";
 
 const VehicleType = () => {
 
@@ -21,7 +21,7 @@ const VehicleType = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("vehicletypemasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,18 +44,16 @@ const VehicleType = () => {
     setEditData({
       id: rowValue.Id,
       Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      PaxCapacity: rowValue.PaxCapacity,
+      Status: rowValue.Status==="Active"? 1:0,
       AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Vehicle Type",
       selector: (row) => (
         <span>
           <i
@@ -70,8 +68,8 @@ const VehicleType = () => {
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Pax Capacity",
+      selector: (row) => row.PaxCapacity,
       sortable: true,
     },
     {
@@ -84,17 +82,7 @@ const VehicleType = () => {
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            Admin <br /> {row.AddedBy}
           </span>
         );
       },
@@ -125,10 +113,10 @@ const VehicleType = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Country"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  heading={"Add Vehicle Type"}
+                  apiurl={"addupdatevehicletypemaster"}
+                  initialValues={vehicleTypeInitialValue}
+                  validationSchema={vehicleTypeValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -151,13 +139,11 @@ const VehicleType = () => {
                         <label>Capacity</label>
                         <Field
                           type="text"
-                          name="ShortName"
+                          name="PaxCapacity"
                           placeholder="Capacity"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
+                        
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>

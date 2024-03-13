@@ -5,8 +5,10 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
-
+import {
+  trainMasterInitialValue,
+  trainMasterValidationSchema,
+} from "./MasterValidation";
 
 const TrainMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -21,7 +23,7 @@ const TrainMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("trainMasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -39,15 +41,13 @@ const TrainMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
       Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      ImageName: rowValue.ImageName,
+      ImageData: rowValue.ImageData,
       Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
@@ -55,7 +55,7 @@ const TrainMaster = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Image",
       selector: (row) => (
         <span>
           <i
@@ -64,37 +64,27 @@ const TrainMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.ImageName}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Train Name",
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Train Name",
+      selector: (row) => row.TrainNumber,
       sortable: true,
     },
     {
-      name: "Added By",
+      name: "Status",
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            Admin <br /> {row.Status}
           </span>
         );
       },
@@ -126,17 +116,17 @@ const TrainMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Train Master"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatetrainmaster"}
+                  initialValues={trainMasterInitialValue}
+                  validationSchema={trainMasterValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
+                      <div className="col-sm-4">
+                        <label>Train Name</label>
                         <Field
                           type="text"
                           name="Name"
@@ -147,17 +137,13 @@ const TrainMaster = () => {
                           <ErrorMessage name="Name" />
                         </span>
                       </div>
-                      <div className="col-sm-3">
-                        <label>Short Name</label>
+                      <div className="col-sm-4">
+                        <label>Image</label>
                         <Field
-                          type="text"
-                          name="ShortName"
-                          placeholder="Enter Short Name"
+                          type="file"
+                          name="ImageData"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
@@ -168,17 +154,6 @@ const TrainMaster = () => {
                         >
                           <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0}>No</option>
-                          <option value={1}>Yes</option>
                         </Field>
                       </div>
                     </div>
@@ -222,7 +197,6 @@ const TrainMaster = () => {
               </div>
             </div>
           </div>
-
           {/*******************------Table Card-----*******************/}
           <div className="card shadow-none border mt-2">
             <DataTable
@@ -239,5 +213,4 @@ const TrainMaster = () => {
     </>
   );
 };
-
 export default TrainMaster;

@@ -5,8 +5,10 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
-
+import {
+  additionalRequiremntInitialValue,
+  additionaRequirementValidationSchema,
+} from "./MasterValidation";
 
 const AdditionalRequirement = () => {
   const [getData, setGetData] = useState([]);
@@ -21,7 +23,10 @@ const AdditionalRequirement = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post(
+          "additionalrequirementmasterlist",
+          postData
+        );
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -39,23 +44,31 @@ const AdditionalRequirement = () => {
     setFilterData(result);
   }, [postData]);
 
-
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
       Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      DestinationId: rowValue.DestinationId,
+      CurrencyId: rowValue.CurrencyId,
+      CostType: rowValue.CostType,
+      TaxSlab: rowValue.TaxSlab,
+      MarkupApply: rowValue.MarkupApply,
+      ShowInProposal: rowValue.ShowInProposal,
+      AdultCost: rowValue.AdultCost,
+      ChildCost: rowValue.ChildCost,
+      InfantCost: rowValue.InfantCost,
+      ImageName: rowValue.ImageName,
+      Details: rowValue.Details,
+      Status: rowValue.Status,
       AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
+      ImageData: rowValue.ImageData,
     });
     setIsEditing(true);
   };
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Image",
       selector: (row) => (
         <span>
           <i
@@ -64,37 +77,67 @@ const AdditionalRequirement = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.Image}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Additional Name",
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Destination",
+      selector: (row) => row.DestinationId,
       sortable: true,
     },
     {
-      name: "Added By",
+      name: "Per Pax Cost",
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
+            Admin <br /> {row.PerPaxCost}
           </span>
         );
       },
     },
     {
-      name: "Updated By",
+      name: "Group Cost",
       selector: (row) => {
         return (
           <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            Admin <br /> {row.GroupCost}
+          </span>
+        );
+      },
+    },
+    {
+      name: "Description",
+      selector: (row) => {
+        return (
+          <span>
+            Admin <br /> {row.Details}
+          </span>
+        );
+      },
+    },
+    {
+      name: "Created_By",
+      selector: (row) => {
+        return (
+          <span>
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Created_at}
+          </span>
+        );
+      },
+    },
+    {
+      name: "Status",
+      selector: (row) => {
+        return (
+          <span>
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Status}
           </span>
         );
       },
@@ -113,7 +156,9 @@ const AdditionalRequirement = () => {
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Additional Requirement</h5>
+                <h5 className="card-title d-none d-sm-block">
+                  Additional Requirement
+                </h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/*Bootstrap Modal*/}
@@ -125,39 +170,127 @@ const AdditionalRequirement = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Airline"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  heading={"Add Additional Requirement"}
+                  apiurl={"addupdateadditionalrequirementmaster"}
+                  initialValues={additionalRequiremntInitialValue}
+                  validationSchema={additionaRequirementValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
+                    <div className="row row-gap-3">
+                      <div className="col-sm-4">
+                        <label>Additional Name</label>
                         <Field
                           type="text"
                           name="Name"
-                          placeholder="Enter Name"
+                          placeholder="Name"
                           className="form-control"
                         />
                         <span className="font-size-10 text-danger">
                           <ErrorMessage name="Name" />
                         </span>
                       </div>
-                      <div className="col-sm-3">
-                        <label>Short Name</label>
+                      <div className="col-sm-4">
+                        <label>Destination</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="DestinationId"
+                        >
+                          <option value={1}>Delhi</option>
+                          <option value={2}>Agra</option>
+                          <option value={3}>Mumbai</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>TAX SLAB(%)</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="TaxSlab"
+                        >
+                          <option value={1}>GST Inclusive(0)</option>
+                          <option value={2}>Slab(5)</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Markup Apply</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="MarkupApply"
+                        >
+                          <option value={1}>Yes</option>
+                          <option value={0}>No</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Currency</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="CurrencyId"
+                        >
+                          <option value={1}>AED</option>
+                          <option value={2}>AUD</option>
+                          <option value={3}>GBP</option>
+                          <option value={3}>INR</option>
+                          <option value={3}>JPY</option>
+                          <option value={3}>NPR</option>
+                          <option value={3}>THB</option>
+                          <option value={3}>USD</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Cost Type</label>
+                        <Field
+                          className="form-control"
+                          component={"select"}
+                          name="CostType"
+                        >
+                          <option value={1}>Per Person</option>
+                          <option value={2}>Group Cost</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Adult Cost</label>
                         <Field
                           type="text"
-                          name="ShortName"
-                          placeholder="Enter Short Name"
+                          name="AdultCost"
+                          placeholder="Adult Cost"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Child Cost</label>
+                        <Field
+                          type="text"
+                          name="ChildCost"
+                          placeholder="Child Cost"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Infant Cost</label>
+                        <Field
+                          type="text"
+                          name="InfantCost"
+                          placeholder="Infant Cost"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="col-sm-4">
+                        <label>Show In Proposal</label>
+                        <Field
+                          name="ShowInProposal"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={1}>Yes</option>
+                          <option value={0}>No</option>
+                        </Field>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
@@ -170,16 +303,22 @@ const AdditionalRequirement = () => {
                           <option value={0}>Inactive</option>
                         </Field>
                       </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
+                      <div className="col-sm-4">
+                        <label>Add Image</label>
                         <Field
-                          name="SetDefault"
+                          name="ImageData"
                           className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0}>No</option>
-                          <option value={1}>Yes</option>
-                        </Field>
+                          type="file"
+                        ></Field>
+                      </div>
+                      <div className="col-sm-12">
+                        <label>Details</label>
+                        <Field
+                          name="Details"
+                          className="form-control"
+                          as="textarea"
+                          placeholder="Write Here..."
+                        ></Field>
                       </div>
                     </div>
                   </div>
