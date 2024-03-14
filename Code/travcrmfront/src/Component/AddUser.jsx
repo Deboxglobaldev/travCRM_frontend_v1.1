@@ -1,14 +1,24 @@
 import React from "react";
 import Layout from "./Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
+import bcrypt from 'bcryptjs';
 import {
   addUserInitialValue,
   addUserValidationSchema,
 } from "./Layout/userValidation";
 
 const AddUser = () => {
-  const handleSubmit = (value, {resetForm}) => {
-    console.log(value);
+
+  const handleSubmit = async (value, { resetForm }) => {
+    try{
+      // let password = await bcrypt.hash(value.Password, 10) // Here bycrypted our password from json
+      // value.Password=password;  // Here i stored bycrypted password again inside json
+      const postData = await axios.post('url', value); // now i have posted our json data to api
+      console.log(value);
+    }catch(err){
+      console.log(err);
+    }
     resetForm();
   };
 
@@ -68,7 +78,6 @@ const AddUser = () => {
                               <ErrorMessage name="Email" />
                             </span>
                           </div>
-
                           <Field
                             type="text"
                             name="Email"
@@ -187,7 +196,7 @@ const AddUser = () => {
                           </Field>
                         </div>
                         <div className="col-3">
-                        <div className="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <label className="">Role</label>
                             <span className="font-size-10 text-danger pt-1">
                               <ErrorMessage name="Role" />
@@ -207,7 +216,7 @@ const AddUser = () => {
                           </Field>
                         </div>
                         <div className="col-3">
-                        <div className="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <label className="">User Department</label>
                             <span className="font-size-10 text-danger pt-1">
                               <ErrorMessage name="UserDepartment" />
@@ -225,13 +234,13 @@ const AddUser = () => {
                           </Field>
                         </div>
                         <div className="col-3">
-                        <div className="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <label className="">Profile</label>
                             <span className="font-size-10 text-danger pt-1">
                               <ErrorMessage name="Profile" />
                             </span>
                           </div>
-                          
+
                           <Field
                             component={"select"}
                             name="Profile"
@@ -244,13 +253,13 @@ const AddUser = () => {
                           </Field>
                         </div>
                         <div className="col-3">
-                        <div className="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <label className="">Reporting Manager</label>
                             <span className="font-size-10 text-danger pt-1">
                               <ErrorMessage name="ReportingManager" />
                             </span>
                           </div>
-                         
+
                           <Field
                             component={"select"}
                             name="ReportingManager"

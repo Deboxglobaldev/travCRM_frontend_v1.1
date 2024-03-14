@@ -17,6 +17,7 @@
     "@mui/x-data-grid-generator": "^6.19.4",
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
+    "bcryptjs": "^2.4.3",
     "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "jquery": "^3.7.1",
