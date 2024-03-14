@@ -334,7 +334,15 @@ export const trainMasterInitialValue = {
   id: "",
   Name: "",
   ImageName: "",
-  ImageData:"",
+  ImageData: "",
+  Status: 1,
+  UpdatedBy: 1,
+};
+export const airlineMasterInitialValue = {
+  id: "1",
+  Name: "",
+  ImageName: "",
+  ImageData: "",
   Status: 1,
   UpdatedBy: 1,
 };
@@ -472,6 +480,9 @@ export const driverMasterValidationSchema = yup.object().shape({
   WhatsappNumber: yup.number().required("Required"),
   Address: yup.string().required("Address"),
 });
-export const trainMasterValidationSchema =yup.object().shape({
+export const trainMasterValidationSchema = yup.object().shape({
+  Name: yup.string().required("Required"),
+});
+export const airlineMasterValidationSchema = yup.object().shape({
   Name:yup.string().required('Required')
-})
+});

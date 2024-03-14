@@ -77,6 +77,14 @@ a{
   height: 37px;
   padding-left: 10px;
 }
+.form-input-1{
+  width: 100%;
+  outline: none;
+  border:1px solid rgb(0, 150, 136);
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 10px;
+}
 /* font-size */
 .fs-11{
   font-size: 11px;

@@ -10,7 +10,6 @@ import {
 } from "../../Pages/master/masterList/MasterValidation";
 import { axiosOther } from "../../http/axios/axios_new";
 
-
 const Users = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -116,7 +115,7 @@ const Users = () => {
         <div className="container-fluid p-3 mb-4">
           <div className="card shadow-none border">
             <div
-              className="card-header header-elements-inline bg-info-700 py-2"
+              className="card-header header-elements-inline bg-teal py-2"
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
@@ -131,64 +130,14 @@ const Users = () => {
                 >
                   Back
                 </NavLink>
-                <Model
-                  heading={"Add City"}
-                  apiurl={"addupdateamenities"}
-                  initialValues={amentiesInitialValue}
-                  validationSchema={amentiesValidationSchema}
-                  forEdit={editData}
-                  isEditing={isEditing}
-                  setIsEditing={setIsEditing}
+                <NavLink
+                  to="/users/add"
+                  type="button"
+                  className="btn bg-teal-400 add-button fs-11 shadow"
                 >
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
-                        <Field
-                          type="text"
-                          placeholder="Amenity Name"
-                          className="form-control"
-                          name="Name"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Status</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="Status"
-                        >
-                          <option value={1}>Active</option>
-                          <option value={0}>Inactive</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Amenty Image</label>
-                        <Field
-                          type="file"
-                          name="AmentyImage"
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0} selected>
-                            No
-                          </option>
-                          <option value={1}>Yes</option>
-                        </Field>
-                      </div>
-                    </div>
-                  </div>
-                </Model>
+                  <i className="fa fa-plus pr-1" aria-hidden="true"></i>
+                  Create New
+                </NavLink>
               </div>
             </div>
             <div className="card-body">
@@ -221,7 +170,7 @@ const Users = () => {
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <button className="btn bg-teal-400 w-75 custom-h-37">
-                   Search
+                    Search
                   </button>
                 </div>
               </div>

@@ -5,8 +5,10 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
-
+import {
+  airlineMasterInitialValue,
+  airlineMasterValidationSchema,
+} from "./MasterValidation";
 
 const AirlineMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -21,7 +23,7 @@ const AirlineMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("airlinemasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -39,23 +41,21 @@ const AirlineMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
       Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
+      ImageName: rowValue.ImageName,
+      ImageData: rowValue.ImageData,
+      Status: 1,
+      UpdatedBy: 1,
     });
     setIsEditing(true);
   };
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Image",
       selector: (row) => (
         <span>
           <i
@@ -64,40 +64,20 @@ const AirlineMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.ImageData}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Airline Name",
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: "Status Name",
+      name: "Status",
       selector: (row) => row.Status,
       sortable: true,
-    },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
     },
   ];
   return (
@@ -126,17 +106,17 @@ const AirlineMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Airline"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdateairlinemaster"}
+                  initialValues={airlineMasterInitialValue}
+                  validationSchema={airlineMasterValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
-                      <div className="col-sm-3">
-                        <label>Name</label>
+                      <div className="col-sm-4">
+                        <label>Airline Name</label>
                         <Field
                           type="text"
                           name="Name"
@@ -147,17 +127,13 @@ const AirlineMaster = () => {
                           <ErrorMessage name="Name" />
                         </span>
                       </div>
-                      <div className="col-sm-3">
+                      <div className="col-sm-4">
                         <label>Short Name</label>
                         <Field
-                          type="text"
-                          name="ShortName"
-                          placeholder="Enter Short Name"
+                          type="file"
+                          name="ImageData"
                           className="form-control"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ShortName" />
-                        </span>
                       </div>
                       <div className="col-sm-4">
                         <label>Status</label>
@@ -168,17 +144,6 @@ const AirlineMaster = () => {
                         >
                           <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0}>No</option>
-                          <option value={1}>Yes</option>
                         </Field>
                       </div>
                     </div>

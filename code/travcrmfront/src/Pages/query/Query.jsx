@@ -6,18 +6,15 @@ import axios from "axios";
 import "jquery";
 import "select2";
 
-
 const Query = () => {
   const [queryInputs, setQueryInputs] = useState({
-    QueryType:''
+    QueryType: "",
   });
 
-  
-  const [selectedQueryType, setSelectedQueryType] = useState('');
-  
-  const handleSubmit = async (postData) => {
+  const [selectedQueryType, setSelectedQueryType] = useState("");
 
-    console.log('This is console for inputs.....', postData)
+  const handleSubmit = async (postData) => {
+    console.log("This is console for inputs.....", postData);
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/addupdatequerymaster",
@@ -33,19 +30,16 @@ const Query = () => {
     $(".select2-hidden-accessible").select2();
   });
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     console.log(e.target.value);
-  }
+  };
 
   return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
           <div className="card shadow-none border">
-            <Formik
-              initialValues={inputInitialValue}
-              onSubmit={handleSubmit}
-            >
+            <Formik initialValues={inputInitialValue} onSubmit={handleSubmit}>
               <Form>
                 <div
                   className="card-header header-elements-inline py-2"
@@ -340,7 +334,7 @@ const Query = () => {
                                       <input
                                         type="radio"
                                         name="QueryType"
-                                        value="1" 
+                                        value="1"
                                         onChange={handleChange}
                                       />
                                     </div>
