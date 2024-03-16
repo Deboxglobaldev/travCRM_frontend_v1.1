@@ -64,7 +64,8 @@ const CountryMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.Name} &nbsp;
+          {(row.SetDefault=='Yes') ? <span class="badge bg-success">Default</span> : ''}
         </span>
       ),
       sortable: true,
