@@ -42,13 +42,15 @@ const AddUser = () => {
                 </div>
                 <div className="card-body mt-4">
                   <div className="row justify-content-between">
-                    <div className="col-3 rounded d-flex align-items-center border border-secondary">
+                    <div className="col-3 rounded d-flex align-items-center"
+                      style={{border:'1px solid rgb(0, 150, 136)'}}
+                    >
                       <div className="row row-gap-2">
                         <div className="col-6">
                           <div className="d-flex justify-content-between ">
                             <label className="">First Name</label>
                             <span className="font-size-10 text-danger pt-1">
-                              <ErrorMessage name="FirstName" />
+                              <ErrorMessage name="FirstName"/>
                             </span>
                           </div>
                           <Field

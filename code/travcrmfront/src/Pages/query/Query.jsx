@@ -1,35 +1,40 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Layout from "../../Component/Layout/Layout";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
-import { inputInitialValue, InputSchema } from "./QuerySchema";
+import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
-import { hotelTypeInitialValue, 
-  hotelMealInitialValue, 
-  leadSourceInitialValue } 
-  from "../master/masterList/MasterValidation";
+import {
+  hotelTypeInitialValue,
+  hotelMealInitialValue,
+  leadSourceInitialValue,
+} from "../master/masterList/MasterValidation";
 import axios from "axios";
 import "jquery";
 import "select2";
 
 const Query = () => {
-  const [queryInputs, setQueryInputs] = useState({
-    QueryType: "",
-  });
+  const [selectedQueryType, setSelectedQueryType] = useState("");
+  const [QueryType, setQueryType] = useState("");
+  // console.log(queryInputs);
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
 
-  
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const  type  = await axiosOther.post("hoteltypelist", hotelTypeInitialValue);
-        const  meal  = await axiosOther.post("hotelmealplanlist", hotelMealInitialValue);
-        const  lead = await axiosOther.post("leadlist", leadSourceInitialValue);
+        const type = await axiosOther.post(
+          "hoteltypelist",
+          hotelTypeInitialValue
+        );
+        const meal = await axiosOther.post(
+          "hotelmealplanlist",
+          hotelMealInitialValue
+        );
+        const lead = await axiosOther.post("leadlist", leadSourceInitialValue);
         setHotelType(type.data.DataList);
         setHotelMeal(meal.data.DataList);
         setLeadList(lead.data.DataList);
-        // console.log("API Data", getData);
       } catch (error) {
         console.log(error);
       }
@@ -37,15 +42,13 @@ const Query = () => {
     postDataToServer();
   }, []);
 
-  const [selectedQueryType, setSelectedQueryType] = useState("");
-
   const handleSubmit = async (postData) => {
-    console.log("This is console for inputs.....", postData);
+    console.log("This is console for inputs.....", { ...postData, QueryType });
 
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/addupdatequerymaster",
-        postData
+        { ...postData, QueryType }
       );
       console.log(response);
     } catch (err) {
@@ -59,6 +62,7 @@ const Query = () => {
 
   const handleChange = (e) => {
     console.log(e.target.value);
+    setQueryType(e.target.value);
   };
 
   return (
@@ -66,7 +70,11 @@ const Query = () => {
       <Layout>
         <div className="container-fluid p-3 mb-4">
           <div className="card shadow-none border">
-            <Formik initialValues={inputInitialValue} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={QueryinputInitialValue}
+              validationSchema={QueryInputSchema}
+              onSubmit={handleSubmit}
+            >
               <Form>
                 <div
                   className="card-header header-elements-inline py-2"
@@ -93,48 +101,40 @@ const Query = () => {
                         </div>
                         <div className="card-body py-4">
                           <div className="row row-gap-4">
-                            {queryInputs.QueryType == "3" && (
+                            {QueryType == "3" && (
                               <div className="col-lg-2 p-0 mx-1">
                                 <Field
                                   type="text"
                                   className="form-input"
                                   placeholder="Package Code"
+                                  name="PackageCode"
                                 ></Field>
-                                <span className="text-danger">
-                                  <ErrorMessage />
-                                </span>
                                 <Field
                                   type="text"
                                   className="form-input mt-1 mb-1"
                                   placeholder="Package Name"
+                                  name="PackageName"
                                 ></Field>
-                                <span className="text-danger">
-                                  <ErrorMessage />
-                                </span>
                               </div>
                             )}
-                            {queryInputs.QueryType == "2" && (
+                            {QueryType == "2" && (
                               <div className="col-lg-2 p-0 mx-1">
                                 <Field
                                   type="text"
                                   placeholder="Fixed Departure Code"
                                   className="form-input"
+                                  name="FixedDepartureCode"
                                 ></Field>
-                                <span className="text-danger">
-                                  <ErrorMessage />
-                                </span>
                               </div>
                             )}
-                            {queryInputs.QueryType == "4" && (
+                            {QueryType == "4" && (
                               <div className="col-lg-2 p-0 mx-1">
                                 <Field
                                   type="text"
                                   placeholder="Query Id"
                                   className="form-input"
+                                  name="QueryId"
                                 ></Field>
-                                <span className="text-danger">
-                                  <ErrorMessage />
-                                </span>
                               </div>
                             )}
                             <div className="col-12 col-sm-6 col-lg-3">
@@ -147,11 +147,7 @@ const Query = () => {
                                     type="radio"
                                     name="ClientType"
                                     value="1"
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="clientType" />
-                                  </span>
                                 </div>
                                 <div className="col-5 form-input d-flex justify-content-between align-items-center">
                                   <label htmlFor="" className="p-0 m-0">
@@ -161,11 +157,7 @@ const Query = () => {
                                     type="radio"
                                     name="ClientType"
                                     value="2"
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="clientType" />
-                                  </span>
                                 </div>
                                 <div className="col-5 mt-lg-1 mt-0 form-input d-flex justify-content-between align-items-center">
                                   <label htmlFor="" className="p-0 m-0">
@@ -175,11 +167,7 @@ const Query = () => {
                                     type="radio"
                                     name="ClientType"
                                     value="3"
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="clientType" />
-                                  </span>
                                 </div>
                                 <div className="col-5 mt-lg-1 mt-0 form-input d-flex justify-content-between align-items-center">
                                   <label htmlFor="" className="p-0 m-0">
@@ -189,11 +177,7 @@ const Query = () => {
                                     type="radio"
                                     name="ClientType"
                                     value="4"
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="clientType" />
-                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -206,9 +190,6 @@ const Query = () => {
                                     placeholder="Company, Email, Phone, Contact Person"
                                     name="demo1"
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="demo1" />
-                                  </span>
                                 </div>
                                 <div className="col-12 mt-1 p-0 px-sm-1">
                                   <div className="row m-0 rounded">
@@ -220,9 +201,6 @@ const Query = () => {
                                         name="demo2"
                                         readOnly
                                       ></Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="demo2" />
-                                      </span>
                                     </div>
                                     <div className="col-4">
                                       <Field
@@ -232,9 +210,6 @@ const Query = () => {
                                         name="demo2"
                                         readOnly
                                       ></Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="demo2" />
-                                      </span>
                                     </div>
                                     <div className="col-4 p-0">
                                       <Field
@@ -244,9 +219,6 @@ const Query = () => {
                                         name="demo3"
                                         readOnly
                                       ></Field>
-                                      <span className="text-danger">
-                                        <ErrorMessage name="demo3" />
-                                      </span>
                                     </div>
                                   </div>
                                 </div>
@@ -260,12 +232,7 @@ const Query = () => {
                                     className="form-input"
                                     placeholder="Lead Pax Name"
                                     name="LeadPax"
-                                    // value={queryInputs.LeadPax}
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="LeadPax" />
-                                  </span>
                                 </div>
                                 <div className="col-12 p-0 px-lg-1">
                                   <Field
@@ -273,12 +240,7 @@ const Query = () => {
                                     className="form-input mt-1"
                                     placeholder="Subject"
                                     name="Subject"
-                                    // value={queryInputs.Subject}
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="Subject" />
-                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -290,12 +252,7 @@ const Query = () => {
                                     placeholder="text@example.com"
                                     className="form-input"
                                     name="AddEmail"
-                                    // value={queryInputs.AddEmail}
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="AddEmail" />
-                                  </span>
                                 </div>
                                 <div className="col-12 p-0 px-sm-1">
                                   <Field
@@ -303,12 +260,7 @@ const Query = () => {
                                     placeholder="Additional Information"
                                     className="form-input mt-1"
                                     name="AdditionalInfo"
-                                    // value={queryInputs.AdditionalInfo}
-                                    // onChange={handleQueryInputs}
                                   ></Field>
-                                  <span className="text-danger">
-                                    <ErrorMessage name="AdditionalInfo" />
-                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -351,9 +303,6 @@ const Query = () => {
                               >
                                 <div className="accordion-body py-3 px-2">
                                   <div className="row m-0">
-                                    <span className="text-danger">
-                                      <ErrorMessage name="QueryType" />
-                                    </span>
                                     <div className="col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
                                       <label htmlFor="" className="m-0 p-0">
                                         Query
@@ -384,7 +333,7 @@ const Query = () => {
                                         type="radio"
                                         name="QueryType"
                                         value="3"
-                                        onKeyUp={handleChange}
+                                        onChange={handleChange}
                                       />
                                     </div>
                                     <div className="mt-1 mt-lg-0 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -395,7 +344,7 @@ const Query = () => {
                                         type="radio"
                                         name="QueryType"
                                         value="4"
-                                        onKeyUp={handleChange}
+                                        onChange={handleChange}
                                       />
                                     </div>
                                     <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -406,7 +355,7 @@ const Query = () => {
                                         type="radio"
                                         name="QueryType"
                                         value="5"
-                                        onKeyUp={handleChange}
+                                        onChange={handleChange}
                                       />
                                     </div>
                                     <div className="mt-1 col-lg-3 col-md-6 form-input d-flex justify-content-between align-items-center">
@@ -417,7 +366,7 @@ const Query = () => {
                                         type="radio"
                                         name="QueryType"
                                         value="6"
-                                        onKeyUp={handleChange}
+                                        onChange={handleChange}
                                       />
                                     </div>
                                   </div>
@@ -480,7 +429,6 @@ const Query = () => {
                                                 type="checkbox"
                                                 name="ValueAddededServices.Flight"
                                                 value="Yes"
-                                                // onChange={handleValueAdded}
                                               ></Field>
                                             </div>
                                           </div>
@@ -505,7 +453,6 @@ const Query = () => {
                                                 type="checkbox"
                                                 name="ValueAddededServices.Visa"
                                                 value="Yes"
-                                                // onChange={handleValueAdded}
                                               ></Field>
                                             </div>
                                           </div>
@@ -530,7 +477,6 @@ const Query = () => {
                                                 type="checkbox"
                                                 name="ValueAddededServices.Insurance"
                                                 value="Yes"
-                                                // onChange={handleValueAdded}
                                               ></Field>
                                             </div>
                                           </div>
@@ -555,7 +501,6 @@ const Query = () => {
                                                 type="checkbox"
                                                 name="ValueAddededServices.Train"
                                                 value="Yes"
-                                                // onChange={handleValueAdded}
                                               ></Field>
                                             </div>
                                           </div>
@@ -580,7 +525,6 @@ const Query = () => {
                                                 type="checkbox"
                                                 name="ValueAddededServices.Transfer"
                                                 value="Yes"
-                                                // onChange={handleValueAdded}
                                               ></Field>
                                             </div>
                                           </div>
@@ -627,9 +571,6 @@ const Query = () => {
                                   >
                                     <div className="accordion-body py-3 px-2">
                                       <div className="row justify-content-between mt-2">
-                                        <span className="text-danger">
-                                          <ErrorMessage name="TravelInfo" />
-                                        </span>
                                         <div className="col-lg-5 col-sm-6 col-5">
                                           <label htmlFor="" className="m-0">
                                             Travel Type
@@ -645,7 +586,6 @@ const Query = () => {
                                               type="radio"
                                               name="TravelInfo"
                                               value="1"
-                                              // onChange={handleQueryInputs}
                                             ></Field>
                                           </div>
                                         </div>
@@ -661,15 +601,11 @@ const Query = () => {
                                               type="radio"
                                               name="TravelInfo"
                                               value="2"
-                                              // onChange={handleQueryInputs}
                                             ></Field>
                                           </div>
                                         </div>
                                       </div>
                                       <div className="row justify-content-between mt-2">
-                                        <span className="text-danger">
-                                          <ErrorMessage name="PaxType" />
-                                        </span>
                                         <div className="col-lg-5 col-sm-6 col-5">
                                           <label htmlFor="" className="m-0">
                                             Pax Type
@@ -685,7 +621,6 @@ const Query = () => {
                                               type="radio"
                                               name="PaxType"
                                               value="1"
-                                              // onChange={handleQueryInputs}
                                             ></Field>
                                           </div>
                                         </div>
@@ -701,7 +636,6 @@ const Query = () => {
                                               type="radio"
                                               name="PaxType"
                                               value="2"
-                                              // onChange={handleQueryInputs}
                                             ></Field>
                                           </div>
                                         </div>
@@ -716,7 +650,7 @@ const Query = () => {
                       </div>
 
                       {/* Information it will show only on multiple services check */}
-                      {queryInputs.QueryType == "5" && (
+                      {QueryType == "5" && (
                         <div className="row">
                           <div className="col-12">
                             <div className="row my-2">
@@ -773,8 +707,6 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="Adult"
-                                              // value={PaxInfo.Adult}
-                                              // onChange={handlePaxInfo}
                                             ></Field>
                                           </div>
                                           <div className="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -788,8 +720,6 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="Child"
-                                              // value={PaxInfo.Child}
-                                              // onChange={handlePaxInfo}
                                             ></Field>
                                           </div>
                                           <div className="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -803,8 +733,6 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="Infant"
-                                              // value={PaxInfo.Infant}
-                                              // onChange={handlePaxInfo}
                                             ></Field>
                                           </div>
                                         </div>
@@ -855,14 +783,10 @@ const Query = () => {
                                             component={"select"}
                                             className="form-input"
                                             name="TravelDate.Type"
-                                            // onChange={handleTravelDate}
                                           >
                                             <option value="1">Date Wise</option>
                                             <option value="2">Day Wise</option>
                                           </Field>
-                                          <span className="text-danger">
-                                            <ErrorMessage name="TravelDate.Type" />
-                                          </span>
                                         </div>
                                       </div>
                                       <div className="row mt-1">
@@ -872,8 +796,6 @@ const Query = () => {
                                             type="date"
                                             className="form-input"
                                             name="TravelDate.FromDate"
-                                            // value={TravelDate.FromDate}
-                                            // onChange={handleTravelDate}
                                           ></Field>
                                           <span className="text-danger">
                                             <ErrorMessage name="TravelDate.FromDate" />
@@ -885,8 +807,6 @@ const Query = () => {
                                             type="date"
                                             className="form-input"
                                             name="TravelDate.ToDate"
-                                            // value={TravelDate.ToDate}
-                                            // onChange={handleTravelDate}
                                           ></Field>
                                           <span className="text-danger">
                                             <ErrorMessage name="TravelDate.ToDate" />
@@ -899,8 +819,6 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="TravelDate.TotalDays"
-                                              // value={TravelDate.TotalDays}
-                                              // onChange={handleTravelDate}
                                             ></Field>
                                             <button className="btn btn-info">
                                               Save
@@ -973,8 +891,6 @@ const Query = () => {
                                             type="text"
                                             className="form-input"
                                             name="PaxInfo.Adult"
-                                            // value={PaxInfo.Adult}
-                                            // onChange={handlePaxInfo}
                                           ></Field>
                                           <span className="text-danger err-fs">
                                             <ErrorMessage name="PaxInfo.Adult" />
@@ -989,12 +905,7 @@ const Query = () => {
                                             type="text"
                                             className="form-input "
                                             name="PaxInfo.Child"
-                                            // value={PaxInfo.Child}
-                                            // onChange={handlePaxInfo}
                                           ></Field>
-                                          <span className="text-danger err-fs">
-                                            <ErrorMessage name="PaxInfo.Child" />
-                                          </span>
                                         </div>
                                         <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                           <div className="d-flex justify-content-between align-items-end">
@@ -1007,15 +918,10 @@ const Query = () => {
                                             type="text"
                                             className="form-input"
                                             name="PaxInfo.Infant"
-                                            // value={PaxInfo.Infant}
-                                            // onChange={handlePaxInfo}
                                           ></Field>
-                                          <span className="text-danger err-fs">
-                                            <ErrorMessage name="PaxInfo.Infant" />
-                                          </span>
                                         </div>
                                       </div>
-                                      {queryInputs.QueryType !== "4" && (
+                                      {QueryType !== "4" && (
                                         <div className="row align-items-center mt-4">
                                           <div className="col-lg-7 col-md-12  justify-content-between d-flex align-items-center">
                                             <p className="m-0">
@@ -1031,7 +937,7 @@ const Query = () => {
                                           </div>
                                         </div>
                                       )}
-                                      {queryInputs.QueryType !== "4" && (
+                                      {QueryType !== "4" && (
                                         <div className="row  mt-1">
                                           <div className="col-lg-2 col-md-4 col-sm-6 col-12">
                                             <label>Single</label>
@@ -1039,12 +945,7 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="RoomInfo.Single"
-                                              // value={RoomInfo.Single}
-                                              // onChange={handleRoomInfo}
                                             ></Field>
-                                            <span className="text-danger err-fs">
-                                              <ErrorMessage name="RoomInfo.Single" />
-                                            </span>
                                           </div>
                                           <div className="col-lg-2 col-md-4 col-sm-6 col-12">
                                             <label>Double</label>
@@ -1052,12 +953,7 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="RoomInfo.Double"
-                                              // value={RoomInfo.Double}
-                                              // onChange={handleRoomInfo}
                                             ></Field>
-                                            <span className="text-danger err-fs">
-                                              <ErrorMessage name="RoomInfo.Double" />
-                                            </span>
                                           </div>
                                           <div className="col-lg-2 col-md-4 col-sm-6 col-12">
                                             <label>Twin</label>
@@ -1065,12 +961,7 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="RoomInfo.Twin"
-                                              // value={RoomInfo.Twin}
-                                              // onChange={handleRoomInfo}
                                             ></Field>
-                                            <span className="text-danger err-fs">
-                                              <ErrorMessage name="RoomInfo.Twin" />
-                                            </span>
                                           </div>
                                           <div className="col-lg-2 col-md-4 col-sm-6 col-12">
                                             <label>Triple</label>
@@ -1078,12 +969,7 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="RoomInfo.Triple"
-                                              // value={RoomInfo.Triple}
-                                              // onChange={handleRoomInfo}
                                             ></Field>
-                                            <span className="text-danger err-fs">
-                                              <ErrorMessage name="RoomInfo.Triple" />
-                                            </span>
                                           </div>
                                           <div className="col-lg-2 col-md-4 col-sm-6 col-12">
                                             <label>ExtraBed(A)</label>
@@ -1091,12 +977,7 @@ const Query = () => {
                                               type="text"
                                               className="form-input"
                                               name="RoomInfo.ExtraBed"
-                                              // value={RoomInfo.ExtraBed}
-                                              // onChange={handleRoomInfo}
                                             ></Field>
-                                            <span className="text-danger err-fs">
-                                              <ErrorMessage name="RoomInfo.ExtraBed" />
-                                            </span>
                                           </div>
                                         </div>
                                       )}
@@ -1192,9 +1073,12 @@ const Query = () => {
                                           <Field
                                             type="text"
                                             className="form-input"
-                                            name="oerationPerson"
+                                            name="OperationPerson"
                                             placeholder="Operation Person"
                                           ></Field>
+                                          <span className="text-danger">
+                                            <ErrorMessage name="OperationPerson" />
+                                          </span>
                                         </div>
                                         <div className="col-md-6 col-12">
                                           <label htmlFor="">
@@ -1261,7 +1145,6 @@ const Query = () => {
                                             type="radio"
                                             name="Priority"
                                             value="1"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
@@ -1272,7 +1155,6 @@ const Query = () => {
                                             type="radio"
                                             name="Priority"
                                             value="2"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
@@ -1283,14 +1165,11 @@ const Query = () => {
                                             type="radio"
                                             name="Priority"
                                             value="3"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                       </div>
                                       <hr className="my-2 p-0" />
-                                      <span className="text-danger m-0 p-0">
-                                        <ErrorMessage name="TAT" />
-                                      </span>
+
                                       <div>TAT</div>
                                       <div className="row justify-content-between m-0">
                                         <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
@@ -1301,7 +1180,6 @@ const Query = () => {
                                             type="radio"
                                             name="TAT"
                                             value="24"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
@@ -1312,7 +1190,6 @@ const Query = () => {
                                             type="radio"
                                             name="TAT"
                                             value="28"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-md-3 col-4 form-input d-flex justify-content-between align-items-center">
@@ -1323,14 +1200,11 @@ const Query = () => {
                                             type="radio"
                                             name="TAT"
                                             value="72"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                       </div>
                                       <hr className="my-2" />
-                                      <span className="text-danger m-0 p-0">
-                                        <ErrorMessage name="TourType" />
-                                      </span>
+
                                       <div>Tour Type</div>
                                       <div className="row justify-content-between m-0">
                                         <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
@@ -1341,7 +1215,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="1"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-lg-5 col-6 form-input d-flex justify-content-between align-items-center">
@@ -1352,7 +1225,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="2"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
@@ -1363,7 +1235,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="3"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
@@ -1374,7 +1245,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="4"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
@@ -1385,7 +1255,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="5"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                         <div className="col-lg-5 col-6 mt-2 form-input d-flex justify-content-between align-items-center">
@@ -1396,7 +1265,6 @@ const Query = () => {
                                             type="radio"
                                             name="TourType"
                                             value="6"
-                                            // onClick={handleQueryInputs}
                                           ></Field>
                                         </div>
                                       </div>
@@ -1411,28 +1279,25 @@ const Query = () => {
                                             component={"select"}
                                             className="form-input"
                                             name="LeadSource"
-                                            // onChange={handleQueryInputs}
                                           >
-                                            {
-                                              leadList.map((value)=>{
-                                                return(
-                                                  <option value={value.Id}>{value.Name}</option>
-                                                )
-                                              })
-                                            }
-                                          
+                                            {leadList.map((value) => {
+                                              return (
+                                                <option
+                                                  value={value.Id}
+                                                  key={value.Id}
+                                                >
+                                                  {value.Name}
+                                                </option>
+                                              );
+                                            })}
                                           </Field>
                                         </div>
                                         <div className="col-lg-5 col-6">
-                                          <span className="text-danger m-0 p-0">
-                                            <ErrorMessage name="LeadRefrenced" />
-                                          </span>
                                           <label>Lead Reference</label>
                                           <Field
                                             type="text"
                                             className="form-input"
                                             name="LeadRefrenced"
-                                            // onChange={handleQueryInputs}
                                           ></Field>
                                         </div>
                                       </div>
@@ -1504,13 +1369,13 @@ const Query = () => {
                                     className="form-input"
                                     name="HotelType"
                                   >
-                                    {
-                                      hotelType.map((value)=>{
-                                        return(
-                                          <option value={value.Id}>{value.Name}</option>
-                                        )
-                                      })
-                                    }
+                                    {hotelType.map((value) => {
+                                      return (
+                                        <option value={value.Id} key={value.Id}>
+                                          {value.Name}
+                                        </option>
+                                      );
+                                    })}
                                   </Field>
                                   <span className="text-danger m-0 p-0">
                                     <ErrorMessage name="HotelType" />
@@ -1524,13 +1389,13 @@ const Query = () => {
                                     name="MealPlan"
                                     // onChange={handleQueryInputs}
                                   >
-                                    {
-                                      hotelMeal.map((value)=>{
-                                        return(
-                                          <option value={value.Id}>{value.Name}</option>
-                                        )
-                                      })
-                                    }
+                                    {hotelMeal.map((value) => {
+                                      return (
+                                        <option value={value.Id} key={value.Id}>
+                                          {value.Name}
+                                        </option>
+                                      );
+                                    })}
                                   </Field>
                                   <span className="text-danger m-0 p-0">
                                     <ErrorMessage name="MealPlan" />

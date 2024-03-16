@@ -150,7 +150,7 @@ const Users = () => {
                     name="Search"
                     value={postData.Search}
                     onChange={(e) =>
-                      setPostData({ ...postData, Search: e.target.value })
+                      setPostData({...postData, Search: e.target.value })
                     }
                   />
                 </div>
