@@ -4,32 +4,32 @@ export const countryInitialValue = {
   id: "",
   Name: "",
   ShortName: "",
-  SetDefault: "0",
-  Status: "1",
-  AddedBy: "1",
-  UpdatedBy: "0",
+  SetDefault: 0,
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
 };
 export const stateInitialValue = {
   id: "",
   Name: "",
-  CountryId: "1",
-  Status: "1",
-  AddedBy: "1",
-  UpdatedBy: "",
+  CountryId: 1,
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 1,
 };
 export const cityInitialValue = {
   id: "",
-  CountryId: "1",
-  StateId: "1",
+  CountryId: 1,
+  StateId: 1,
   Name: "",
-  Status: "1",
-  AddedBy: "1",
-  UpdatedBy: "1",
+  Status: 1,
+  AddedBy: 1,
+  UpdatedBy: 1,
 };
 export const leadSourceInitialValue = {
   id: "",
   Name: "",
-  SetDefault: "0",
+  SetDefault: 0,
   Status: 1,
   AddedBy: 2,
   UpdatedBy: 0,
@@ -59,7 +59,7 @@ export const marketTypeInitialValue = {
 export const languageInitialValue = {
   id: "",
   Name: "",
-  Status: "1",
+  Status:1,
   AddedBy: 1,
   UpdatedBy: 0,
 };
@@ -68,8 +68,8 @@ export const destinationInitialValue = {
   Name: "",
   StateName: "",
   CountryName: "",
-  CountryId: "1",
-  StateId: "1",
+  CountryId: 1,
+  StateId: 1,
   Description: "",
   SetDefault: 0,
   Status: 1,
@@ -127,8 +127,8 @@ export const hotelChainInitialValue = {
   ContactCountryCode: "",
   ContactMobile: "",
   ContactEmail: "",
-  Status: "1",
-  AddedBy: "1",
+  Status: 1,
+  AddedBy:1,
 };
 export const resturantInitialValue = {
   id: "",
@@ -154,7 +154,7 @@ export const resturantInitialValue = {
   AddedBy: 1,
 };
 export const restaurantMealInitialValue = {
-  id: 2,
+  id: "",
   Name: "",
   Status: 1,
   AddedBy: 1,
@@ -169,7 +169,7 @@ export const amentiesInitialValue = {
   UpdatedBy: 0,
 };
 export const hotelTypeInitialValue = {
-  id: 3,
+  id: "",
   Name: "",
   UploadKeyword: "",
   Status: 1,
@@ -299,9 +299,9 @@ export const vehicleTypeInitialValue = {
 export const additionalRequiremntInitialValue = {
   id: "",
   Name: "",
-  DestinationId: "1",
-  CurrencyId: "1",
-  CostType: "1",
+  DestinationId: 1,
+  CurrencyId: 1,
+  CostType: 1,
   TaxSlab: "",
   MarkupApply: "",
   ShowInProposal: "",
@@ -339,7 +339,7 @@ export const trainMasterInitialValue = {
   UpdatedBy: 1,
 };
 export const airlineMasterInitialValue = {
-  id: "1",
+  id: "",
   Name: "",
   ImageName: "",
   ImageData: "",
@@ -348,23 +348,23 @@ export const airlineMasterInitialValue = {
 };
 export const ferryMasterInitialValue = {
   id: "",
-  FerryCompany: "1",
+  FerryCompany: 1,
   FerryName: "",
   Capacity: "",
-  Status: "1",
+  Status: 1,
   ImageName: "",
   ImageData: "",
-  AddedBy: "1",
-  UpdatedBy: "1",
+  AddedBy: 1,
+  UpdatedBy: 1,
 };
 export const currencyMasterInitialValue = {
   id: "",
-  CountryId: "1",
+  CountryId: 1,
   CurrencyCode: "",
   CurrencyName: "",
-  Status: "1",
+  Status: 1,
   SetDefault: "",
-  AddedBy: "1",
+  AddedBy: 1,
   UpdatedBy: "0",
 };
 // ------------------------VALIDATION SCHEMAS-------------------------- //

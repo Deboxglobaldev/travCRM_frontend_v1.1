@@ -150,18 +150,6 @@ const HotelType = () => {
                           <ErrorMessage name="UploadKeyword" />
                         </span>
                       </div>
-                      {/* <div className="col-sm-4">
-                        <label>Proposal Priority</label>
-                        <Field
-                          type="text"
-                          placeholder="Name"
-                          className="form-control"
-                          name="ProposalPriority"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="ProposalPriority" />
-                        </span>
-                      </div> */}
                       <div className="col-sm-4">
                         <label>Status</label>
                         <Field

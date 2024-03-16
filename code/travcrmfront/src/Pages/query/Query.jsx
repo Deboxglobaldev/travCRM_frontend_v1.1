@@ -2,6 +2,11 @@ import React, { useState, useReducer, useEffect } from "react";
 import Layout from "../../Component/Layout/Layout";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { inputInitialValue, InputSchema } from "./QuerySchema";
+import { axiosOther } from "../../http/axios/axios_new";
+import { hotelTypeInitialValue, 
+  hotelMealInitialValue, 
+  leadSourceInitialValue } 
+  from "../master/masterList/MasterValidation";
 import axios from "axios";
 import "jquery";
 import "select2";
@@ -10,11 +15,33 @@ const Query = () => {
   const [queryInputs, setQueryInputs] = useState({
     QueryType: "",
   });
+  const [hotelType, setHotelType] = useState([]);
+  const [hotelMeal, setHotelMeal] = useState([]);
+  const [leadList, setLeadList] = useState([]);
+
+  
+  useEffect(() => {
+    const postDataToServer = async () => {
+      try {
+        const  type  = await axiosOther.post("hoteltypelist", hotelTypeInitialValue);
+        const  meal  = await axiosOther.post("hotelmealplanlist", hotelMealInitialValue);
+        const  lead = await axiosOther.post("leadlist", leadSourceInitialValue);
+        setHotelType(type.data.DataList);
+        setHotelMeal(meal.data.DataList);
+        setLeadList(lead.data.DataList);
+        // console.log("API Data", getData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    postDataToServer();
+  }, []);
 
   const [selectedQueryType, setSelectedQueryType] = useState("");
 
   const handleSubmit = async (postData) => {
     console.log("This is console for inputs.....", postData);
+
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/addupdatequerymaster",
@@ -1386,14 +1413,14 @@ const Query = () => {
                                             name="LeadSource"
                                             // onChange={handleQueryInputs}
                                           >
-                                            <option value="1">Select</option>
-                                            <option value="2">Facebook</option>
-                                            <option value="3">Instagram</option>
-                                            <option value="4">Twitter</option>
-                                            <option value="5">Snapchat</option>
-                                            <option value="6">LinkedIn</option>
-                                            <option value="7">Website</option>
-                                            <option value="8">Other</option>
+                                            {
+                                              leadList.map((value)=>{
+                                                return(
+                                                  <option value={value.Id}>{value.Name}</option>
+                                                )
+                                              })
+                                            }
+                                          
                                           </Field>
                                         </div>
                                         <div className="col-lg-5 col-6">
@@ -1476,14 +1503,14 @@ const Query = () => {
                                     component={"select"}
                                     className="form-input"
                                     name="HotelType"
-                                    // onChange={handleQueryInputs}
                                   >
-                                    <option value="1">All</option>
-                                    <option value="2">Budget</option>
-                                    <option value="3">Delux</option>
-                                    <option value="4">Elite</option>
-                                    <option value="5">Luxury</option>
-                                    <option value="6">Standard</option>
+                                    {
+                                      hotelType.map((value)=>{
+                                        return(
+                                          <option value={value.Id}>{value.Name}</option>
+                                        )
+                                      })
+                                    }
                                   </Field>
                                   <span className="text-danger m-0 p-0">
                                     <ErrorMessage name="HotelType" />
@@ -1497,12 +1524,13 @@ const Query = () => {
                                     name="MealPlan"
                                     // onChange={handleQueryInputs}
                                   >
-                                    <option value="1">All</option>
-                                    <option value="2">AP</option>
-                                    <option value="3">CP</option>
-                                    <option value="4">EP</option>
-                                    <option value="5">JPAI</option>
-                                    <option value="6">MAP</option>
+                                    {
+                                      hotelMeal.map((value)=>{
+                                        return(
+                                          <option value={value.Id}>{value.Name}</option>
+                                        )
+                                      })
+                                    }
                                   </Field>
                                   <span className="text-danger m-0 p-0">
                                     <ErrorMessage name="MealPlan" />
