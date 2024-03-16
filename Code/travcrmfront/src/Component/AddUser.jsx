@@ -38,14 +38,13 @@ const AddUser = () => {
                       Save
                     </button>
                   </div>
-                  <div></div>
                 </div>
                 <div className="card-body mt-4">
                   <div className="row justify-content-between">
-                    <div className="col-3 rounded d-flex align-items-center"
-                      style={{border:'1px solid rgb(0, 150, 136)'}}
+                    <div className="col-3 rounded d-flex align-items-center backgroundColor"
+                      // style={{border:'1px solid rgb(0, 150, 136)'}}
                     >
-                      <div className="row row-gap-2">
+                    <div className="row row-gap-2">
                         <div className="col-6">
                           <div className="d-flex justify-content-between ">
                             <label className="">First Name</label>
@@ -56,7 +55,7 @@ const AddUser = () => {
                           <Field
                             type="text"
                             name="FirstName"
-                            className="form-input-1"
+                            className="form-input-1 borderNone backgroundColor-1"
                             placeholder="First Name"
                           />
                         </div>
@@ -65,7 +64,7 @@ const AddUser = () => {
                           <Field
                             type="text"
                             name="LastName"
-                            className="form-input-1"
+                            className="form-input-1 borderNone backgroundColor-1"
                             placeholder="Last Name"
                           />
                         </div>
@@ -79,7 +78,7 @@ const AddUser = () => {
                           <Field
                             type="text"
                             name="Email"
-                            className="form-input-1"
+                            className="form-input-1 borderNone backgroundColor-1"
                             placeholder="Email"
                           />
                         </div>
@@ -88,7 +87,7 @@ const AddUser = () => {
                           <Field
                             type="text"
                             name="Pin"
-                            className="form-input-1"
+                            className="form-input-1 borderNone backgroundColor-1"
                             placeholder="Pin"
                           />
                         </div>
@@ -102,11 +101,11 @@ const AddUser = () => {
                           <Field
                             type="text"
                             name="Password"
-                            className="form-input-1"
+                            className="form-input-1 borderNone backgroundColor-1"
                             placeholder="Password"
                           />
                         </div>
-                      </div>
+                    </div>
                     </div>
                     <div className="col-9 pl-4">
                       <div className="row row-gap-3">

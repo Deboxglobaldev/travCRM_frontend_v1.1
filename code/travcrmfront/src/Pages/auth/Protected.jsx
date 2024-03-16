@@ -8,10 +8,8 @@ const Protected = ({ children }) => {
   if (user && isAuthenticated) {
     return children;
   } else {
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/login" state={{ from: location }}/>
   }
 };
 
 export default Protected;
-
-

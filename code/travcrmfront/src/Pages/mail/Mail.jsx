@@ -3,7 +3,9 @@ import Layout from '../../Component/Layout/Layout'
 const Mail = () => {
   return (
     <Layout>
-      <div>mail section here</div>
+      <div>
+        <h1>This is Mail Component</h1>
+      </div>
     </Layout>
 
   )

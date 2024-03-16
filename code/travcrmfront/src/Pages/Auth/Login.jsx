@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../reducer/authReducers";
 import { axiosNew } from "../../http/axios/axios_new";
 
-
 const Login = () => {
   
   const dispatch = useDispatch();
@@ -31,9 +30,7 @@ const Login = () => {
           username: user.username,
           password: user.password,
         });
-
         console.log(data);
-
         if (data?.username) {
           toast.success(`${data.username} is logged in`);
           // localStorage.setItem("auth", JSON.stringify(data));
@@ -43,11 +40,9 @@ const Login = () => {
               isAuthenticated: true,
             })
           );
-
           setTimeout(() => {
             navigate("/");
           }, 2000);
-
         } else {
           setLoading(false);
           toast.error(`${data.message}`);
@@ -173,12 +168,10 @@ const Login = () => {
             Footer
           </button>
         </div>
-
         <div className="navbar-collapse collapse" id="navbar-footer">
           <span className="navbar-text">
             &copy; 2024. Powered By <a href="https://www.deboxglobal.com/" ><img src="https://shivdvn.com/staging/global_assets/images/debox-logo.png" alt="footerlogo" style={{ width: "50px", marginLeft: "5px" }} /></a>
           </span>
-
           <ul className="navbar-nav ml-lg-auto">
             <li className="nav-item"><a href="https://www.deboxglobal.com/" className="navbar-nav-link font-weight-semibold"><span className="text-pink-400"><i className="icon-lifebuoy mr-2"></i> Support</span></a></li>
           </ul>

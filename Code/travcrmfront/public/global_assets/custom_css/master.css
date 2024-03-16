@@ -66,6 +66,15 @@ a{
     font-size: 12px;
     font-weight: 400;
 }
+.border-1{
+  border: 1px solid rgb(0, 150, 136);
+}
+.backgroundColor{
+  background-color: rgba(0, 94, 86, 0.088);
+}
+.backgroundColor-1{
+  background-color: rgba(0, 94, 86, 0.151);
+}
 /* /master page custom css */
 
 /*  form input custom style*/
@@ -84,6 +93,9 @@ a{
   border-radius: 5px;
   height: 35px;
   padding-left: 10px;
+}
+.borderNone{
+  border: none;
 }
 /* font-size */
 .fs-11{
