@@ -6,8 +6,8 @@ import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  ferryMasterInitialValue,
+  ferryMasterValidationSchema,
 } from "./MasterValidation";
 
 const FerryMaster = () => {
@@ -23,7 +23,7 @@ const FerryMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("ferrynamelist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -44,10 +44,12 @@ const FerryMaster = () => {
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      FerryCompany: rowValue.FerryCompany,
+      FerryName: rowValue.FerryName,
+      Capacity: rowValue.Capacity,
+      Status: rowValue.Status==='Active'?1:0,
+      ImageName: rowValue.ImageName,
+      ImageData: rowValue.ImageData,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -56,7 +58,7 @@ const FerryMaster = () => {
 
   const columns = [
     {
-      name: "Country Name",
+      name: "Image",
       selector: (row) => (
         <span>
           <i
@@ -65,19 +67,24 @@ const FerryMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.ImageName}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Ferry Company",
+      selector: (row) => row.FerryCompany,
       sortable: true,
     },
     {
-      name: "Status Name",
-      selector: (row) => row.Status,
+      name: "Ferry Name",
+      selector: (row) => row.FerryName,
+      sortable: true,
+    },
+    {
+      name: "Capacity",
+      selector: (row) => row.Capacity,
       sortable: true,
     },
     {
@@ -85,7 +92,7 @@ const FerryMaster = () => {
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
+            Admin <br /> {row.AddedBy}
           </span>
         );
       },
@@ -95,7 +102,17 @@ const FerryMaster = () => {
       selector: (row) => {
         return (
           <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
+            Admin <br /> {row.UpdatedBy}
+          </span>
+        );
+      },
+    },
+    {
+      name: "Status",
+      selector: (row) => {
+        return (
+          <span>
+            {row.Status}
           </span>
         );
       },
@@ -127,9 +144,9 @@ const FerryMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Ferry Name"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdateferryname"}
+                  initialValues={ferryMasterInitialValue}
+                  validationSchema={ferryMasterValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -139,7 +156,7 @@ const FerryMaster = () => {
                       <div className="col-sm-4">
                         <label>Ferry Company</label>
                         <Field
-                          name="SetDefault"
+                          name="FerryCompany"
                           className="form-control"
                           component={"select"}
                         >
@@ -152,10 +169,16 @@ const FerryMaster = () => {
                         </Field>
                       </div>
                       <div className="col-sm-4">
-                        <label>Ferry Name</label>
+                        <div className="d-flex justify-content-between">
+                          <label>Ferry Name</label>
+                          <span className="font-size-10 text-danger pt-1">
+                            <ErrorMessage name="FerryName" />
+                          </span>
+                        </div>
+
                         <Field
                           type="text"
-                          name="Color"
+                          name="FerryName"
                           placeholder="Ferry Name"
                           className="form-control"
                         />
@@ -164,7 +187,7 @@ const FerryMaster = () => {
                         <label>Capacity</label>
                         <Field
                           type="text"
-                          name="Color"
+                          name="Capacity"
                           placeholder="Capacity"
                           className="form-control"
                         />
@@ -181,10 +204,15 @@ const FerryMaster = () => {
                         </Field>
                       </div>
                       <div className="col-sm-4">
-                        <label>Ferry Image</label>
+                        <div className="d-flex justify-content-between">
+                          <label>Ferry Image</label>
+                          <span className="font-size-10 text-danger pt-1">
+                            <ErrorMessage name="ImageData" />
+                          </span>
+                        </div>
                         <Field
                           type="file"
-                          name="Color"
+                          name="ImageData"
                           placeholder="Capacity"
                           className="form-control"
                         />

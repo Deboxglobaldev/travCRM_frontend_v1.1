@@ -346,6 +346,27 @@ export const airlineMasterInitialValue = {
   Status: 1,
   UpdatedBy: 1,
 };
+export const ferryMasterInitialValue = {
+  id: "",
+  FerryCompany: "1",
+  FerryName: "",
+  Capacity: "",
+  Status: "1",
+  ImageName: "",
+  ImageData: "",
+  AddedBy: "1",
+  UpdatedBy: "1",
+};
+export const currencyMasterInitialValue = {
+  id: "",
+  CountryId: "1",
+  CurrencyCode: "",
+  CurrencyName: "",
+  Status: "1",
+  SetDefault: "",
+  AddedBy: "1",
+  UpdatedBy: "0",
+};
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 
 export const countryValidationSchema = yup.object().shape({
@@ -484,5 +505,13 @@ export const trainMasterValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
 });
 export const airlineMasterValidationSchema = yup.object().shape({
-  Name:yup.string().required('Required')
+  Name: yup.string().required("Required"),
+});
+export const ferryMasterValidationSchema = yup.object().shape({
+  FerryName: yup.string().required("Required"),
+  ImageData: yup.string().required("Required"),
+});
+export const currencyMasterValidationSchema = yup.object().shape({
+  CurrencyCode: yup.string().required('Required'),
+  CurrencyName: yup.string().required('Required')
 });

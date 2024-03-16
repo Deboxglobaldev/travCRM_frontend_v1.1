@@ -243,6 +243,9 @@ const Header = () => {
                 <NavLink to="/users" className="dropdown-item">
                   <i className="icon-user-plus"></i> Users
                 </NavLink>
+                <NavLink to="/company" className="dropdown-item">
+                  <i className="fa-solid fa-building"></i> Company
+                </NavLink>
                 <a href="/#" className="dropdown-item">
                   <i className="icon-comment-discussion"></i> Messages
                   <span className="badge badge-pill bg-blue ml-auto">58</span>

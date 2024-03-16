@@ -6,8 +6,8 @@ import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import {
-  countryInitialValue,
-  countryValidationSchema,
+  currencyMasterInitialValue,
+  currencyMasterValidationSchema,
 } from "./MasterValidation";
 
 const CurrencyMaster = () => {
@@ -23,7 +23,7 @@ const CurrencyMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("currencymasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -43,11 +43,12 @@ const CurrencyMaster = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0,
+      id: rowValue.rowValue,
+      CountryId: rowValue.CountryId,
+      CurrencyCode: rowValue.CurrencyCode,
+      CurrencyName: rowValue.CurrencyName,
+      Status: rowValue.Status==="Active"? 1:0,
+      SetDefault: rowValue.SetDefault==="Yes"?1:0,
       AddedBy: rowValue.AddedBy,
       UpdatedBy: rowValue.UpdatedBy,
     });
@@ -65,40 +66,35 @@ const CurrencyMaster = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.Name}
+          {row.CountryId}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Short Name",
-      selector: (row) => row.ShortName,
+      name: "Currency Code",
+      selector: (row) => row.CurrencyCode,
       sortable: true,
     },
     {
-      name: "Status Name",
+      name: "Currency Name",
+      selector: (row) => row.CurrencyName,
+      sortable: true,
+    },
+    {
+      name: "Exchange Rate in INR",
+      selector: (row) => row.CurrencyCode,
+      sortable: true,
+    },
+    {
+      name: "Rate List",
+      selector: (row) => 'View',
+      sortable: true,
+    },
+    {
+      name: "Status",
       selector: (row) => row.Status,
       sortable: true,
-    },
-    {
-      name: "Added By",
-      selector: (row) => {
-        return (
-          <span>
-            Admin <br /> {row.Created_at}
-          </span>
-        );
-      },
-    },
-    {
-      name: "Updated By",
-      selector: (row) => {
-        return (
-          <span>
-            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
-          </span>
-        );
-      },
     },
   ];
   return (
@@ -111,10 +107,12 @@ const CurrencyMaster = () => {
           >
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
-              style={{padding:"10px"}}
+              style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Currency Master</h5>
+                <h5 className="card-title d-none d-sm-block">
+                  Currency Master
+                </h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/*Bootstrap Modal*/}
@@ -127,9 +125,9 @@ const CurrencyMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Currency"}
-                  apiurl={"addupdatecountry"}
-                  initialValues={countryInitialValue}
-                  validationSchema={countryValidationSchema}
+                  apiurl={"addupdatecurrencymaster"}
+                  initialValues={currencyMasterInitialValue}
+                  validationSchema={currencyMasterValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
@@ -139,7 +137,7 @@ const CurrencyMaster = () => {
                       <div className="col-sm-4">
                         <label>Country</label>
                         <Field
-                          name="SetDefault"
+                          name="CountryId"
                           className="form-control"
                           component={"select"}
                         >
@@ -152,19 +150,29 @@ const CurrencyMaster = () => {
                         </Field>
                       </div>
                       <div className="col-sm-4">
-                        <label>Currency Code</label>
+                        <div className="d-flex justify-content-between">
+                          <label className="">Currency Code</label>
+                          <span className="font-size-10 text-danger pt-1">
+                            <ErrorMessage name="CurrencyCode" />
+                          </span>
+                        </div>
                         <Field
                           type="text"
-                          name="Color"
+                          name="CurrencyCode"
                           placeholder="Currency Code"
                           className="form-control"
                         />
                       </div>
                       <div className="col-sm-4">
-                        <label>Currency Name</label>
+                        <div className="d-flex justify-content-between">
+                          <label className="">Currency Name</label>
+                          <span className="font-size-10 text-danger pt-1">
+                            <ErrorMessage name="CurrencyName" />
+                          </span>
+                        </div>
                         <Field
                           type="text"
-                          name="Color"
+                          name="CurrencyName"
                           placeholder="Currency Name"
                           className="form-control"
                         />

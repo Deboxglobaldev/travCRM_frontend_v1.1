@@ -78,6 +78,8 @@ import GIT from "./Pages/master/masterList/GIT.jsx";
 import LetterMaster from "./Pages/master/masterList/LetterMaster.jsx";
 import Users from "./Component/Layout/Users.jsx";
 import AddUser from "./Component/AddUser.jsx";
+import Company from "./Component/Layout/Company.jsx";
+import AddCompany from "./Component/Layout/AddCompany.jsx";
 
 const App = () => {
   return (
@@ -160,6 +162,8 @@ const App = () => {
           <Route path="/profile" element={<Protected><Profile/></Protected>}></Route>
           <Route path="/users" element={<Protected><Users/></Protected>}></Route>
           <Route path="/users/add" element={<Protected><AddUser/></Protected>}></Route>
+          <Route path="/company" element={<Protected><Company/></Protected>}></Route>
+          <Route path="/company/add" element={<Protected><AddCompany/></Protected>}></Route>
           <Route path="/login" element={<Login/>}/>
           <Route path="/logout"element={<Protected><Logout/></Protected>}/>
         </Routes>

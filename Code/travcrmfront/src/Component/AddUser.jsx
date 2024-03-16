@@ -3,11 +3,7 @@ import Layout from "./Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
-import {
-  addUserInitialValue,
-  addUserValidationSchema,
-} from "./Layout/userValidation";
-
+import { addUserInitialValue, addUserValidationSchema } from "./Layout/FormValidation";
 const AddUser = () => {
 
   const handleSubmit = async (value, { resetForm }) => {
