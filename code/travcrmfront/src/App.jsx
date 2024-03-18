@@ -10,7 +10,7 @@ import Logout from "./Pages/auth/Logout";
 import StateMaster from "./Pages/master/masterList/StateMaster";
 import CityMaster from "./Pages/master/masterList/CityMaster";
 import CountryMaster from "./Pages/master/masterList/CountryMaster";
-import Profile from "./Component/settings/Profile.jsx";
+import Profile from "./Component/Layout/Profile.jsx";
 import Protected from "./Pages/auth/Protected";
 import QueryList from "./Pages/query/QueryList";
 import QueryView from "./Pages/query/QueryView";

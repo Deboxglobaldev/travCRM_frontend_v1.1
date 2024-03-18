@@ -111,8 +111,6 @@ const Users = () => {
 
   return (
     <>
-      <Layout>
-        <div className="container-fluid p-3 mb-4">
           <div className="card shadow-none border">
             <div
               className="card-header header-elements-inline bg-teal py-2"
@@ -191,8 +189,6 @@ const Users = () => {
               highlightOnHover
             />
           </div>
-        </div>
-      </Layout>
     </>
   );
 };

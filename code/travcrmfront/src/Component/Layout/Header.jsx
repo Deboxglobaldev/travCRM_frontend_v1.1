@@ -246,10 +246,6 @@ const Header = () => {
                   <i className="icon-comment-discussion"></i> Messages
                   <span className="badge badge-pill bg-blue ml-auto">58</span>
                 </a>
-                <div className="dropdown-divider"></div>
-                <a href="/#" className="dropdown-item">
-                  <i className="icon-cog5"></i> Account settings
-                </a>
                 <NavLink to="/logout" className="dropdown-item">
                   <i className="icon-switch2"></i> Logout
                 </NavLink>

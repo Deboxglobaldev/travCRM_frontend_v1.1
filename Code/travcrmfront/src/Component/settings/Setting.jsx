@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Router } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import Layout from "../Layout/Layout";
 import { axiosOther } from "../../http/axios/axios_new";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Users from "./Users";
+import Profile from "./Profile";
 
 const Setting = () => {
   const [getData, setGetData] = useState([]);
@@ -95,13 +98,13 @@ const Setting = () => {
             <div className="col-lg-2 col-md-3 col-12">
               <div className="card shadow-none border">
                 <div className="card-header border-bottom py-2">
-                    <h6 className="my-1">Setting</h6>
+                  <h6 className="my-1">Settings</h6>
                 </div>
-                <NavLink to="/users" className="dropdown-item py-2">
+                <NavLink to="/setting" className="dropdown-item py-2">
                   <i className="icon-user-plus"></i>Users
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>
-                <NavLink to="/profile" className="dropdown-item py-2">
+                <NavLink to="setting/profile" className="dropdown-item py-2">
                   <i className="fa-solid fa-user"></i>Profile
                   <span className="badge badge-pill bg-blue ml-auto">24</span>
                 </NavLink>
@@ -115,60 +118,13 @@ const Setting = () => {
                 <NavLink to="database" className="dropdown-item py-2">
                   <i className="icon-comment-discussion"></i> Database Backup
                 </NavLink>
-
               </div>
             </div>
             <div className="col-lg-10 col-md-9 col-12">
-              <div className="card shadow-none border">
-                <div
-                  className="header-elements-inline py-2 backgroundColor-2"
-                >
-                  <div className="col-xl-10 d-flex align-items-center">
-                    <h5 className="card-title d-none d-sm-block my-1">Profile</h5>
-                  </div>
-                  <div className="col-xl-2 d-flex justify-content-end">
-                    {/* Bootstrap Modal */}
-                    <NavLink
-                      to="/users/add"
-                      type="button"
-                      className="btn add-button fs-11 shadow-1 backgroundColor-3"
-                    >
-                      <i className="fa fa-plus pr-1" aria-hidden="true"></i>
-                      Create New Profile
-                    </NavLink>
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col-lg-3 col-md-4 mt-2 mt-md-0">
-                      <input
-                        type="text"
-                        placeholder="Search"
-                        className="search-input focus-ring form-input"
-                        name="Search"
-                        value={postData.Search}
-                        onChange={(e) =>
-                          setPostData({ ...postData, Search: e.target.value })
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="card shadow-none border">
-                <DataTable
-                  columns={columns}
-                  data={
-                    postData.Search !== "" || postData.Status !== ""
-                      ? filterData
-                      : getData
-                  }
-                  pagination
-                  fixedHeader
-                  fixedHeaderScrollHeight="280px"
-                  highlightOnHover
-                />
-              </div>
+                <Routes>
+                    <Route path="/" element={<Users/>}></Route>
+                    <Route path="/setting/profile" element={<Profile/>}></Route>
+                </Routes>
             </div>
           </div>
         </div>
