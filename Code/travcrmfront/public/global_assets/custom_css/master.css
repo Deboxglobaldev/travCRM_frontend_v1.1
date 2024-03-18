@@ -75,6 +75,12 @@ a{
 .backgroundColor-1{
   background-color: rgba(0, 94, 86, 0.151);
 }
+.backgroundColor-2{
+  background-color: rgb(22, 155, 215);
+}
+.backgroundColor-3{
+  background-color: rgb(127, 212, 252);
+}
 /* /master page custom css */
 
 /*  form input custom style*/

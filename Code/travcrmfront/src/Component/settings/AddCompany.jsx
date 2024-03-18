@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "./Layout";
+import Layout from "../Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import {
   addCompanyInitialValue,
   addCompanyValidationSchema,
-} from "./FormValidation";
+} from "../Layout/FormValidation";
 import { NavLink } from "react-router-dom";
 
 const AddCompany = () => {
@@ -49,7 +49,7 @@ const AddCompany = () => {
                 </div>
                 <div className="card-body mb-5 mt-3">
                   <div className="row row-gap-3">
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <div className="d-flex justify-content-between ">
                         <label className="">Company Name</label>
                         <span className="font-size-10 text-danger pt-1">
@@ -63,7 +63,7 @@ const AddCompany = () => {
                         placeholder="Company Name"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <div className="d-flex justify-content-between ">
                         <label className="">Email</label>
                         <span className="font-size-10 text-danger pt-1">
@@ -77,7 +77,7 @@ const AddCompany = () => {
                         placeholder="Email"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <div className="d-flex justify-content-between">
                         <label className="">License Key</label>
                         <span className="font-size-10 text-danger pt-1">
@@ -91,7 +91,7 @@ const AddCompany = () => {
                         placeholder="License Key"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <div className="d-flex justify-content-between">
                         <label className="">Action Date</label>
                         <span className="font-size-10 text-danger pt-1">
@@ -104,7 +104,7 @@ const AddCompany = () => {
                         className="form-input-1"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <label>PAN</label>
                       <Field
                         type="text"
@@ -113,7 +113,7 @@ const AddCompany = () => {
                         placeholder="PAN"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <label>TAN</label>
                       <Field
                         type="text"
@@ -122,7 +122,7 @@ const AddCompany = () => {
                         placeholder="TAN"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <div className="d-flex justify-content-between">
                         <label className="">CIN</label>
                       </div>
@@ -133,7 +133,7 @@ const AddCompany = () => {
                         placeholder="CIN"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                         <label className="">LUTN</label>
                       <Field
                         type="text"
@@ -142,7 +142,7 @@ const AddCompany = () => {
                         placeholder="LUTN"
                       />
                     </div>
-                    <div className="col-4">
+                    <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                       <div className="d-flex justify-content-between">
                         <label className="">Address-1</label>
                         <span className="font-size-10 text-danger pt-1">
@@ -156,7 +156,7 @@ const AddCompany = () => {
                         placeholder="Addrres-1"
                       />
                     </div>
-                    <div className="col-4">
+                    <div className="col-lg-4 col-md-6 col-sm-6 col-12">
                       <label>Address-2</label>
                       <Field
                         type="text"
@@ -165,7 +165,7 @@ const AddCompany = () => {
                         placeholder="Address-2"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <label>Pin</label>
                       <Field
                         type="text"
@@ -174,7 +174,7 @@ const AddCompany = () => {
                         placeholder="Pin"
                       />
                     </div>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-md-3 col-sm-4 col-12">
                       <label>Status</label>
                       <Field
                         component={"select"}

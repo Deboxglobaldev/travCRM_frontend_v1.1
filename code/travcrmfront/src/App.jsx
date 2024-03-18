@@ -10,7 +10,7 @@ import Logout from "./Pages/auth/Logout";
 import StateMaster from "./Pages/master/masterList/StateMaster";
 import CityMaster from "./Pages/master/masterList/CityMaster";
 import CountryMaster from "./Pages/master/masterList/CountryMaster";
-import Profile from "./Component/Layout/Profile";
+import Profile from "./Component/settings/Profile.jsx";
 import Protected from "./Pages/auth/Protected";
 import QueryList from "./Pages/query/QueryList";
 import QueryView from "./Pages/query/QueryView";
@@ -76,10 +76,11 @@ import ItenaryOverview from "./Pages/master/masterList/ItenaryOverview.jsx";
 import FIT from "./Pages/master/masterList/FIT.jsx";
 import GIT from "./Pages/master/masterList/GIT.jsx";
 import LetterMaster from "./Pages/master/masterList/LetterMaster.jsx";
-import Users from "./Component/Layout/Users.jsx";
-import AddUser from "./Component/AddUser.jsx";
-import Company from "./Component/Layout/Company.jsx";
-import AddCompany from "./Component/Layout/AddCompany.jsx";
+import Users from "./Component/settings/Users.jsx";
+import AddUser from "./Component/settings/AddUser.jsx";
+import Company from "./Component/settings/Company.jsx";
+import AddCompany from "./Component/settings/AddCompany.jsx";
+import Setting from "./Component/settings/Setting.jsx";
 
 const App = () => {
   return (
@@ -159,6 +160,7 @@ const App = () => {
           <Route path="/master/paymenttype" element={<PaymentType/>}></Route>
           <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
+          <Route path="/setting" element={<Protected><Setting/></Protected>}></Route>
           <Route path="/profile" element={<Protected><Profile/></Protected>}></Route>
           <Route path="/users" element={<Protected><Users/></Protected>}></Route>
           <Route path="/users/add" element={<Protected><AddUser/></Protected>}></Route>

@@ -1,18 +1,21 @@
 import React from "react";
-import Layout from "./Layout/Layout";
+import Layout from "../Layout/Layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
-import bcrypt from 'bcryptjs';
-import { addUserInitialValue, addUserValidationSchema } from "./Layout/FormValidation";
-const AddUser = () => {
+import bcrypt from "bcryptjs";
+import {
+  addUserInitialValue,
+  addUserValidationSchema,
+} from "../Layout/FormValidation";
 
+const AddUser = () => {
   const handleSubmit = async (value, { resetForm }) => {
-    try{
+    try {
       // let password = await bcrypt.hash(value.Password, 10) // Here bycrypted our password from json
       // value.Password=password;  // Here i stored bycrypted password again inside json
-      const postData = await axios.post('url', value); // now i have posted our json data to api
+      const postData = await axios.post("url", value); // now i have posted our json data to api
       console.log(value);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
     resetForm();
@@ -40,16 +43,14 @@ const AddUser = () => {
                   </div>
                 </div>
                 <div className="card-body mt-4">
-                  <div className="row justify-content-between">
-                    <div className="col-3 rounded d-flex align-items-center backgroundColor"
-                      // style={{border:'1px solid rgb(0, 150, 136)'}}
-                    >
-                    <div className="row row-gap-2">
-                        <div className="col-6">
-                          <div className="d-flex justify-content-between ">
+                  <div className="row justify-content-between flex-sm-row flex-column row-gap-3">
+                    <div className="col-sm-3 col-12 rounded py-1 backgroundColor w-100">
+                      <div className="row row-gap-2">
+                        <div className="col-lg-6 col-12">
+                          <div className="d-flex justify-content-between">
                             <label className="">First Name</label>
                             <span className="font-size-10 text-danger pt-1">
-                              <ErrorMessage name="FirstName"/>
+                              <ErrorMessage name="FirstName" />
                             </span>
                           </div>
                           <Field
@@ -59,7 +60,7 @@ const AddUser = () => {
                             placeholder="First Name"
                           />
                         </div>
-                        <div className="col-6">
+                        <div className="col-lg-6 col-12">
                           <label>Last Name</label>
                           <Field
                             type="text"
@@ -105,11 +106,11 @@ const AddUser = () => {
                             placeholder="Password"
                           />
                         </div>
+                      </div>
                     </div>
-                    </div>
-                    <div className="col-9 pl-4">
+                    <div className="col-sm-9 col-12 pl-sm-4 py-1 w-100">
                       <div className="row row-gap-3">
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3">
                           <div className="d-flex justify-content-between">
                             <label className="">User Code</label>
                             <span className="font-size-10 text-danger pt-1">
@@ -123,7 +124,7 @@ const AddUser = () => {
                             placeholder="User Code"
                           />
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Phone</label>
                           <Field
                             type="text"
@@ -132,7 +133,7 @@ const AddUser = () => {
                             placeholder="Phone"
                           />
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Mobile</label>
                           <Field
                             type="text"
@@ -141,7 +142,7 @@ const AddUser = () => {
                             placeholder="Mobile"
                           />
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Street</label>
                           <Field
                             type="text"
@@ -150,7 +151,7 @@ const AddUser = () => {
                             placeholder="Street"
                           />
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Time Format</label>
                           <Field
                             component={"select"}
@@ -162,7 +163,7 @@ const AddUser = () => {
                             <option value={2}>24 Hours</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Language Known</label>
                           <Field
                             component={"select"}
@@ -178,7 +179,7 @@ const AddUser = () => {
                             <option value={6}>Russian</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>Destination</label>
                           <Field
                             component={"select"}
@@ -192,7 +193,7 @@ const AddUser = () => {
                             <option value={4}>Banglore</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <div className="d-flex justify-content-between">
                             <label className="">Role</label>
                             <span className="font-size-10 text-danger pt-1">
@@ -212,7 +213,7 @@ const AddUser = () => {
                             <option value={5}>Software Developer</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <div className="d-flex justify-content-between">
                             <label className="">User Department</label>
                             <span className="font-size-10 text-danger pt-1">
@@ -230,7 +231,7 @@ const AddUser = () => {
                             <option value={3}>Sales</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <div className="d-flex justify-content-between">
                             <label className="">Profile</label>
                             <span className="font-size-10 text-danger pt-1">
@@ -249,7 +250,7 @@ const AddUser = () => {
                             <option value={3}>Technichal Dashboard</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <div className="d-flex justify-content-between">
                             <label className="">Reporting Manager</label>
                             <span className="font-size-10 text-danger pt-1">
@@ -267,7 +268,7 @@ const AddUser = () => {
                             <option value={2}>Ansar</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>User Type</label>
                           <Field
                             component={"select"}
@@ -282,7 +283,7 @@ const AddUser = () => {
                             <option value={2}>Reserveration</option>
                           </Field>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 ">
                           <label>User Login Type</label>
                           <Field
                             component={"select"}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import Layout from "./Layout";
-import Model from "./Model";
+import Layout from "../Layout/Layout";
+import Model from "../Layout/Model";
 import { Field, ErrorMessage } from "formik";
 import {
   amentiesInitialValue,

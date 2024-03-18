@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import Layout from "./Layout";
+import Layout from "../Layout/Layout";
 
 const Company = () => {
   const [getData, setGetData] = useState([]);

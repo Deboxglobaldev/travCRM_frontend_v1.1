@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, NavLink } from "react-router-dom";
-import logo from '../../../public/global_assets/images/logo_light.png';
-import placeholder from '../../../public/global_assets/images/placeholders/placeholder.jpg'
+import logo from "../../../public/global_assets/images/logo_light.png";
+import placeholder from "../../../public/global_assets/images/placeholders/placeholder.jpg";
 
 const Header = () => {
   const [user, setUserData] = useState([]);
@@ -207,7 +207,6 @@ const Header = () => {
                     </li>
                   </ul>
                 </div>
-
                 <div className="dropdown-content-footer justify-content-center p-0">
                   <a
                     href="/#"
@@ -221,7 +220,6 @@ const Header = () => {
                 </div>
               </div>
             </li>
-
             <li className="nav-item dropdown dropdown-user">
               <a
                 href="/#"
@@ -229,22 +227,20 @@ const Header = () => {
                 data-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img src="https://deboxglobal.in/salescrm/profilepic/1597303900iifa.PNG" 
-                  className="rounded-circle" alt="user" />
-                <span>
-                    Satendra Gurjar
-                </span>
+                <img
+                  src="https://deboxglobal.in/salescrm/profilepic/1597303900iifa.PNG"
+                  className="rounded-circle"
+                  alt="user"
+                />
+                <span>Satendra Gurjar</span>
               </a>
 
               <div className="dropdown-menu dropdown-menu-right">
                 <NavLink to="/profile" className="dropdown-item">
-                <i className="fa-solid fa-user"></i> My profile
+                  <i className="fa-solid fa-user"></i> My profile
                 </NavLink>
-                <NavLink to="/users" className="dropdown-item">
-                  <i className="icon-user-plus"></i> Users
-                </NavLink>
-                <NavLink to="/company" className="dropdown-item">
-                  <i className="fa-solid fa-building"></i> Company
+                <NavLink to="/setting" className="dropdown-item">
+                  <i className="fa-solid fa-gear"></i> Setting
                 </NavLink>
                 <a href="/#" className="dropdown-item">
                   <i className="icon-comment-discussion"></i> Messages
