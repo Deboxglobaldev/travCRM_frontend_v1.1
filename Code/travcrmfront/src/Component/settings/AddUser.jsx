@@ -32,9 +32,9 @@ const AddUser = () => {
               onSubmit={handleSubmit}
             >
               <Form>
-                <div className="card-header header-elements-inline py-2 bg-teal">
+                <div className="header-elements-inline py-2 backgroundColor-2">
                   <div className="col-xl-12 d-flex align-items-center justify-content-between">
-                    <h5 className="card-title d-none d-sm-block">
+                    <h5 className="card-title d-none d-sm-block m-0 text-light">
                       Account Information
                     </h5>
                     <button className="btn btn-light" type="submit">

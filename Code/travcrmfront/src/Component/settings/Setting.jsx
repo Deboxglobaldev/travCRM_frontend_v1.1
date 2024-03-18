@@ -5,8 +5,9 @@ import Layout from "../Layout/Layout";
 import { axiosOther } from "../../http/axios/axios_new";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Users from "./Users";
-import Profile from "./Profile";
-
+import Profile from "./SettingProfile";
+import Protected from "../../Pages/auth/Protected";
+import SettingEmail from "./SettingEmail";
 const Setting = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -104,11 +105,11 @@ const Setting = () => {
                   <i className="icon-user-plus"></i>Users
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>
-                <NavLink to="setting/profile" className="dropdown-item py-2">
+                <NavLink to="/setting/profile" className="dropdown-item py-2">
                   <i className="fa-solid fa-user"></i>Profile
                   <span className="badge badge-pill bg-blue ml-auto">24</span>
                 </NavLink>
-                <NavLink to="/emailsetting" className="dropdown-item py-2">
+                <NavLink to="/setting/settingemail" className="dropdown-item py-2">
                   <i className="fa-solid fa-building"></i>Email Setting
                   <span className="badge badge-pill bg-blue ml-auto">36</span>
                 </NavLink>
@@ -122,8 +123,8 @@ const Setting = () => {
             </div>
             <div className="col-lg-10 col-md-9 col-12">
                 <Routes>
-                    <Route path="/" element={<Users/>}></Route>
-                    <Route path="/setting/profile" element={<Profile/>}></Route>
+                    <Route path="/" element={<Protected><Users/></Protected>}></Route>
+                    <Route path="/setting/profile" element={<Protected><Profile/></Protected>}></Route>
                 </Routes>
             </div>
           </div>
@@ -132,5 +133,6 @@ const Setting = () => {
     </>
   );
 };
-
 export default Setting;
+
+

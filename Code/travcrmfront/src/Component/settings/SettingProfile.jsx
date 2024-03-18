@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Profile = () =>{
+const SettingProfile = () =>{
     return(
         <>
             <h1 className='text-center'>This is Profile Component</h1>
@@ -8,4 +8,4 @@ const Profile = () =>{
     )
 };
 
-export default Profile;
+export default SettingProfile;

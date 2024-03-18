@@ -81,6 +81,7 @@ import AddUser from "./Component/settings/AddUser.jsx";
 import Company from "./Component/settings/Company.jsx";
 import AddCompany from "./Component/settings/AddCompany.jsx";
 import Setting from "./Component/settings/Setting.jsx";
+import SettingEmail from "./Component/settings/SettingEmail.jsx";
 
 const App = () => {
   return (

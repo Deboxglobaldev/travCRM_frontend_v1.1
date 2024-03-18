@@ -113,11 +113,11 @@ const Users = () => {
     <>
           <div className="card shadow-none border">
             <div
-              className="card-header header-elements-inline bg-teal py-2"
+              className="header-elements-inline bg-teal py-2 backgroundColor-2"
               style={{ padding: "10px" }}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Users</h5>
+                <h5 className="card-title d-none d-sm-block m-0">Users</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -131,7 +131,7 @@ const Users = () => {
                 <NavLink
                   to="/users/add"
                   type="button"
-                  className="btn bg-teal-400 add-button fs-11 shadow"
+                  className="btn text-light add-button fs-11 shadow-2"
                 >
                   <i className="fa fa-plus pr-1" aria-hidden="true"></i>
                   Create New
@@ -140,7 +140,7 @@ const Users = () => {
             </div>
             <div className="card-body">
               <div className="row align-items-center">
-                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
+                <div className="col-lg-3 col-md-4 mt-2 mt-md-0">
                   <input
                     type="text"
                     placeholder="Search"
@@ -148,28 +148,9 @@ const Users = () => {
                     name="Search"
                     value={postData.Search}
                     onChange={(e) =>
-                      setPostData({...postData, Search: e.target.value })
+                      setPostData({...postData, Search: e.target.value})
                     }
                   />
-                </div>
-                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <select
-                    className="select-input focus-ring form-input"
-                    name="Status"
-                    value={postData.Status}
-                    onChange={(e) =>
-                      setPostData({ ...postData, Status: e.target.value })
-                    }
-                  >
-                    <option value={0}>Select Status</option>
-                    <option value={1}>Active</option>
-                    <option value={2}>Inactive</option>
-                  </select>
-                </div>
-                <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
-                  <button className="btn bg-teal-400 w-75 custom-h-37">
-                    Search
-                  </button>
                 </div>
               </div>
             </div>
