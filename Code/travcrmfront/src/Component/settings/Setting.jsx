@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Router } from "react-router-dom";
-import DataTable from "react-data-table-component";
+import {NavLink, Routes, Route, useLocation} from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { axiosOther } from "../../http/axios/axios_new";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Users from "./Users";
-import Profile from "./SettingProfile";
 import Protected from "../../Pages/auth/Protected";
 import SettingEmail from "./SettingEmail";
-const Setting = () => {
+import SettingProfile from "./SettingProfile";
+const Setting = ({match}) => {
+  
+  const {pathname} = useLocation();
+  console.log(pathname);
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
@@ -17,7 +18,7 @@ const Setting = () => {
     Search: "",
     Status: "",
   });
-
+  
   useEffect(() => {
     const postDataToServer = async () => {
       try {
@@ -101,22 +102,22 @@ const Setting = () => {
                 <div className="card-header border-bottom py-2">
                   <h6 className="my-1">Settings</h6>
                 </div>
-                <NavLink to="/setting" className="dropdown-item py-2">
+                <NavLink to={pathname} className="dropdown-item py-2">
                   <i className="icon-user-plus"></i>Users
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>
-                <NavLink to="/setting/profile" className="dropdown-item py-2">
+                <NavLink to={`${pathname}/1`} className="dropdown-item py-2">
                   <i className="fa-solid fa-user"></i>Profile
                   <span className="badge badge-pill bg-blue ml-auto">24</span>
                 </NavLink>
-                <NavLink to="/setting/settingemail" className="dropdown-item py-2">
+                <NavLink to={`${pathname}/2`} className="dropdown-item py-2">
                   <i className="fa-solid fa-building"></i>Email Setting
                   <span className="badge badge-pill bg-blue ml-auto">36</span>
                 </NavLink>
-                <NavLink to="/reportingchart" className="dropdown-item py-2">
+                <NavLink to={`${pathname}/3`} className="dropdown-item py-2">
                   <i className="fa-solid fa-gear"></i> Reporting Chart
                 </NavLink>
-                <NavLink to="database" className="dropdown-item py-2">
+                <NavLink to={`${pathname}/4`} className="dropdown-item py-2">
                   <i className="icon-comment-discussion"></i> Database Backup
                 </NavLink>
               </div>
@@ -124,7 +125,6 @@ const Setting = () => {
             <div className="col-lg-10 col-md-9 col-12">
                 <Routes>
                     <Route path="/" element={<Protected><Users/></Protected>}></Route>
-                    <Route path="/setting/profile" element={<Protected><Profile/></Protected>}></Route>
                 </Routes>
             </div>
           </div>

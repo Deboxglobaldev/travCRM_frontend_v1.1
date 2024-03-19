@@ -9,12 +9,15 @@ import {
   amentiesValidationSchema,
 } from "../../Pages/master/masterList/MasterValidation";
 import { axiosOther } from "../../http/axios/axios_new";
+import { userJson } from "./dummyjson";
+import { dummyUser } from "./dummyjson";
 
 const Users = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [isActivate, setIsActivate] = useState(true);
   const [postData, setPostData] = useState({
     Search: "",
     Status: "",
@@ -56,120 +59,137 @@ const Users = () => {
     setIsEditing(true);
   };
 
+  const handleActivation = (id) =>{
+    setIsActivate(!isActivate);
+    const data = userJson.filter((value)=>{
+      return value.UserId==id
+    })
+    console.log(data);
+    // const Action = data.Action=isActivate?true:false;
+    // const Action = userJson.Action = isActivate?-1:1;
+    // console.log(Action);
+    // console.log({...userJson, Action});
+  }
+  
   const columns = [
     {
       name: "User Code",
-      selector: (row) => (
-        <span>
-          <i
-            className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
-            data-toggle="modal"
-            data-target="#modal_form_vertical"
-            onClick={() => handleEditClick(row)}
-          ></i>
-          {row.AmenityImage}
-        </span>
-      ),
+      selector: (row) => <span>{row.UserCode}</span>,
       sortable: true,
     },
     {
       name: "User Name",
-      selector: (row) => row.Name,
+      selector: (row) => row.FirstName,
       sortable: true,
     },
     {
-      name: "Email Address",
-      selector: (row) => row.Name,
+      name: "Email",
+      selector: (row) => row.Email,
       sortable: true,
     },
     {
       name: "Role",
-      selector: (row) => row.Name,
+      selector: (row) => row.Role,
       sortable: true,
     },
     {
       name: "User Type",
-      selector: (row) => row.Name,
+      selector: (row) => row.UserType,
       sortable: true,
     },
     {
       name: "Profile",
-      selector: (row) => row.Name,
-      sortable: true,
-    },
-    {
-      name: "Reporting Manager",
-      selector: (row) => row.Name,
+      selector: (row) => row.Profile,
       sortable: true,
     },
     {
       name: "Status",
-      selector: (row) => row.Name,
+      selector: (row) => row.Status,
+      sortable: true,
+    },
+    {
+      name: "Action",
+      selector: (row) => (
+        <span className="d-flex align-items-center">
+          <i
+            className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
+            onClick={() => handleEditClick(row)}
+          ></i>
+          <i className="fa-solid fa-trash cursor-pointer"></i>
+          {isActivate? <i className="fa-solid fa-eye pl-2 cursor-pointer"
+            onClick={()=>handleActivation(row.Id)}
+          ></i>:
+          <i className="fa-solid fa-eye-slash pl-2 cursor-pointer"
+          onClick={()=>handleActivation(row.Id)}
+          ></i>}
+        </span>
+      ),
       sortable: true,
     },
   ];
 
   return (
     <>
-          <div className="card shadow-none border">
-            <div
-              className="header-elements-inline bg-teal py-2 backgroundColor-2"
-              style={{ padding: "10px" }}
+      <div className="card shadow-none border">
+        <div
+          className="header-elements-inline bg-teal py-2 backgroundColor-2"
+          style={{ padding: "10px" }}
+        >
+          <div className="col-xl-10 d-flex align-items-center">
+            <h5 className="card-title d-none d-sm-block m-0">Users</h5>
+          </div>
+          <div className="col-xl-2 d-flex justify-content-end">
+            {/* Bootstrap Modal */}
+            <NavLink
+              to="/master"
+              className="btn btn-gray mr-2 fs-11 shadow"
+              aria-expanded="false"
             >
-              <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block m-0">Users</h5>
-              </div>
-              <div className="col-xl-2 d-flex justify-content-end">
-                {/* Bootstrap Modal */}
-                <NavLink
-                  to="/master"
-                  className="btn btn-gray mr-2 fs-11 shadow"
-                  aria-expanded="false"
-                >
-                  Back
-                </NavLink>
-                <NavLink
-                  to="/users/add"
-                  type="button"
-                  className="btn text-light add-button fs-11 shadow-2"
-                >
-                  <i className="fa fa-plus pr-1" aria-hidden="true"></i>
-                  Create New
-                </NavLink>
-              </div>
-            </div>
-            <div className="card-body">
-              <div className="row align-items-center">
-                <div className="col-lg-3 col-md-4 mt-2 mt-md-0">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="search-input focus-ring form-input"
-                    name="Search"
-                    value={postData.Search}
-                    onChange={(e) =>
-                      setPostData({...postData, Search: e.target.value})
-                    }
-                  />
-                </div>
-              </div>
+              Back
+            </NavLink>
+            <NavLink
+              to="/users/add"
+              type="button"
+              className="btn text-light add-button fs-11 shadow-2"
+            >
+              <i className="fa fa-plus pr-1" aria-hidden="true"></i>
+              Create New
+            </NavLink>
+          </div>
+        </div>
+        <div className="card-body">
+          <div className="row align-items-center">
+            <div className="col-lg-3 col-md-4 mt-2 mt-md-0">
+              <input
+                type="text"
+                placeholder="Search"
+                className="search-input focus-ring form-input"
+                name="Search"
+                value={postData.Search}
+                onChange={(e) =>
+                  setPostData({ ...postData, Search: e.target.value })
+                }
+              />
             </div>
           </div>
+        </div>
+      </div>
 
-          <div className="card shadow-none border">
-            <DataTable
-              columns={columns}
-              data={
-                postData.Search !== "" || postData.Status !== ""
-                  ? filterData
-                  : getData
-              }
-              pagination
-              fixedHeader
-              fixedHeaderScrollHeight="280px"
-              highlightOnHover
-            />
-          </div>
+      <div className="card shadow-none border">
+        <DataTable
+          columns={columns}
+          // data={
+          //   postData.Search !== "" || postData.Status !== ""
+          //     ? filterData
+          //     : getData
+          // }
+          data={dummyUser}
+          pagination
+          fixedHeader
+          fixedHeaderScrollHeight="280px"
+          highlightOnHover
+        />
+      </div>
     </>
   );
 };
