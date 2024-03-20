@@ -83,6 +83,11 @@ import AddCompany from "./Component/settings/AddCompany.jsx";
 import Setting from "./Component/settings/Setting.jsx";
 import SettingEmail from "./Component/settings/SettingEmail.jsx";
 import SettingProfile from "./Component/settings/SettingProfile.jsx";
+import QueryDetails from "./Pages/query/QueryDetails.jsx";
+import Quotation from "./Pages/query/Quotation.jsx";
+import ClientComm from "./Pages/query/ClientComm.jsx";
+import SupplierComm from "./Pages/query/SupplierComm.jsx";
+import TourExtension from "./Pages/query/TourExtension.jsx";
 
 const App = () => {
   return (
@@ -92,8 +97,14 @@ const App = () => {
           <Route path="/" element={<Protected><Home /></Protected>}/>
           <Route path="/mail" element={  <Protected><Mail /></Protected>}/>
           <Route path="/query_list" element={ <Protected>  <QueryList />  </Protected>}/>
-          <Route path="/query_list/query" element={ <Protected> <Query /></Protected>}/>
-          <Route path="/query_list/queryview" element={<Protected><QueryView /></Protected>}></Route>
+          <Route path="/query_list/queryview/" element={<Protected><QueryView /></Protected>}>
+            <Route index element={<Protected><Query/></Protected>}></Route>
+            <Route path="querydetails" element={<Protected><QueryDetails/></Protected>}></Route>
+            <Route path="quotation" element={<Protected><Quotation/></Protected>}></Route>
+            <Route path="tourextension" element={<Protected><TourExtension/></Protected>}></Route>
+            <Route path="clientcomm" element={<Protected><ClientComm/></Protected>}></Route>
+            <Route path="suppliercomm" element={<Protected><SupplierComm/></Protected>}></Route>
+          </Route>
 
           <Route path="/master" element={ <Protected> <Master/> </Protected>}/>
           <Route path="/master/country" element={ <Protected> <CountryMaster /></Protected>}/>
@@ -163,7 +174,7 @@ const App = () => {
           <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
           <Route path="/setting/" element={<Protected><Setting/></Protected>}>
-            <Route index element={<Protected><Users/></Protected>}></Route>
+            <Route path="users" element={<Protected><Users/></Protected>}></Route>
             <Route path="profile" element={<Protected><SettingProfile/></Protected>}></Route>
             <Route path="email" element={<Protected><SettingEmail/></Protected>}></Route>
             <Route path="reporting" element={<Protected><SettingEmail/></Protected>}></Route>

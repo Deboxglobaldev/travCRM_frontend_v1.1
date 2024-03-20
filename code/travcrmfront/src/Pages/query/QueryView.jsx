@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../Component/Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -241,85 +241,28 @@ const QueryView = () => {
               <div className="card-body" style={{ padding: "1px" }}>
                 <ul className="nav nav-pills nav-pills-bordered nav-pills-toolbar nav-justified">
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill1"
-                      className="nav-link active"
-                      data-toggle="tab"
-                    >
-                      <b>Query</b>
-                    </a>
+                    <NavLink to="/query_list/queryview/" className="nav-link">Query</NavLink>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill1"
-                      className="nav-link"
-                      data-toggle="tab"
-                    >
-                      <b>Query Details</b>
-                    </a>
+                    <NavLink to="querydetails" className="nav-link">Query Details</NavLink>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill1"
-                      className="nav-link"
-                      data-toggle="tab"
-                    >
-                      <b>Quotation</b>
-                    </a>
+                    <NavLink to="quotation" className="nav-link">Quotation</NavLink>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill2"
-                      className="nav-link"
-                      data-toggle="tab"
-                    >
-                      <b>Tour Extension</b>
-                    </a>
+                    <NavLink to="tourextension" className="nav-link">Tour Extension</NavLink>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill3"
-                      className="nav-link"
-                      data-toggle="tab"
-                    >
-                      <b>Client Communicat..</b>
-                    </a>
+                    <NavLink to="clientcomm" className="nav-link">Client Communi...</NavLink>
                   </li>
                   <li className="nav-item">
-                    <a
-                      href="#toolbar-justified-pill4"
-                      className="nav-link"
-                      data-toggle="tab"
-                    >
-                      <b>Supplier Communi..</b>
-                    </a>
+                    <NavLink to="suppliercomm" className="nav-link">Supplier Communi...</NavLink>
                   </li>
                 </ul>
 
                 <div className="tab-content">
-                  <div className="tab-pane fade" id="toolbar-justified-pill1">
-                    To use in pills with equal widths add{" "}
-                    <code>.nav-justified .nav-pills-toolbar</code> classNamees.
-                  </div>
-
-                  <div
-                    className="tab-pane fade active show"
-                    id="toolbar-justified-pill2"
-                  >
-                    Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-                    single-origin coffee squid laeggin.
-                  </div>
-
-                  <div className="tab-pane fade" id="toolbar-justified-pill3">
-                    DIY synth PBR banksy irony. Leggings gentrify squid 8-bit
-                    cred pitchfork. Williamsburg whatever.
-                  </div>
-
-                  <div className="tab-pane fade" id="toolbar-justified-pill4">
-                    Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo
-                    nostrud organic, assumenda labore aesthet.
-                  </div>
-                </div>
+                    <Outlet/>
+                </div>  
               </div>
             </div>
           </div>
