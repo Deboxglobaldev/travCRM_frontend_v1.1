@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {NavLink, Routes, Route, useLocation} from "react-router-dom";
+import {useRouteMatch} from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { axiosOther } from "../../http/axios/axios_new";
 import Users from "./Users";
 import Protected from "../../Pages/auth/Protected";
 import SettingEmail from "./SettingEmail";
 import SettingProfile from "./SettingProfile";
+
 const Setting = ({match}) => {
-  
   const {pathname} = useLocation();
   console.log(pathname);
   const [getData, setGetData] = useState([]);

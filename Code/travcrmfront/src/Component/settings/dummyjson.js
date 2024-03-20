@@ -1,33 +1,10 @@
-export const userJson = [
-  {
+export const userJson = {
     UserId: "1",
     CompanyKey: "jhhusyjejhjehjd",
     UserKey: "jhdddhdhd",
     UserEmail: "usermail@gmail.com",
-    Action: true,
-  },
-  {
-    UserId: "2",
-    CompanyKey: "jhhusyjejhjehjd",
-    UserKey: "jhdddhdhd",
-    UserEmail: "usermail@gmail.com",
-    Action: true,
-  },
-  {
-    UserId: "3",
-    CompanyKey: "jhhusyjejhjehjd",
-    UserKey: "jhdddhdhd",
-    UserEmail: "usermail@gmail.com",
-    Action: true,
-  },
-  {
-    UserId: "4",
-    CompanyKey: "jhhusyjejhjehjd",
-    UserKey: "jhdddhdhd",
-    UserEmail: "usermail@gmail.com",
-    Action: true,
-  },
-];
+    Action: 1,
+  };
 
 export const dummyUser = [
   {
@@ -51,7 +28,7 @@ export const dummyUser = [
     ReportingManager: "hjad",
     UserType: "djkad",
     UserLoginType: "jdkkad",
-    Status: "Active",
+    Status: "InActive",
   },
   {
     Id: "2",
@@ -97,7 +74,7 @@ export const dummyUser = [
     ReportingManager: "hjad",
     UserType: "djkad",
     UserLoginType: "jdkkad",
-    Status: "Active",
+    Status: "InActive",
   },
   {
     Id: "4",

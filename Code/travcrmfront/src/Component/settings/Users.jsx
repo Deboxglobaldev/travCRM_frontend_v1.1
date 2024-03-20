@@ -60,17 +60,10 @@ const Users = () => {
   };
 
   const handleActivation = (id) =>{
-    setIsActivate(!isActivate);
-    const data = userJson.filter((value)=>{
-      return value.UserId==id
-    })
-    console.log(data);
-    // const Action = data.Action=isActivate?true:false;
-    // const Action = userJson.Action = isActivate?-1:1;
-    // console.log(Action);
-    // console.log({...userJson, Action});
+    
+    console.log(userJson);
   }
-  
+
   const columns = [
     {
       name: "User Code",
@@ -104,11 +97,11 @@ const Users = () => {
     },
     {
       name: "Status",
-      selector: (row) => row.Status,
+      selector: (row) =>row.Status,
       sortable: true,
     },
     {
-      name: "Action",
+      name:"Action",
       selector: (row) => (
         <span className="d-flex align-items-center">
           <i
@@ -116,11 +109,11 @@ const Users = () => {
             onClick={() => handleEditClick(row)}
           ></i>
           <i className="fa-solid fa-trash cursor-pointer"></i>
-          {isActivate? <i className="fa-solid fa-eye pl-2 cursor-pointer"
+          {row.Status=='Active'?<i className="fa-solid fa-eye pl-2 cursor-pointer"
             onClick={()=>handleActivation(row.Id)}
           ></i>:
           <i className="fa-solid fa-eye-slash pl-2 cursor-pointer"
-          onClick={()=>handleActivation(row.Id)}
+            onClick={()=>handleActivation(row.Id)}
           ></i>}
         </span>
       ),
