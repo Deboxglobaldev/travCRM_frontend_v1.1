@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, createBrowserRouter, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import "../public/global_assets/custom_css/master.css";
 import Home from "./Pages/home/Home";
@@ -82,6 +82,7 @@ import Company from "./Component/settings/Company.jsx";
 import AddCompany from "./Component/settings/AddCompany.jsx";
 import Setting from "./Component/settings/Setting.jsx";
 import SettingEmail from "./Component/settings/SettingEmail.jsx";
+import SettingProfile from "./Component/settings/SettingProfile.jsx";
 
 const App = () => {
   return (
@@ -92,9 +93,9 @@ const App = () => {
           <Route path="/mail" element={  <Protected><Mail /></Protected>}/>
           <Route path="/query_list" element={ <Protected>  <QueryList />  </Protected>}/>
           <Route path="/query_list/query" element={ <Protected> <Query /></Protected>}/>
-          <Route path="/query_list/queryview/:queryid" element={ <Protected> <QueryView /></Protected>}/>
+          <Route path="/query_list/queryview" element={<Protected><QueryView /></Protected>}></Route>
 
-          <Route path="/master" element={ <Protected> <Master /> </Protected>}/>
+          <Route path="/master" element={ <Protected> <Master/> </Protected>}/>
           <Route path="/master/country" element={ <Protected> <CountryMaster /></Protected>}/>
           <Route path="/master/state" element={<Protected><StateMaster /></Protected>} />
           <Route path="/master/city" element={ <Protected> <CityMaster /></Protected>}/>
@@ -161,9 +162,15 @@ const App = () => {
           <Route path="/master/paymenttype" element={<PaymentType/>}></Route>
           <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
-          <Route path="/setting" element={<Protected><Setting/></Protected>}></Route>
+          <Route path="/setting/" element={<Protected><Setting/></Protected>}>
+            <Route index element={<Protected><Users/></Protected>}></Route>
+            <Route path="profile" element={<Protected><SettingProfile/></Protected>}></Route>
+            <Route path="email" element={<Protected><SettingEmail/></Protected>}></Route>
+            <Route path="reporting" element={<Protected><SettingEmail/></Protected>}></Route>
+            <Route path="database" element={<Protected><SettingEmail/></Protected>}></Route>
+          </Route>
+
           <Route path="/profile" element={<Protected><Profile/></Protected>}></Route>
-          <Route path="/users" element={<Protected><Users/></Protected>}></Route>
           <Route path="/users/add" element={<Protected><AddUser/></Protected>}></Route>
           <Route path="/company" element={<Protected><Company/></Protected>}></Route>
           <Route path="/company/add" element={<Protected><AddCompany/></Protected>}></Route>
@@ -176,3 +183,4 @@ const App = () => {
 };
 
 export default App;
+

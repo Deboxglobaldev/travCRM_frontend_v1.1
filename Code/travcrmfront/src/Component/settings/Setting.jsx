@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {NavLink, Routes, Route, useLocation} from "react-router-dom";
-import {useRouteMatch} from "react-router-dom";
+import { NavLink, Routes, Route, useLocation, Outlet } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { axiosOther } from "../../http/axios/axios_new";
-import Users from "./Users";
-import Protected from "../../Pages/auth/Protected";
-import SettingEmail from "./SettingEmail";
-import SettingProfile from "./SettingProfile";
 
-const Setting = ({match}) => {
-  const {pathname} = useLocation();
-  console.log(pathname);
+
+const Setting = () => {
+  const { pathname } = useLocation();
+
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
@@ -19,7 +15,7 @@ const Setting = ({match}) => {
     Search: "",
     Status: "",
   });
-  
+
   useEffect(() => {
     const postDataToServer = async () => {
       try {
@@ -103,31 +99,27 @@ const Setting = ({match}) => {
                 <div className="card-header border-bottom py-2">
                   <h6 className="my-1">Settings</h6>
                 </div>
-                <NavLink to={pathname} className="dropdown-item py-2">
+                <NavLink to="/setting" className="dropdown-item py-2">
                   <i className="icon-user-plus"></i>Users
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>
-                <NavLink to={`${pathname}/1`} className="dropdown-item py-2">
+                <NavLink to="profile" className="dropdown-item py-2">
                   <i className="fa-solid fa-user"></i>Profile
                   <span className="badge badge-pill bg-blue ml-auto">24</span>
                 </NavLink>
-                <NavLink to={`${pathname}/2`} className="dropdown-item py-2">
+                <NavLink to="email" className="dropdown-item py-2">
                   <i className="fa-solid fa-building"></i>Email Setting
                   <span className="badge badge-pill bg-blue ml-auto">36</span>
                 </NavLink>
-                <NavLink to={`${pathname}/3`} className="dropdown-item py-2">
+                <NavLink to="reporting" className="dropdown-item py-2">
                   <i className="fa-solid fa-gear"></i> Reporting Chart
                 </NavLink>
-                <NavLink to={`${pathname}/4`} className="dropdown-item py-2">
+                <NavLink to="database" className="dropdown-item py-2">
                   <i className="icon-comment-discussion"></i> Database Backup
                 </NavLink>
               </div>
             </div>
-            <div className="col-lg-10 col-md-9 col-12">
-                <Routes>
-                    <Route path="/" element={<Protected><Users/></Protected>}></Route>
-                </Routes>
-            </div>
+            <div className="col-lg-10 col-md-9 col-12"><Outlet/></div>
           </div>
         </div>
       </Layout>
@@ -135,5 +127,3 @@ const Setting = ({match}) => {
   );
 };
 export default Setting;
-
-

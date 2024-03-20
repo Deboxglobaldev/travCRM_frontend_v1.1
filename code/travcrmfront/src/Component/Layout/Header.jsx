@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Outlet, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/global_assets/images/logo_light.png";
 import placeholder from "../../../public/global_assets/images/placeholders/placeholder.jpg";
 
@@ -306,8 +306,6 @@ const Header = () => {
           </ul>
         </div>
       </div>
-
-      <Outlet />
       {/* <!-- Alternative navbar  End--> */}
     </>
   );

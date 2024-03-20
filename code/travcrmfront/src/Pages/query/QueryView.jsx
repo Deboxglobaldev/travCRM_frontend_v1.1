@@ -14,7 +14,7 @@ const QueryView = () => {
     <Layout>
       <div className="container-fluid mt-3 mb-5">
         <div className="row">
-          <div className="col-xl-3">
+          {/* <div className="col-xl-3">
             <div className="card shadow-none border">
               <div className="card-body rounded navbar-dark">
                 <div className="media">
@@ -201,9 +201,9 @@ const QueryView = () => {
                 </table>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="col-xl-7" style={{ padding: 0 }}>
+          <div className="col-xl-10 pl-2" style={{ padding: 0 }}>
             <div className="card shadow-none border">
               <div className="card-body navbar-green">
                 <div className="media">
@@ -246,6 +246,24 @@ const QueryView = () => {
                       className="nav-link active"
                       data-toggle="tab"
                     >
+                      <b>Query</b>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#toolbar-justified-pill1"
+                      className="nav-link"
+                      data-toggle="tab"
+                    >
+                      <b>Query Details</b>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="#toolbar-justified-pill1"
+                      className="nav-link"
+                      data-toggle="tab"
+                    >
                       <b>Quotation</b>
                     </a>
                   </li>
@@ -264,7 +282,7 @@ const QueryView = () => {
                       className="nav-link"
                       data-toggle="tab"
                     >
-                      <b>Client Communication</b>
+                      <b>Client Communicat..</b>
                     </a>
                   </li>
                   <li className="nav-item">
@@ -273,7 +291,7 @@ const QueryView = () => {
                       className="nav-link"
                       data-toggle="tab"
                     >
-                      <b>Supplier Communicat..</b>
+                      <b>Supplier Communi..</b>
                     </a>
                   </li>
                 </ul>
