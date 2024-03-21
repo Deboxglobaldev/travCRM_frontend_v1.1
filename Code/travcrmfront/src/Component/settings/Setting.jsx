@@ -99,7 +99,7 @@ const Setting = () => {
                 <div className="card-header border-bottom py-2">
                   <h6 className="my-1">Settings</h6>
                 </div>
-                <NavLink to="users" className="dropdown-item py-2">
+                <NavLink to="/setting" className="dropdown-item py-2">
                   <i className="icon-user-plus"></i>Users
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>

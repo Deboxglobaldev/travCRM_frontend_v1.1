@@ -174,7 +174,7 @@ const App = () => {
           <Route path="/master/bankmaster" element={<BankMaster/>}></Route>
 
           <Route path="/setting/" element={<Protected><Setting/></Protected>}>
-            <Route path="users" element={<Protected><Users/></Protected>}></Route>
+            <Route index element={<Protected><Users/></Protected>}></Route>
             <Route path="profile" element={<Protected><SettingProfile/></Protected>}></Route>
             <Route path="email" element={<Protected><SettingEmail/></Protected>}></Route>
             <Route path="reporting" element={<Protected><SettingEmail/></Protected>}></Route>
