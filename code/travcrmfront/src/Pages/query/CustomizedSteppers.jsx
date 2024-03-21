@@ -10,6 +10,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 
@@ -138,7 +139,7 @@ function ColorlibStepIcon(props) {
     1: <SettingsIcon />,
     2: <GroupAddIcon />,
     3: <VideoLabelIcon />,
-    4: <VideoLabelIcon />,
+    4: <AssignmentIcon />,
     5: <AddTaskIcon />,
     6: <VideoLabelIcon />,
   };
