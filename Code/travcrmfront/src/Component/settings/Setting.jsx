@@ -99,23 +99,29 @@ const Setting = () => {
                 <div className="card-header border-bottom py-2">
                   <h6 className="my-1">Settings</h6>
                 </div>
-                <NavLink to="/setting" className="dropdown-item py-2">
-                  <i className="icon-user-plus"></i>Users
+                <NavLink to="/setting" className={`py-2 px-3 d-flex ${pathname==="/setting"? 'Active':''}`}>
+                  <div>
+                     <i className="icon-user-plus mr-2"></i>Users
+                  </div>
                   <span className="badge badge-pill bg-blue ml-auto">12</span>
                 </NavLink>
-                <NavLink to="profile" className="dropdown-item py-2">
-                  <i className="fa-solid fa-user"></i>Profile
+                <NavLink to="profile" className={`py-2 px-3 d-flex ${pathname==="/setting/profile"? 'Active':''}`}>
+                  <div>
+                    <i className="fa-solid fa-user mr-2"></i>Profile
+                  </div>
                   <span className="badge badge-pill bg-blue ml-auto">24</span>
                 </NavLink>
-                <NavLink to="email" className="dropdown-item py-2">
-                  <i className="fa-solid fa-building"></i>Email Setting
+                <NavLink to="email" className={`py-2 px-3 d-flex ${pathname==="/setting/email"? 'Active':''}`}>
+                  <div>
+                    <i className="fa-solid fa-building mr-2"></i>Email Setting
+                  </div>
                   <span className="badge badge-pill bg-blue ml-auto">36</span>
                 </NavLink>
-                <NavLink to="reporting" className="dropdown-item py-2">
-                  <i className="fa-solid fa-gear"></i> Reporting Chart
+                <NavLink to="reporting" className={`py-2 px-3 ${pathname==="/setting/reporting"? 'Active':''}`}>
+                  <i className="fa-solid fa-gear mr-2"></i> Reporting Chart
                 </NavLink>
-                <NavLink to="database" className="dropdown-item py-2">
-                  <i className="icon-comment-discussion"></i> Database Backup
+                <NavLink to="database" className={`py-2 px-3 ${pathname==="/setting/database"? 'Active':''}`}>
+                  <i className="icon-comment-discussion mr-2"></i>Database Backup
                 </NavLink>
               </div>
             </div>
