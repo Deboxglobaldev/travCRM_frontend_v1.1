@@ -1,30 +1,34 @@
 import * as yup from "yup";
 
 export const addUserInitialValue = {
+  CompanyKey: "",
+  UserCode: "",
   FirstName: "",
   LastName: "",
   Email: "",
-  Pin: "",
-  Password: "",
-  UserCode: "",
   Phone: "",
   Mobile: "",
+  Password: "",
+  PIN: "",
+  Role: "1",
   Street: "",
-  TimeFormat: "",
   LanguageKnown: "",
-  Destination: "",
-  Role: "",
-  UserDepartment: "",
-  Profile: "",
-  ReportingManager: "",
-  UserType: "",
-  UserLoginType: "",
+  TimeFormat: "1",
+  Profile: "1",
+  Destination: "1",
+  UsersDepartment: "1",
+  ReportingManager: "1",
+  UserType: "1",
+  UserLoginType: "1",
+  AddedBy: "1",
+  UpdatedBy: 1,
 };
+
 export const addCompanyInitialValue = {
   CompanyName: "",
-  Email:"",
+  Email: "",
   LicenseKey: "",
-  ActionDate:"",
+  ActionDate: "",
   PAN: "",
   TAN: "",
   CIN: "",
@@ -45,9 +49,9 @@ export const addUserValidationSchema = yup.object().shape({
   ReportingManager: yup.string().required("Required"),
 });
 export const addCompanyValidationSchema = yup.object().shape({
-    CompanyName:yup.string().required('Required'),
-    Email:yup.string().required('Required'),
-    LicenseKey:yup.string().required('Required'),
-    ActionDate:yup.string().required('Required'),
-    Address1:yup.string().required('Required')
+  CompanyName: yup.string().required("Required"),
+  Email: yup.string().required("Required"),
+  LicenseKey: yup.string().required("Required"),
+  ActionDate: yup.string().required("Required"),
+  Address1: yup.string().required("Required"),
 });

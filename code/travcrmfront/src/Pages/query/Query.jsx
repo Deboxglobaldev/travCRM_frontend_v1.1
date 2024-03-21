@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import "jquery";
 import "select2";
+import { NavLink } from "react-router-dom";
 
 const Query = () => {
   const [selectedQueryType, setSelectedQueryType] = useState("");
@@ -67,30 +68,33 @@ const Query = () => {
 
   return (
     <>
-      <div className="container-fluid p-3 mb-4">
-        <div className="card shadow-none border">
+      <div className="container-fluid">
+        <div className="">
           <Formik
             initialValues={QueryinputInitialValue}
             validationSchema={QueryInputSchema}
             onSubmit={handleSubmit}
           >
             <Form>
-              <div className="card-header header-elements-inline py-2 bg-teal">
-                <div className="col-xl-12 d-flex align-items-center justify-content-between">
+              {/* <div className=""> */}
+                <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
                   <h5 className="card-title d-none d-sm-block">Query Form</h5>
-                  <button className="btn btn-light" type="submit">
-                    Save
-                  </button>
+                  <div>
+                    <button className="btn btn-light mr-2" type="submit">
+                      Save
+                    </button>
+                    <NavLink to="/query_list" className={"btn btn-light"}>Close</NavLink>
+                  </div>
                 </div>
                 <div></div>
-              </div>
-              <div className="card-body mt-4">
+              {/* </div> */}
+              <div className="">
                 {/* Contact Person */}
                 <div className="row">
                   <div className="col-12">
                     <div className="card shadow-none border-1">
                       <div
-                        className="card-header px-2 pt-2 pb-0"
+                        className="card-header px-2  pb-0"
                         style={{ borderBottom: "1px solid rgb(0, 150, 136)" }}
                       >
                         <h6>Contact Information</h6>

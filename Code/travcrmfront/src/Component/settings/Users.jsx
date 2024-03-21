@@ -60,7 +60,6 @@ const Users = () => {
   };
 
   const handleActivation = (id) =>{
-    
     console.log(userJson);
   }
 

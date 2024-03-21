@@ -13,8 +13,9 @@ const AddUser = () => {
     try {
       // let password = await bcrypt.hash(value.Password, 10) // Here bycrypted our password from json
       // value.Password=password;  // Here i stored bycrypted password again inside json
-      const postData = await axios.post("url", value); // now i have posted our json data to api
       console.log(value);
+      const postData = await axios.post("createupdateuser", value); // now i have posted our json data to api
+      resetForm();
     } catch (err) {
       console.log(err);
     }
