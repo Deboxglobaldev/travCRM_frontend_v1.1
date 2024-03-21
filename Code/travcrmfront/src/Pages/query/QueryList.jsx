@@ -4,7 +4,6 @@ import { NavLink, Link } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import axios from 'axios';
 
-
 const QueryList = () => {
 
   const [getData, setGetData] = useState([]);
@@ -126,11 +125,13 @@ const QueryList = () => {
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
+
                 <NavLink
                   to="/query_list/queryview/"
                   className="btn mr-2 btn-gray fs-11 shadow"
                   aria-expanded="false"
                 >+ Create Query</NavLink>
+
               </div>
             </div>
             <div className="card-body" >
