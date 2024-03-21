@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "../../Component/Layout/Layout";
 import { NavLink, Outlet } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import CustomizedSteppers from "./CustomizedSteppers";
 
 const QueryView = () => {
   const cardBody = {
@@ -73,7 +72,7 @@ const QueryView = () => {
                         >
                           Nights
                         </a>
-                        <div className="text-muted font-size-sm 
+                        <div className="text-muted font-size-sm
                           m-auto w-100
                         ">
                           <i
@@ -203,41 +202,13 @@ const QueryView = () => {
             </div>
           </div> */}
 
-          <div className="col-xl-10 pl-2" style={{ padding: 0 }}>
+          <div>
+          <CustomizedSteppers />
+          </div>
+
+          <div className="col-xl-12 pl-2" style={{ padding: 0 }}>
             <div className="card shadow-none border">
-              <div className="card-body navbar-green">
-                <div className="media">
-                  <div className="col-xl-6" style={{ padding: 0 }}>
-                    <h6 className="media-title font-weight-semibold">
-                      <span style={{ color: "gray", fontSize: "12px" }}>
-                        Subject:
-                      </span>{" "}
-                      <span className="badge bg-warning-400 ml-auto">Pending</span>{" "}
-                      <br />{" "}
-                      <span style={{ color: "#16b90e" }}>
-                        02-11-2023 DeBox Global Pvt. Ltd.
-                      </span>
-                    </h6>
-                  </div>
-                  <div
-                    className="col-xl-6"
-                    style={{ textAlign: "right", padding: "0px" }}
-                  >
-                    <div
-                      className="d-flex align-items-center"
-                      style={{ float: "right" }}
-                    >
-                      <Button
-                        variant="contained"
-                        size="small"
-                        style={{ background: "#16b90e" }}
-                      >
-                        + Add Quotation
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div className="card-body" style={{ padding: "1px" }}>
                 <ul className="nav nav-pills nav-pills-bordered nav-pills-toolbar nav-justified">
                   <li className="nav-item">
@@ -262,221 +233,6 @@ const QueryView = () => {
 
                 <div className="tab-content">
                     <Outlet/>
-                </div>  
-              </div>
-            </div>
-          </div>
-
-          <div className="col-xl-2">
-            <div className="card shadow-none border">
-              <div className="card-body rounded-top navbar-dark">
-                <div className="media" style={{ float: "left" }}>
-                  <div className="align-self-center">
-                    <h6 className="media-title font-weight-semibold">
-                      Actions
-                    </h6>
-                  </div>
-                </div>
-                <div
-                  className="d-flex align-items-center"
-                  style={{ float: "right", marginRight: "0px" }}
-                >
-                  <Button
-                    variant="contained"
-                    size="small"
-                    style={{
-                      padding: "3px",
-                      fontSize: "11px",
-                      background: "#969090",
-                    }}
-                  >
-                    Back
-                  </Button>
-                </div>
-              </div>
-              <div className="card-body rounded p-0">
-                <div
-                  className="accordion border-none"
-                  id="accordionPanelsStayOpenExample"
-                >
-                  {/* First Accordian */}
-                  <div className="accordion-item border-top-0">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingOne"
-                    >
-                      <button
-                        className="accordion-button collapsed p-2 text-color-query-view font-size-12 font-weight-bold"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne"
-                      >
-                        Important Links
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseOne"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingOne"
-                    >
-                      <div className="accordion-body p-0">
-                        <ul className="list-group list-group-flush">
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">irctc.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">makemytrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">booking.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">cleartrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">hotels.com</NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Accordina Second */}
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingTwo"
-                    >
-                      <button
-                        className="accordion-button collapsed p-2
-                        font-size-12 text-color-query-view font-weight-bold"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                      >
-                        Payement Information
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseTwo"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingTwo"
-                    >
-                      <div className="accordion-body p-0">
-                        <ul className="list-group list-group-flush">
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">irctc.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">makemytrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">booking.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">cleartrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">hotels.com</NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Accordian Third */}
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingThree"
-                    >
-                      <button
-                        className="accordion-button collapsed p-2
-                        font-size-12 font-weight-bold text-color-query-view"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree"
-                      >
-                        Query Information
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingThree"
-                    >
-                      <div className="accordion-body p-0">
-                        <ul className="list-group list-group-flush">
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">irctc.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">makemytrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">booking.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">cleartrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">hotels.com</NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Accordian Fourth */}
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingFour"
-                    >
-                      <button
-                        className="accordion-button collapsed p-2 
-                        font-size-12 font-weight-bold text-color-query-view"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseFour"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseFour"
-                      >
-                        Supplier Information
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseFour"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingFour"
-                    >
-                      <div className="accordion-body p-0">
-                        <ul className="list-group list-group-flush">
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">irctc.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">makemytrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">booking.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">cleartrip.com</NavLink>
-                          </li>
-                          <li className="list-group-item">
-                            <NavLink to="/query_list">hotels.com</NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
