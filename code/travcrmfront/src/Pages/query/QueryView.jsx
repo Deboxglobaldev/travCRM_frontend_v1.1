@@ -48,90 +48,89 @@ const QueryView = () => {
               </div>
             </div>
           </div>
- 
-            <div className="col-xl-12 px-4" style={{ padding: 0 }}>
-              <div className="card shadow-none border">
-                <div className="card-body" style={{ padding: "1px" }}>
-                  <ul className="nav nav-pills-toolbar border-bottom nav-justified p-1">
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="/query_list/queryview/"
-                        className={`nav-link fs-6 py-1 rounded-pill ${
-                          pathname === "/query_list/queryview/"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Query
-                      </NavLink>
-                    </li>
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="querydetails"
-                        className={`nav-link fs-6 py-1 rounded-pill ${
-                          pathname === "/query_list/queryview/querydetails"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Query Details
-                      </NavLink>
-                    </li>
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="quotation"
-                        className={`nav-link fs-6 py-1 rounded-pill ${
-                          pathname === "/query_list/queryview/quotation"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Quotation
-                      </NavLink>
-                    </li>
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="tourextension"
-                        className={`nav-link fs-6 py-1 rounded-pill ${
-                          pathname === "/query_list/queryview/tourextension"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Tour Extension
-                      </NavLink>
-                    </li>
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="clientcomm"
-                        className={`nav-link fs-6 py-1 rounded-pill ${
-                          pathname === "/query_list/queryview/clientcomm"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Client Communi...
-                      </NavLink>
-                    </li>
-                    <li className="nav-item rounded-pill">
-                      <NavLink
-                        to="suppliercomm"
-                        className={`nav-link fs-6 py-1 rounded-pill  ${
-                          pathname === "/query_list/queryview/suppliercomm"
-                            ? "Active"
-                            : "text-dark"
-                        }`}
-                      >
-                        Supplier Communi...
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <div className="tab-content">
-                    <Outlet />
-                  </div>
+          <div className="col-xl-12 px-4" style={{ padding: 0 }}>
+            <div className="card shadow-none border">
+              <div className="card-body" style={{ padding: "1px" }}>
+                <ul className="nav nav-pills-toolbar border-bottom nav-justified p-1">
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="/query_list/queryview/"
+                      className={`nav-link fs-6 py-1 rounded-pill ${
+                        pathname === "/query_list/queryview/"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Query
+                    </NavLink>
+                  </li>
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="querydetails"
+                      className={`nav-link fs-6 py-1 rounded-pill ${
+                        pathname === "/query_list/queryview/querydetails"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Query Details
+                    </NavLink>
+                  </li>
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="quotation"
+                      className={`nav-link fs-6 py-1 rounded-pill ${
+                        pathname === "/query_list/queryview/quotation"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Quotation
+                    </NavLink>
+                  </li>
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="tourextension"
+                      className={`nav-link fs-6 py-1 rounded-pill ${
+                        pathname === "/query_list/queryview/tourextension"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Tour Extension
+                    </NavLink>
+                  </li>
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="clientcomm"
+                      className={`nav-link fs-6 py-1 rounded-pill ${
+                        pathname === "/query_list/queryview/clientcomm"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Client Communi...
+                    </NavLink>
+                  </li>
+                  <li className="nav-item rounded-pill">
+                    <NavLink
+                      to="suppliercomm"
+                      className={`nav-link fs-6 py-1 rounded-pill  ${
+                        pathname === "/query_list/queryview/suppliercomm"
+                          ? "Active"
+                          : "text-dark"
+                      }`}
+                    >
+                      Supplier Communi...
+                    </NavLink>
+                  </li>
+                </ul>
+                <div className="tab-content">
+                  <Outlet />
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </Layout>
