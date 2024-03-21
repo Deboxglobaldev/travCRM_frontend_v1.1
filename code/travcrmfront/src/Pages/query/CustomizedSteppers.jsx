@@ -11,31 +11,10 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import SafetyDividerIcon from '@mui/icons-material/SafetyDivider';
+import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 10,
-    left: 'calc(-50% + 16px)',
-    right: 'calc(50% + 16px)',
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
-}));
 
 const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
   color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
@@ -137,11 +116,11 @@ function ColorlibStepIcon(props) {
 
   const icons = {
     1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
-    4: <AssignmentIcon />,
+    2: <AddToQueueIcon />,
+    3: <AssignmentIcon />,
+    4: <VideoLabelIcon />,
     5: <AddTaskIcon />,
-    6: <VideoLabelIcon />,
+    6: <SafetyDividerIcon />,
   };
 
   return (
@@ -178,17 +157,10 @@ const steps = [
     'Supplier',
   ];
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers(prop) {
   return (
     <Stack sx={{ width: '100%' }} spacing={3}>
-      {/* <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper> */}
-      <Stepper alternativeLabel activeStep={2} connector={<ColorlibConnector />}>
+        <Stepper alternativeLabel activeStep={prop.step} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

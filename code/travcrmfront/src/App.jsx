@@ -97,7 +97,7 @@ const App = () => {
           <Route path="/" element={<Protected><Home /></Protected>}/>
           <Route path="/mail" element={  <Protected><Mail /></Protected>}/>
           <Route path="/query_list" element={ <Protected>  <QueryList />  </Protected>}/>
-          <Route path="/query_list/queryview/" element={<Protected><QueryView /></Protected>}>
+          <Route path="/query_list/queryview" element={<Protected><QueryView /></Protected>}>
             <Route index element={<Protected><Query/></Protected>}></Route>
             <Route path="querydetails" element={<Protected><QueryDetails/></Protected>}></Route>
             <Route path="quotation" element={<Protected><Quotation/></Protected>}></Route>

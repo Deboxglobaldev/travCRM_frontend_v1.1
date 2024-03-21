@@ -127,7 +127,7 @@ const QueryList = () => {
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
                 <NavLink
-                  to="/query_list/query"
+                  to="/query_list/queryview/"
                   className="btn mr-2 btn-gray fs-11 shadow"
                   aria-expanded="false"
                 >+ Create Query</NavLink>
