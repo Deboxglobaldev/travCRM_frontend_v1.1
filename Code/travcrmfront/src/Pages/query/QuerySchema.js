@@ -7,7 +7,7 @@ export const QueryinputInitialValue = {
   PackageCode: "",
   PackageName: "",
   ClientType: "",
-  OperationPerson:"",
+  OperationPerson: "",
   AgentId: "",
   LeadPax: "",
   Subject: "",
@@ -55,14 +55,14 @@ export const QueryinputInitialValue = {
 };
 
 export const QueryInputSchema = yup.object().shape({
-  Subject: yup.string().required('Required'),
-  OperationPerson:yup.string().required('Required'),
-  TravelDate:yup.object().shape({
-    FromDate:yup.string().required('Required'),
-    ToDate:yup.string().required('Required'),
-    TotalDays:yup.string().required('Required')
+  Subject: yup.string().required("Required"),
+  OperationPerson: yup.string().required("Required"),
+  TravelDate: yup.object().shape({
+    FromDate: yup.string().required("Required"),
+    ToDate: yup.string().required("Required"),
+    TotalDays: yup.string().required("Required"),
   }),
-  PaxInfo:yup.object().shape({
-    Adult:yup.string().required('Required'),
+  PaxInfo: yup.object().shape({
+    Adult: yup.string().required("Required"),
   }),
 });

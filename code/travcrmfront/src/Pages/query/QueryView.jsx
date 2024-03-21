@@ -21,7 +21,7 @@ const QueryView = () => {
           <CustomizedSteppers step={3} />
           </div>
 
-          <div className="col-xl-12 pl-2" style={{ padding: 0 }}>
+          <div className="col-xl-12 pl-2 mt-3" style={{ padding: 0 }}>
             <div className="card shadow-none border">
 
               <div className="card-body" style={{ padding: "1px" }}>
