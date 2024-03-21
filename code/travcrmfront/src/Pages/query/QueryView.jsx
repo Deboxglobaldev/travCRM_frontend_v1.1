@@ -18,64 +18,6 @@ const QueryView = () => {
           <div>
             <CustomizedSteppers step={3} />
           </div>
-<<<<<<< Updated upstream
-          <div className="col-xl-12 pl-2 mt-3" style={{ padding: 0 }}>
-            <div className="col-xl-12 pl-2" style={{ padding: 0 }}>
-              <div className="card shadow-none border">
-                <div className="card-body" style={{ padding: "1px" }}>
-                  <ul className="nav  nav-pills-toolbar nav-justified">
-                    <li className="nav-item border">
-                      <NavLink to="/query_list/queryview/"
-                       className={`nav-link ${pathname==='/query_list/queryview/'?
-                        'Active':'text-dark'}`}>
-                        Query
-                      </NavLink>
-                    </li>
-                    <li className="nav-item border">
-                      <NavLink to="querydetails" 
-                        className={`nav-link ${pathname==='/query_list/queryview/querydetails'?
-                         'Active':'text-dark'}`}
-                      >
-                        Query Details
-                      </NavLink>
-                    </li>
-                    <li className="nav-item border">
-                      <NavLink to="quotation"
-                      className={`nav-link ${pathname==='/query_list/queryview/quotation'? 
-                      'Active':'text-dark'}`}
-                      >
-                        Quotation
-                      </NavLink>
-                    </li>
-                    <li className="nav-item border">
-                      <NavLink to="tourextension" 
-                      className={`nav-link ${pathname==='/query_list/queryview/tourextension'? 
-                      'Active':'text-dark'}`}
-                      >
-                        Tour Extension
-                      </NavLink>
-                    </li>
-                    <li className="nav-item border">
-                      <NavLink to="clientcomm" 
-                      className={`nav-link ${pathname==='/query_list/queryview/clientcomm'? 
-                      'Active':'text-dark'}`}
-                      >
-                        Client Communi...
-                      </NavLink>
-                    </li>
-                    <li className="nav-item border">
-                      <NavLink to="suppliercomm" 
-                      className={`nav-link ${pathname==='/query_list/queryview/suppliercomm'?
-                       'Active':'text-dark'}`}
-                      >
-                        Supplier Communi...
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <div className="tab-content">
-                    <Outlet />
-                  </div>
-=======
 
           <div className="card-body d-sm-flex align-items-sm-center justify-content-sm-between flex-sm-wrap">
             <div className="d-flex align-items-center mb-3 mb-sm-0">
@@ -130,7 +72,6 @@ const QueryView = () => {
 
                 <div className="tab-content">
                     <Outlet/>
->>>>>>> Stashed changes
                 </div>
               </div>
             </div>
