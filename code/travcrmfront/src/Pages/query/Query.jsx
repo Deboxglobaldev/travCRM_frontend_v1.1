@@ -183,7 +183,7 @@ const Query = () => {
                         <option value="2">Day Wise</option>
                       </Field>
                     </div>
-                    <div className="col-6">
+                    <div className="col-5">
                       <label>From Date</label>
                       <Field
                         type="date"
@@ -193,7 +193,7 @@ const Query = () => {
                         onChange={handleChange}
                       ></Field>
                     </div>
-                    <div className="col-6">
+                    <div className="col-5">
                       <label>To Date</label>
                       <Field
                         type="date"
@@ -203,20 +203,25 @@ const Query = () => {
                         onChange={handleChange}
                       ></Field>
                     </div>
-                    <div className="col-6">
+                    <div className="col-2">
+                    <label>Nights</label>
                       <Field
                         type="text"
                         className="form-input-1 backgroundColor-3"
-                        placeholder="Total Nights"
+                        placeholder=""
                         name="TotalNights"
                         value={TravelDate.TotalNights}
                         onChange={handleChange}
                       ></Field>
                     </div>
-                    <div className="col-6">
-                      <button className="btn btn-info w-100 font-size-10">
-                        Save
-                      </button>
+                    <div className="col-12">
+                    <label>Search:</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        placeholder="Search Package.."
+                        name="Search"
+                      ></Field>
                     </div>
                   </div>
                   {TravelDate.TotalNights !== "" &&
@@ -321,19 +326,19 @@ const Query = () => {
                   </div>
                   <div className="row py-2 row-gap-2">
                     <h6>Pax Information</h6>
-                    <div className="col-3">
+                    <div className="col-6">
                       <label htmlFor="">Adult</label>
                         <Counter/>
                     </div>
-                    <div className="col-3">
+                    <div className="col-6">
                       <label htmlFor="">Child</label>
                         <Counter/>
                     </div>
-                    <div className="col-3">
+                    <div className="col-6">
                       <label htmlFor="">Infant</label>
                         <Counter/>
                     </div>
-                    <div className="col-3">
+                    <div className="col-6">
                       <label htmlFor="">Total</label>
                       <Field
                         type="text"
@@ -343,6 +348,53 @@ const Query = () => {
                       ></Field>
                     </div>
                   </div>
+                </div>
+                <div className="col-md col-sm-6 border py-2 rounded">
+                  <div className="row row-gap-2">
+                    <h6>Suggested Package</h6>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Single"
+                        placeholder=""
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Double"
+                        placeholder=""
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Twin"
+                        placeholder=""
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Triple"
+                        placeholder=""
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.ExtraBed"
+                        placeholder=""
+                      ></Field>
+                    </div>
+
+                  </div>
+
                 </div>
                 {/* <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
