@@ -2,7 +2,6 @@ import React, { useState, useReducer, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
-
 import {
   hotelTypeInitialValue,
   hotelMealInitialValue,
@@ -16,10 +15,19 @@ import { NavLink } from "react-router-dom";
 const Query = () => {
   const [selectedQueryType, setSelectedQueryType] = useState("");
   const [QueryType, setQueryType] = useState("");
-  // console.log(queryInputs);
+  const [TravelDate, setTravelDate] = useState({
+    Type: "",
+    FromDate: "",
+    ToDate: "",
+    TotalNights: "",
+    SeasonType: "",
+    SeasonYear: "",
+  });
+
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
+  const [toDate, setToDate] = useState();
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -44,7 +52,11 @@ const Query = () => {
   }, []);
 
   const handleSubmit = async (postData) => {
-    console.log("This is console for inputs.....", { ...postData, QueryType });
+    console.log("This is console for inputs.....", {
+      ...postData,
+      QueryType,
+      TravelDate,
+    });
 
     try {
       const response = await axios.post(
@@ -62,9 +74,30 @@ const Query = () => {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setQueryType(e.target.value);
+    setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    const dateStr = TravelDate.FromDate;
+    const days = Number(TravelDate.TotalNights);
+    let hours = 24,
+      minute = 60,
+      second = 60,
+      millisecond = 1000;
+    let nightsDayIntoTime = days * hours * minute * second * millisecond;
+    const dateIntoFullTime = new Date(dateStr).getTime();
+    const toDate = nightsDayIntoTime + dateIntoFullTime;
+    const actualDate = new Date(toDate);
+    const toDateYear = `${actualDate.getFullYear()}`;
+    const toDateMonth = `${actualDate.getMonth() + 1}`;
+    const toDateDay = `${actualDate.getDate()}`;
+    const finalToDate = `${toDateYear}-${
+      toDateMonth.length == 2 ? toDateMonth : "0" + toDateMonth
+    }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
+    setTravelDate({ ...TravelDate, ToDate: finalToDate });
+    // console.log(TravelDate);
+  }, [TravelDate.TotalNights, TravelDate.FromDate]);
 
   return (
     <>
@@ -72,7 +105,7 @@ const Query = () => {
         <div className="">
           <Formik
             initialValues={QueryinputInitialValue}
-            validationSchema={QueryInputSchema}
+            // validationSchema={QueryInputSchema}
             onSubmit={handleSubmit}
           >
             <Form>
@@ -88,10 +121,8 @@ const Query = () => {
                   </NavLink>
                 </div>
               </div>
-              <div></div>
-
-              <div className="row p-2">
-                <div className="col-3 border py-2 rounded">
+              <div className="row p-1 column-gap-md-2 row-gap-2 justify-content-between">
+                <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Contact Information</h6>
                     <div className="col-12">
@@ -136,50 +167,106 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-3 border py-2 mx-1 rounded">
+                <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Destination Details</h6>
                     <div className="col-md-12 col-12">
                       <Field
                         component={"select"}
                         className="form-input-1"
-                        name="TravelDate.Type"
+                        name="Type"
+                        value={TravelDate.Type}
+                        onChange={handleChange}
                       >
                         <option value="1">Date Wise</option>
                         <option value="2">Day Wise</option>
                       </Field>
-
                     </div>
                     <div className="col-6">
-                      <label>Start Date</label>
+                      <label>From Date</label>
                       <Field
                         type="date"
                         className="form-input-1"
-                        name="TravelDate.FromDate"
+                        name="FromDate"
+                        value={TravelDate.FromDate}
+                        onChange={handleChange}
                       ></Field>
                     </div>
                     <div className="col-6">
-                      <label>End Date</label>
+                      <label>To Date</label>
                       <Field
                         type="date"
                         className="form-input-1"
-                        name="TravelDate.ToDate"
+                        name="ToDate"
+                        value={TravelDate.ToDate}
+                        onChange={handleChange}
                       ></Field>
                     </div>
                     <div className="col-6">
                       <Field
                         type="text"
                         className="form-input-1 backgroundColor-3"
-                        name="TravelDate.TotalDays"
                         placeholder="Total Nights"
+                        name="TotalNights"
+                        value={TravelDate.TotalNights}
+                        onChange={handleChange}
                       ></Field>
                     </div>
                     <div className="col-6">
-                      <button className="btn btn-info w-100">Save</button>
+                      <button className="btn btn-info w-100 font-size-10">
+                        Save
+                      </button>
                     </div>
                   </div>
+                  {TravelDate.TotalNights !== "" &&
+                  TravelDate.FromDate !== "" ? (
+                    <div className="row p-2">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th className="p-0 text-center">Sr.No</th>
+                            <th>Date/Day</th>
+                            <th>Country</th>
+                            <th>Destination</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td className="p-0 text-center">22-03-2024</td>
+                            <td className="p-1">
+                              <Field
+                                component={"select"}
+                                className="form-input-1"
+                                style={{ height: "30px" }}
+                                name="Country"
+                              >
+                                <option value="1">Select</option>
+                                <option value="2">Inida</option>
+                                <option value="3">Australia</option>
+                              </Field>
+                            </td>
+                            <td className="p-1">
+                              <Field
+                                component={"select"}
+                                className="form-input-1"
+                                style={{ height: "30px" }}
+                                name="Destination"
+                              >
+                                <option value="1">Select</option>
+                                <option value="2">Delhi</option>
+                                <option value="3">Dubai</option>
+                              </Field>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
-                <div className="col-3 border py-2 rounded">
+                <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Room's Information</h6>
                     <div className="col-4">
@@ -267,8 +354,94 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
-
-
+                {/* <div className="col-md col-sm-6 border py-2 rounded">
+                  <div className="row row-gap-2">
+                    <h6>Room's Information</h6>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Single"
+                        placeholder="Single"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Double"
+                        placeholder="Double"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Twin"
+                        placeholder="Twin"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Triple"
+                        placeholder="Triple"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.ExtraBed"
+                        placeholder="Extra Bed"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1 backgroundColor-3"
+                        name="RoomInfo.Total"
+                        placeholder="Total"
+                      ></Field>
+                    </div>
+                  </div>
+                  <div className="row py-2 row-gap-2">
+                    <h6>Pax Information</h6>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="Adult"
+                        placeholder="Adult"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="Child"
+                        placeholder="Child"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="Infant"
+                        placeholder="Infant"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <Field
+                        type="text"
+                        className="form-input-1 backgroundColor-3"
+                        name="Infant"
+                        placeholder="Total"
+                      ></Field>
+                    </div>
+                  </div>
+                </div> */}
               </div>
             </Form>
           </Formik>
@@ -277,5 +450,4 @@ const Query = () => {
     </>
   );
 };
-
 export default Query;

@@ -32,14 +32,6 @@ export const QueryinputInitialValue = {
     Train: "No",
     Transfer: "No",
   },
-  TravelDate: {
-    Type: "",
-    FromDate: "",
-    ToDate: "",
-    TotalDays: "",
-    SeasonType: "",
-    SeasonYear: "",
-  },
   PaxInfo: {
     Adult: "",
     Child: "",
