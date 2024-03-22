@@ -21,6 +21,12 @@ const Counter = () =>{
                 <span className='px-1 bg-light rounded'><i className="fa-solid fa-plus font-weight-bold cursor-pointer" 
                 onClick={handleIncrement}></i></span>
             </div>
+            <div>
+                <span className='px-1 bg-light rounded cursor-pointer' onClick={()=> setValue(1)}>1</span>
+                <span className='px-1 bg-light rounded cursor-pointer' onClick={()=> setValue(2)}>2</span>
+                <span className='px-1 bg-light rounded cursor-pointer' onClick={()=> setValue(3)}>3</span>
+                <span className='px-1 bg-light rounded cursor-pointer' onClick={()=> setValue(4)}>4</span>
+            </div>
         </>
     )
 };
