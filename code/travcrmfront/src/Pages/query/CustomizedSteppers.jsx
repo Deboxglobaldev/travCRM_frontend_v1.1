@@ -13,6 +13,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SafetyDividerIcon from '@mui/icons-material/SafetyDivider';
 import AddToQueueIcon from '@mui/icons-material/AddToQueue';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 
@@ -115,7 +116,7 @@ function ColorlibStepIcon(props) {
   const { active, completed, className } = props;
 
   const icons = {
-    1: <SettingsIcon />,
+    1: <QueryBuilderIcon />,
     2: <AddToQueueIcon />,
     3: <AssignmentIcon />,
     4: <VideoLabelIcon />,

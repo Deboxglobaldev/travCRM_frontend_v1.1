@@ -1,8 +1,8 @@
 import React, { useState, useReducer, useEffect } from "react";
-import Layout from "../../Component/Layout/Layout";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
+
 import {
   hotelTypeInitialValue,
   hotelMealInitialValue,
@@ -138,6 +138,49 @@ const Query = () => {
                 </div>
                 <div className="col-3 border py-2 mx-1 rounded">
                   <div className="row row-gap-2">
+                    <h6>Destination Details</h6>
+                    <div className="col-md-12 col-12">
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="TravelDate.Type"
+                      >
+                        <option value="1">Date Wise</option>
+                        <option value="2">Day Wise</option>
+                      </Field>
+
+                    </div>
+                    <div className="col-6">
+                      <label>Start Date</label>
+                      <Field
+                        type="date"
+                        className="form-input-1"
+                        name="TravelDate.FromDate"
+                      ></Field>
+                    </div>
+                    <div className="col-6">
+                      <label>End Date</label>
+                      <Field
+                        type="date"
+                        className="form-input-1"
+                        name="TravelDate.ToDate"
+                      ></Field>
+                    </div>
+                    <div className="col-6">
+                      <Field
+                        type="text"
+                        className="form-input-1 backgroundColor-3"
+                        name="TravelDate.TotalDays"
+                        placeholder="Total Nights"
+                      ></Field>
+                    </div>
+                    <div className="col-6">
+                      <button className="btn btn-info w-100">Save</button>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-3 border py-2 rounded">
+                  <div className="row row-gap-2">
                     <h6>Room's Information</h6>
                     <div className="col-4">
                       <Field
@@ -225,48 +268,7 @@ const Query = () => {
                   </div>
                 </div>
 
-                <div className="col-3 border py-2 rounded">
-                  <div className="row row-gap-2">
-                    <h6>Travel Date</h6>
-                    <div className="col-md-12 col-12">
-                      <Field
-                        component={"select"}
-                        className="form-input-1"
-                        name="TravelDate.Type"
-                      >
-                        <option value="1">Date Wise</option>
-                        <option value="2">Day Wise</option>
-                      </Field>
-                    </div>
-                    <div className="col-6">
-                      <label>From Date</label>
-                      <Field
-                        type="date"
-                        className="form-input-1"
-                        name="TravelDate.FromDate"
-                      ></Field>
-                    </div>
-                    <div className="col-6">
-                      <label>To Date</label>
-                      <Field
-                        type="date"
-                        className="form-input-1"
-                        name="TravelDate.ToDate"
-                      ></Field>
-                    </div>
-                    <div className="col-6">
-                      <Field
-                        type="text"
-                        className="form-input-1 backgroundColor-3"
-                        name="TravelDate.TotalDays"
-                        placeholder="Total Nights"
-                      ></Field>
-                    </div>
-                    <div className="col-6">
-                      <button className="btn btn-info w-100">Save</button>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </Form>
           </Formik>

@@ -11,15 +11,23 @@ const QueryView = () => {
     padding: "0.8rem 1rem",
   };
 
+  const linecss = {
+    background: "#f1f2f2",
+    boxShadow: "2px 3px 2px #cccccc",
+    padding: "10px",
+    margin: "7px 2px 7px 0px"
+  }
+
   return (
     <Layout>
       <div className="container-fluid mt-3 mb-5">
         <div className="row">
           <div>
-            <CustomizedSteppers step={3} />
+            <CustomizedSteppers step={2} />
           </div>
 
-          <div className="card-body d-sm-flex align-items-sm-center justify-content-sm-between flex-sm-wrap">
+          <div className="col-xl-12 px-4">
+          <div className="card-body d-sm-flex align-items-sm-center justify-content-sm-between flex-sm-wrap" style={linecss}>
             <div className="d-flex align-items-center mb-3 mb-sm-0">
               <div className="ml-3">
                 {/* <span className="badge badge-mark border-success mr-1"></span>  */}
@@ -48,6 +56,9 @@ const QueryView = () => {
               </div>
             </div>
           </div>
+          </div>
+
+
           <div className="col-xl-12 px-4" style={{ padding: 0 }}>
             <div className="card shadow-none border">
               <div className="card-body" style={{ padding: "1px" }}>
