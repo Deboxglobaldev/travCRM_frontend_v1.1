@@ -11,6 +11,7 @@ import axios from "axios";
 import "jquery";
 import "select2";
 import { NavLink } from "react-router-dom";
+import Counter from "./Counter";
 
 const Query = () => {
   const [selectedQueryType, setSelectedQueryType] = useState("");
@@ -320,31 +321,20 @@ const Query = () => {
                   </div>
                   <div className="row py-2 row-gap-2">
                     <h6>Pax Information</h6>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Adult"
-                        placeholder="Adult"
-                      ></Field>
+                    <div className="col-3">
+                      <label htmlFor="">Adult</label>
+                        <Counter/>
                     </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Child"
-                        placeholder="Child"
-                      ></Field>
+                    <div className="col-3">
+                      <label htmlFor="">Child</label>
+                        <Counter/>
                     </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Infant"
-                        placeholder="Infant"
-                      ></Field>
+                    <div className="col-3">
+                      <label htmlFor="">Infant</label>
+                        <Counter/>
                     </div>
-                    <div className="col-4">
+                    <div className="col-3">
+                      <label htmlFor="">Total</label>
                       <Field
                         type="text"
                         className="form-input-1 backgroundColor-3"
