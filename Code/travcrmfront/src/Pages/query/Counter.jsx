@@ -12,7 +12,7 @@ const Counter = () =>{
     }
     return(
         <>
-            {/* <div
+            <div
             className='text-center backgroundColor-1 py-1 rounded text-dark'
             >
                 <span className='px-1 bg-light rounded'><i className="fa-solid fa-minus font-weight-bold cursor-pointer"
@@ -22,9 +22,9 @@ const Counter = () =>{
                 onClick={handleIncrement}></i></span>
 
 
-            </div> */}
+            </div>
 
-            <div className="input-group bootstrap-touchspin">
+            {/* <div className="input-group bootstrap-touchspin">
                 <span className="input-group-btn">
                     <button className="btn btn-success bootstrap-touchspin-down" type="button" onClick={handleDecrement}><i className="icon-dash"></i></button>
                 </span>
@@ -34,7 +34,7 @@ const Counter = () =>{
                 <span className="input-group-btn">
                     <button className="btn btn-success bootstrap-touchspin-up" type="button" onClick={handleIncrement}><i className="icon-plus2"></i></button>
                 </span>
-                </div>
+                </div> */}
             <div>
                 <span className='px-1 bg-warning rounded cursor-pointer' onClick={()=> setValue(1)}>1</span>&nbsp;
                 <span className='px-1 bg-warning rounded cursor-pointer' onClick={()=> setValue(2)}>2</span>&nbsp;
