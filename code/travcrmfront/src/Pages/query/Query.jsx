@@ -122,7 +122,7 @@ const Query = () => {
                   </NavLink>
                 </div>
               </div>
-              <div className="row p-1 column-gap-md-2 row-gap-2 justify-content-between">
+              <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Contact Information</h6>
@@ -204,7 +204,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-2">
-                    <label>Nights</label>
+                    <label>Night</label>
                       <Field
                         type="text"
                         className="form-input-1 backgroundColor-3"
@@ -273,59 +273,10 @@ const Query = () => {
                   )}
                 </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
-                    <h6>Room's Information</h6>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Single"
-                        placeholder="Single"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Double"
-                        placeholder="Double"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Twin"
-                        placeholder="Twin"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Triple"
-                        placeholder="Triple"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.ExtraBed"
-                        placeholder="Extra Bed"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1 backgroundColor-3"
-                        name="RoomInfo.Total"
-                        placeholder="Total"
-                      ></Field>
-                    </div>
-                  </div>
                   <div className="row py-2 row-gap-2">
-                    <h6>Pax Information</h6>
+                    <div className="col-12 d-flex justify-content-between">
+                      <h6>Pax Information</h6>
+                    </div>
                     <div className="col-6">
                       <label htmlFor="">Adult</label>
                         <Counter/>
@@ -339,6 +290,65 @@ const Query = () => {
                         <Counter/>
                     </div>
                     <div className="col-6">
+                      <label htmlFor="">Total</label>
+                      <Field
+                        type="text"
+                        className="form-input-1 backgroundColor-3"
+                        name="Infant"
+                        placeholder="Total"
+                      ></Field>
+                    </div>
+                  </div>
+                  <div className="row row-gap-2">
+                    <div className="col-12 d-flex justify-content-between">
+                      <h6>Room's Information</h6>
+                    </div>
+                    <div className="col-4">
+                    <label htmlFor="">Single</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Single"
+                        placeholder="Single"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                    <label htmlFor="">Double</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Double"
+                        placeholder="Double"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                    <label htmlFor="">Twin</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Twin"
+                        placeholder="Twin"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                    <label htmlFor="">Triple</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.Triple"
+                        placeholder="Triple"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                    <label htmlFor="">Extra Bed</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.ExtraBed"
+                        placeholder="Extra Bed"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
                       <label htmlFor="">Total</label>
                       <Field
                         type="text"
