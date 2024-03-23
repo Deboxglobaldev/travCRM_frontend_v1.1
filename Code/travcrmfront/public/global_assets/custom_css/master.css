@@ -190,3 +190,10 @@ a{
 .nav-link.active{
   color: white;
 }
+.green-hover{
+  transition: 0.6s;
+}
+.green-hover:hover{
+  background-color: green;
+  color: white;
+}
