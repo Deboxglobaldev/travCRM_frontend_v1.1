@@ -226,7 +226,7 @@ const Query = () => {
                   ) : (
                     ""
                   )}
-                  {/* <div className="row row-gap-2">
+                  <div className="row row-gap-2 pt-2">
                     <h6>Contact Information</h6>
                     <div className="col-12">
                       <Field
@@ -268,7 +268,7 @@ const Query = () => {
                         name="AdditionalInfo"
                       ></Field>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row py-2 row-gap-2">
