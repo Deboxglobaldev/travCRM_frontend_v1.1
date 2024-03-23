@@ -167,6 +167,24 @@ const Query = () => {
                       ></Field>
                     </div>
                   </div>
+                  <div className="row py-2 row-gap-2">
+                    <div className="col-12 d-flex justify-content-between">
+                      <h6>Pax Information</h6>
+                      <h6>Total : {0}</h6>
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Adult</label>
+                      <Counter />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Child</label>
+                      <Counter />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Infant</label>
+                      <Counter />
+                    </div>
+                  </div>
                 </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
@@ -204,7 +222,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-2">
-                    <label>Night</label>
+                      <label>Night</label>
                       <Field
                         type="text"
                         className="form-input-1 backgroundColor-3"
@@ -215,7 +233,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-12">
-                    <label>Search:</label>
+                      <label>Search:</label>
                       <Field
                         type="text"
                         className="form-input-1"
@@ -271,9 +289,7 @@ const Query = () => {
                   ) : (
                     ""
                   )}
-                </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
+                  <div className="row row-gap-2 pt-2">
                     <div className="col-12 d-flex justify-content-between">
                       <h6>Room's Information</h6>
                       <h6>Total : {0}</h6>
@@ -320,33 +336,6 @@ const Query = () => {
                       ></Field>
                     </div>
                   </div>
-                  <div className="row py-2 row-gap-2">
-                  <div className="col-12 d-flex justify-content-between">
-                      <h6>Pax Information</h6>
-                      <h6>Total : {0}</h6>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Adult</label>
-                        <Counter/>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Child</label>
-                        <Counter/>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Infant</label>
-                        <Counter/>
-                    </div>
-                    {/* <div className="col-3">
-                      <label htmlFor="">Total</label>
-                      <Field
-                        type="text"
-                        className="form-input-1 backgroundColor-3"
-                        name="Infant"
-                        placeholder="Total"
-                      ></Field>
-                    </div> */}
-                  </div>
                 </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
@@ -391,98 +380,8 @@ const Query = () => {
                         placeholder=""
                       ></Field>
                     </div>
-
                   </div>
-
                 </div>
-                {/* <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
-                    <h6>Room's Information</h6>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Single"
-                        placeholder="Single"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Double"
-                        placeholder="Double"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Twin"
-                        placeholder="Twin"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Triple"
-                        placeholder="Triple"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.ExtraBed"
-                        placeholder="Extra Bed"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1 backgroundColor-3"
-                        name="RoomInfo.Total"
-                        placeholder="Total"
-                      ></Field>
-                    </div>
-                  </div>
-                  <div className="row py-2 row-gap-2">
-                    <h6>Pax Information</h6>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Adult"
-                        placeholder="Adult"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Child"
-                        placeholder="Child"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="Infant"
-                        placeholder="Infant"
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1 backgroundColor-3"
-                        name="Infant"
-                        placeholder="Total"
-                      ></Field>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </Form>
           </Formik>
