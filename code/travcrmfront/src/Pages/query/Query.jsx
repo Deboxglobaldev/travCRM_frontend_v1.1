@@ -125,69 +125,6 @@ const Query = () => {
               <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
-                    <h6>Contact Information</h6>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Company, Email, Phone, Contact Person"
-                        name="demo1"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Lead Pax Name"
-                        name="LeadPax"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Subject"
-                        name="Subject"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        placeholder="text@example.com"
-                        className="form-input-1"
-                        name="AddEmail"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="textArea"
-                        placeholder="Additional Information"
-                        className="form-input-1 mt-1"
-                        name="AdditionalInfo"
-                      ></Field>
-                    </div>
-                  </div>
-                  <div className="row py-2 row-gap-2">
-                    <div className="col-12 d-flex justify-content-between">
-                      <h6>Pax Information</h6>
-                      <h6>Total : {0}</h6>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Adult</label>
-                      <Counter />
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Child</label>
-                      <Counter />
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="">Infant</label>
-                      <Counter />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
                     <h6>Destination Details</h6>
                     <div className="col-md-12 col-12">
                       <Field
@@ -289,13 +226,77 @@ const Query = () => {
                   ) : (
                     ""
                   )}
-                  <div className="row row-gap-2 pt-2">
-                    <div className="col-12 d-flex justify-content-between">
-                      <h6>Room's Information</h6>
-                      <h6>Total : {0}</h6>
+                  {/* <div className="row row-gap-2">
+                    <h6>Contact Information</h6>
+                    <div className="col-12">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        placeholder="Company, Email, Phone, Contact Person"
+                        name="demo1"
+                      ></Field>
+                    </div>
+                    <div className="col-12">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        placeholder="Lead Pax Name"
+                        name="LeadPax"
+                      ></Field>
+                    </div>
+                    <div className="col-12">
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        placeholder="Subject"
+                        name="Subject"
+                      ></Field>
+                    </div>
+                    <div className="col-12">
+                      <Field
+                        type="text"
+                        placeholder="text@example.com"
+                        className="form-input-1"
+                        name="AddEmail"
+                      ></Field>
+                    </div>
+                    <div className="col-12">
+                      <Field
+                        type="textArea"
+                        placeholder="Additional Information"
+                        className="form-input-1 mt-1"
+                        name="AdditionalInfo"
+                      ></Field>
+                    </div>
+                  </div> */}
+                </div>
+                <div className="col-md col-sm-6 border py-2 rounded">
+                  <div className="row py-2 row-gap-2">
+                      <h6>Pax Information</h6>
+                    <div className="col-6">
+                      <label htmlFor="">Adult</label>
+                      <Counter />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Child</label>
+                      <Counter />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Infant</label>
+                      <Counter />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="">Total</label>
+                      <div className="backgroundColor-1 rounded 
+                      d-flex justify-content-center align-items-center font-weight-bold" 
+                      style={{height:'30px'}}>Total : {9}</div>
                     </div>
 
+                  </div>
+                  <div className="row row-gap-2 pt-2">
+                      <h6>Room's Information</h6>
                     <div className="col-4">
+                      <label htmlFor="">Single</label>
                       <Field
                         type="text"
                         className="form-input-1"
@@ -304,6 +305,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-4">
+                      <label htmlFor="">Double</label>
                       <Field
                         type="text"
                         className="form-input-1"
@@ -312,6 +314,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-4">
+                      <label htmlFor="">Twin</label>
                       <Field
                         type="text"
                         className="form-input-1"
@@ -320,6 +323,7 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-4">
+                      <label htmlFor="">Triple</label>
                       <Field
                         type="text"
                         className="form-input-1"
@@ -328,11 +332,21 @@ const Query = () => {
                       ></Field>
                     </div>
                     <div className="col-4">
+                      <label htmlFor="">Extra Bed</label>
                       <Field
                         type="text"
                         className="form-input-1"
                         name="RoomInfo.ExtraBed"
                         placeholder="Extra Bed"
+                      ></Field>
+                    </div>
+                    <div className="col-4">
+                      <label htmlFor="">Total</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="RoomInfo.TotalRooms"
+                        placeholder="Total"
                       ></Field>
                     </div>
                   </div>
