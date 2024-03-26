@@ -249,7 +249,6 @@ const Query = () => {
                         </thead>
                         <tbody>
                           {dateArray.map((value, index) => {
-                            // console.log('Mapped Value', v);
                             return (
                               <tr key={index + 1}>
                                 <td>{index + 1}</td>
@@ -390,98 +389,127 @@ const Query = () => {
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Other Detail's</h6>
-                    <div className="col-md-12 col-12">
+                    <div className="col-md-6 col-12">
+                      <label> Operation Person </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="TourType"
+                      >
+                        <option value={0}>Select Person</option>
+                        <option value={1}>Ansar</option>
+                        <option value={2}>Satendra</option>
+                        <option value={3}>Prasang</option>
+                      </Field>
+                    </div>
+                    <div className="col-md-6 col-12">
+                      <label> Contract.. Person </label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="TourType"
+                        placeholder="Person"
+
+                      />
+                    </div>
+                    <div className="col-md-6 col-12">
+                      <label> Priority </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="TourType"
+                      >
+                        <option value={0}>Select Priority</option>
+                        <option value={1}>Normal</option>
+                        <option value={2}>Medium</option>
+                        <option value={3}>Hight</option>
+                      </Field>
+                    </div>
+                    <div className="col-md-6 col-12">
+                      <label> TAT </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="TourType"
+                      >
+                        <option value={0}>Select TAT</option>
+                        <option value={1}>24 Hours</option>
+                        <option value={2}>48 Hours</option>
+                        <option value={3}>72 Hours</option>
+                      </Field>
+                    </div>
+                    <div className="col-md-6 col-12">
                       <label> Tour Type </label>
                       <Field
                         component={"select"}
                         className="form-input-1"
                         name="TourType"
-                        onChange={handleChange}
                       >
-                        <option value="0">Select Tour</option>
-                        <option value="1">Adventure Tour</option>
-                        <option value="2">Collage Tour</option>
-                        <option value="3">Family Tour</option>
+                        <option value={0}>Select Tour</option>
+                        <option value={1}>Adventure Tour</option>
+                        <option value={2}>Collage Tour</option>
+                        <option value={3}>Family Tour</option>
                       </Field>
                     </div>
-                    {/* <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Adventure Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="1"
-                          name="TourType"
-                        ></Field>
+                    <div className="col-md-6 col-12">
+                      <label> Lead Source </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="LeadSource"
+                      >
+                        <option value={0}>Select Source</option>
+                        <option value={1}>Instagram</option>
+                        <option value={2}>Facebook</option>
+                        <option value={3}>Tweeter</option>
+                      </Field>
+                    </div>
+                    <div className="col-md-6 col-12">
+                      <label> Hotel Category </label>
+                      <div className="form-input-1 pl-0 border-0 d-flex justify-content-between align-items-center">
+                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
                       </div>
                     </div>
-                    <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Adventure Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="2"
-                          name="TourType"
-                        ></Field>
-                      </div>
+                    <div className="col-md-6 col-12">
+                      <label> Lead Referenced </label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        name="LeadReferenced"
+                        placeholder="Referenced Id"
+                        onChange={handleChange}
+                      />
                     </div>
-                    <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Collage Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="3"
-                          name="TourType"
-                        ></Field>
-                      </div>
+                    <div className="col-md-6 col-12">
+                      <label> Hotel Type </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="HotelType"
+                      >
+                        <option value={0}>Select Type</option>
+                        <option value={1}>Budget</option>
+                        <option value={2}>Delux</option>
+                        <option value={3}>Elite</option>
+                      </Field>
                     </div>
-                    <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Collage Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="4"
-                          name="TourType"
-                        ></Field>
-                      </div>
+                    <div className="col-md-6 col-12">
+                      <label> Meal Plan </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="MealPlan"
+                      >
+                        <option value={0}>Select Plan</option>
+                        <option value={1}>CP</option>
+                        <option value={2}>AP</option>
+                        <option value={3}>EP</option>
+                      </Field>
                     </div>
-                    <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Family Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="5"
-                          name="TourType"
-                        ></Field>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">
-                          Family Tour
-                        </label>
-                        <Field
-                          type="radio"
-                          className="mr-2"
-                          value="6"
-                          name="TourType"
-                        ></Field>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
