@@ -241,7 +241,6 @@ const Query = () => {
                       <table className="table table-bordered">
                         <thead>
                           <tr>
-                            <th className="p-0 text-center">Sr.No</th>
                             <th>Date/Day</th>
                             <th>Country</th>
                             <th>Destination</th>
@@ -251,7 +250,6 @@ const Query = () => {
                           {dateArray.map((value, index) => {
                             return (
                               <tr key={index + 1}>
-                                <td>{index + 1}</td>
                                 <td className="p-0 text-center">{value}</td>
                                 <td className="p-1">
                                   <Field
