@@ -256,7 +256,7 @@ const Query = () => {
                                     component={"select"}
                                     className="form-input-1"
                                     style={{ height: "30px" }}
-                                    name="Country"
+                                    name={`Country${index}`}
                                   >
                                     <option value="1">Select</option>
 
@@ -269,7 +269,7 @@ const Query = () => {
                                     component={"select"}
                                     className="form-input-1"
                                     style={{ height: "30px" }}
-                                    name="Destination"
+                                    name={`Destination${index}`}
                                   >
                                     <option value="1">Select</option>
                                     <option value="2">Delhi</option>
@@ -392,7 +392,7 @@ const Query = () => {
                       <Field
                         component={"select"}
                         className="form-input-1"
-                        name="TourType"
+                        name="OperationPerson"
                       >
                         <option value={0}>Select Person</option>
                         <option value={1}>Ansar</option>
@@ -405,7 +405,7 @@ const Query = () => {
                       <Field
                         type="text"
                         className="form-input-1"
-                        name="TourType"
+                        name="ContractingPerson"
                         placeholder="Person"
 
                       />
@@ -415,7 +415,7 @@ const Query = () => {
                       <Field
                         component={"select"}
                         className="form-input-1"
-                        name="TourType"
+                        name="Priority"
                       >
                         <option value={0}>Select Priority</option>
                         <option value={1}>Normal</option>
@@ -428,7 +428,7 @@ const Query = () => {
                       <Field
                         component={"select"}
                         className="form-input-1"
-                        name="TourType"
+                        name="TAT"
                       >
                         <option value={0}>Select TAT</option>
                         <option value={1}>24 Hours</option>
