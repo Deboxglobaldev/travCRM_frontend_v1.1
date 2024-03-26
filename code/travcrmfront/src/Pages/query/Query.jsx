@@ -124,8 +124,8 @@ const Query = () => {
               </div>
               <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
                 <div className="col-12 p-0">
-                  <div className="card shadow-none border p-2">
-                    <h6>Contact Information</h6>
+                  <div className="card shadow-none border p-2 bg-gray">
+                    <h6 className="text-dark">Contact Information</h6>
                     <div className="row row-gap-2 pt-2">
                       <div className="col-12 col-sm-6 col-md-3">
                         <Field
@@ -230,6 +230,7 @@ const Query = () => {
                           </tr>
                         </thead>
                         <tbody>
+                          
                           <tr>
                             <td>1</td>
                             <td className="p-0 text-center">22-03-2024</td>
@@ -352,46 +353,6 @@ const Query = () => {
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Suggested Package</h6>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Single"
-                        placeholder=""
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Double"
-                        placeholder=""
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Twin"
-                        placeholder=""
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Triple"
-                        placeholder=""
-                      ></Field>
-                    </div>
-                    <div className="col-4">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.ExtraBed"
-                        placeholder=""
-                      ></Field>
-                    </div>
                     <div className="col-12">
                       <label>Search:</label>
                       <Field
@@ -400,6 +361,47 @@ const Query = () => {
                         placeholder="Search Package.."
                         name="Search"
                       ></Field>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md col-sm-6 border py-2 rounded">
+                  <div className="row row-gap-2">
+                    <h6>Other Detail's</h6>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Adventure Tour</label>
+                        <Field type="radio" className="mr-2" value="1" name="TourType"></Field>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Adventure Tour</label>
+                        <Field type="radio" className="mr-2" value="2" name="TourType"></Field>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Collage Tour</label>
+                        <Field type="radio" className="mr-2" value="3" name="TourType"></Field>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Collage Tour</label>
+                        <Field type="radio" className="mr-2" value="4" name="TourType"></Field>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Family Tour</label>
+                        <Field type="radio" className="mr-2" value="5" name="TourType"></Field>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="form-input-1 d-flex justify-content-between align-items-center">
+                        <label className="p-0 m-0 font-size-12">Family Tour</label>
+                        <Field type="radio" className="mr-2" value="6" name="TourType"></Field>
+                      </div>
                     </div>
                   </div>
                 </div>

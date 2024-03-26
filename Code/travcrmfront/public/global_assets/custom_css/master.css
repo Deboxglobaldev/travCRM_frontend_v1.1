@@ -197,3 +197,6 @@ a{
   background-color: green;
   color: white;
 }
+.bg-gray{
+  background-color: rgb(226, 226, 226);
+}
