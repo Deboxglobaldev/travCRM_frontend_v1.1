@@ -230,7 +230,6 @@ const Query = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          
                           <tr>
                             <td>1</td>
                             <td className="p-0 text-center">22-03-2024</td>
@@ -367,42 +366,98 @@ const Query = () => {
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Other Detail's</h6>
-                    <div className="col-6">
+                      <div className="col-md-12 col-12">
+                        <label> Tour Type </label>
+                        <Field
+                          component={"select"}
+                          className="form-input-1"
+                          name="TourType"
+                          onChange={handleChange}
+                        >
+                          <option value="0">Select Tour</option>
+                          <option value="1">Adventure Tour</option>
+                          <option value="2">Collage Tour</option>
+                          <option value="3">Family Tour</option>
+                        </Field>
+                      </div>
+                    {/* <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Adventure Tour</label>
-                        <Field type="radio" className="mr-2" value="1" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Adventure Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="1"
+                          name="TourType"
+                        ></Field>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Adventure Tour</label>
-                        <Field type="radio" className="mr-2" value="2" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Adventure Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="2"
+                          name="TourType"
+                        ></Field>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Collage Tour</label>
-                        <Field type="radio" className="mr-2" value="3" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Collage Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="3"
+                          name="TourType"
+                        ></Field>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Collage Tour</label>
-                        <Field type="radio" className="mr-2" value="4" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Collage Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="4"
+                          name="TourType"
+                        ></Field>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Family Tour</label>
-                        <Field type="radio" className="mr-2" value="5" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Family Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="5"
+                          name="TourType"
+                        ></Field>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
-                        <label className="p-0 m-0 font-size-12">Family Tour</label>
-                        <Field type="radio" className="mr-2" value="6" name="TourType"></Field>
+                        <label className="p-0 m-0 font-size-12">
+                          Family Tour
+                        </label>
+                        <Field
+                          type="radio"
+                          className="mr-2"
+                          value="6"
+                          name="TourType"
+                        ></Field>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
