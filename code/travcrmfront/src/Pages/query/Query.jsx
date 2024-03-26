@@ -2,6 +2,7 @@ import React, { useState, useReducer, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
+import { eachDayOfInterval, format } from "date-fns";
 import {
   hotelTypeInitialValue,
   hotelMealInitialValue,
@@ -24,6 +25,7 @@ const Query = () => {
     SeasonType: "",
     SeasonYear: "",
   });
+  const [dateArray, setDateArray] = useState([]);
 
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
@@ -79,6 +81,23 @@ const Query = () => {
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
   };
 
+  // Looping date & stored into array
+  function createDateArray() {
+    const fromDate = new Date(
+      TravelDate.FromDate.split("/").reverse().join("/")
+    );
+    const lastDate = new Date(TravelDate.ToDate.split("/").reverse().join("/"));
+    const dateStore = eachDayOfInterval({ start: fromDate, end: lastDate }).map(
+      (date) => format(date, "dd/MM/yyyy")
+    );
+    setDateArray(dateStore);
+  }
+
+  useEffect(() => {
+    createDateArray();
+  }, [TravelDate.TotalNights]);
+
+  // Message: Adding Date fromDate + Days = ToDate
   useEffect(() => {
     const dateStr = TravelDate.FromDate;
     const days = Number(TravelDate.TotalNights);
@@ -97,8 +116,7 @@ const Query = () => {
       toDateMonth.length == 2 ? toDateMonth : "0" + toDateMonth
     }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
     setTravelDate({ ...TravelDate, ToDate: finalToDate });
-    // console.log(TravelDate);
-  }, [TravelDate.TotalNights, TravelDate.FromDate]);
+  }, [TravelDate.FromDate, TravelDate.TotalNights]);
 
   return (
     <>
@@ -220,7 +238,7 @@ const Query = () => {
                   {TravelDate.TotalNights !== "" &&
                   TravelDate.FromDate !== "" ? (
                     <div className="row p-2">
-                      <table class="table table-bordered">
+                      <table className="table table-bordered">
                         <thead>
                           <tr>
                             <th className="p-0 text-center">Sr.No</th>
@@ -230,34 +248,40 @@ const Query = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td className="p-0 text-center">22-03-2024</td>
-                            <td className="p-1">
-                              <Field
-                                component={"select"}
-                                className="form-input-1"
-                                style={{ height: "30px" }}
-                                name="Country"
-                              >
-                                <option value="1">Select</option>
-                                <option value="2">Inida</option>
-                                <option value="3">Australia</option>
-                              </Field>
-                            </td>
-                            <td className="p-1">
-                              <Field
-                                component={"select"}
-                                className="form-input-1"
-                                style={{ height: "30px" }}
-                                name="Destination"
-                              >
-                                <option value="1">Select</option>
-                                <option value="2">Delhi</option>
-                                <option value="3">Dubai</option>
-                              </Field>
-                            </td>
-                          </tr>
+                          {dateArray.map((value, index) => {
+                            // console.log('Mapped Value', v);
+                            return (
+                              <tr key={index + 1}>
+                                <td>{index + 1}</td>
+                                <td className="p-0 text-center">{value}</td>
+                                <td className="p-1">
+                                  <Field
+                                    component={"select"}
+                                    className="form-input-1"
+                                    style={{ height: "30px" }}
+                                    name="Country"
+                                  >
+                                    <option value="1">Select</option>
+
+                                    <option value="2">Inida</option>
+                                    <option value="3">Australia</option>
+                                  </Field>
+                                </td>
+                                <td className="p-1">
+                                  <Field
+                                    component={"select"}
+                                    className="form-input-1"
+                                    style={{ height: "30px" }}
+                                    name="Destination"
+                                  >
+                                    <option value="1">Select</option>
+                                    <option value="2">Delhi</option>
+                                    <option value="3">Dubai</option>
+                                  </Field>
+                                </td>
+                              </tr>
+                            );
+                          })}
                         </tbody>
                       </table>
                     </div>
@@ -366,20 +390,20 @@ const Query = () => {
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Other Detail's</h6>
-                      <div className="col-md-12 col-12">
-                        <label> Tour Type </label>
-                        <Field
-                          component={"select"}
-                          className="form-input-1"
-                          name="TourType"
-                          onChange={handleChange}
-                        >
-                          <option value="0">Select Tour</option>
-                          <option value="1">Adventure Tour</option>
-                          <option value="2">Collage Tour</option>
-                          <option value="3">Family Tour</option>
-                        </Field>
-                      </div>
+                    <div className="col-md-12 col-12">
+                      <label> Tour Type </label>
+                      <Field
+                        component={"select"}
+                        className="form-input-1"
+                        name="TourType"
+                        onChange={handleChange}
+                      >
+                        <option value="0">Select Tour</option>
+                        <option value="1">Adventure Tour</option>
+                        <option value="2">Collage Tour</option>
+                        <option value="3">Family Tour</option>
+                      </Field>
+                    </div>
                     {/* <div className="col-6">
                       <div className="form-input-1 d-flex justify-content-between align-items-center">
                         <label className="p-0 m-0 font-size-12">
