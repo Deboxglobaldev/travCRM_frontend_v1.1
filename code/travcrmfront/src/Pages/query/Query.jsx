@@ -26,7 +26,6 @@ const Query = () => {
     SeasonYear: "",
   });
   const [dateArray, setDateArray] = useState([]);
-
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
@@ -87,15 +86,13 @@ const Query = () => {
       TravelDate.FromDate.split("/").reverse().join("/")
     );
     const lastDate = new Date(TravelDate.ToDate.split("/").reverse().join("/"));
-    const dateStore = eachDayOfInterval({ start: fromDate, end: lastDate }).map(
+    const dateStore =  eachDayOfInterval({ start: fromDate, end: lastDate }).map(
       (date) => format(date, "dd/MM/yyyy")
     );
+
     setDateArray(dateStore);
   }
-
-  useEffect(() => {
-    createDateArray();
-  }, [TravelDate.TotalNights]);
+  
 
   // Message: Adding Date fromDate + Days = ToDate
   useEffect(() => {
@@ -116,7 +113,10 @@ const Query = () => {
       toDateMonth.length == 2 ? toDateMonth : "0" + toDateMonth
     }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
     setTravelDate({ ...TravelDate, ToDate: finalToDate });
-  }, [TravelDate.FromDate, TravelDate.TotalNights]);
+
+    createDateArray();
+
+  }, [TravelDate.FromDate, TravelDate.TotalNights, TravelDate.ToDate]);
 
   return (
     <>
