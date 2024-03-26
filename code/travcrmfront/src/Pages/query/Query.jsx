@@ -123,6 +123,53 @@ const Query = () => {
                 </div>
               </div>
               <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
+                <div className="col-12 p-0">
+                  <div className="card shadow-none border p-2">
+                    <h6>Contact Information</h6>
+                    <div className="row row-gap-2 pt-2">
+                      <div className="col-12 col-sm-6 col-md-3">
+                        <Field
+                          type="text"
+                          className="form-input-1"
+                          placeholder="Company, Email, Phone, Contact Person"
+                          name="demo1"
+                        ></Field>
+                      </div>
+                      <div className="col-12 col-sm-6 col-md-3">
+                        <Field
+                          type="text"
+                          placeholder="text@example.com"
+                          className="form-input-1"
+                          name="AddEmail"
+                        ></Field>
+                      </div>
+                      <div className="col-12 col-sm-6 col-md-2">
+                        <Field
+                          type="text"
+                          className="form-input-1"
+                          placeholder="Lead Pax Name"
+                          name="LeadPax"
+                        ></Field>
+                      </div>
+                      <div className="col-12 col-sm-6 col-md-2">
+                        <Field
+                          type="text"
+                          className="form-input-1"
+                          placeholder="Subject"
+                          name="Subject"
+                        ></Field>
+                      </div>
+                      <div className="col-12 col-sm-6 col-md-2">
+                        <Field
+                          type="textArea"
+                          placeholder="Additional Information"
+                          className="form-input-1"
+                          name="AdditionalInfo"
+                        ></Field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row row-gap-2">
                     <h6>Destination Details</h6>
@@ -167,15 +214,6 @@ const Query = () => {
                         name="TotalNights"
                         value={TravelDate.TotalNights}
                         onChange={handleChange}
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <label>Search:</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Search Package.."
-                        name="Search"
                       ></Field>
                     </div>
                   </div>
@@ -226,53 +264,10 @@ const Query = () => {
                   ) : (
                     ""
                   )}
-                  <div className="row row-gap-2 pt-2">
-                    <h6>Contact Information</h6>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Company, Email, Phone, Contact Person"
-                        name="demo1"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Lead Pax Name"
-                        name="LeadPax"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Subject"
-                        name="Subject"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="text"
-                        placeholder="text@example.com"
-                        className="form-input-1"
-                        name="AddEmail"
-                      ></Field>
-                    </div>
-                    <div className="col-12">
-                      <Field
-                        type="textArea"
-                        placeholder="Additional Information"
-                        className="form-input-1 mt-1"
-                        name="AdditionalInfo"
-                      ></Field>
-                    </div>
-                  </div>
                 </div>
                 <div className="col-md col-sm-6 border py-2 rounded">
                   <div className="row py-2 row-gap-2">
-                      <h6>Pax Information</h6>
+                    <h6>Pax Information</h6>
                     <div className="col-6">
                       <label htmlFor="">Adult</label>
                       <Counter />
@@ -287,14 +282,17 @@ const Query = () => {
                     </div>
                     <div className="col-6">
                       <label htmlFor="">Total</label>
-                      <div className="backgroundColor-1 rounded 
-                      d-flex justify-content-center align-items-center font-weight-bold" 
-                      style={{height:'30px'}}>Total : {9}</div>
+                      <div
+                        className="backgroundColor-1 rounded 
+                      d-flex justify-content-center align-items-center font-weight-bold"
+                        style={{ height: "30px" }}
+                      >
+                        Total : {9}
+                      </div>
                     </div>
-
                   </div>
                   <div className="row row-gap-2 pt-2">
-                      <h6>Room's Information</h6>
+                    <h6>Room's Information</h6>
                     <div className="col-4">
                       <label htmlFor="">Single</label>
                       <Field
@@ -392,6 +390,15 @@ const Query = () => {
                         className="form-input-1"
                         name="RoomInfo.ExtraBed"
                         placeholder=""
+                      ></Field>
+                    </div>
+                    <div className="col-12">
+                      <label>Search:</label>
+                      <Field
+                        type="text"
+                        className="form-input-1"
+                        placeholder="Search Package.."
+                        name="Search"
                       ></Field>
                     </div>
                   </div>
