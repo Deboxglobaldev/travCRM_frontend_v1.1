@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const MasterMenu = ({ img, head, list1, list2 }) => {
-  return (
+const MasterMenu = () => {
+  return(
     <>
       {/* General Master Menu List */}
       <div className="card bg-light w-100 shadow-none border">
@@ -118,10 +118,10 @@ const MasterMenu = ({ img, head, list1, list2 }) => {
             <div className="col-xl-11 col-lg-10 col-md-10 col-sm-10">
               <div className="row">
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/hotelmaster">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
-                      <img src="assets/icons/document.png" alt="image" />
-                      <span className="pl-1">Hotel Rate Sheet</span>
+                      <img src="assets/icons/document.png" alt="image"/>
+                      <span className="pl-1">Hotel Master</span>
                     </div>
                   </NavLink>
                   <NavLink to="/master/hotelcategory">

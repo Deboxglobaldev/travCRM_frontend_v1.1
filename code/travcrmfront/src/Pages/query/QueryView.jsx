@@ -58,16 +58,15 @@ const QueryView = () => {
           </div>
           </div>
 
-
           <div className="col-xl-12 px-4" style={{ padding: 0 }}>
             <div className="card shadow-none border">
               <div className="card-body" style={{ padding: "1px" }}>
                 <ul className="nav nav-pills-toolbar border-bottom nav-justified p-1">
                   <li className="nav-item rounded-pill">
                     <NavLink
-                      to="/query_list/queryview/"
+                      to="/querylist/queryview/"
                       className={`nav-link fs-6 py-1 rounded-pill ${
-                        pathname === "/query_list/queryview/"
+                        pathname === "/querylist/queryview/"
                           ? "Active"
                           : "text-dark"
                       }`}
@@ -79,7 +78,7 @@ const QueryView = () => {
                     <NavLink
                       to="querydetails"
                       className={`nav-link fs-6 py-1 rounded-pill ${
-                        pathname === "/query_list/queryview/querydetails"
+                        pathname === "/querylist/queryview/querydetails"
                           ? "Active"
                           : "text-dark"
                       }`}
@@ -91,7 +90,7 @@ const QueryView = () => {
                     <NavLink
                       to="quotation"
                       className={`nav-link fs-6 py-1 rounded-pill ${
-                        pathname === "/query_list/queryview/quotation"
+                        pathname === "/querylist/queryview/quotation"
                           ? "Active"
                           : "text-dark"
                       }`}
@@ -103,7 +102,7 @@ const QueryView = () => {
                     <NavLink
                       to="tourextension"
                       className={`nav-link fs-6 py-1 rounded-pill ${
-                        pathname === "/query_list/queryview/tourextension"
+                        pathname === "/querylist/queryview/tourextension"
                           ? "Active"
                           : "text-dark"
                       }`}
@@ -115,7 +114,7 @@ const QueryView = () => {
                     <NavLink
                       to="clientcomm"
                       className={`nav-link fs-6 py-1 rounded-pill ${
-                        pathname === "/query_list/queryview/clientcomm"
+                        pathname === "/querylist/queryview/clientcomm"
                           ? "Active"
                           : "text-dark"
                       }`}
@@ -127,7 +126,7 @@ const QueryView = () => {
                     <NavLink
                       to="suppliercomm"
                       className={`nav-link fs-6 py-1 rounded-pill  ${
-                        pathname === "/query_list/queryview/suppliercomm"
+                        pathname === "/querylist/queryview/suppliercomm"
                           ? "Active"
                           : "text-dark"
                       }`}

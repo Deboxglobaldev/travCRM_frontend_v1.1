@@ -23,7 +23,7 @@ import DivisionMaster from "./Pages/master/masterList/DivisionMaster";
 import TourType from "./Pages/master/masterList/TourType";
 import SeasonMaster from "./Pages/master/masterList/SeasonMaster";
 import RoomMaster from "./Pages/master/masterList/RoomMaster";
-import HotelRateSheet from "./Pages/master/masterList/HotelRateSheet";
+import HotelMaster from "./Pages/master/masterList/HotelMaster.jsx";
 import RoomType from "./Pages/master/masterList/RoomType";
 import Amenties from "./Pages/master/masterList/Amenties";
 import HotelType from "./Pages/master/masterList/HotelType";
@@ -96,8 +96,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Protected><Home /></Protected>}/>
           <Route path="/mail" element={  <Protected><Mail /></Protected>}/>
-          <Route path="/query_list" element={ <Protected>  <QueryList />  </Protected>}/>
-          <Route path="/query_list/queryview" element={<Protected><QueryView /></Protected>}>
+          <Route path="/querylist" element={ <Protected>  <QueryList />  </Protected>}/>
+          <Route path="/querylist/queryview" element={<Protected><QueryView /></Protected>}>
             <Route index element={<Protected><Query/></Protected>}></Route>
             <Route path="querydetails" element={<Protected><QueryDetails/></Protected>}></Route>
             <Route path="quotation" element={<Protected><Quotation/></Protected>}></Route>
@@ -119,7 +119,7 @@ const App = () => {
           <Route path="/master/tour_type" element={ <Protected> <TourType /> </Protected>} />
           <Route path="/master/season" element={ <Protected><SeasonMaster /> </Protected>}/>
           <Route path="/master/room_master" element={<RoomMaster/>}></Route>
-          <Route path="/master/hotel_ratesheet" element={<HotelRateSheet/>}></Route>
+          <Route path="/master/hotelmaster" element={<Protected><HotelMaster/></Protected>}/>
           <Route path="/master/roomtype" element={<RoomType/>}></Route>
           <Route path="/master/amenties" element={<Amenties/>}></Route>
           <Route path="/master/hoteltype" element={<HotelType/>}></Route>

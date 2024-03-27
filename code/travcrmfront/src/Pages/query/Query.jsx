@@ -26,6 +26,7 @@ const Query = () => {
     SeasonYear: "",
   });
   const [dateArray, setDateArray] = useState([]);
+  const [deleteDate, setDeleteDate] = useState(false);
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
@@ -89,10 +90,18 @@ const Query = () => {
     const dateStore =  eachDayOfInterval({ start: fromDate, end: lastDate }).map(
       (date) => format(date, "dd/MM/yyyy")
     );
-
-    setDateArray(dateStore);
+    if(deleteDate){
+      const filteredDate = dateStore.pop();
+      setDateArray(dateStore);
+    }else{
+      setDateArray(dateStore);
+    }
   }
-  
+
+  const dateDeleting = () =>{
+    setDeleteDate(true);
+    createDateArray();
+  }
 
   // Message: Adding Date fromDate + Days = ToDate
   useEffect(() => {
@@ -113,7 +122,6 @@ const Query = () => {
       toDateMonth.length == 2 ? toDateMonth : "0" + toDateMonth
     }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
     setTravelDate({ ...TravelDate, ToDate: finalToDate });
-
     createDateArray();
 
   }, [TravelDate.FromDate, TravelDate.TotalNights, TravelDate.ToDate]);
@@ -135,7 +143,7 @@ const Query = () => {
                   <button className="btn btn-primary mr-2" type="submit">
                     Save
                   </button>
-                  <NavLink to="/query_list" className={"btn btn-primary"}>
+                  <NavLink to="/querylist" className={"btn btn-primary"}>
                     Close
                   </NavLink>
                 </div>
@@ -188,7 +196,7 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
+                <div className="col-md col-sm-6 border py-2 rounded px-1">
                   <div className="row row-gap-2">
                     <h6>Destination Details</h6>
                     <div className="col-md-12 col-12">
@@ -203,7 +211,7 @@ const Query = () => {
                         <option value="2">Day Wise</option>
                       </Field>
                     </div>
-                    <div className="col-5">
+                    <div className="col-5 pl-2 pr-0">
                       <label>From Date</label>
                       <Field
                         type="date"
@@ -213,7 +221,7 @@ const Query = () => {
                         onChange={handleChange}
                       ></Field>
                     </div>
-                    <div className="col-5">
+                    <div className="col-5 pl-1 pr-0">
                       <label>To Date</label>
                       <Field
                         type="date"
@@ -223,7 +231,7 @@ const Query = () => {
                         onChange={handleChange}
                       ></Field>
                     </div>
-                    <div className="col-2">
+                    <div className="col-2 pl-1">
                       <label>Night</label>
                       <Field
                         type="text"
@@ -238,7 +246,7 @@ const Query = () => {
                   {TravelDate.TotalNights !== "" &&
                   TravelDate.FromDate !== "" ? (
                     <div className="row p-2">
-                      <table className="table table-bordered">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th>Date/Day</th>
@@ -250,7 +258,10 @@ const Query = () => {
                           {dateArray.map((value, index) => {
                             return (
                               <tr key={index + 1}>
-                                <td className="p-0 text-center">{value}</td>
+                                <td className="p-0 text-center">
+                                   <i className="fa-solid fa-trash pr-1 
+                                   text-danger cursor-pointer" onClick={dateDeleting}>
+                                   </i> {value}</td>
                                 <td className="p-1">
                                   <Field
                                     component={"select"}

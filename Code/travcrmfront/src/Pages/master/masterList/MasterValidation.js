@@ -515,3 +515,65 @@ export const currencyMasterValidationSchema = yup.object().shape({
   CurrencyCode: yup.string().required('Required'),
   CurrencyName: yup.string().required('Required')
 });
+
+
+
+// Hotel Master Table Value in JSON-----------------------------------
+
+export const hotelMasterValue=[
+  {
+    HotelChain:"None",
+    HotelName:"Blue Lotus Hotel",
+    Destination:"Delhi",
+    ContactPerson:"Ansar",
+    Category:"5Star",
+    Status:"Active",
+    RoomType:"Classic",
+    Gallery:"Gallery",
+    RateSheet:"RateSheet"
+  },
+  {
+    HotelChain:"None",
+    HotelName:"Hotel Nikko",
+    Destination:"Mumbai",
+    ContactPerson:"Ansar",
+    Category:"2Star",
+    Status:"Active",
+    RoomType:"Classic",
+    Gallery:"Gallery",
+    RateSheet:"RateSheet"
+  },
+  {
+    HotelChain:"None",
+    HotelName:"Hotel Nikko",
+    Destination:"Mumbai",
+    ContactPerson:"Ansar",
+    Category:"2Star",
+    Status:"Active",
+    RoomType:"Classic",
+    Gallery:"Gallery",
+    RateSheet:"RateSheet"
+  },
+  {
+    HotelChain:"None",
+    HotelName:"Hotel Nikko",
+    Destination:"Mumbai",
+    ContactPerson:"Ansar",
+    Category:"2Star",
+    Status:"Active",
+    RoomType:"Classic",
+    Gallery:"Gallery",
+    RateSheet:"RateSheet"
+  },
+  {
+    HotelChain:"None",
+    HotelName:"Hotel Nikko",
+    Destination:"Mumbai",
+    ContactPerson:"Ansar",
+    Category:"2Star",
+    Status:"Active",
+    RoomType:"Classic",
+    Gallery:"Gallery",
+    RateSheet:"RateSheet"
+  }
+];
