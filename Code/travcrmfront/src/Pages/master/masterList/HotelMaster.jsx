@@ -7,6 +7,7 @@ import { Field, ErrorMessage } from "formik";
 import { hotelMasterInitialValue, hotelMasterValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
+import Button from "@mui/material/Button";
 
 const HotelMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -123,8 +124,9 @@ const HotelMaster = () => {
                 >
                   Back
                 </NavLink>
+
                 <Model
-                  heading={"Add Hotel Rate"}
+                  heading={"Add Hotel"}
                   apiurl={"addupdatehotelmaster"}
                   initialValues={hotelMasterInitialValue}
                   validationSchema={hotelMasterValidationSchema}
@@ -184,7 +186,7 @@ const HotelMaster = () => {
                           <option value={"2"}>Delite</option>
                           <option value={"4"}>Luxury</option>
                         </Field>
-                        
+
                       </div>
                       <div className="col-sm-3">
                         <label>Destination</label>

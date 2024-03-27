@@ -6,6 +6,7 @@ import { Formik, Form, useFormik } from "formik";
 const Model = ({
   children,
   heading,
+  buttonname,
   apiurl,
   initialValues,
   validationSchema,
@@ -82,7 +83,7 @@ const Model = ({
               onSubmit={handleSubmit}
               initialValues={ isEditing? forEdit : initialValues }
               validationSchema={validationSchema}
-              enableReinitialize  
+              enableReinitialize
           >
               <Form>
                 <div className="modal-body">

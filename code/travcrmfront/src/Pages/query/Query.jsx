@@ -252,6 +252,7 @@ const Query = () => {
                             <th>Date/Day</th>
                             <th>Country</th>
                             <th>Destination</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -259,9 +260,7 @@ const Query = () => {
                             return (
                               <tr key={index + 1}>
                                 <td className="p-0 text-center">
-                                   <i className="fa-solid fa-trash pr-1 
-                                   text-danger cursor-pointer" onClick={dateDeleting}>
-                                   </i> {value}</td>
+                                   {value}</td>
                                 <td className="p-1">
                                   <Field
                                     component={"select"}
@@ -287,6 +286,9 @@ const Query = () => {
                                     <option value="3">Dubai</option>
                                   </Field>
                                 </td>
+                                <td> <i className="fa-solid fa-trash pr-1
+                                   text-danger cursor-pointer" onClick={dateDeleting}>
+                                   </i></td>
                               </tr>
                             );
                           })}
@@ -315,7 +317,7 @@ const Query = () => {
                     <div className="col-6">
                       <label htmlFor="">Total</label>
                       <div
-                        className="backgroundColor-1 rounded 
+                        className="backgroundColor-1 rounded
                       d-flex justify-content-center align-items-center font-weight-bold"
                         style={{ height: "30px" }}
                       >
