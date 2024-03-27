@@ -59,7 +59,7 @@ export const marketTypeInitialValue = {
 export const languageInitialValue = {
   id: "",
   Name: "",
-  Status:1,
+  Status: 1,
   AddedBy: 1,
   UpdatedBy: 0,
 };
@@ -91,6 +91,36 @@ export const seasonTypeInitialValue = {
   Status: 1,
   AddedBy: 1,
   UpdatedBy: 1,
+};
+export const hotelMasterInitialValue = {
+  HotelChain: "",
+  HotelName: "",
+  HotelCode: "",
+  HotelCategory: "",
+  HotelType: "",
+  HotelDestination: "",
+  HotelCountry: "",
+  HotelState: "",
+  HotelCity: "",
+  HotelPinCode: "",
+  HotelAddress: "",
+  HotelLocality: "",
+  HotelGSTN: "",
+  HotelWeekend: "",
+  CheckIn: "",
+  CheckOut: "",
+  HotelLink: "",
+  HotelInfo: "",
+  HotelPolicy: "",
+  HotelTC: "",
+  HotelAmenties: "",
+  HotelRoomType: "",
+  HotelStatus: 1,
+  SelfSupplier: 1,
+  AddedBy: 1,
+  UpdatedBy: 0,
+  Created_at: "2024-03-27 14:35:08",
+  Updated_at: null,
 };
 export const hotelCategoryInitialValue = {
   id: "",
@@ -128,7 +158,7 @@ export const hotelChainInitialValue = {
   ContactMobile: "",
   ContactEmail: "",
   Status: 1,
-  AddedBy:1,
+  AddedBy: 1,
 };
 export const resturantInitialValue = {
   id: "",
@@ -405,6 +435,11 @@ export const seasonTypeValidationSchema = yup.object().shape({
   FromDate: yup.string().required("Required"),
   ToDate: yup.string().required("Required"),
 });
+export const hotelMasterValidationSchema = yup.object().shape({
+  HotelName:yup.string().required('Required'),
+  HotelDestination:yup.string().required('Required'),
+  HotelRoomType:yup.string().required('Required'),
+});
 export const hotelCategoryValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),
   UploadKeyword: yup.string().required("Required"),
@@ -512,68 +547,66 @@ export const ferryMasterValidationSchema = yup.object().shape({
   ImageData: yup.string().required("Required"),
 });
 export const currencyMasterValidationSchema = yup.object().shape({
-  CurrencyCode: yup.string().required('Required'),
-  CurrencyName: yup.string().required('Required')
+  CurrencyCode: yup.string().required("Required"),
+  CurrencyName: yup.string().required("Required"),
 });
-
-
 
 // Hotel Master Table Value in JSON-----------------------------------
 
-export const hotelMasterValue=[
+export const hotelMasterValue = [
   {
-    HotelChain:"None",
-    HotelName:"Blue Lotus Hotel",
-    Destination:"Delhi",
-    ContactPerson:"Ansar",
-    Category:"5Star",
-    Status:"Active",
-    RoomType:"Classic",
-    Gallery:"Gallery",
-    RateSheet:"RateSheet"
+    HotelChain: "None",
+    HotelName: "Blue Lotus Hotel",
+    Destination: "Delhi",
+    ContactPerson: "Ansar",
+    Category: "5Star",
+    Status: "Active",
+    RoomType: "Classic",
+    Gallery: "Gallery",
+    RateSheet: "RateSheet",
   },
   {
-    HotelChain:"None",
-    HotelName:"Hotel Nikko",
-    Destination:"Mumbai",
-    ContactPerson:"Ansar",
-    Category:"2Star",
-    Status:"Active",
-    RoomType:"Classic",
-    Gallery:"Gallery",
-    RateSheet:"RateSheet"
+    HotelChain: "None",
+    HotelName: "Hotel Nikko",
+    Destination: "Mumbai",
+    ContactPerson: "Ansar",
+    Category: "2Star",
+    Status: "Active",
+    RoomType: "Classic",
+    Gallery: "Gallery",
+    RateSheet: "RateSheet",
   },
   {
-    HotelChain:"None",
-    HotelName:"Hotel Nikko",
-    Destination:"Mumbai",
-    ContactPerson:"Ansar",
-    Category:"2Star",
-    Status:"Active",
-    RoomType:"Classic",
-    Gallery:"Gallery",
-    RateSheet:"RateSheet"
+    HotelChain: "None",
+    HotelName: "Hotel Nikko",
+    Destination: "Mumbai",
+    ContactPerson: "Ansar",
+    Category: "2Star",
+    Status: "Active",
+    RoomType: "Classic",
+    Gallery: "Gallery",
+    RateSheet: "RateSheet",
   },
   {
-    HotelChain:"None",
-    HotelName:"Hotel Nikko",
-    Destination:"Mumbai",
-    ContactPerson:"Ansar",
-    Category:"2Star",
-    Status:"Active",
-    RoomType:"Classic",
-    Gallery:"Gallery",
-    RateSheet:"RateSheet"
+    HotelChain: "None",
+    HotelName: "Hotel Nikko",
+    Destination: "Mumbai",
+    ContactPerson: "Ansar",
+    Category: "2Star",
+    Status: "Active",
+    RoomType: "Classic",
+    Gallery: "Gallery",
+    RateSheet: "RateSheet",
   },
   {
-    HotelChain:"None",
-    HotelName:"Hotel Nikko",
-    Destination:"Mumbai",
-    ContactPerson:"Ansar",
-    Category:"2Star",
-    Status:"Active",
-    RoomType:"Classic",
-    Gallery:"Gallery",
-    RateSheet:"RateSheet"
-  }
+    HotelChain: "None",
+    HotelName: "Hotel Nikko",
+    Destination: "Mumbai",
+    ContactPerson: "Ansar",
+    Category: "2Star",
+    Status: "Active",
+    RoomType: "Classic",
+    Gallery: "Gallery",
+    RateSheet: "RateSheet",
+  },
 ];

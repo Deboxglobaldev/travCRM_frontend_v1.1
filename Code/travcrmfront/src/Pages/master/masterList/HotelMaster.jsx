@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { hotelMasterInitialValue, hotelMasterValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
 
@@ -18,6 +18,7 @@ const HotelMaster = () => {
   const [valueForEdit, setValueForEdit] = useState({});
   const [moreInfo, setMoreInfo] = useState(false);
   const [moreAddress, setMoreAddress] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -124,20 +125,23 @@ const HotelMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Hotel Rate"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
+                  apiurl={"addupdatehotelmaster"}
+                  initialValues={hotelMasterInitialValue}
+                  validationSchema={hotelMasterValidationSchema}
                   valueForEdit={valueForEdit}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row row-gap-3">
                       <div className="col-sm-3">
-                        <label htmlFor="country">Hotel Chain</label>
+                        <label>Hotel Chain</label>
                         <Field
                           className="form-control"
                           component={"select"}
                           name="HotelChain"
                         >
+                          <option value={""}>Select</option>
                           <option value={"1"}>ITC</option>
                           <option value={"2"}>Oberoi Group</option>
                           <option value={"3"}>Taj Group</option>
@@ -162,6 +166,7 @@ const HotelMaster = () => {
                           component={"select"}
                           name="HotelCategory"
                         >
+                          <option value={""}>Select</option>
                           <option value={"1"}>3 Star</option>
                           <option value={"2"}>4 Star</option>
                           <option value={"4"}>5 Star</option>
@@ -174,27 +179,30 @@ const HotelMaster = () => {
                           component={"select"}
                           name="HotelType"
                         >
+                          <option value={""}>Select</option>
                           <option value={"1"}>Budget</option>
                           <option value={"2"}>Delite</option>
                           <option value={"4"}>Luxury</option>
                         </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="HotelType" />
-                        </span>
+                        
                       </div>
                       <div className="col-sm-3">
                         <label>Destination</label>
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="HotelType"
+                          name="HotelDestination"
                         >
+                          <option value={""}>Select</option>
                           <option value={"1"}>Delhi</option>
                           <option value={"2"}>Mumbai</option>
-                          <option value={"4"}>Noida</option>
+                          <option value={"3"}>Noida</option>
                           <option value={"4"}>Gurgaon</option>
-                          <option value={"4"}>Banglore</option>
+                          <option value={"5"}>Banglore</option>
                         </Field>
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="HotelDestination"/>
+                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>Locality</label>
@@ -202,10 +210,10 @@ const HotelMaster = () => {
                           type="text"
                           placeholder="Locality"
                           className="form-control"
-                          name="Locality"
+                          name="HotelLocality"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Locality" />
+                          <ErrorMessage name="HotelLocality" />
                         </span>
                       </div>
                       <div className="col-sm-3">
@@ -213,24 +221,28 @@ const HotelMaster = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="HotelType"
+                          name="HotelRoomType"
                         >
+                          <option value={""}>Select</option>
                           <option value={"1"}>Bamboo Tree House</option>
                           <option value={"2"}>Brook Side Cottage</option>
-                          <option value={"4"}>Bunglow Suit</option>
+                          <option value={"3"}>Bunglow Suit</option>
                           <option value={"4"}>Classic Cottage</option>
-                          <option value={"4"}>Classic Sea View</option>
+                          <option value={"5"}>Classic Sea View</option>
                         </Field>
+                        <span className="font-size-10 text-danger">
+                          <ErrorMessage name="HotelRoomType" />
+                        </span>
                       </div>
                       <div className="col-sm-3">
                         <label>Self Supplier</label>
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="HotelType"
+                          name="SelfSupplier"
                         >
-                          <option value={"1"}>No</option>
-                          <option value={"2"}>Yes</option>
+                          <option value={"1"}>Yes</option>
+                          <option value={"2"}>No</option>
                         </Field>
                       </div>
                       <div className="col-sm-3">
@@ -238,18 +250,17 @@ const HotelMaster = () => {
                         <Field
                           className="form-control"
                           component={"select"}
-                          name="HotelType"
+                          name="HotelStatus"
                         >
                           <option value={"1"}>Active</option>
                           <option value={"2"}>Inactive</option>
                         </Field>
                       </div>
-                      <span className="cursor-pointer font-weight-bold text-success"
-                      onClick={() => setMoreAddress(!moreAddress)}
+                      <span
+                        className="cursor-pointer font-weight-bold text-success"
+                        onClick={() => setMoreAddress(!moreAddress)}
                       >
-                        <i
-                          className="fa-solid fa-plus font-size-15 pr-2"
-                        ></i>
+                        <i className="fa-solid fa-plus font-size-15 pr-2"></i>
                         Add Address
                       </span>
                       {moreAddress && (
@@ -259,7 +270,7 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="Country"
+                              name="HotelCountry"
                             >
                               <option value={"1"}>India</option>
                               <option value={"2"}>Srilanka</option>
@@ -271,12 +282,12 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="State"
+                              name="HotelState"
                             >
                               <option value={"1"}>Delhi</option>
                               <option value={"2"}>Banglore</option>
                               <option value={"3"}>Haryana</option>
-                              <option value={"3"}>UttarPradesh</option>
+                              <option value={"4"}>UttarPradesh</option>
                             </Field>
                           </div>
                           <div className="col-sm-3">
@@ -284,7 +295,7 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="State"
+                              name="HotelCity"
                             >
                               <option value={"1"}>Gurgaon</option>
                               <option value={"2"}>Noida</option>
@@ -297,7 +308,7 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="Pin Code"
                               className="form-control"
-                              name="PinCode"
+                              name="HotelPinCode"
                             />
                             <span className="font-size-10 text-danger">
                               <ErrorMessage name="PinCode" />
@@ -309,10 +320,10 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="Address"
                               className="form-control"
-                              name="Address"
+                              name="HotelAddress"
                             />
                             <span className="font-size-10 text-danger">
-                              <ErrorMessage name="Address" />
+                              <ErrorMessage name="HotelAddress" />
                             </span>
                           </div>
                           <div className="col-sm-3">
@@ -321,7 +332,7 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="GSTN"
                               className="form-control"
-                              name="GSTN"
+                              name="HotelGSTN"
                             />
                           </div>
                         </>
@@ -347,7 +358,7 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="HotelType"
+                              name="HotelWeekend"
                             >
                               <option value={"1"}>SAT-SUN</option>
                               <option value={"2"}>Special Weekend</option>
@@ -358,18 +369,18 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="HotelType"
+                              name="CheckIn"
                             >
                               <option value={"1"}>01:00</option>
                               <option value={"2"}>02:00</option>
-                              <option value={"2"}>05:00</option>
-                              <option value={"2"}>06:00</option>
-                              <option value={"2"}>07:00</option>
-                              <option value={"2"}>08:00</option>
-                              <option value={"2"}>09:00</option>
-                              <option value={"2"}>10:00</option>
-                              <option value={"2"}>11:00</option>
-                              <option value={"2"}>12:00</option>
+                              <option value={"3"}>05:00</option>
+                              <option value={"4"}>06:00</option>
+                              <option value={"5"}>07:00</option>
+                              <option value={"6"}>08:00</option>
+                              <option value={"7"}>09:00</option>
+                              <option value={"8"}>10:00</option>
+                              <option value={"9"}>11:00</option>
+                              <option value={"10"}>12:00</option>
                             </Field>
                           </div>
                           <div className="col-sm-3">
@@ -377,18 +388,18 @@ const HotelMaster = () => {
                             <Field
                               className="form-control"
                               component={"select"}
-                              name="HotelType"
+                              name="CheckOut"
                             >
                               <option value={"1"}>01:00</option>
                               <option value={"2"}>02:00</option>
-                              <option value={"2"}>05:00</option>
-                              <option value={"2"}>06:00</option>
-                              <option value={"2"}>07:00</option>
-                              <option value={"2"}>08:00</option>
-                              <option value={"2"}>09:00</option>
-                              <option value={"2"}>10:00</option>
-                              <option value={"2"}>11:00</option>
-                              <option value={"2"}>12:00</option>
+                              <option value={"3"}>05:00</option>
+                              <option value={"4"}>06:00</option>
+                              <option value={"5"}>07:00</option>
+                              <option value={"6"}>08:00</option>
+                              <option value={"7"}>09:00</option>
+                              <option value={"8"}>10:00</option>
+                              <option value={"9"}>11:00</option>
+                              <option value={"10"}>12:00</option>
                             </Field>
                           </div>
                           <div className="col-sm-3">
@@ -412,8 +423,8 @@ const HotelMaster = () => {
                             >
                               <option value={"1"}>Ac Rooms</option>
                               <option value={"2"}>All Meal</option>
-                              <option value={"2"}>Bar</option>
-                              <option value={"2"}>Basic Toilter</option>
+                              <option value={"3"}>Bar</option>
+                              <option value={"4"}>Basic Toilter</option>
                             </Field>
                           </div>
                           <div className="col-sm-3">
@@ -422,10 +433,10 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="Locality"
                               className="form-control"
-                              name="HotelInformation"
+                              name="HotelInfo"
                             />
                             <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelInformation" />
+                              <ErrorMessage name="HotelInfo" />
                             </span>
                           </div>
                           <div className="col-sm-3">
@@ -434,10 +445,10 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="Locality"
                               className="form-control"
-                              name="HotelInformation"
+                              name="HotelPolicy"
                             />
                             <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelInformation" />
+                              <ErrorMessage name="HotelPolicy" />
                             </span>
                           </div>
                           <div className="col-sm-3">
@@ -446,10 +457,10 @@ const HotelMaster = () => {
                               type="text"
                               placeholder="Locality"
                               className="form-control"
-                              name="HotelInformation"
+                              name="HotelTC"
                             />
                             <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelInformation" />
+                              <ErrorMessage name="T&C" />
                             </span>
                           </div>
                         </>
