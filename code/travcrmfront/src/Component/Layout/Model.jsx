@@ -45,7 +45,7 @@ const Model = ({
     <>
       <button
         type="button"
-        className="btn bg-teal-400 add-button fs-11 shadow"
+        className="btn bg-teal-400 add-button fs-11 shadow ml-2"
         data-toggle="modal"
         data-target="#modal_form_vertical"
         onClick={()=> setIsEditing(false)}
