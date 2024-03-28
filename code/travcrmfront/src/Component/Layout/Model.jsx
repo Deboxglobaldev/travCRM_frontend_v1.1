@@ -6,7 +6,8 @@ import { Formik, Form, useFormik } from "formik";
 const Model = ({
   children,
   heading,
-  buttonname,
+  buttonName,
+  buttonClass,
   apiurl,
   initialValues,
   validationSchema,
@@ -45,13 +46,13 @@ const Model = ({
     <>
       <button
         type="button"
-        className="btn bg-teal-400 add-button fs-11 shadow"
+        className={buttonClass}
         data-toggle="modal"
         data-target="#modal_form_vertical"
         onClick={()=> setIsEditing(false)}
       >
-        <i className="fa fa-plus pr-1" aria-hidden="true"></i>
-        Create New
+
+        {(buttonName) ? buttonName : <span><i className="fa fa-plus pr-1" aria-hidden="true"></i> Create New</span>}
       </button>
 
       {/* <!-- Modal --> */}
@@ -102,7 +103,7 @@ const Model = ({
                     Close
                   </button>
                   <button type="submit" className="btn btn-primary">
-                    Save
+                    {(buttonName?.includes("Import")) ? 'Upload' : 'Save'}
                   </button>
                 </div>
               </Form>

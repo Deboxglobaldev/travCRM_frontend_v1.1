@@ -121,7 +121,7 @@ const HotelMaster = () => {
                 {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn btn-gray mr-2 fs-11 shadow"
+                  className="secondary-button"
                   aria-expanded="false"
                 >
                   Back
@@ -133,8 +133,10 @@ const HotelMaster = () => {
                 >
                   Create New
                 </NavLink>
-                {/* <Model
-                  heading={"Add Hotel Rate"}
+                <Model
+                  heading={"Import Hotel"}
+                  buttonName={"Import Hotel"}
+                  buttonClass={"success-button"}
                   apiurl={"addupdatehotelmaster"}
                   initialValues={hotelMasterInitialValue}
                   validationSchema={hotelMasterValidationSchema}
@@ -143,7 +145,7 @@ const HotelMaster = () => {
                   setIsEditing={setIsEditing}
                 >
 
-                </Model> */}
+                </Model>
               </div>
             </div>
             <div className="card-body">
