@@ -36,8 +36,6 @@ const Quotation = () =>{
                 >
                   + Add Quotation
                 </Button>
-
-                <button className="success-button">TESTING NOW</button>
               </div>
             </div>
           </div>
