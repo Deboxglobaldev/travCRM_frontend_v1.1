@@ -13,14 +13,12 @@ const Model = ({
   validationSchema,
   forEdit,
   isEditing,
-  setIsEditing
+  setIsEditing,
 }) => {
-
   const closeModel = () => {
     document.getElementById("cancel").click();
-  }
-  const handleSubmit = async (value, { resetForm } ) => {
-
+  };
+  const handleSubmit = async (value, { resetForm }) => {
     console.log("Modal Values......", value);
 
     try {
@@ -37,10 +35,7 @@ const Model = ({
     } catch (err) {
       console.log(err);
     }
-
   };
-
-
 
   return (
     <>
@@ -49,7 +44,7 @@ const Model = ({
         className={buttonClass}
         data-toggle="modal"
         data-target="#modal_form_vertical"
-        onClick={()=> setIsEditing(false)}
+        onClick={() => setIsEditing(false)}
       >
 
         {(buttonName) ? buttonName : <span><i className="fa fa-plus pr-1" aria-hidden="true"></i> Create New</span>}
@@ -82,10 +77,10 @@ const Model = ({
               method="POST"
               action=""
               onSubmit={handleSubmit}
-              initialValues={ isEditing? forEdit : initialValues }
+              initialValues={isEditing ? forEdit : initialValues}
               validationSchema={validationSchema}
               enableReinitialize
-          >
+            >
               <Form>
                 <div className="modal-body">
                   {/* modal body */}

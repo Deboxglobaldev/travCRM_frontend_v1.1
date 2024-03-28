@@ -5,8 +5,10 @@ import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
-import { countryInitialValue, countryValidationSchema } from "./MasterValidation";
-
+import {
+  countryInitialValue,
+  countryValidationSchema,
+} from "./MasterValidation";
 
 const CountryMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -39,7 +41,6 @@ const CountryMaster = () => {
     setFilterData(result);
   }, [postData]);
 
-
   const handleEditClick = (rowValue) => {
     setEditData({
       id: rowValue.Id,
@@ -65,7 +66,11 @@ const CountryMaster = () => {
             onClick={() => handleEditClick(row)}
           ></i>
           {row.Name} &nbsp;
-          {(row.SetDefault=='Yes') ? <span class="badge bg-success">Default</span> : ''}
+          {row.SetDefault == "Yes" ? (
+            <span class="badge bg-success">Default</span>
+          ) : (
+            ""
+          )}
         </span>
       ),
       sortable: true,

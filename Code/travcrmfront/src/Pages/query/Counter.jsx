@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Counter = () => {
+const Counter = ({ onChangeCounter }) => {
   const [value, setValue] = useState(0);
   const handleDecrement = () => {
     if (value > 0) {
-      setValue(value - 1);
+      setValue(value-1)
+      onChangeCounter(value - 1);
+
     }
   };
   const handleIncrement = () => {
-    setValue(value + 1);
+    setValue(value+1)
+    onChangeCounter(value + 1);
   };
+
   return (
     <>
       <div
