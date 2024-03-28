@@ -25,7 +25,7 @@ const HotelMasterCreate = () => {
                 >
                   Back
                 </NavLink>
-                <button className="btn border text-light">Save</button> 
+                <button className="btn border text-white">Save</button> 
               </div>
             </div>
 
