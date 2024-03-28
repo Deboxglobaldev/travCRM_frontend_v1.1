@@ -96,15 +96,17 @@ const Query = () => {
     const updatedArray = [...dateArray];
     updatedArray.pop();
     setDateArray(updatedArray);
-    console.log(setTravelDate({
-      Type: TravelDate.Type,
-      FromDate: TravelDate.FromDate,
-      ToDate: TravelDate.ToDate,
-      TotalNights: TravelDate.TotalNights!==0?
-      TravelDate.TotalNights-1:'',
-      SeasonType: TravelDate.SeasonType,
-      SeasonYear: TravelDate.SeasonYear,
-    }));
+    console.log(
+      setTravelDate({
+        Type: TravelDate.Type,
+        FromDate: TravelDate.FromDate,
+        ToDate: TravelDate.ToDate,
+        TotalNights:
+          TravelDate.TotalNights !== 0 ? TravelDate.TotalNights - 1 : "",
+        SeasonType: TravelDate.SeasonType,
+        SeasonYear: TravelDate.SeasonYear,
+      })
+    );
   };
 
   // Message: Adding Date fromDate + Days = ToDate
@@ -127,7 +129,6 @@ const Query = () => {
     }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
     setTravelDate({ ...TravelDate, ToDate: finalToDate });
     createDateArray();
-
   }, [TravelDate.FromDate, TravelDate.TotalNights, TravelDate.ToDate]);
 
   return (
@@ -263,8 +264,7 @@ const Query = () => {
                           {dateArray.map((value, index) => {
                             return (
                               <tr key={index + 1}>
-                                <td className="p-0 text-center">
-                                    {value}</td>
+                                <td className="p-0 text-center">{value}</td>
                                 <td className="p-1">
                                   <Field
                                     component={"select"}
@@ -289,11 +289,14 @@ const Query = () => {
                                     <option value="2">Delhi</option>
                                     <option value="3">Dubai</option>
                                   </Field>
-                                  
                                 </td>
-                                <td><i className="fa-solid fa-trash pr-1
-                                   text-danger cursor-pointer" onClick={dateDeleting}>
-                                   </i></td>
+                                <td>
+                                  <i
+                                    className="fa-solid fa-trash pr-1
+                                   text-danger cursor-pointer"
+                                    onClick={dateDeleting}
+                                  ></i>
+                                </td>
                               </tr>
                             );
                           })}
@@ -425,7 +428,6 @@ const Query = () => {
                         className="form-input-1"
                         name="ContractingPerson"
                         placeholder="Person"
-
                       />
                     </div>
                     <div className="col-md-6 col-12">
