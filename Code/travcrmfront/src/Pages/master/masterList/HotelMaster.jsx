@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { hotelMasterInitialValue, hotelMasterValidationSchema } from "./MasterValidation";
+import {
+  hotelMasterInitialValue,
+  hotelMasterValidationSchema,
+} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
 
@@ -23,7 +26,7 @@ const HotelMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hotelmasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -123,7 +126,14 @@ const HotelMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                <NavLink
+                  to="/master/hotelmaster/create"
+                  className="btn btn-gray mr-2 fs-11 shadow"
+                  aria-expanded="false"
+                >
+                  Create New
+                </NavLink>
+                {/* <Model
                   heading={"Add Hotel Rate"}
                   apiurl={"addupdatehotelmaster"}
                   initialValues={hotelMasterInitialValue}
@@ -132,342 +142,8 @@ const HotelMaster = () => {
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
-                  <div className="card-body">
-                    <div className="row row-gap-3">
-                      <div className="col-sm-3">
-                        <label>Hotel Chain</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelChain"
-                        >
-                          <option value={""}>Select</option>
-                          <option value={"1"}>ITC</option>
-                          <option value={"2"}>Oberoi Group</option>
-                          <option value={"3"}>Taj Group</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Hotel Name</label>
-                        <Field
-                          type="text"
-                          placeholder="Hotel Name"
-                          className="form-control"
-                          name="HotelName"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="HotelName" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Hotel Category</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelCategory"
-                        >
-                          <option value={""}>Select</option>
-                          <option value={"1"}>3 Star</option>
-                          <option value={"2"}>4 Star</option>
-                          <option value={"4"}>5 Star</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Hotel Type</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelType"
-                        >
-                          <option value={""}>Select</option>
-                          <option value={"1"}>Budget</option>
-                          <option value={"2"}>Delite</option>
-                          <option value={"4"}>Luxury</option>
-                        </Field>
-                        
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Destination</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelDestination"
-                        >
-                          <option value={""}>Select</option>
-                          <option value={"1"}>Delhi</option>
-                          <option value={"2"}>Mumbai</option>
-                          <option value={"3"}>Noida</option>
-                          <option value={"4"}>Gurgaon</option>
-                          <option value={"5"}>Banglore</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="HotelDestination"/>
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Locality</label>
-                        <Field
-                          type="text"
-                          placeholder="Locality"
-                          className="form-control"
-                          name="HotelLocality"
-                        />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="HotelLocality" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Room Type</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelRoomType"
-                        >
-                          <option value={""}>Select</option>
-                          <option value={"1"}>Bamboo Tree House</option>
-                          <option value={"2"}>Brook Side Cottage</option>
-                          <option value={"3"}>Bunglow Suit</option>
-                          <option value={"4"}>Classic Cottage</option>
-                          <option value={"5"}>Classic Sea View</option>
-                        </Field>
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="HotelRoomType" />
-                        </span>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Self Supplier</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="SelfSupplier"
-                        >
-                          <option value={"1"}>Yes</option>
-                          <option value={"2"}>No</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-3">
-                        <label>Status</label>
-                        <Field
-                          className="form-control"
-                          component={"select"}
-                          name="HotelStatus"
-                        >
-                          <option value={"1"}>Active</option>
-                          <option value={"2"}>Inactive</option>
-                        </Field>
-                      </div>
-                      <span
-                        className="cursor-pointer font-weight-bold text-success"
-                        onClick={() => setMoreAddress(!moreAddress)}
-                      >
-                        <i className="fa-solid fa-plus font-size-15 pr-2"></i>
-                        Add Address
-                      </span>
-                      {moreAddress && (
-                        <>
-                          <div className="col-sm-3">
-                            <label>Country</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="HotelCountry"
-                            >
-                              <option value={"1"}>India</option>
-                              <option value={"2"}>Srilanka</option>
-                              <option value={"3"}>Afghanistan</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>State</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="HotelState"
-                            >
-                              <option value={"1"}>Delhi</option>
-                              <option value={"2"}>Banglore</option>
-                              <option value={"3"}>Haryana</option>
-                              <option value={"4"}>UttarPradesh</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>City</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="HotelCity"
-                            >
-                              <option value={"1"}>Gurgaon</option>
-                              <option value={"2"}>Noida</option>
-                              <option value={"3"}>Lucknow</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>PinCode</label>
-                            <Field
-                              type="text"
-                              placeholder="Pin Code"
-                              className="form-control"
-                              name="HotelPinCode"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="PinCode" />
-                            </span>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Address</label>
-                            <Field
-                              type="text"
-                              placeholder="Address"
-                              className="form-control"
-                              name="HotelAddress"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelAddress" />
-                            </span>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>GSTN</label>
-                            <Field
-                              type="text"
-                              placeholder="GSTN"
-                              className="form-control"
-                              name="HotelGSTN"
-                            />
-                          </div>
-                        </>
-                      )}
-
-                      <p
-                        className="cursor-pointer font-weight-bold"
-                        onClick={() => setMoreInfo(!moreInfo)}
-                      >
-                        More Information
-                        <span className="pl-2 font-size-15">
-                          {moreInfo ? (
-                            <i className="fa-solid fa-caret-up"></i>
-                          ) : (
-                            <i className="fa-solid fa-caret-down"></i>
-                          )}
-                        </span>
-                      </p>
-                      {moreInfo && (
-                        <>
-                          <div className="col-sm-3">
-                            <label>Weekend Days</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="HotelWeekend"
-                            >
-                              <option value={"1"}>SAT-SUN</option>
-                              <option value={"2"}>Special Weekend</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Check In Time</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="CheckIn"
-                            >
-                              <option value={"1"}>01:00</option>
-                              <option value={"2"}>02:00</option>
-                              <option value={"3"}>05:00</option>
-                              <option value={"4"}>06:00</option>
-                              <option value={"5"}>07:00</option>
-                              <option value={"6"}>08:00</option>
-                              <option value={"7"}>09:00</option>
-                              <option value={"8"}>10:00</option>
-                              <option value={"9"}>11:00</option>
-                              <option value={"10"}>12:00</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Check Out Time</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="CheckOut"
-                            >
-                              <option value={"1"}>01:00</option>
-                              <option value={"2"}>02:00</option>
-                              <option value={"3"}>05:00</option>
-                              <option value={"4"}>06:00</option>
-                              <option value={"5"}>07:00</option>
-                              <option value={"6"}>08:00</option>
-                              <option value={"7"}>09:00</option>
-                              <option value={"8"}>10:00</option>
-                              <option value={"9"}>11:00</option>
-                              <option value={"10"}>12:00</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Hotel Link</label>
-                            <Field
-                              type="text"
-                              placeholder="Locality"
-                              className="form-control"
-                              name="HotelLink"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelLink" />
-                            </span>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Hotel Amenties</label>
-                            <Field
-                              className="form-control"
-                              component={"select"}
-                              name="HotelAmenties"
-                            >
-                              <option value={"1"}>Ac Rooms</option>
-                              <option value={"2"}>All Meal</option>
-                              <option value={"3"}>Bar</option>
-                              <option value={"4"}>Basic Toilter</option>
-                            </Field>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Hotel Information</label>
-                            <Field
-                              type="text"
-                              placeholder="Locality"
-                              className="form-control"
-                              name="HotelInfo"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelInfo" />
-                            </span>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>Policy</label>
-                            <Field
-                              type="text"
-                              placeholder="Locality"
-                              className="form-control"
-                              name="HotelPolicy"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="HotelPolicy" />
-                            </span>
-                          </div>
-                          <div className="col-sm-3">
-                            <label>T&C</label>
-                            <Field
-                              type="text"
-                              placeholder="Locality"
-                              className="form-control"
-                              name="HotelTC"
-                            />
-                            <span className="font-size-10 text-danger">
-                              <ErrorMessage name="T&C" />
-                            </span>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </Model>
+                  
+                </Model> */}
               </div>
             </div>
             <div className="card-body">
