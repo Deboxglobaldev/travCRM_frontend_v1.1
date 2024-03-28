@@ -88,6 +88,7 @@ import Quotation from "./Pages/query/Quotation.jsx";
 import ClientComm from "./Pages/query/ClientComm.jsx";
 import SupplierComm from "./Pages/query/SupplierComm.jsx";
 import TourExtension from "./Pages/query/TourExtension.jsx";
+import HotelMasterCreate from "./Pages/master/masterList/HotelMasterCreate.jsx";
 
 const App = () => {
   return (
@@ -120,6 +121,7 @@ const App = () => {
           <Route path="/master/season" element={ <Protected><SeasonMaster /> </Protected>}/>
           <Route path="/master/room_master" element={<RoomMaster/>}></Route>
           <Route path="/master/hotelmaster" element={<Protected><HotelMaster/></Protected>}/>
+          <Route path="/master/hotelmaster/create" element={<Protected><HotelMasterCreate/></Protected>}/>
           <Route path="/master/roomtype" element={<RoomType/>}></Route>
           <Route path="/master/amenties" element={<Amenties/>}></Route>
           <Route path="/master/hoteltype" element={<HotelType/>}></Route>

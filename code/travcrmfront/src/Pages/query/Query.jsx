@@ -26,7 +26,6 @@ const Query = () => {
     SeasonYear: "",
   });
   const [dateArray, setDateArray] = useState([]);
-  const [deleteDate, setDeleteDate] = useState(false);
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
@@ -83,24 +82,18 @@ const Query = () => {
 
   // Looping date & stored into array
   function createDateArray() {
-    const fromDate = new Date(
-      TravelDate.FromDate.split("/").reverse().join("/")
-    );
+    const fromDate = new Date(TravelDate.FromDate.split("/").reverse().join("/"));
     const lastDate = new Date(TravelDate.ToDate.split("/").reverse().join("/"));
     const dateStore =  eachDayOfInterval({ start: fromDate, end: lastDate }).map(
       (date) => format(date, "dd/MM/yyyy")
     );
-    if(deleteDate){
-      const filteredDate = dateStore.pop();
-      setDateArray(dateStore);
-    }else{
-      setDateArray(dateStore);
-    }
+    dateStore.pop();
+    setDateArray(dateStore);
+    console.log(dateStore);
   }
 
   const dateDeleting = () =>{
-    setDeleteDate(true);
-    createDateArray();
+
   }
 
   // Message: Adding Date fromDate + Days = ToDate
@@ -260,7 +253,7 @@ const Query = () => {
                             return (
                               <tr key={index + 1}>
                                 <td className="p-0 text-center">
-                                   {value}</td>
+                                    {value}</td>
                                 <td className="p-1">
                                   <Field
                                     component={"select"}
@@ -286,8 +279,8 @@ const Query = () => {
                                     <option value="3">Dubai</option>
                                   </Field>
                                 </td>
-                                <td> <i className="fa-solid fa-trash pr-1
-                                   text-danger cursor-pointer" onClick={dateDeleting}>
+                                <td><i className="fa-solid fa-trash pr-1
+                                   text-danger cursor-pointer" onClick={createDateArray}>
                                    </i></td>
                               </tr>
                             );
