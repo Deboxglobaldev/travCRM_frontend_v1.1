@@ -82,19 +82,30 @@ const Query = () => {
 
   // Looping date & stored into array
   function createDateArray() {
-    const fromDate = new Date(TravelDate.FromDate.split("/").reverse().join("/"));
+    const fromDate = new Date(
+      TravelDate.FromDate.split("/").reverse().join("/")
+    );
     const lastDate = new Date(TravelDate.ToDate.split("/").reverse().join("/"));
-    const dateStore =  eachDayOfInterval({ start: fromDate, end: lastDate }).map(
+    const dateArray = eachDayOfInterval({ start: fromDate, end: lastDate }).map(
       (date) => format(date, "dd/MM/yyyy")
     );
-    dateStore.pop();
-    setDateArray(dateStore);
-    console.log(dateStore);
+    setDateArray(dateArray);
   }
 
-  const dateDeleting = () =>{
-
-  }
+  const dateDeleting = () => {
+    const updatedArray = [...dateArray];
+    updatedArray.pop();
+    setDateArray(updatedArray);
+    console.log(setTravelDate({
+      Type: TravelDate.Type,
+      FromDate: TravelDate.FromDate,
+      ToDate: TravelDate.ToDate,
+      TotalNights: TravelDate.TotalNights!==0?
+      TravelDate.TotalNights-1:'',
+      SeasonType: TravelDate.SeasonType,
+      SeasonYear: TravelDate.SeasonYear,
+    }));
+  };
 
   // Message: Adding Date fromDate + Days = ToDate
   useEffect(() => {
@@ -278,9 +289,10 @@ const Query = () => {
                                     <option value="2">Delhi</option>
                                     <option value="3">Dubai</option>
                                   </Field>
+                                  
                                 </td>
                                 <td><i className="fa-solid fa-trash pr-1
-                                   text-danger cursor-pointer" onClick={createDateArray}>
+                                   text-danger cursor-pointer" onClick={dateDeleting}>
                                    </i></td>
                               </tr>
                             );
