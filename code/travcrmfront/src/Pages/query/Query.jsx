@@ -149,11 +149,14 @@ const Query = () => {
               <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
                 <h5 className="card-title d-none d-sm-block">Query Form</h5>
                 <div>
-                  <button className="btn btn-primary mr-2" type="submit">
+                  <button className="blue-button" type="submit">
                     Save
                   </button>
-                  <NavLink to="/querylist" className={"btn btn-primary"}>
-                    Close
+                  <button className="green-button" type="button">
+                    Submit
+                  </button>
+                  <NavLink to="/querylist" className={"gray-button"}>
+                    Back
                   </NavLink>
                 </div>
               </div>
@@ -294,7 +297,7 @@ const Query = () => {
                                     <option value="2">Delhi</option>
                                     <option value="3">Dubai</option>
                                   </Field>
-                                  
+
                                 </td>
                                 <td><i className="fa-solid fa-trash pr-1
                                    text-danger cursor-pointer" onClick={dateDeleting}>

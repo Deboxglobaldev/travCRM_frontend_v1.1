@@ -208,59 +208,125 @@ a {
   color: gold;
 }
 .green-button {
-  height: 35px;
-  border: none;
+  background-image: linear-gradient(-180deg, #00D775, #00BD68);
+  border: 0;
   border-radius: 4px;
-  padding: 0 10px;
-  color: white;
-  background-color: rgb(62, 184, 62);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
 }
 .red-button {
-  height: 35px;
-  border: none;
+  background-image: linear-gradient(#0dccea, #0d70ea);
+  border: 0;
   border-radius: 4px;
-  padding: 0 10px;
-  color: white;
-  background-color: rgb(245, 56, 56);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
 }
 .orange-button {
-  height: 35px;
-  border: none;
+  background-image: linear-gradient(#0dccea, #0d70ea);
+  border: 0;
   border-radius: 4px;
-  padding: 0 10px;
-  color: white;
-  background-color: orange;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
 }
 .gray-button {
-  height: 35px;
-  border: none;
+  background-image: linear-gradient(#aaadad, #b3b5b8);
+  border: 0;
   border-radius: 4px;
-  padding: 0 12px;
-  color: rgb(255, 255, 255);
-  font-weight: 500;
-  background-color: rgb(194, 194, 194);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 1px;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
 }
 .blue-button {
-  height: 35px;
-  border: none;
+  background-image: linear-gradient(#0dccea, #0d70ea);
+  border: 0;
   border-radius: 4px;
-  padding: 0 10px;
-  color: white;
-  background-color: rgb(66, 66, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
 }
+
+.default-button {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .3) 0 2px 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 8px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 700;
+}
+
+.blue-button:hover {
+  /* box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px; */
+  color: #ffff;
+}
+
+.gray-button:hover {
+  /* box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px; */
+  color: #ffff;
+}
+
+
+
+
+

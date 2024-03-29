@@ -92,12 +92,12 @@ const Model = ({
                   <button
                     type="button"
                     id="cancel"
-                    className="btn btn-link"
+                    className="default-button"
                     data-dismiss="modal"
                   >
                     Close
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="green-button">
                     {(buttonName?.includes("Import")) ? 'Upload' : 'Save'}
                   </button>
                 </div>

@@ -36,10 +36,7 @@ const QueryView = () => {
             </div>
             <div className="d-flex align-items-center mb-3 mb-sm-0">
               <div className="ml-3">
-                <span className="text-muted">Subject: </span>
-                <span style={{ color: "#16b90e" }}>
-                  02-11-2023 DeBox Global Pvt. Ltd.
-                </span>
+                <span className="text-muted">Subject: 02-11-2023 DeBox Global Pvt. Ltd.</span>
               </div>
             </div>
             <div className="d-flex align-items-center mb-3 mb-sm-0">

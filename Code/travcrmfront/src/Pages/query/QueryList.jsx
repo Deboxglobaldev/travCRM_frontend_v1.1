@@ -128,7 +128,7 @@ const QueryList = () => {
 
                 <NavLink
                   to="/querylist/queryview/"
-                  className="btn mr-2 btn-gray fs-11 shadow"
+                  className="blue-button"
                   aria-expanded="false"
                 >+ Create Query</NavLink>
 

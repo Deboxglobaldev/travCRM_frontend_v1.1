@@ -20,12 +20,12 @@ const HotelMasterCreate = () => {
               <div className="col-xl-2 d-flex justify-content-end">
                 <NavLink
                   to="/master/hotelmaster"
-                  className="btn btn-gray mr-2 fs-11 shadow"
+                  className="gray-button"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
-                <button className="btn border text-white">Save</button> 
+                <button className="green-button">Save</button>
               </div>
             </div>
 

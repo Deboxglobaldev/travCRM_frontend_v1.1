@@ -121,22 +121,22 @@ const HotelMaster = () => {
                 {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="secondary-button"
+                  className="gray-button"
                   aria-expanded="false"
                 >
                   Back
                 </NavLink>
                 <NavLink
                   to="/master/hotelmaster/create"
-                  className="btn btn-gray mr-2 fs-11 shadow"
+                  className="blue-button"
                   aria-expanded="false"
                 >
-                  Create New
+                  Create&nbsp;New
                 </NavLink>
                 <Model
                   heading={"Import Hotel"}
-                  buttonName={"Import Hotel"}
-                  buttonClass={"success-button"}
+                  buttonName={"Import"}
+                  buttonClass={"green-button"}
                   apiurl={"addupdatehotelmaster"}
                   initialValues={hotelMasterInitialValue}
                   validationSchema={hotelMasterValidationSchema}
