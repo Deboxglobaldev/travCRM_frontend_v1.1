@@ -17,10 +17,10 @@ const HotelMasterCreate = () => {
               <div className="col-xl-10 d-flex align-items-center">
                 <h5 className="card-title d-none d-sm-block">Create New</h5>
               </div>
-              <div className="col-xl-2 d-flex justify-content-end">
+              <div className="">
                 <NavLink
                   to="/master/hotelmaster"
-                  className="gray-button"
+                  className="gray-button py-2"
                   aria-expanded="false"
                 >
                   Back
@@ -153,6 +153,23 @@ const HotelMasterCreate = () => {
                         <option value={"1"}>Active</option>
                         <option value={"2"}>Inactive</option>
                       </Field>
+                    </div>
+
+                    <div className="row">
+
+                      <p className="font-weight-bold">Contact Person</p>
+                      <div className="col-sm-2">
+                      <label>Accounts</label>
+                      <Field
+                        className="form-input-1"
+                        component={"select"}
+                        name="Accounts"
+                      >
+                        <option value={"1"}>Active</option>
+                        <option value={"2"}>Inactive</option>
+                      </Field>
+
+                    </div>
                     </div>
                     <span
                       className="cursor-pointer font-weight-bold text-success"

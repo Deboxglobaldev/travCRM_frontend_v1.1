@@ -111,7 +111,7 @@ const BusinessType = () => {
                 {/* Bootstrap Modal */}
                 <NavLink
                   to="/master"
-                  className="btn btn-gray mr-2 fs-11 shadow"
+                  className="gray-button"
                   aria-expanded="false"
                 >
                   Back

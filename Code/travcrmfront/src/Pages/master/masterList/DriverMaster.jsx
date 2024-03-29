@@ -158,7 +158,7 @@ const DriverMaster = () => {
                 {/*Bootstrap Modal*/}
                 <NavLink
                   to="/master"
-                  className="btn mr-2 btn-gray fs-11 shadow"
+                  className="gray-button"
                   aria-expanded="false"
                 >
                   Back

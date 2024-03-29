@@ -41,13 +41,13 @@ const Model = ({
     <>
       <button
         type="button"
-        className={buttonClass}
+        className={buttonClass? buttonClass :"blue-button"}
         data-toggle="modal"
         data-target="#modal_form_vertical"
         onClick={() => setIsEditing(false)}
       >
 
-        {(buttonName) ? buttonName : <span><i className="fa fa-plus pr-1" aria-hidden="true"></i> Create New</span>}
+        {(buttonName) ? buttonName : <span>Create New</span>}
       </button>
 
       {/* <!-- Modal --> */}
