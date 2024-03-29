@@ -41,7 +41,9 @@ const HotelMasterCreate = () => {
                     >
                       Back
                     </NavLink>
-                    <button className="green-button" type="submit">Save</button>
+                    <button className="green-button" type="submit">
+                      Save
+                    </button>
                   </div>
                 </div>
 
