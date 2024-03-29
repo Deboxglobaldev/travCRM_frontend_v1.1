@@ -92,7 +92,7 @@ export const seasonTypeInitialValue = {
   AddedBy: 1,
   UpdatedBy: 1,
 };
-export const hotelMasterInitialValue = {
+export const hotelMasterCreateInitialValue = {
   HotelChain: "",
   HotelName: "",
   HotelCode: "",
@@ -122,6 +122,9 @@ export const hotelMasterInitialValue = {
   Created_at: "2024-03-27 14:35:08",
   Updated_at: null,
 };
+export const hotelMasterInitialValue = {
+  HotelExcelFile: ""
+}
 export const hotelCategoryInitialValue = {
   id: "",
   Name: "",
@@ -397,6 +400,8 @@ export const currencyMasterInitialValue = {
   AddedBy: 1,
   UpdatedBy: "0",
 };
+
+
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 
 export const countryValidationSchema = yup.object().shape({
@@ -435,10 +440,13 @@ export const seasonTypeValidationSchema = yup.object().shape({
   FromDate: yup.string().required("Required"),
   ToDate: yup.string().required("Required"),
 });
-export const hotelMasterValidationSchema = yup.object().shape({
+export const hotelMasterCreateValidationSchema = yup.object().shape({
   HotelName:yup.string().required('Required'),
   HotelDestination:yup.string().required('Required'),
   HotelRoomType:yup.string().required('Required'),
+});
+export const hotelMasterValidationSchema =  yup.object().shape({
+  HotelExcelFile: yup.mixed().required('Required')
 });
 export const hotelCategoryValidationSchema = yup.object().shape({
   Name: yup.string().required("Required"),

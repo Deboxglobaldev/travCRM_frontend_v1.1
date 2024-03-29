@@ -144,7 +144,17 @@ const HotelMaster = () => {
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
-
+                  <div className="col-sm-4">
+                    <label>Upload Excel File</label>
+                    <Field
+                      type="file"
+                      className="form-control"
+                      name="HotelExcelFile"
+                    />
+                    <span className="font-size-10 text-danger">
+                      <ErrorMessage name="Name"/>
+                    </span>
+                  </div>
                 </Model>
               </div>
             </div>

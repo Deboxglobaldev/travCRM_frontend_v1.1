@@ -30,7 +30,9 @@ const HotelMasterCreate = () => {
             </div>
 
             <div className="card-body">
-              <Formik>
+              <Formik 
+                
+              >
                 <Form>
                   <div className="row row-gap-3">
                     <div className="col-sm-2">
