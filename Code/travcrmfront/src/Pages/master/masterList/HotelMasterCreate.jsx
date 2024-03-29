@@ -20,32 +20,32 @@ const HotelMasterCreate = () => {
       <Layout>
         <div className="container-fluid mt-3 mb-5">
           <div className="card shadow-none border">
-            <div
-              className="card-header header-elements-inline bg-info-700 py-2"
-              style={{ padding: "10px" }}
+            <Formik
+              initialValues={hotelMasterCreateInitialValue}
+              validationSchema={hotelMasterCreateValidationSchema}
+              onSubmit={hanldeSubmit}
             >
-              <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">Create New</h5>
-              </div>
-              <div className="">
-                <NavLink
-                  to="/master/hotelmaster"
-                  className="gray-button py-2"
-                  aria-expanded="false"
+              <Form>
+                <div
+                  className="card-header header-elements-inline bg-info-700 py-2"
+                  style={{ padding: "10px" }}
                 >
-                  Back
-                </NavLink>
-                <button className="green-button">Save</button>
-              </div>
-            </div>
+                  <div className="col-xl-10 d-flex align-items-center">
+                    <h5 className="card-title d-none d-sm-block">Create New</h5>
+                  </div>
+                  <div className="">
+                    <NavLink
+                      to="/master/hotelmaster"
+                      className="gray-button py-2"
+                      aria-expanded="false"
+                    >
+                      Back
+                    </NavLink>
+                    <button className="green-button" type="submit">Save</button>
+                  </div>
+                </div>
 
-            <div className="card-body">
-              <Formik
-                initialValues={hotelMasterCreateInitialValue}
-                validationSchema={hotelMasterCreateValidationSchema}
-                onSubmit={hanldeSubmit}
-              >
-                <Form>
+                <div className="card-body">
                   <div className="row row-gap-3">
                     <div className="col-sm-2">
                       <label>Hotel Chain</label>
@@ -437,9 +437,9 @@ const HotelMasterCreate = () => {
                       </>
                     )}
                   </div>
-                </Form>
-              </Formik>
-            </div>
+                </div>
+              </Form>
+            </Formik>
           </div>
         </div>
       </Layout>
