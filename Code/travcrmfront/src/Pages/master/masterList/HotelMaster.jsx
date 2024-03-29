@@ -152,7 +152,7 @@ const HotelMaster = () => {
                       name="HotelExcelFile"
                     />
                     <span className="font-size-10 text-danger">
-                      <ErrorMessage name="Name"/>
+                      <ErrorMessage name="HotelExcelFile"/>
                     </span>
                   </div>
                 </Model>

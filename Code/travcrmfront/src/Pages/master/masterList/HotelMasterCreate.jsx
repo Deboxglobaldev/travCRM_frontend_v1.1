@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
+import {
+  hotelMasterCreateInitialValue,
+  hotelMasterCreateValidationSchema,
+} from "./MasterValidation";
+
 const HotelMasterCreate = () => {
   const [moreAddress, setMoreAddress] = useState(false);
   const [moreInfo, setMoreInfo] = useState(false);
+
+  const hanldeSubmit = (value) => {
+    console.log(value);
+  };
+
   return (
     <>
       <Layout>
@@ -30,8 +40,10 @@ const HotelMasterCreate = () => {
             </div>
 
             <div className="card-body">
-              <Formik 
-                
+              <Formik
+                initialValues={hotelMasterCreateInitialValue}
+                validationSchema={hotelMasterCreateValidationSchema}
+                onSubmit={hanldeSubmit}
               >
                 <Form>
                   <div className="row row-gap-3">
@@ -156,22 +168,64 @@ const HotelMasterCreate = () => {
                         <option value={"2"}>Inactive</option>
                       </Field>
                     </div>
-
-                    <div className="row">
-
-                      <p className="font-weight-bold">Contact Person</p>
-                      <div className="col-sm-2">
+                    <p className="font-weight-bold mt-1">Contact Person</p>
+                    <div className="col-sm-2">
                       <label>Accounts</label>
                       <Field
                         className="form-input-1"
                         component={"select"}
                         name="Accounts"
                       >
-                        <option value={"1"}>Active</option>
-                        <option value={"2"}>Inactive</option>
+                        <option value={"1"}>Select</option>
+                        <option value={"2"}>FIT Reservation</option>
+                        <option value={"2"}>GIT Reservation</option>
+                        <option value={"2"}>Operation</option>
                       </Field>
-
                     </div>
+                    <div className="col-sm-2">
+                      <label>Contact Person</label>
+                      <Field
+                        type="text"
+                        placeholder="Contact Person"
+                        className="form-input-1"
+                        name="ContactPerson"
+                      />
+                    </div>
+                    <div className="col-sm-2">
+                      <label>Designation</label>
+                      <Field
+                        type="text"
+                        placeholder="Designation"
+                        className="form-input-1"
+                        name="Designation"
+                      />
+                    </div>
+                    <div className="col-sm-2">
+                      <label>Phone 1</label>
+                      <Field
+                        type="text"
+                        placeholder="Phone 1"
+                        className="form-input-1"
+                        name="Phone1"
+                      />
+                    </div>
+                    <div className="col-sm-2">
+                      <label>Phone 2</label>
+                      <Field
+                        type="text"
+                        placeholder="Phone 2"
+                        className="form-input-1"
+                        name="Phone2"
+                      />
+                    </div>
+                    <div className="col-sm-2">
+                      <label>Email</label>
+                      <Field
+                        type="text"
+                        placeholder="Email"
+                        className="form-input-1"
+                        name="Email"
+                      />
                     </div>
                     <span
                       className="cursor-pointer font-weight-bold text-success"
@@ -269,7 +323,7 @@ const HotelMasterCreate = () => {
                       </span>
                     </p>
                     {moreInfo && (
-                      <div className="row">
+                      <>
                         <div className="col-sm-2">
                           <label>Weekend Days</label>
                           <Field
@@ -380,7 +434,7 @@ const HotelMasterCreate = () => {
                             <ErrorMessage name="T&C" />
                           </span>
                         </div>
-                      </div>
+                      </>
                     )}
                   </div>
                 </Form>
