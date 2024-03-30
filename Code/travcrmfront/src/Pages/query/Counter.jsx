@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const Counter = ({ onChangeCounter }) => {
-  const [value, setValue] = useState(0);
-  const handleDecrement = () => {
-    if (value > 0) {
-      setValue(value-1)
-      onChangeCounter(value - 1);
+const Counter = ({ value, onIncrement, onDecrement, setCounter }) => {
 
-    }
-  };
-  const handleIncrement = () => {
-    setValue(value+1)
-    onChangeCounter(value + 1);
-  };
-
+  
   return (
     <>
       <div
@@ -21,7 +10,7 @@ const Counter = ({ onChangeCounter }) => {
         style={{ height: "30px" }}
       >
         <div
-          onClick={handleDecrement}
+          onClick={onDecrement}
           className="col backgroundColor-2 rounded-left
                     text-light font-weight-bold cursor-pointer h-100
                     d-flex align-items-center justify-content-center"
@@ -37,7 +26,7 @@ const Counter = ({ onChangeCounter }) => {
         </div>
 
         <div
-          onClick={handleIncrement}
+          onClick={onIncrement}
           className="col backgroundColor-2 rounded-right
                 text-light font-weight-bold cursor-pointer h-100
                  d-flex align-items-center justify-content-center"
@@ -48,25 +37,25 @@ const Counter = ({ onChangeCounter }) => {
       <div className="d-flex justify-content-between align-items-center pt-1">
         <span
           className="px-2 border rounded cursor-pointer green-hover"
-          onClick={() => setValue(1)}
+          onClick={() => setCounter(1)}
         >
           1
         </span>
         <span
           className="px-2 border rounded cursor-pointer green-hover"
-          onClick={() => setValue(2)}
+          onClick={() => setCounter(2)}
         >
           2
         </span>
         <span
           className="px-2 border rounded cursor-pointer green-hover"
-          onClick={() => setValue(3)}
+          onClick={() => setCounter(3)}
         >
           3
         </span>
         <span
           className="px-2 border rounded cursor-pointer green-hover"
-          onClick={() => setValue(4)}
+          onClick={() => setCounter(4)}
         >
           4
         </span>

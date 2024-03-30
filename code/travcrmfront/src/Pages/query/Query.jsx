@@ -25,12 +25,15 @@ const Query = () => {
     SeasonType: "",
     SeasonYear: "",
   });
-  const [counterValue, setCounterValue] = useState(0);
   const [dateArray, setDateArray] = useState([]);
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
   const [toDate, setToDate] = useState();
+  const [counter1, setCounter1] = useState(0);
+  const [counter2, setCounter2] = useState(0);
+  const [counter3, setCounter3] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -97,15 +100,17 @@ const Query = () => {
     const updatedArray = [...dateArray];
     updatedArray.pop();
     setDateArray(updatedArray);
-    console.log(setTravelDate({
-      Type: TravelDate.Type,
-      FromDate: TravelDate.FromDate,
-      ToDate: TravelDate.ToDate,
-      TotalNights: TravelDate.TotalNights!==0?
-      TravelDate.TotalNights-1:'',
-      SeasonType: TravelDate.SeasonType,
-      SeasonYear: TravelDate.SeasonYear,
-    }));
+    console.log(
+      setTravelDate({
+        Type: TravelDate.Type,
+        FromDate: TravelDate.FromDate,
+        ToDate: TravelDate.ToDate,
+        TotalNights:
+          TravelDate.TotalNights !== 0 ? TravelDate.TotalNights - 1 : "",
+        SeasonType: TravelDate.SeasonType,
+        SeasonYear: TravelDate.SeasonYear,
+      })
+    );
   };
 
   // Message: Adding Date fromDate + Days = ToDate
@@ -128,12 +133,33 @@ const Query = () => {
     }-${toDateDay.length == 2 ? toDateDay : "0" + toDateDay}`;
     setTravelDate({ ...TravelDate, ToDate: finalToDate });
     createDateArray();
-
   }, [TravelDate.FromDate, TravelDate.TotalNights, TravelDate.ToDate]);
 
-  const handleCounterChange = (value) =>{
-    setCounterValue((prev)=> prev+value);
-  }
+  const updateTotal = () => {
+    setTotal(counter1 + counter2 + counter3);
+  };
+
+  const handleIncrement = (counterSetter) => {
+    counterSetter((prevValue) => {
+      const newValue = prevValue + 1;
+      return newValue;
+    });
+  };
+
+  const handleDecrement = (counterSetter) => {
+    counterSetter((prevValue) => {
+      if (prevValue !== 0) {
+        const newValue = prevValue - 1;
+        return newValue;
+      } else {
+        return 0;
+      }
+    });
+  };
+
+  useEffect(() => {
+    updateTotal();
+  }, [counter1, counter2, counter3]);
 
   return (
     <>
@@ -271,8 +297,7 @@ const Query = () => {
                           {dateArray.map((value, index) => {
                             return (
                               <tr key={index + 1}>
-                                <td className="p-0 text-center">
-                                    {value}</td>
+                                <td className="p-0 text-center">{value}</td>
                                 <td className="p-1">
                                   <Field
                                     component={"select"}
@@ -297,11 +322,14 @@ const Query = () => {
                                     <option value="2">Delhi</option>
                                     <option value="3">Dubai</option>
                                   </Field>
-
                                 </td>
-                                <td><i className="fa-solid fa-trash pr-1
-                                   text-danger cursor-pointer" onClick={dateDeleting}>
-                                   </i></td>
+                                <td>
+                                  <i
+                                    className="fa-solid fa-trash pr-1
+                                   text-danger cursor-pointer"
+                                    onClick={dateDeleting}
+                                  ></i>
+                                </td>
                               </tr>
                             );
                           })}
@@ -317,15 +345,30 @@ const Query = () => {
                     <h6>Pax Information</h6>
                     <div className="col-6">
                       <label htmlFor="">Adult</label>
-                      <Counter onChangeCounter={handleCounterChange}/>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter1)}
+                        onDecrement={() => handleDecrement(setCounter1)}
+                        value={counter1}
+                        setCounter={setCounter1}
+                      />
                     </div>
                     <div className="col-6">
                       <label htmlFor="">Child</label>
-                      <Counter onChangeCounter={handleCounterChange}/>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter2)}
+                        onDecrement={() => handleDecrement(setCounter2)}
+                        value={counter2}
+                        setCounter={setCounter2}
+                      />
                     </div>
                     <div className="col-6">
                       <label htmlFor="">Infant</label>
-                      <Counter onChangeCounter={handleCounterChange}/>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter3)}
+                        onDecrement={() => handleDecrement(setCounter3)}
+                        value={counter3}
+                        setCounter={setCounter3}
+                      />
                     </div>
                     <div className="col-6">
                       <label htmlFor="">Total</label>
@@ -334,7 +377,7 @@ const Query = () => {
                       d-flex justify-content-center align-items-center font-weight-bold"
                         style={{ height: "30px" }}
                       >
-                        Total : {counterValue}
+                        Total : {total}
                       </div>
                     </div>
                   </div>
@@ -433,7 +476,6 @@ const Query = () => {
                         className="form-input-1"
                         name="ContractingPerson"
                         placeholder="Person"
-
                       />
                     </div>
                     <div className="col-md-6 col-12">
