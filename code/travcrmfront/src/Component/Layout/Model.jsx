@@ -17,37 +17,36 @@ const Model = ({
   setIsEditing,
 }) => {
   const excelToJson = (file) => {
-
     console.log("ExcelToJson=>", file);
-
   };
 
   const closeModel = () => {
     document.getElementById("cancel").click();
   };
+  
   const handleSubmit = async (values, { resetForm }) => {
+
     if (buttonName === "Import") {
-
-      console.log("Type of .....",typeof values.HotelExcelFile);
+      console.log("Type of .....", typeof values.HotelExcelFile);
       excelToJson(values);
-
     } else {
       console.log("False Condition..", values);
       try {
         const response = await axiosOther.post(apiurl, values);
         if (response.data.Status) {
-          toast.success(`Frist Block : ${response.data.Message}`);
+          toast.success(response.data.Message);
           console.log(response);
           console.log(response.config.data);
           resetForm();
           closeModel();
         } else {
-          toast.error(`Second Block: ${response.data.Name}`);
+          toast.error(response.data.Name);
         }
       } catch (err) {
         console.log(err);
       }
     }
+
   };
 
   return (

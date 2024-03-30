@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
-import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
-import { Field, ErrorMessage } from "formik";
-import {
-  hotelMasterInitialValue,
-  hotelMasterValidationSchema,
-} from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
+import * as XLSX from "xlsx";
 
 const HotelMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -18,10 +13,9 @@ const HotelMaster = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
-  const [moreInfo, setMoreInfo] = useState(false);
-  const [moreAddress, setMoreAddress] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [excelFile, setExcelFile] = useState("");
+  const [fileName, setFileName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -49,6 +43,33 @@ const HotelMaster = () => {
     setValueForEdit({ ...rowValue });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFileName(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: "binary" });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const json = XLSX.utils.sheet_to_json(worksheet);
+        setExcelFile(JSON.stringify(json, null, 2));
+      };
+      reader.readAsBinaryString(file);
+    }
+  };
+
+  const handleSubmitFile = () => {
+    const extension = fileName?.name?.split(".")?.pop()?.toLowerCase();
+    if ((excelFile !== "" && extension == "xls") || extension == "xlsx") {
+      setErrorMessage("");
+      console.log(excelFile);
+    } else {
+      setErrorMessage("Upload a excel file.");
+    }
+  };
+
   const columns = [
     {
       name: "Hotel Chain",
@@ -56,8 +77,6 @@ const HotelMaster = () => {
         <span>
           <i
             className="fa-solid fa-pen-to-square pr-2 cursor-pointer"
-            data-toggle="modal"
-            data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
           {row.HotelChain}
@@ -133,29 +152,76 @@ const HotelMaster = () => {
                 >
                   Create&nbsp;New
                 </NavLink>
-                <Model
-                  heading={"Import Hotel"}
-                  buttonName={"Import"}
-                  buttonClass={"green-button"}
-                  apiurl={"addupdatehotelmaster"}
-                  initialValues={hotelMasterInitialValue}
-                  validationSchema={hotelMasterValidationSchema}
-                  valueForEdit={valueForEdit}
-                  isEditing={isEditing}
-                  setIsEditing={setIsEditing}
+
+                {/* //Modal */}
+
+                <button
+                  type="button"
+                  className="blue-button"
+                  data-toggle="modal"
+                  data-target="#modal_form_vertical1"
                 >
-                  <div className="col-sm-4">
-                    <label>Upload Excel File</label>
-                    <Field
-                      type="file"
-                      className="form-control"
-                      name="HotelExcelFile"
-                    />
-                    <span className="font-size-10 text-danger">
-                      <ErrorMessage name="HotelExcelFile"/>
-                    </span>
+                  Import
+                </button>
+
+                <div
+                  className="modal fade"
+                  id="modal_form_vertical1"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                >
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header  bg-info-700">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          Uplod File
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">
+                        <div className="col-5">
+                          <label htmlFor="">Upload File</label>
+                          <input
+                            type="file"
+                            name="hotelExcelFile"
+                            onChange={handleFileChange}
+                            className="form-control"
+                          />
+                        </div>
+                        <span className="font-size-10 text-danger pl-2">
+                          {errorMessage}
+                        </span>
+                      </div>
+
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          id="cancel"
+                          className="default-button"
+                          data-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          type="submit"
+                          className="green-button"
+                          onClick={handleSubmitFile}
+                        >
+                          Upload
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </Model>
+                </div>
+
+                {/* //Modal */}
               </div>
             </div>
             <div className="card-body">
