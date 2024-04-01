@@ -16,9 +16,6 @@ const Model = ({
   isEditing,
   setIsEditing,
 }) => {
-  const excelToJson = (file) => {
-    console.log("ExcelToJson=>", file);
-  };
 
   const closeModel = () => {
     document.getElementById("cancel").click();
@@ -26,25 +23,19 @@ const Model = ({
   
   const handleSubmit = async (values, { resetForm }) => {
 
-    if (buttonName === "Import") {
-      console.log("Type of .....", typeof values.HotelExcelFile);
-      excelToJson(values);
-    } else {
-      console.log("False Condition..", values);
-      try {
-        const response = await axiosOther.post(apiurl, values);
-        if (response.data.Status) {
-          toast.success(response.data.Message);
-          console.log(response);
-          console.log(response.config.data);
-          resetForm();
-          closeModel();
-        } else {
-          toast.error(response.data.Name);
-        }
-      } catch (err) {
-        console.log(err);
+    try {
+      const response = await axiosOther.post(apiurl, values);
+      if (response.data.Status) {
+        toast.success(response.data.Message);
+        console.log(response);
+        console.log(response.config.data);
+        resetForm();
+        closeModel();
+      } else {
+        toast.error(response.data.Name);
       }
+    } catch (err) {
+      console.log(err);
     }
 
   };
@@ -53,12 +44,12 @@ const Model = ({
     <>
       <button
         type="button"
-        className={buttonClass ? buttonClass : "blue-button"}
+        className={"blue-button"}
         data-toggle="modal"
         data-target="#modal_form_vertical"
         onClick={() => setIsEditing(false)}
       >
-        {buttonName ? buttonName : <span>Create New</span>}
+         <span>Create New</span>
       </button>
 
       {/* <!-- Modal --> */}
@@ -109,7 +100,7 @@ const Model = ({
                     Close
                   </button>
                   <button type="submit" className="green-button">
-                    {buttonName?.includes("Import") ? "Upload" : "Save"}
+                    {"Save"}
                   </button>
                 </div>
               </Form>

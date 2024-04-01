@@ -68,10 +68,9 @@ const HotelMaster = () => {
     if ((excelToJson !== "" && extension == "xls") || extension == "xlsx") {
       setErrorMessage("");
       console.log(excelToJson);
-      setFile({[file.name]:""});
-      toast.success('File Uploaded Successfully.!');
-    }
-     else {
+      setFile({ [file.name]: "" });
+      toast.success("File Uploaded Successfully.!");
+    } else {
       setErrorMessage("Upload an excel file.");
     }
   };
@@ -193,7 +192,7 @@ const HotelMaster = () => {
                       </div>
                       <div className="modal-body">
                         <div className="col-5">
-                        <Toaster />
+                          <Toaster />
                           <label htmlFor="">Upload File</label>
                           <input
                             type="file"

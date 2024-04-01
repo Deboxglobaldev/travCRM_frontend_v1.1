@@ -80,7 +80,6 @@ const Query = () => {
   });
 
   const handleChange = (e) => {
-    setQueryType(e.target.value);
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
   };
 
@@ -100,17 +99,16 @@ const Query = () => {
     const updatedArray = [...dateArray];
     updatedArray.pop();
     setDateArray(updatedArray);
-    console.log(
-      setTravelDate({
-        Type: TravelDate.Type,
-        FromDate: TravelDate.FromDate,
-        ToDate: TravelDate.ToDate,
-        TotalNights:
-          TravelDate.TotalNights !== 0 ? TravelDate.TotalNights - 1 : "",
-        SeasonType: TravelDate.SeasonType,
-        SeasonYear: TravelDate.SeasonYear,
-      })
-    );
+
+    setTravelDate({
+      Type: TravelDate.Type,
+      FromDate: TravelDate.FromDate,
+      ToDate: TravelDate.ToDate,
+      TotalNights:
+        TravelDate.TotalNights !== 0 ? TravelDate.TotalNights - 1 : "",
+      SeasonType: TravelDate.SeasonType,
+      SeasonYear: TravelDate.SeasonYear,
+    });
   };
 
   // Message: Adding Date fromDate + Days = ToDate
@@ -181,7 +179,7 @@ const Query = () => {
                   <button className="green-button" type="button">
                     Submit
                   </button>
-                  <NavLink to="/querylist" className={"gray-button"}>
+                  <NavLink to="/querylist" className={"gray-button py-2"}>
                     Back
                   </NavLink>
                 </div>
