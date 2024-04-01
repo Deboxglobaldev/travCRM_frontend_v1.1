@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
+import toast, { Toaster } from "react-hot-toast";
 import * as XLSX from "xlsx";
 
 const HotelMaster = () => {
@@ -13,8 +14,8 @@ const HotelMaster = () => {
     Search: "",
     Status: "",
   });
-  const [excelFile, setExcelFile] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [excelToJson, setExcelToJson] = useState("");
+  const [file, setFile] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -45,8 +46,10 @@ const HotelMaster = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFileName(file);
+    setFile(e.target.files[0]);
+    console.log(file);
     if (file) {
+      setErrorMessage("");
       const reader = new FileReader();
       reader.onload = (e) => {
         const data = e.target.result;
@@ -54,19 +57,22 @@ const HotelMaster = () => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = XLSX.utils.sheet_to_json(worksheet);
-        setExcelFile(JSON.stringify(json, null, 2));
+        setExcelToJson(JSON.stringify(json, null, 2));
       };
       reader.readAsBinaryString(file);
     }
   };
 
   const handleSubmitFile = () => {
-    const extension = fileName?.name?.split(".")?.pop()?.toLowerCase();
-    if ((excelFile !== "" && extension == "xls") || extension == "xlsx") {
+    const extension = file?.name?.split(".")?.pop()?.toLowerCase();
+    if ((excelToJson !== "" && extension == "xls") || extension == "xlsx") {
       setErrorMessage("");
-      console.log(excelFile);
-    } else {
-      setErrorMessage("Upload a excel file.");
+      console.log(excelToJson);
+      setFile({[file.name]:""});
+      toast.success('File Uploaded Successfully.!');
+    }
+     else {
+      setErrorMessage("Upload an excel file.");
     }
   };
 
@@ -187,12 +193,13 @@ const HotelMaster = () => {
                       </div>
                       <div className="modal-body">
                         <div className="col-5">
+                        <Toaster />
                           <label htmlFor="">Upload File</label>
                           <input
                             type="file"
-                            name="hotelExcelFile"
                             onChange={handleFileChange}
                             className="form-control"
+                            name="fileName"
                           />
                         </div>
                         <span className="font-size-10 text-danger pl-2">

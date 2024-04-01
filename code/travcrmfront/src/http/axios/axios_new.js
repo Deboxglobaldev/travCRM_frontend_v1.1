@@ -14,7 +14,6 @@ const axiosOther = axios.create({
   },
 });
 
-
 export {
   axiosNew,
   axiosOther
