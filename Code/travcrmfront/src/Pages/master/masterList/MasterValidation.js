@@ -130,8 +130,7 @@ export const hotelCategoryInitialValue = {
   Name: "",
   UploadKeyword: "",
   Status: 1,
-  AddedBy: 1,
-  UpdatedBy: 1,
+  AddedBy: 1
 };
 export const hotelAdditonalInitialValue = {
   id: "",

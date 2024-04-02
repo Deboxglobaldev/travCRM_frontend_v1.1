@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
 import { Field, ErrorMessage } from "formik";
-import { cityInitialValue, cityValidationSchema } from "./MasterValidation";
+import { cityInitialValue, cityValidationSchema, hotelCategoryInitialValue, hotelCategoryValidationSchema } from "./MasterValidation";
 import { axiosOther } from "../../../http/axios/axios_new";
 
 const HotelCategory = () => {
@@ -16,12 +16,11 @@ const HotelCategory = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("hotelcategorylist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -30,7 +29,7 @@ const HotelCategory = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -42,8 +41,13 @@ const HotelCategory = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      UploadKeyword: rowValue.UploadKeyword,
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      UpdatedBy: rowValue.UpdatedBy
     })
+    setIsEditing(true);
   };
 
   const columns = [
@@ -109,10 +113,12 @@ const HotelCategory = () => {
                 </NavLink>
                 <Model
                   heading={"Add Hotel Category"}
-                  apiurl={"addupdatecity"}
-                  initialValues={cityInitialValue}
-                  validationSchema={cityValidationSchema}
-                  valueForEdit={valueForEdit}
+                  apiurl={"addupdatehotelcategory"}
+                  initialValues={hotelCategoryInitialValue}
+                  validationSchema={hotelCategoryValidationSchema}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">
@@ -120,7 +126,7 @@ const HotelCategory = () => {
                         <label>Hotel Category</label>
                         <Field
                           type="text"
-                          placeholder="Weekend Name"
+                          placeholder="Hotel Category"
                           className="form-control"
                           name="Name"
                         />
@@ -129,12 +135,12 @@ const HotelCategory = () => {
                         </span>
                       </div>
                       <div className="col-sm-4">
-                        <label>Weekend Days</label>
+                        <label>Upload Keyword</label>
                         <Field
                           type="text"
-                          placeholder="Weekend Days"
+                          placeholder="Upload Keyword"
                           className="form-control"
-                          name="Name"
+                          name="UploadKeyword"
                         />
                       </div>
                       <div className="col-sm-4">
@@ -179,9 +185,9 @@ const HotelCategory = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option value="0">Select Status</option>
+                    <option value="">Select Status</option>
                     <option value="1">Active</option>
-                    <option value="2">Inactive</option>
+                    <option value="0">Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">

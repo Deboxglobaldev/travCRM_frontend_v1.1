@@ -14,6 +14,7 @@ const HotelMaster = () => {
     Search: "",
     Status: "",
   });
+
   const [excelToJson, setExcelToJson] = useState("");
   const [file, setFile] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,7 +22,7 @@ const HotelMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("hotelmasterlist", postData);
+        const { data } = await axiosOther.post("hotellist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -45,6 +46,11 @@ const HotelMaster = () => {
   };
 
   const handleFileChange = (e) => {
+
+    const templateHeader = ['HOTEL_NAME', 'DESTINATION', 'SELF_SUPPLIER', 'SUPPLIER_NAME', 'PAYMENT_TERM', 'HOTEL_COUNTRY', 'STATE', 'CITY', 'HOTEL_ADDRESS', 'PIN_CODE', 'GSTN', 'DIVISION', 'CONTACT_PERSON', 'DESIGNATION', 'MOBILE_NO', 'CONTACT_PERSON_EMAIL', 'MARKET_TYPE', 'SEASON_TYPE', 'ROOM_TYPE', 'MEAL_PLAN', 'FROM_VALIDITY', 'TO_VALIDITY', 'CURRENCY', 'SINGLE', 'DOUBLE', 'CHILD_WITH_BED', 'EXTRA_BED_ADULT', 'EXTRA_BED', 'BREAKFAST', 'LUNCH', 'DINNER', 'TARRIF_TYPE', 'ROOM_GST_SLAB', 'MEAL_GST_SLAB', 'TAC_PERSANT', 'REMARKS', 'STAR', 'HOTEL_WEB_LINK', 'HOTEL_CHAIN', 'WEEKEND_NAME', 'HOTEL_INFO', 'POLICY', 'TERMS_CONDITION', 'HOTEL_TYPE'];
+
+    console.log(templateHeader.length);
+
     const file = e.target.files[0];
     setFile(e.target.files[0]);
     console.log(file);
@@ -57,8 +63,27 @@ const HotelMaster = () => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = XLSX.utils.sheet_to_json(worksheet);
-        setExcelToJson(JSON.stringify(json, null, 2));
+
+        /////////////FOR GETTING HEADER START///////////////
+        const rowObject = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName],
+          {header: 1,
+         defval: ""})
+        const headers = rowObject[0];
+        //console.log(headers)
+        /////////////FOR GETTING HEADER END///////////////
+
+        let difference = headers.filter(x => !templateHeader.includes(x));
+        console.log("Diffrenece in array: ",difference);
+        console.log("Diffrenece array length: ",difference.length);
+        if(difference.length>0){
+          setErrorMessage("Header Name: [ "+difference+" ] is not matched with template. Please upload correct one.");
+        }else{
+          setExcelToJson(JSON.stringify(json, null, 2));
+        }
+
+
       };
+
       reader.readAsBinaryString(file);
     }
   };
@@ -155,7 +180,7 @@ const HotelMaster = () => {
                   className="blue-button"
                   aria-expanded="false"
                 >
-                  Create&nbsp;New
+                  +&nbsp;Create&nbsp;New
                 </NavLink>
 
                 {/* //Modal */}
@@ -179,7 +204,7 @@ const HotelMaster = () => {
                     <div className="modal-content">
                       <div className="modal-header  bg-info-700">
                         <h5 className="modal-title" id="exampleModalLabel">
-                          Uplod File
+                          Uplode File
                         </h5>
                         <button
                           type="button"
