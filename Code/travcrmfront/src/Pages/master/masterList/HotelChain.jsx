@@ -15,6 +15,7 @@ const HotelChain = () => {
     Status: "",
   });
   const [valueForEdit, setValueForEdit] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -40,6 +41,7 @@ const HotelChain = () => {
 
   const handleEditClick = (rowValue) => {
     setValueForEdit({ ...rowValue });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -124,6 +126,8 @@ const HotelChain = () => {
                   initialValues={hotelChainInitialValue}
                   validationSchema={hotelChainValidationSchema}
                   valueForEdit={valueForEdit}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

@@ -399,6 +399,17 @@ export const currencyMasterInitialValue = {
   AddedBy: 1,
   UpdatedBy: "0",
 };
+export const roomTypeInitialValue = {
+  // change its initial value it for demo
+  id: "",
+  CountryId: 1,
+  CurrencyCode: "",
+  CurrencyName: "",
+  Status: 1,
+  SetDefault: "",
+  AddedBy: 1,
+  UpdatedBy: "0",
+};
 
 // ------------------------VALIDATION SCHEMAS-------------------------- //
 

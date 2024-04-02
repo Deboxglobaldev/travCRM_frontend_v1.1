@@ -1,19 +1,100 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
+import { axiosOther } from "../../../http/axios/axios_new";
 import {
+  amentiesInitialValue,
+  cityInitialValue,
+  countryInitialValue,
+  destinationInitialValue,
+  hotelCategoryInitialValue,
+  hotelChainInitialValue,
   hotelMasterCreateInitialValue,
   hotelMasterCreateValidationSchema,
+  hotelMasterInitialValue,
+  hotelTypeInitialValue,
+  roomTypeInitialValue,
+  stateInitialValue,
 } from "./MasterValidation";
 
 const HotelMasterCreate = () => {
   const [moreAddress, setMoreAddress] = useState(false);
   const [moreInfo, setMoreInfo] = useState(false);
+  const [hotelChain, setHotelChain] = useState([]);
+  const [hotelName, setHotelName] = useState([]);
+  const [hotelCategory, setHotelCategory] = useState([]);
+  const [hotelType, setHotelType] = useState([]);
+  const [destination, setDestination] = useState([]);
+  const [roomType, setRoomType] = useState([]);
+  const [country, setCountry] = useState([]);
+  const [state, setState] = useState([]);
+  const [city, setCity] = useState([]);
+  const [amenties, setAmenties] = useState([]);
+
+  console.log('HotelCategory', hotelCategory);
+  console.log('HotelType', hotelType);
+  console.log('Country', country);
+  console.log('State', state);
+  console.log('City', city);
 
   const hanldeSubmit = (value) => {
     console.log(value);
   };
+
+  const getDataToServer = async () => {
+    // const chainData = await axiosOther.post(
+    //   "hotelchainlist",
+    //   hotelChainInitialValue
+    // );
+    // const nameData = await axiosOther.post(
+    //   "hotellist",
+    //   hotelMasterInitialValue
+    // );
+    const categoryData = await axiosOther.post(
+      "hotelcategorylist",
+      hotelCategoryInitialValue
+    );
+    const typeData = await axiosOther.post(
+      "hoteltypelist",
+      hotelTypeInitialValue
+    );
+    // const destinationData = await axiosOther.post(
+    //   "destinationlist",
+    //   destinationInitialValue
+    // );
+    // const roomData = await axiosOther.post(
+    //   "roomtypelist",
+    //   roomTypeInitialValue
+    // );
+    const countryData = await axiosOther.post(
+      "countrylist",
+      countryInitialValue
+    );
+    const stateData = await axiosOther.post("statelist", stateInitialValue);
+    const cityData = await axiosOther.post("citylist", cityInitialValue);
+    // const amentyData = await axiosOther.post(
+    //   "amenitieslist",
+    //   amentiesInitialValue
+    // );
+
+
+    // setHotelChain(chainData.data.DataList);
+    // setHotelName(nameData.data.DataList);
+    setHotelCategory(categoryData.data.DataList);
+    setHotelType(typeData.data.DataList);
+    // setDestination(destinationData.data.DataList);
+    // setRoomType(roomData.data.DataList);
+    setCountry(countryData.data.DataList);
+    setState(stateData.data.DataList);
+    setCity(cityData.data.DataList);
+    // setAmenties(amentyData.data.DataList);
+  };
+
+  useEffect(() => {
+    getDataToServer();
+    console.log("UseEffect Rendered.....");
+  }, []);
 
   return (
     <>
@@ -82,9 +163,13 @@ const HotelMasterCreate = () => {
                         name="HotelCategory"
                       >
                         <option value={""}>Select</option>
-                        <option value={"1"}>3 Star</option>
-                        <option value={"2"}>4 Star</option>
-                        <option value={"4"}>5 Star</option>
+                        {hotelCategory.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </Field>
                     </div>
                     <div className="col-sm-2">
@@ -95,9 +180,13 @@ const HotelMasterCreate = () => {
                         name="HotelType"
                       >
                         <option value={""}>Select</option>
-                        <option value={"1"}>Budget</option>
-                        <option value={"2"}>Delite</option>
-                        <option value={"4"}>Luxury</option>
+                        {hotelType.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </Field>
                     </div>
                     <div className="col-sm-2">
@@ -108,11 +197,13 @@ const HotelMasterCreate = () => {
                         name="HotelDestination"
                       >
                         <option value={""}>Select</option>
-                        <option value={"1"}>Delhi</option>
-                        <option value={"2"}>Mumbai</option>
-                        <option value={"3"}>Noida</option>
-                        <option value={"4"}>Gurgaon</option>
-                        <option value={"5"}>Banglore</option>
+                        {destination.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </Field>
                       <span className="font-size-10 text-danger">
                         <ErrorMessage name="HotelDestination" />
@@ -138,11 +229,14 @@ const HotelMasterCreate = () => {
                         name="HotelRoomType"
                       >
                         <option value={""}>Select</option>
-                        <option value={"1"}>Bamboo Tree House</option>
-                        <option value={"2"}>Brook Side Cottage</option>
-                        <option value={"3"}>Bunglow Suit</option>
-                        <option value={"4"}>Classic Cottage</option>
-                        <option value={"5"}>Classic Sea View</option>
+                        {roomType.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+
+                          );
+                        })}
                       </Field>
                       <span className="font-size-10 text-danger">
                         <ErrorMessage name="HotelRoomType" />
@@ -245,9 +339,14 @@ const HotelMasterCreate = () => {
                             component={"select"}
                             name="HotelCountry"
                           >
-                            <option value={"1"}>India</option>
-                            <option value={"2"}>Srilanka</option>
-                            <option value={"3"}>Afghanistan</option>
+                            <option value={""}>Select</option>
+                            {country.map((value, ind) => {
+                              return (
+                                <option value={ind + 1} key={ind + 1}>
+                                  {value.Name}
+                                </option>
+                              );
+                            })}
                           </Field>
                         </div>
                         <div className="col-sm-2">
@@ -257,10 +356,14 @@ const HotelMasterCreate = () => {
                             component={"select"}
                             name="HotelState"
                           >
-                            <option value={"1"}>Delhi</option>
-                            <option value={"2"}>Banglore</option>
-                            <option value={"3"}>Haryana</option>
-                            <option value={"4"}>UttarPradesh</option>
+                            <option value={""}>Select</option>
+                            {state.map((value, ind) => {
+                              return (
+                                <option value={ind + 1} key={ind + 1}>
+                                  {value.Name}
+                                </option>
+                              );
+                            })}
                           </Field>
                         </div>
                         <div className="col-sm-2">
@@ -270,9 +373,14 @@ const HotelMasterCreate = () => {
                             component={"select"}
                             name="HotelCity"
                           >
-                            <option value={"1"}>Gurgaon</option>
-                            <option value={"2"}>Noida</option>
-                            <option value={"3"}>Lucknow</option>
+                            <option value={""}>Select</option>
+                            {city.map((value, ind) => {
+                              return (
+                                <option value={ind + 1} key={ind + 1}>
+                                  {value.Name}
+                                </option>
+                              );
+                            })}
                           </Field>
                         </div>
                         <div className="col-sm-2">
@@ -394,10 +502,14 @@ const HotelMasterCreate = () => {
                             component={"select"}
                             name="HotelAmenties"
                           >
-                            <option value={"1"}>Ac Rooms</option>
-                            <option value={"2"}>All Meal</option>
-                            <option value={"3"}>Bar</option>
-                            <option value={"4"}>Basic Toilter</option>
+                            <option value={""}>Select</option>
+                            {amenties.map((value, ind) => {
+                              return (
+                                <option value={ind + 1} key={ind + 1}>
+                                  {value.Name}
+                                </option>
+                              );
+                            })}
                           </Field>
                         </div>
                         <div className="col-sm-2">
