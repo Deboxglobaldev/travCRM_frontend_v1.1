@@ -32,18 +32,6 @@ export const QueryinputInitialValue = {
     Train: "No",
     Transfer: "No",
   },
-  PaxInfo: {
-    Adult: "",
-    Child: "",
-    Infant: "",
-  },
-  RoomInfo: {
-    Single: "",
-    Double: "",
-    Twin: "",
-    Triple: "",
-    ExtraBed: "",
-  },
 };
 
 export const QueryInputSchema = yup.object().shape({

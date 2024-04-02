@@ -7,8 +7,6 @@ import * as XLSX from "xlsx";
 const Model = ({
   children,
   heading,
-  buttonName,
-  buttonClass,
   apiurl,
   initialValues,
   validationSchema,

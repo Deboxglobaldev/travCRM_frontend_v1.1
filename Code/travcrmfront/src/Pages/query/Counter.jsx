@@ -1,64 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Counter = ({ value, onIncrement, onDecrement, setCounter }) => {
-
-  
+const Counter = ({ value, onIncrement, onDecrement, setCounter, name }) => {
   return (
     <>
       <div
         className="text-center rounded text-dark row m-0"
-        style={{ height: "30px" }}
+        style={{ height: "25px" }}
       >
         <div
           onClick={onDecrement}
           className="col backgroundColor-2 rounded-left
-                    text-light font-weight-bold cursor-pointer h-100
-                    d-flex align-items-center justify-content-center"
+                    text-light cursor-pointer h-100
+                    d-flex align-items-center justify-content-center px-1"
         >
           -
         </div>
 
         <div
-          className="col backgroundColor-1 font-weight-bold h-100
-                d-flex align-items-center justify-content-center"
+          className="col backgroundColor-1  h-100
+          d-flex align-items-center justify-content-center px-1"
         >
-          {value}
+          <input
+            name={name}
+            value={value}
+            className="h-100 w-100 border-0 bg-transparent outline-none"
+            readOnly
+          />
         </div>
-
+        
         <div
           onClick={onIncrement}
           className="col backgroundColor-2 rounded-right
-                text-light font-weight-bold cursor-pointer h-100
-                 d-flex align-items-center justify-content-center"
+                text-light cursor-pointer h-100
+                d-flex align-items-center justify-content-center px-1"
         >
           +
         </div>
       </div>
-      <div className="d-flex justify-content-between align-items-center pt-1">
-        <span
-          className="px-2 border rounded cursor-pointer green-hover"
+
+      <div className="d-flex justify-content-between align-items-center pt-1" >
+        <div
+          className="py-0 border rounded cursor-pointer green-hover padding-x 
+          d-flex justify-content-center align-items-center"
           onClick={() => setCounter(1)}
+          style={{height:'19px'}}
         >
           1
-        </span>
-        <span
-          className="px-2 border rounded cursor-pointer green-hover"
+        </div>
+        <div
+          className="py-0 border rounded cursor-pointer green-hover padding-x
+           d-flex justify-content-center align-items-center"
           onClick={() => setCounter(2)}
+          style={{height:'19px'}}
         >
           2
-        </span>
-        <span
-          className="px-2 border rounded cursor-pointer green-hover"
+        </div>
+        <div
+          className="py-0 border rounded cursor-pointer green-hover padding-x 
+          d-flex justify-content-center align-items-center"
           onClick={() => setCounter(3)}
+          style={{height:'19px'}}
         >
           3
-        </span>
-        <span
-          className="px-2 border rounded cursor-pointer green-hover"
+        </div>
+        <div
+          className="py-0 border rounded cursor-pointer green-hover padding-x 
+          d-flex justify-content-center align-items-center"
           onClick={() => setCounter(4)}
+          style={{height:'19px'}}
         >
           4
-        </span>
+        </div>
       </div>
     </>
   );

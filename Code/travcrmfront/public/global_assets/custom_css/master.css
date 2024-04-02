@@ -103,6 +103,14 @@ a {
   height: 35px;
   padding-left: 10px;
 }
+.form-input-2{
+  width: 100%;
+  outline: none;
+  border: 1px solid rgb(22, 155, 215);
+  border-radius: 5px;
+  height: 30px;
+  padding-left: 10px;
+}
 .borderNone {
   border: none;
 }
@@ -331,8 +339,54 @@ a {
   /* box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px; */
   color: #ffff;
 }
+.outline-none{
+  outline: none;
+}
+.padding-x{
+  padding: 0 3px;
+}
 
 
+.progress-container {
+  width: 100%;
+  height: 30px;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
 
+.progress-bar {
+  height: 100%;
+  background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+  width: 0%;
+  text-align: center;
+  color: #9a9999;
+  line-height: 30px;
+  border-radius: 3px;
+  overflow: hidden;
+  animation: progressAnimation 3s linear infinite;
+}
 
+.progress-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+@keyframes progressAnimation {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
