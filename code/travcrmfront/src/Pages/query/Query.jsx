@@ -100,11 +100,15 @@ const Query = () => {
           "leadlist", 
           leadSourceInitialValue
         );
-        
+        // const tour = await axiosOther.post(
+        //   "tourlist",
+        //   tourtypeInitialValue
+        // );
+        // console.log('TourType', tour)
         setHotelType(type.data.DataList);
         setHotelMeal(meal.data.DataList);
         setLeadList(lead.data.DataList);
-        setTourType(tour);
+        // setTourType(tour.data.DataList);
       } catch (error) {
         console.log(error);
       }
