@@ -75,12 +75,18 @@ const Query = () => {
   const [RoomsTotal, setRoomsTotal] = useState(0);
 
   const data = localStorage.getItem("Query");
+
   const storedData = JSON.parse(data);
   // console.log(storedData);
 
+
+  console.log('hotelType', hotelType)
+  console.log('hotelMeal', hotelMeal)
+  console.log('laedList', leadList)
+  console.log('tourtype', tourType)
   // Fetching Data From Api for Dropdown in Query
   useEffect(() => {
-    const postDataToServer = async () => {
+    const getDataToServer = async () => {
       try {
         const type = await axiosOther.post(
           "hoteltypelist",
@@ -94,10 +100,7 @@ const Query = () => {
           "leadlist", 
           leadSourceInitialValue
         );
-        const tour = await axiosOther.post(
-          "tourlist",
-          tourtypeInitialValue
-        );
+        
         setHotelType(type.data.DataList);
         setHotelMeal(meal.data.DataList);
         setLeadList(lead.data.DataList);
@@ -106,7 +109,7 @@ const Query = () => {
         console.log(error);
       }
     };
-    postDataToServer();
+    getDataToServer();
   }, []);
 
   // Handling Submit Query Data
