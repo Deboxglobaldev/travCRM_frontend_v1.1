@@ -7,6 +7,7 @@ import {
   hotelTypeInitialValue,
   hotelMealInitialValue,
   leadSourceInitialValue,
+  tourtypeInitialValue,
 } from "../master/masterList/MasterValidation";
 import axios from "axios";
 import "jquery";
@@ -58,6 +59,7 @@ const Query = () => {
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
+  const [tourType, setTourType] = useState([]);
   const [toDate, setToDate] = useState();
   const [isSaving, setIsSaving] = useState(false);
   const [dateArray, setDateArray] = useState([]);
@@ -88,10 +90,18 @@ const Query = () => {
           "hotelmealplanlist",
           hotelMealInitialValue
         );
-        const lead = await axiosOther.post("leadlist", leadSourceInitialValue);
+        const lead = await axiosOther.post(
+          "leadlist", 
+          leadSourceInitialValue
+        );
+        const tour = await axiosOther.post(
+          "tourlist",
+          tourtypeInitialValue
+        );
         setHotelType(type.data.DataList);
         setHotelMeal(meal.data.DataList);
         setLeadList(lead.data.DataList);
+        setTourType(tour);
       } catch (error) {
         console.log(error);
       }
@@ -145,7 +155,7 @@ const Query = () => {
   const handleQueryChange = (e) => {
     setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
   };
-  
+
   // Looping date & stored into array
   function createDateArray() {
     const fromDate = new Date(
@@ -694,10 +704,12 @@ const Query = () => {
                         onChange={handleQueryChange}
                         value={queryFields.TourType}
                       >
-                        <option value={0}>Select Tour</option>
-                        <option value={1}>Adventure Tour</option>
-                        <option value={2}>Collage Tour</option>
-                        <option value={3}>Family Tour</option>
+                        <option value={0}>Select</option>
+                        {
+                          tourType.map((value, ind)=>{
+                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
+                          })
+                        }
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -709,10 +721,12 @@ const Query = () => {
                         onChange={handleQueryChange}
                         value={queryFields.LeadSource}
                       >
-                        <option value={0}>Select Source</option>
-                        <option value={1}>Instagram</option>
-                        <option value={2}>Facebook</option>
-                        <option value={3}>Tweeter</option>
+                        <option value={0}>Select</option>
+                        {
+                          leadList.map((value, ind)=>{
+                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
+                          })
+                        }
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -746,9 +760,10 @@ const Query = () => {
                         value={queryFields.HotelType}
                       >
                         <option value={0}>Select Type</option>
-                        <option value={1}>Budget</option>
-                        <option value={2}>Delux</option>
-                        <option value={3}>Elite</option>
+                      
+                      {hotelType.map((value, ind)=>{
+                          return <option value={ind+1} key={ind+1}>{value.Name}</option>
+                      })}
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -761,9 +776,12 @@ const Query = () => {
                         value={queryFields.MealPlan}
                       >
                         <option value={0}>Select Plan</option>
-                        <option value={1}>CP</option>
-                        <option value={2}>AP</option>
-                        <option value={3}>EP</option>
+                        {
+                          hotelMeal.map((value, ind)=>{
+                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
+                          })
+                        }
+                        
                       </select>
                     </div>
                   </div>
