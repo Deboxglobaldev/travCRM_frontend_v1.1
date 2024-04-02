@@ -15,8 +15,7 @@ import { NavLink } from "react-router-dom";
 import Counter from "./Counter";
 
 const Query = () => {
-  const [selectedQueryType, setSelectedQueryType] = useState("");
-  const [QueryType, setQueryType] = useState("");
+
   const [TravelDate, setTravelDate] = useState({
     Type: "",
     FromDate: "",
@@ -25,16 +24,59 @@ const Query = () => {
     SeasonType: "",
     SeasonYear: "",
   });
-  const [dateArray, setDateArray] = useState([]);
+  const [PaxInfo, setPaxInfo] = useState({
+    Adult: "",
+    Child: "",
+    Infant: "",
+  });
+  const [RoomInfo, setRoomInfo] = useState({
+    Single: "",
+    Double: "",
+    Twin: "",
+    Triple: "",
+    ExtraBed: "",
+  });
+  const [queryFields, setQueryFields] = useState({
+    CompanyInfo: "",
+    AddEmail: "",
+    LeadPax: "",
+    Subject: "",
+    AdditionalInfo: "",
+    SearchPackage: "",
+    OperationPerson: "",
+    ContractPerson: "",
+    Priority: "",
+    TAT: "",
+    TourType: "",
+    LeadSource: "",
+    HotelCategory: "",
+    LeadReferenced: "",
+    HotelType: "",
+    MealPlan: "",
+  });
+
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
   const [toDate, setToDate] = useState();
+  const [isSaving, setIsSaving] = useState(false);
+  const [dateArray, setDateArray] = useState([]);
   const [counter1, setCounter1] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [counter3, setCounter3] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [counter4, setCounter4] = useState(0);
+  const [counter5, setCounter5] = useState(0);
+  const [counter6, setCounter6] = useState(0);
+  const [counter7, setCounter7] = useState(0);
+  const [counter8, setCounter8] = useState(0);
+  const [PaxTotal, setPaxTotal] = useState(0);
+  const [RoomsTotal, setRoomsTotal] = useState(0);
 
+  const data = localStorage.getItem("Query");
+  const storedData = JSON.parse(data);
+  // console.log(storedData);
+
+  // Fetching Data From Api for Dropdown in Query
   useEffect(() => {
     const postDataToServer = async () => {
       try {
@@ -57,44 +99,68 @@ const Query = () => {
     postDataToServer();
   }, []);
 
+  // Handling Submit Query Data
   const handleSubmit = async (postData) => {
-    console.log("This is console for inputs.....", {
-      ...postData,
-      QueryType,
-      TravelDate,
-    });
-
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/addupdatequerymaster",
-        { ...postData, QueryType }
+    // console.log('Post Data', postData);
+    console.log("Query Value", queryFields);
+    if (document.activeElement.name === "SaveButton"){
+      setIsSaving(true);
+      localStorage.setItem(
+        "Query",
+        JSON.stringify({
+          ...queryFields,
+          TravelDate,
+          PaxInfo,
+          RoomInfo,
+        })
       );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+      console.log("LocalStorage Data", storedData);
+    } else if (document.activeElement.name === "SubmitButton") {
+
+      localStorage.removeItem('Query');
+
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8000/api/addupdatequerymaster",
+          { postData }
+        );
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("Hello Console");
     }
   };
 
   $(document).ready(function () {
-    $(".select2-hidden-accessible").select2();
+    $(".select2-hidden-accessible").select2(); //bootstrap select box
   });
 
+  // Handling onChange data inside query page
   const handleChange = (e) => {
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
   };
 
+  const handleQueryChange = (e) => {
+    setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
+  };
+  
   // Looping date & stored into array
   function createDateArray() {
     const fromDate = new Date(
-      TravelDate.FromDate.split("/").reverse().join("/")
+      TravelDate?.FromDate?.split("/")?.reverse()?.join("/")
     );
-    const lastDate = new Date(TravelDate.ToDate.split("/").reverse().join("/"));
+    const lastDate = new Date(
+      TravelDate?.ToDate?.split("/")?.reverse()?.join("/")
+    );
     const dateArray = eachDayOfInterval({ start: fromDate, end: lastDate }).map(
       (date) => format(date, "dd/MM/yyyy")
     );
     setDateArray(dateArray);
   }
 
+  // Date Deleting
   const dateDeleting = () => {
     const updatedArray = [...dateArray];
     updatedArray.pop();
@@ -111,7 +177,7 @@ const Query = () => {
     });
   };
 
-  // Message: Adding Date fromDate + Days = ToDate
+  //Adding Date fromDate + Days = ToDate
   useEffect(() => {
     const dateStr = TravelDate.FromDate;
     const days = Number(TravelDate.TotalNights);
@@ -133,10 +199,13 @@ const Query = () => {
     createDateArray();
   }, [TravelDate.FromDate, TravelDate.TotalNights, TravelDate.ToDate]);
 
+  // Update Total Values in Pax and Rooms
   const updateTotal = () => {
-    setTotal(counter1 + counter2 + counter3);
+    setPaxTotal(counter1 + counter2 + counter3);
+    setRoomsTotal(counter4 + counter5 + counter6 + counter7 + counter8);
   };
 
+  // Handling Increment and Decrement for counter
   const handleIncrement = (counterSetter) => {
     counterSetter((prevValue) => {
       const newValue = prevValue + 1;
@@ -155,9 +224,64 @@ const Query = () => {
     });
   };
 
+  // Set counter value into json
   useEffect(() => {
     updateTotal();
+    setPaxInfo({
+      Adult: counter1,
+      Child: counter2,
+      Infant: counter3,
+    });
   }, [counter1, counter2, counter3]);
+
+  useEffect(() => {
+    updateTotal();
+    setRoomInfo({
+      Single: counter4,
+      Double: counter5,
+      Twin: counter6,
+      Triple: counter7,
+      ExtraBed: counter8,
+    });
+  }, [counter4, counter5, counter6, counter7, counter8]);
+
+  // Data Set into input field from localstorage
+  useEffect(() => {
+    setTravelDate({
+      Type: storedData?.TravelDate?.Type,
+      FromDate: storedData?.TravelDate?.FromDate,
+      ToDate: storedData?.TravelDate?.ToDate,
+      TotalNights:storedData? storedData?.TravelDate?.TotalNights:'',
+      SeasonType: storedData?.TravelDate?.SeasonType,
+      SeasonYear: storedData?.TravelDate?.SeasonYear,
+    });
+    setCounter1(storedData? storedData?.PaxInfo?.Adult :0);
+    setCounter2(storedData? storedData?.PaxInfo?.Child :0);
+    setCounter3(storedData? storedData?.PaxInfo?.Infant:0);
+    setCounter4(storedData? storedData?.RoomInfo?.Single:0);
+    setCounter5(storedData? storedData?.RoomInfo?.Double:0);
+    setCounter6(storedData? storedData?.RoomInfo?.Twin:0);
+    setCounter7(storedData? storedData?.RoomInfo?.Triple:0);
+    setCounter8(storedData? storedData?.RoomInfo?.ExtraBed:0);
+    setQueryFields({
+      CompanyInfo: storedData?.CompanyInfo,
+      AddEmail: storedData?.AddEmail,
+      LeadPax: storedData?.LeadPax,
+      Subject: storedData?.Subject,
+      AdditionalInfo: storedData?.AdditionalInfo,
+      SearchPackage: storedData?.SearchPackage,
+      OperationPerson: storedData?.OperationPerson,
+      ContractPerson: storedData?.ContractPerson,
+      Priority: storedData?.Priority,
+      TAT: storedData?.TAT,
+      TourType: storedData?.TourType,
+      LeadSource: storedData?.LeadSource,
+      HotelCategory: storedData?.HotelCategory,
+      LeadReferenced: storedData?.LeadReferenced,
+      HotelType: storedData?.HotelType,
+      MealPlan: storedData?.MealPlan,
+    });
+  }, []);
 
   return (
     <>
@@ -171,12 +295,22 @@ const Query = () => {
             <Form>
               {/* <div className=""> */}
               <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
-                <h5 className="card-title d-none d-sm-block">Query Form</h5>
-                <div>
-                  <button className="blue-button" type="submit">
+                <h5 className="card-title d-none d-sm-block m-0 p-0">
+                  Query Form
+                </h5>
+                <div className="p-0 m-0">
+                  <button
+                    className="blue-button"
+                    type="submit"
+                    name="SaveButton"
+                  >
                     Save
                   </button>
-                  <button className="green-button" type="button">
+                  <button
+                    className="green-button"
+                    type="submit"
+                    name="SubmitButton"
+                  >
                     Submit
                   </button>
                   <NavLink to="/querylist" className={"gray-button py-2"}>
@@ -185,58 +319,68 @@ const Query = () => {
                 </div>
               </div>
               <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
-                <div className="col-12 p-0">
-                  <div className="card shadow-none border p-2 bg-gray">
-                    <h6 className="text-dark">Contact Information</h6>
-                    <div className="row row-gap-2 pt-2">
+                <div className="col-12 p-0 ">
+                  <div className="card shadow-none border p-1 bg-gray">
+                    <h6 className="text-dark m-0">Contact Information</h6>
+                    <div className="row row-gap-2 ">
                       <div className="col-12 col-sm-6 col-md-3">
-                        <Field
+                        <input
                           type="text"
-                          className="form-input-1"
+                          className="form-input-2"
                           placeholder="Company, Email, Phone, Contact Person"
-                          name="demo1"
-                        ></Field>
+                          name="CompanyInfo"
+                          onChange={handleQueryChange}
+                          value={queryFields.CompanyInfo}
+                        ></input>
                       </div>
                       <div className="col-12 col-sm-6 col-md-3">
-                        <Field
+                        <input
                           type="text"
                           placeholder="text@example.com"
-                          className="form-input-1"
+                          className="form-input-2"
                           name="AddEmail"
-                        ></Field>
+                          onChange={handleQueryChange}
+                          value={queryFields.AddEmail}
+                        ></input>
                       </div>
                       <div className="col-12 col-sm-6 col-md-2">
-                        <Field
+                        <input
                           type="text"
-                          className="form-input-1"
+                          className="form-input-2"
                           placeholder="Lead Pax Name"
                           name="LeadPax"
-                        ></Field>
+                          onChange={handleQueryChange}
+                          value={queryFields.LeadPax}
+                        ></input>
                       </div>
                       <div className="col-12 col-sm-6 col-md-2">
-                        <Field
+                        <input
                           type="text"
-                          className="form-input-1"
+                          className="form-input-2"
                           placeholder="Subject"
                           name="Subject"
-                        ></Field>
+                          onChange={handleQueryChange}
+                          value={queryFields.Subject}
+                        ></input>
                       </div>
                       <div className="col-12 col-sm-6 col-md-2">
-                        <Field
+                        <input
                           type="textArea"
                           placeholder="Additional Information"
-                          className="form-input-1"
+                          className="form-input-2"
                           name="AdditionalInfo"
-                        ></Field>
+                          onChange={handleQueryChange}
+                          value={queryFields.AdditionalInfo}
+                        ></input>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md col-sm-6 border py-2 rounded px-1">
-                  <div className="row row-gap-2">
-                    <h6>Destination Details</h6>
+                <div className="col-md col-sm-6 border rounded px-1">
+                  <div className="row row-gap-2 p-0 pt-1 ">
+                    <h6 className="m-0">Destination Details</h6>
                     <div className="col-md-12 col-12">
-                      <Field
+                      <select
                         component={"select"}
                         className="form-input-1"
                         name="Type"
@@ -245,38 +389,38 @@ const Query = () => {
                       >
                         <option value="1">Date Wise</option>
                         <option value="2">Day Wise</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-5 pl-2 pr-0">
                       <label>From Date</label>
-                      <Field
+                      <input
                         type="date"
                         className="form-input-1"
                         name="FromDate"
                         value={TravelDate.FromDate}
                         onChange={handleChange}
-                      ></Field>
+                      ></input>
                     </div>
                     <div className="col-5 pl-1 pr-0">
                       <label>To Date</label>
-                      <Field
+                      <input
                         type="date"
                         className="form-input-1"
                         name="ToDate"
                         value={TravelDate.ToDate}
                         onChange={handleChange}
-                      ></Field>
+                      ></input>
                     </div>
                     <div className="col-2 pl-1">
                       <label>Night</label>
-                      <Field
+                      <input
                         type="text"
                         className="form-input-1 backgroundColor-3"
                         placeholder=""
                         name="TotalNights"
                         value={TravelDate.TotalNights}
                         onChange={handleChange}
-                      ></Field>
+                      ></input>
                     </div>
                   </div>
                   {TravelDate.TotalNights !== "" &&
@@ -338,102 +482,131 @@ const Query = () => {
                     ""
                   )}
                 </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row py-2 row-gap-2">
-                    <h6>Pax Information</h6>
-                    <div className="col-6">
-                      <label htmlFor="">Adult</label>
+                <div className="col-md col-sm-6 border rounded">
+                  <div className="row py-1 row-gap-2 ">
+                    <h6 className="m-0 p-0 pl-2">Pax Information</h6>
+                    <div className="col-4">
+                      <label htmlFor="" className="m-0">
+                        Adult
+                      </label>
                       <Counter
                         onIncrement={() => handleIncrement(setCounter1)}
                         onDecrement={() => handleDecrement(setCounter1)}
                         value={counter1}
                         setCounter={setCounter1}
+                        name="Adult"
                       />
                     </div>
-                    <div className="col-6">
-                      <label htmlFor="">Child</label>
+                    <div className="col-4">
+                      <label htmlFor="" className="m-0">
+                        Child
+                      </label>
                       <Counter
                         onIncrement={() => handleIncrement(setCounter2)}
                         onDecrement={() => handleDecrement(setCounter2)}
                         value={counter2}
                         setCounter={setCounter2}
+                        name="Child"
                       />
                     </div>
-                    <div className="col-6">
-                      <label htmlFor="">Infant</label>
+                    <div className="col-4">
+                      <label htmlFor="" className="m-0">
+                        Infant
+                      </label>
                       <Counter
                         onIncrement={() => handleIncrement(setCounter3)}
                         onDecrement={() => handleDecrement(setCounter3)}
                         value={counter3}
                         setCounter={setCounter3}
+                        name="Infant"
                       />
                     </div>
-                    <div className="col-6">
-                      <label htmlFor="">Total</label>
+                    <div className="col-4">
+                      <label htmlFor="" className="m-0">
+                        Total
+                      </label>
                       <div
                         className="backgroundColor-1 rounded
                       d-flex justify-content-center align-items-center font-weight-bold"
-                        style={{ height: "30px" }}
+                        style={{ height: "25px" }}
                       >
-                        Total : {total}
+                        Total : {PaxTotal}
                       </div>
                     </div>
                   </div>
-                  <div className="row row-gap-2 pt-2">
-                    <h6>Room's Information</h6>
+                  <div className="row row-gap-2">
+                    <h6 className="m-0">Room's Information</h6>
                     <div className="col-4">
-                      <label htmlFor="">Single</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Single"
-                        placeholder="Single"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Single
+                      </label>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter4)}
+                        onDecrement={() => handleDecrement(setCounter4)}
+                        value={counter4}
+                        setCounter={setCounter4}
+                        name="Single"
+                      />
                     </div>
                     <div className="col-4">
-                      <label htmlFor="">Double</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Double"
-                        placeholder="Double"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Double
+                      </label>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter5)}
+                        onDecrement={() => handleDecrement(setCounter5)}
+                        value={counter5}
+                        setCounter={setCounter5}
+                        name="Double"
+                      />
                     </div>
                     <div className="col-4">
-                      <label htmlFor="">Twin</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Twin"
-                        placeholder="Twin"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Twin
+                      </label>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter6)}
+                        onDecrement={() => handleDecrement(setCounter6)}
+                        value={counter6}
+                        setCounter={setCounter6}
+                        name="Twin"
+                      />
                     </div>
                     <div className="col-4">
-                      <label htmlFor="">Triple</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.Triple"
-                        placeholder="Triple"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Triple
+                      </label>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter7)}
+                        onDecrement={() => handleDecrement(setCounter7)}
+                        value={counter7}
+                        setCounter={setCounter7}
+                        name="Triple"
+                      />
                     </div>
                     <div className="col-4">
-                      <label htmlFor="">Extra Bed</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.ExtraBed"
-                        placeholder="Extra Bed"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Extra Bed
+                      </label>
+                      <Counter
+                        onIncrement={() => handleIncrement(setCounter8)}
+                        onDecrement={() => handleDecrement(setCounter8)}
+                        value={counter8}
+                        setCounter={setCounter8}
+                        name="ExtraBed"
+                      />
                     </div>
                     <div className="col-4">
-                      <label htmlFor="">Total</label>
-                      <Field
-                        type="text"
-                        className="form-input-1"
-                        name="RoomInfo.TotalRooms"
-                        placeholder="Total"
-                      ></Field>
+                      <label htmlFor="" className="m-0">
+                        Total
+                      </label>
+                      <div
+                        className="backgroundColor-1 rounded
+                      d-flex justify-content-center align-items-center font-weight-bold"
+                        style={{ height: "25px" }}
+                      >
+                        Total : {RoomsTotal}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -442,12 +615,14 @@ const Query = () => {
                     <h6>Suggested Package</h6>
                     <div className="col-12">
                       <label>Search:</label>
-                      <Field
+                      <input
                         type="text"
                         className="form-input-1"
                         placeholder="Search Package.."
                         name="Search"
-                      ></Field>
+                        onChange={handleQueryChange}
+                        value={queryFields.SearchPackage}
+                      ></input>
                     </div>
                   </div>
                 </div>
@@ -456,77 +631,89 @@ const Query = () => {
                     <h6>Other Detail's</h6>
                     <div className="col-md-6 col-12">
                       <label> Operation Person </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="OperationPerson"
+                        onChange={handleQueryChange}
+                        value={queryFields.OperationPerson}
                       >
                         <option value={0}>Select Person</option>
                         <option value={1}>Ansar</option>
                         <option value={2}>Satendra</option>
                         <option value={3}>Prasang</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Contract.. Person </label>
-                      <Field
+                      <input
                         type="text"
                         className="form-input-1"
                         name="ContractingPerson"
                         placeholder="Person"
+                        onChange={handleQueryChange}
+                        value={queryFields.ContractingPerson}
                       />
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Priority </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="Priority"
+                        onChange={handleQueryChange}
+                        value={queryFields.Priority}
                       >
                         <option value={0}>Select Priority</option>
                         <option value={1}>Normal</option>
                         <option value={2}>Medium</option>
                         <option value={3}>Hight</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> TAT </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="TAT"
+                        onChange={handleQueryChange}
+                        value={queryFields.TAT}
                       >
                         <option value={0}>Select TAT</option>
                         <option value={1}>24 Hours</option>
                         <option value={2}>48 Hours</option>
                         <option value={3}>72 Hours</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Tour Type </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="TourType"
+                        onChange={handleQueryChange}
+                        value={queryFields.TourType}
                       >
                         <option value={0}>Select Tour</option>
                         <option value={1}>Adventure Tour</option>
                         <option value={2}>Collage Tour</option>
                         <option value={3}>Family Tour</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Lead Source </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="LeadSource"
+                        onChange={handleQueryChange}
+                        value={queryFields.LeadSource}
                       >
                         <option value={0}>Select Source</option>
                         <option value={1}>Instagram</option>
                         <option value={2}>Facebook</option>
                         <option value={3}>Tweeter</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Hotel Category </label>
@@ -540,39 +727,44 @@ const Query = () => {
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Lead Referenced </label>
-                      <Field
+                      <input
                         type="text"
                         className="form-input-1"
                         name="LeadReferenced"
                         placeholder="Referenced Id"
-                        onChange={handleChange}
+                        onChange={handleQueryChange}
+                        value={queryFields.LeadReferenced}
                       />
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Hotel Type </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="HotelType"
+                        onChange={handleQueryChange}
+                        value={queryFields.HotelType}
                       >
                         <option value={0}>Select Type</option>
                         <option value={1}>Budget</option>
                         <option value={2}>Delux</option>
                         <option value={3}>Elite</option>
-                      </Field>
+                      </select>
                     </div>
                     <div className="col-md-6 col-12">
                       <label> Meal Plan </label>
-                      <Field
-                        component={"select"}
+                      <select
+                        type="select"
                         className="form-input-1"
                         name="MealPlan"
+                        onChange={handleQueryChange}
+                        value={queryFields.MealPlan}
                       >
                         <option value={0}>Select Plan</option>
                         <option value={1}>CP</option>
                         <option value={2}>AP</option>
                         <option value={3}>EP</option>
-                      </Field>
+                      </select>
                     </div>
                   </div>
                 </div>
