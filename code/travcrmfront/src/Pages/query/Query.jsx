@@ -9,6 +9,7 @@ import {
   leadSourceInitialValue,
   tourtypeInitialValue,
 } from "../master/masterList/MasterValidation";
+import * as Yup from "yup";
 import axios from "axios";
 import "jquery";
 import "select2";
@@ -55,11 +56,15 @@ const Query = () => {
     HotelType: "",
     MealPlan: "",
   });
-  console.log("JSON Values...", {
-    ...queryFields,
-    TravelDate,
-    PaxInfo,
-    RoomInfo,
+  // console.log("JSON Values...", {
+  //   ...queryFields,
+  //   TravelDate,
+  //   PaxInfo,
+  //   RoomInfo,
+  // });
+  const validationSchema = Yup.object().shape({
+    CompanyInfo: Yup.string().required("Required"),
+    AddEmail: Yup.string().email("Invalid Email").required("Required"),
   });
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
@@ -67,26 +72,45 @@ const Query = () => {
   const [tourType, setTourType] = useState([]);
   const [toDate, setToDate] = useState();
   const [dateArray, setDateArray] = useState([]);
-  const [counter1, setCounter1] = useState(0);
-  const [counter2, setCounter2] = useState(0);
-  const [counter3, setCounter3] = useState(0);
-  const [counter4, setCounter4] = useState(0);
-  const [counter5, setCounter5] = useState(0);
-  const [counter6, setCounter6] = useState(0);
-  const [counter7, setCounter7] = useState(0);
-  const [counter8, setCounter8] = useState(0);
+
+  const initialState = {
+    counter1: 0,
+    counter2: 0,
+    counter3: 0,
+    counter4: 0,
+    counter5: 0,
+    counter6: 0,
+    counter7: 0,
+    counter8: 0,
+  };
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "INCREMENT":
+        return { ...state, [action.counter]: state[action.counter] + 1 };
+      case "DECREMENT":
+        return {
+          ...state,
+          [action.counter]: Math.max(0, state[action.counter] - 1),
+        };
+      case "SET":
+        return { ...state, [action.counter]: (state[action.counter] = action.value)};
+      default:
+        return state;
+    }
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  // console.log("Reducer State", state);
+
+
   const [PaxTotal, setPaxTotal] = useState(0);
   const [RoomsTotal, setRoomsTotal] = useState(0);
+  const [errors, setErrors] = useState({});
 
   const data = localStorage.getItem("Query");
   const storedData = JSON.parse(data);
-  // console.log(storedData);
 
-  // console.log('hotelType', hotelType)
-  // console.log('hotelMeal', hotelMeal)
-  // console.log('laedList', leadList)
-  // console.log('tourtype', tourType)
-  // Fetching Data From Api for Dropdown in Query
+  // Getting data to server for Dropdown
   useEffect(() => {
     const getDataToServer = async () => {
       try {
@@ -116,9 +140,9 @@ const Query = () => {
   }, []);
 
   // Handling Submit Query Data
-  const handleSubmit = async () => {
-    // console.log('Post Data', postData);
-    // console.log("Query Value", queryFields);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (document.activeElement.name === "SaveButton") {
       localStorage.setItem(
         "Query",
@@ -130,21 +154,28 @@ const Query = () => {
         })
       );
       navigate("/querylist");
-      // console.log("LocalStorage Data", storedData);
-    }else if(document.activeElement.name === "ClearButton"){
+    } else if (document.activeElement.name === "ClearButton") {
       localStorage.removeItem("Query");
-    }else if (document.activeElement.name === "SubmitButton") {
+    } else if (document.activeElement.name === "SubmitButton") {
       localStorage.removeItem("Query");
-      console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
 
       try {
+        await validationSchema.validate(
+          { ...queryFields, TravelDate, PaxInfo, RoomInfo },
+          { abortEarly: false }
+        );
+        console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
         const response = await axios.post(
           "http://127.0.0.1:8000/api/addupdatequerymaster",
           { ...queryFields, TravelDate, PaxInfo, RoomInfo }
         );
-        // console.log(response);
-      } catch (err) {
-        console.log(err);
+      } catch (validationErrors) {
+        const formattedErrors = {};
+        validationErrors.inner.forEach((error) => {
+          formattedErrors[error.path] = error.message;
+        });
+        setErrors(formattedErrors);
+        console.log("Errors From Yup...", formattedErrors);
       }
     } else {
       console.log("Hello Console");
@@ -219,83 +250,87 @@ const Query = () => {
 
   // Update Total Values in Pax and Rooms
   const updateTotal = () => {
-    setPaxTotal(counter1 + counter2 + counter3);
+    const {counter1, counter2, counter3,
+           counter4, counter5, counter6, counter7, counter8
+          } = state;
+    setPaxTotal(counter1 + counter2 +counter3);
     setRoomsTotal(counter4 + counter5 + counter6 + counter7 + counter8);
   };
 
-  // Handling Increment and Decrement for counter
-  const handleIncrement = (counterSetter) => {
-    counterSetter((prevValue) => {
-      const newValue = prevValue + 1;
-      return newValue;
-    });
-  };
-
-  const handleDecrement = (counterSetter) => {
-    counterSetter((prevValue) => {
-      if (prevValue !== 0) {
-        const newValue = prevValue - 1;
-        return newValue;
-      } else {
-        return 0;
-      }
-    });
-  };
 
   // Set counter value into json
   useEffect(() => {
     updateTotal();
     setPaxInfo({
-      Adult: counter1,
-      Child: counter2,
-      Infant: counter3,
+      Adult: state.counter1,
+      Child: state.counter2,
+      Infant: state.counter3,
     });
-  }, [counter1, counter2, counter3]);
+  }, [state]);
 
   useEffect(() => {
     updateTotal();
     setRoomInfo({
-      Single: counter4,
-      Double: counter5,
-      Twin: counter6,
-      Triple: counter7,
-      ExtraBed: counter8,
+      Single: state.counter4,
+      Double: state.counter5,
+      Twin: state.counter6,
+      Triple: state.counter7,
+      ExtraBed: state.counter8,
     });
-  }, [counter4, counter5, counter6, counter7, counter8]);
+  }, [state]);
 
   // Data Set into input field from localstorage
   useEffect(() => {
     setTravelDate({
       Type: storedData?.TravelDate?.Type ? storedData?.TravelDate?.Type : "",
-      FromDate: storedData?.TravelDate?.FromDate ? storedData?.TravelDate?.FromDate : "",
-      ToDate: storedData?.TravelDate?.ToDate ? storedData?.TravelDate?.ToDate : "",
-      TotalNights: storedData?.TravelDate?.TotalNights ? storedData?.TravelDate?.TotalNights : "",
-      SeasonType: storedData?.TravelDate?.SeasonType ? storedData?.TravelDate?.SeasonType : "",
-      SeasonYear: storedData?.TravelDate?.SeasonType ? storedData?.TravelDate?.SeasonYear : "",
+      FromDate: storedData?.TravelDate?.FromDate
+        ? storedData?.TravelDate?.FromDate
+        : "",
+      ToDate: storedData?.TravelDate?.ToDate
+        ? storedData?.TravelDate?.ToDate
+        : "",
+      TotalNights: storedData?.TravelDate?.TotalNights
+        ? storedData?.TravelDate?.TotalNights
+        : "",
+      SeasonType: storedData?.TravelDate?.SeasonType
+        ? storedData?.TravelDate?.SeasonType
+        : "",
+      SeasonYear: storedData?.TravelDate?.SeasonType
+        ? storedData?.TravelDate?.SeasonYear
+        : "",
     });
-    setCounter1(storedData?.PaxInfo?.Adult ? storedData?.PaxInfo?.Adult : 0);
-    setCounter2(storedData?.PaxInfo?.Child ? storedData?.PaxInfo?.Child : 0);
-    setCounter3(storedData?.PaxInfo?.Infant ? storedData?.PaxInfo?.Infant : 0);
-    setCounter4(storedData?.RoomInfo?.Single ? storedData?.RoomInfo?.Single : 0);
-    setCounter5(storedData?.RoomInfo?.Double ? storedData?.RoomInfo?.Double : 0);
-    setCounter6(storedData?.RoomInfo?.Twin ? storedData?.RoomInfo?.Twin : 0);
-    setCounter7(storedData?.RoomInfo?.Triple ? storedData?.RoomInfo?.Triple : 0);
-    setCounter8(storedData?.RoomInfo?.ExtraBed ? storedData?.RoomInfo?.ExtraBed : 0);
+    dispatch({type:"SET", value:storedData?.PaxInfo?.Adult ? storedData?.PaxInfo?.Adult : 0, counter:"counter1"});
+    dispatch({type:"SET", value:storedData?.PaxInfo?.Child ? storedData?.PaxInfo?.Child : 0, counter:"counter2"});
+    dispatch({type:"SET", value:storedData?.PaxInfo?.Infant ? storedData?.PaxInfo?.Infant : 0, counter:"counter3"});
+    dispatch({type:"SET", value:storedData?.RoomInfo?.Single ? storedData?.RoomInfo?.Single : 0, counter: "counter4"});
+    dispatch({type:"SET", value:storedData?.RoomInfo?.Double ? storedData?.RoomInfo?.Double : 0, counter:"counter5"});
+    dispatch({type:"SET", value:storedData?.RoomInfo?.Twin ? storedData?.RoomInfo?.Twin : 0, counter:"counter6"});
+    dispatch({type:"SET", value:storedData?.RoomInfo?.Triple ? storedData?.RoomInfo?.Triple : 0, counter:"counter7"} );
+    dispatch({type:"SET", value:storedData?.RoomInfo?.ExtraBed ? storedData?.RoomInfo?.ExtraBed : 0,  counter:"counter8"});
+
     setQueryFields({
       CompanyInfo: storedData?.CompanyInfo ? storedData?.CompanyInfo : "",
       AddEmail: storedData?.AddEmail ? storedData?.AddEmail : "",
       LeadPax: storedData?.LeadPax ? storedData?.LeadPax : "",
       Subject: storedData?.Subject ? storedData?.Subject : "",
-      AdditionalInfo: storedData?.AdditionalInfo ? storedData?.AdditionalInfo : "",
+      AdditionalInfo: storedData?.AdditionalInfo
+        ? storedData?.AdditionalInfo
+        : "",
       SearchPackage: storedData?.SearchPackage ? storedData?.SearchPackage : "",
-      OperationPerson: storedData?.OperationPerson ? storedData?.OperationPerson : "",
-      ContractPerson: storedData?.ContractPerson ? storedData?.ContractPerson : "",
+      OperationPerson: storedData?.OperationPerson
+        ? storedData?.OperationPerson
+        : "",
+      ContractPerson: storedData?.ContractPerson
+        ? storedData?.ContractPerson
+        : "",
       Priority: storedData?.Priority ? storedData?.Priority : "",
       TAT: storedData?.TAT ? storedData?.TAT : "",
       TourType: storedData?.TourType ? storedData?.TourType : "",
       LeadSource: storedData?.LeadSource ? storedData?.LeadSource : "",
       HotelCategory: storedData?.HotelCategory ? storedData?.HotelCategory : "",
-      LeadReferenced: storedData?.LeadReferenced ? storedData?.LeadReferenced : "",
+      LeadReferenced: storedData?.LeadReferenced
+        ? storedData?.LeadReferenced
+        : "",
       HotelType: storedData?.HotelType ? storedData?.HotelType : "",
       MealPlan: storedData?.MealPlan ? storedData?.MealPlan : "",
     });
@@ -305,514 +340,503 @@ const Query = () => {
     <>
       <div className="container-fluid mt-2">
         <div className="">
-          <Formik
+          {/* <Formik
             initialValues={QueryinputInitialValue}
             // validationSchema={QueryInputSchema}
             onSubmit={handleSubmit}
-          >
-            <Form>
-              {/* <div className=""> */}
-              <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
-                <h5 className="card-title d-none d-sm-block m-0 p-0">
-                  Query Form
-                </h5>
-                <div className="p-0 m-0">
-                  <button
-                    className="blue-button"
-                    type="submit"
-                    name="SaveButton"
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="orange-button"
-                    type="submit"
-                    name="ClearButton"
-                  >
-                    Clear
-                  </button>
-                  <button
-                    className="green-button"
-                    type="submit"
-                    name="SubmitButton"
-                  >
-                    Submit
-                  </button>
-                  <NavLink to="/querylist" className={"gray-button py-2"}>
-                    Back
-                  </NavLink>
-                </div>
+          > */}
+          <form onSubmit={handleSubmit}>
+            {/* <div className=""> */}
+            <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
+              <h5 className="card-title d-none d-sm-block m-0 p-0">
+                Query Form
+              </h5>
+              <div className="p-0 m-0">
+                <button className="blue-button" type="submit" name="SaveButton">
+                  Save
+                </button>
+                <button
+                  className="orange-button"
+                  type="submit"
+                  name="ClearButton"
+                >
+                  Clear
+                </button>
+                <button
+                  className="green-button"
+                  type="submit"
+                  name="SubmitButton"
+                >
+                  Submit
+                </button>
+                <NavLink to="/querylist" className={"gray-button py-2"}>
+                  Back
+                </NavLink>
               </div>
-              <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
-                <div className="col-12 p-0 ">
-                  <div className="card shadow-none border p-1 bg-gray">
-                    <h6 className="text-dark m-0">Contact Information</h6>
-                    <div className="row row-gap-2 ">
-                      <div className="col-12 col-sm-6 col-md-3">
-                        <input
-                          type="text"
-                          className="form-input-2"
-                          placeholder="Company, Email, Phone, Contact Person"
-                          name="CompanyInfo"
-                          onChange={handleQueryChange}
-                          value={queryFields.CompanyInfo}
-                        ></input>
-                      </div>
-                      <div className="col-12 col-sm-6 col-md-3">
-                        <input
-                          type="text"
-                          placeholder="text@example.com"
-                          className="form-input-2"
-                          name="AddEmail"
-                          onChange={handleQueryChange}
-                          value={queryFields.AddEmail}
-                        ></input>
-                      </div>
-                      <div className="col-12 col-sm-6 col-md-2">
-                        <input
-                          type="text"
-                          className="form-input-2"
-                          placeholder="Lead Pax Name"
-                          name="LeadPax"
-                          onChange={handleQueryChange}
-                          value={queryFields.LeadPax}
-                        ></input>
-                      </div>
-                      <div className="col-12 col-sm-6 col-md-2">
-                        <input
-                          type="text"
-                          className="form-input-2"
-                          placeholder="Subject"
-                          name="Subject"
-                          onChange={handleQueryChange}
-                          value={queryFields.Subject}
-                        ></input>
-                      </div>
-                      <div className="col-12 col-sm-6 col-md-2">
-                        <input
-                          type="textArea"
-                          placeholder="Additional Information"
-                          className="form-input-2"
-                          name="AdditionalInfo"
-                          onChange={handleQueryChange}
-                          value={queryFields.AdditionalInfo}
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md col-sm-6 border rounded px-1">
-                  <div className="row row-gap-2 p-0 pt-1 ">
-                    <h6 className="m-0">Destination Details</h6>
-                    <div className="col-md-12 col-12">
-                      <select
-                        component={"select"}
-                        className="form-input-1"
-                        name="Type"
-                        value={TravelDate.Type}
-                        onChange={handleChange}
-                      >
-                        <option value="1">Date Wise</option>
-                        <option value="2">Day Wise</option>
-                      </select>
-                    </div>
-                    <div className="col-5 pl-2 pr-0">
-                      <label>From Date</label>
-                      <input
-                        type="date"
-                        className="form-input-1"
-                        name="FromDate"
-                        value={TravelDate.FromDate}
-                        onChange={handleChange}
-                      ></input>
-                    </div>
-                    <div className="col-5 pl-1 pr-0">
-                      <label>To Date</label>
-                      <input
-                        type="date"
-                        className="form-input-1"
-                        name="ToDate"
-                        value={TravelDate.ToDate}
-                        onChange={handleChange}
-                      ></input>
-                    </div>
-                    <div className="col-2 pl-1">
-                      <label>Night</label>
+            </div>
+            <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
+              <div className="col-12 p-0 ">
+                <div className="card shadow-none border p-1 bg-gray">
+                  <h6 className="text-dark m-0">Contact Information</h6>
+                  <div className="row row-gap-2 ">
+                    <div className="col-12 col-sm-6 col-md-3">
                       <input
                         type="text"
-                        className="form-input-1 backgroundColor-3"
-                        placeholder=""
-                        name="TotalNights"
-                        value={TravelDate.TotalNights}
-                        onChange={handleChange}
+                        className="form-input-2"
+                        placeholder="Company, Email, Phone, Contact Person"
+                        name="CompanyInfo"
+                        onChange={handleQueryChange}
+                        value={queryFields.CompanyInfo}
+                      ></input>
+                      {errors.CompanyInfo && (
+                        <span className="text-danger font-size-10">
+                          {errors.CompanyInfo}
+                        </span>
+                      )}
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-3">
+                      <input
+                        type="text"
+                        placeholder="text@example.com"
+                        className="form-input-2"
+                        name="AddEmail"
+                        onChange={handleQueryChange}
+                        value={queryFields.AddEmail}
+                      ></input>
+                      {errors.AddEmail && (
+                        <span className="text-danger font-size-10">
+                          {errors.AddEmail}
+                        </span>
+                      )}
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-2">
+                      <input
+                        type="text"
+                        className="form-input-2"
+                        placeholder="Lead Pax Name"
+                        name="LeadPax"
+                        onChange={handleQueryChange}
+                        value={queryFields.LeadPax}
+                      ></input>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-2">
+                      <input
+                        type="text"
+                        className="form-input-2"
+                        placeholder="Subject"
+                        name="Subject"
+                        onChange={handleQueryChange}
+                        value={queryFields.Subject}
+                      ></input>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-2">
+                      <input
+                        type="textArea"
+                        placeholder="Additional Information"
+                        className="form-input-2"
+                        name="AdditionalInfo"
+                        onChange={handleQueryChange}
+                        value={queryFields.AdditionalInfo}
                       ></input>
                     </div>
                   </div>
-                  {TravelDate.TotalNights !== "" &&
-                  TravelDate.FromDate !== "" ? (
-                    <div className="row p-2">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Date/Day</th>
-                            <th>Country</th>
-                            <th>Destination</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {dateArray.map((value, index) => {
-                            return (
-                              <tr key={index + 1}>
-                                <td className="p-0 text-center">{value}</td>
-                                <td className="p-1">
-                                  <Field
-                                    component={"select"}
-                                    className="form-input-1"
-                                    style={{ height: "30px" }}
-                                    name={`Country${index}`}
-                                  >
-                                    <option value="1">Select</option>
+                </div>
+              </div>
+              <div className="col-md col-sm-6 border rounded px-1">
+                <div className="row row-gap-2 p-0 pt-1 ">
+                  <h6 className="m-0">Destination Details</h6>
+                  <div className="col-md-12 col-12">
+                    <select
+                      component={"select"}
+                      className="form-input-1"
+                      name="Type"
+                      value={TravelDate.Type}
+                      onChange={handleChange}
+                    >
+                      <option value="1">Date Wise</option>
+                      <option value="2">Day Wise</option>
+                    </select>
+                  </div>
+                  <div className="col-5 pl-2 pr-0">
+                    <label>From Date</label>
+                    <input
+                      type="date"
+                      className="form-input-1"
+                      name="FromDate"
+                      value={TravelDate.FromDate}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                  <div className="col-5 pl-1 pr-0">
+                    <label>To Date</label>
+                    <input
+                      type="date"
+                      className="form-input-1"
+                      name="ToDate"
+                      value={TravelDate.ToDate}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                  <div className="col-2 pl-1">
+                    <label>Night</label>
+                    <input
+                      type="text"
+                      className="form-input-1 backgroundColor-3"
+                      placeholder=""
+                      name="TotalNights"
+                      value={TravelDate.TotalNights}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                </div>
+                {TravelDate.TotalNights !== "" && TravelDate.FromDate !== "" ? (
+                  <div className="row p-2">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Date/Day</th>
+                          <th>Country</th>
+                          <th>Destination</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dateArray.map((value, index) => {
+                          return (
+                            <tr key={index + 1}>
+                              <td className="p-0 text-center">{value}</td>
+                              <td className="p-1">
+                                <select
+                                  type="select"
+                                  className="form-input-1"
+                                  style={{ height: "30px" }}
+                                  name={`Country${index}`}
+                                >
+                                  <option value="1">Select</option>
 
-                                    <option value="2">Inida</option>
-                                    <option value="3">Australia</option>
-                                  </Field>
-                                </td>
-                                <td className="p-1">
-                                  <Field
-                                    component={"select"}
-                                    className="form-input-1"
-                                    style={{ height: "30px" }}
-                                    name={`Destination${index}`}
-                                  >
-                                    <option value="1">Select</option>
-                                    <option value="2">Delhi</option>
-                                    <option value="3">Dubai</option>
-                                  </Field>
-                                </td>
-                                <td>
-                                  <i
-                                    className="fa-solid fa-trash pr-1
+                                  <option value="2">Inida</option>
+                                  <option value="3">Australia</option>
+                                </select>
+                              </td>
+                              <td className="p-1">
+                                <select
+                                  type="select"
+                                  className="form-input-1"
+                                  style={{ height: "30px" }}
+                                  name={`Destination${index}`}
+                                >
+                                  <option value="1">Select</option>
+                                  <option value="2">Delhi</option>
+                                  <option value="3">Dubai</option>
+                                </select>
+                              </td>
+                              <td>
+                                <i
+                                  className="fa-solid fa-trash pr-1
                                    text-danger cursor-pointer"
-                                    onClick={dateDeleting}
-                                  ></i>
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="col-md col-sm-6 border rounded">
-                  <div className="row py-1 row-gap-2 ">
-                    <h6 className="m-0 p-0 pl-2">Pax Information</h6>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Adult
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter1)}
-                        onDecrement={() => handleDecrement(setCounter1)}
-                        value={counter1}
-                        setCounter={setCounter1}
-                        name="Adult"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Child
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter2)}
-                        onDecrement={() => handleDecrement(setCounter2)}
-                        value={counter2}
-                        setCounter={setCounter2}
-                        name="Child"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Infant
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter3)}
-                        onDecrement={() => handleDecrement(setCounter3)}
-                        value={counter3}
-                        setCounter={setCounter3}
-                        name="Infant"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Total
-                      </label>
-                      <div
-                        className="backgroundColor-1 rounded
+                                  onClick={dateDeleting}
+                                ></i>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="col-md col-sm-6 border rounded">
+                <div className="row py-1 row-gap-2 ">
+                  <h6 className="m-0 p-0 pl-2">Pax Information</h6>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Adult
+                    </label>
+                    <Counter
+                      value={state.counter1}
+                      dispatch={dispatch}
+                      counter="counter1"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Child
+                    </label>
+                    <Counter
+                      value={state.counter2}
+                      dispatch={dispatch}
+                      counter="counter2"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Infant
+                    </label>
+                    <Counter
+                      value={state.counter3}
+                      dispatch={dispatch}
+                      counter="counter3"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Total
+                    </label>
+                    <div
+                      className="backgroundColor-1 rounded
                       d-flex justify-content-center align-items-center font-weight-bold"
-                        style={{ height: "25px" }}
-                      >
-                        Total : {PaxTotal}
-                      </div>
+                      style={{ height: "25px" }}
+                    >
+                      Total : {PaxTotal}
                     </div>
                   </div>
-                  <div className="row row-gap-2">
-                    <h6 className="m-0">Room's Information</h6>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Single
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter4)}
-                        onDecrement={() => handleDecrement(setCounter4)}
-                        value={counter4}
-                        setCounter={setCounter4}
-                        name="Single"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Double
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter5)}
-                        onDecrement={() => handleDecrement(setCounter5)}
-                        value={counter5}
-                        setCounter={setCounter5}
-                        name="Double"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Twin
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter6)}
-                        onDecrement={() => handleDecrement(setCounter6)}
-                        value={counter6}
-                        setCounter={setCounter6}
-                        name="Twin"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Triple
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter7)}
-                        onDecrement={() => handleDecrement(setCounter7)}
-                        value={counter7}
-                        setCounter={setCounter7}
-                        name="Triple"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Extra Bed
-                      </label>
-                      <Counter
-                        onIncrement={() => handleIncrement(setCounter8)}
-                        onDecrement={() => handleDecrement(setCounter8)}
-                        value={counter8}
-                        setCounter={setCounter8}
-                        name="ExtraBed"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <label htmlFor="" className="m-0">
-                        Total
-                      </label>
-                      <div
-                        className="backgroundColor-1 rounded
+                </div>
+                <div className="row row-gap-2">
+                  <h6 className="m-0">Room's Information</h6>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Single
+                    </label>
+                    <Counter
+                      value={state.counter4}
+                      dispatch={dispatch}
+                      counter="counter4"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Double
+                    </label>
+                    <Counter
+                      value={state.counter5}
+                      dispatch={dispatch}
+                      counter="counter5"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Twin
+                    </label>
+                    <Counter
+                      value={state.counter6}
+                      dispatch={dispatch}
+                      counter="counter6"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Triple
+                    </label>
+                    <Counter
+                      value={state.counter7}
+                      dispatch={dispatch}
+                      counter="counter7"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Extra Bed
+                    </label>
+                    <Counter
+                      value={state.counter8}
+                      dispatch={dispatch}
+                      counter="counter8"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Total
+                    </label>
+                    <div
+                      className="backgroundColor-1 rounded
                       d-flex justify-content-center align-items-center font-weight-bold"
-                        style={{ height: "25px" }}
-                      >
-                        Total : {RoomsTotal}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
-                    <h6>Suggested Package</h6>
-                    <div className="col-12">
-                      <label>Search:</label>
-                      <input
-                        type="text"
-                        className="form-input-1"
-                        placeholder="Search Package.."
-                        name="Search"
-                        onChange={handleQueryChange}
-                        value={queryFields.SearchPackage}
-                      ></input>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md col-sm-6 border py-2 rounded">
-                  <div className="row row-gap-2">
-                    <h6>Other Detail's</h6>
-                    <div className="col-md-6 col-12">
-                      <label> Operation Person </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="OperationPerson"
-                        onChange={handleQueryChange}
-                        value={queryFields.OperationPerson}
-                      >
-                        <option value={0}>Select Person</option>
-                        <option value={1}>Ansar</option>
-                        <option value={2}>Satendra</option>
-                        <option value={3}>Prasang</option>
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Contract.. Person </label>
-                      <input
-                        type="text"
-                        className="form-input-1"
-                        name="ContractingPerson"
-                        placeholder="Person"
-                        onChange={handleQueryChange}
-                        value={queryFields.ContractingPerson}
-                      />
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Priority </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="Priority"
-                        onChange={handleQueryChange}
-                        value={queryFields.Priority}
-                      >
-                        <option value={0}>Select Priority</option>
-                        <option value={1}>Normal</option>
-                        <option value={2}>Medium</option>
-                        <option value={3}>Hight</option>
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> TAT </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="TAT"
-                        onChange={handleQueryChange}
-                        value={queryFields.TAT}
-                      >
-                        <option value={0}>Select TAT</option>
-                        <option value={1}>24 Hours</option>
-                        <option value={2}>48 Hours</option>
-                        <option value={3}>72 Hours</option>
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Tour Type </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="TourType"
-                        onChange={handleQueryChange}
-                        value={queryFields.TourType}
-                      >
-                        <option value={0}>Select</option>
-                        {tourType.map((value, ind) => {
-                          return (
-                            <option value={ind + 1} key={ind + 1}>
-                              {value.Name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Lead Source </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="LeadSource"
-                        onChange={handleQueryChange}
-                        value={queryFields.LeadSource}
-                      >
-                        <option value={0}>Select</option>
-                        {leadList.map((value, ind) => {
-                          return (
-                            <option value={ind + 1} key={ind + 1}>
-                              {value.Name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Hotel Category </label>
-                      <div className="form-input-1 pl-0 border-0 d-flex justify-content-between align-items-center">
-                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                        <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Lead Referenced </label>
-                      <input
-                        type="text"
-                        className="form-input-1"
-                        name="LeadReferenced"
-                        placeholder="Referenced Id"
-                        onChange={handleQueryChange}
-                        value={queryFields.LeadReferenced}
-                      />
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Hotel Type </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="HotelType"
-                        onChange={handleQueryChange}
-                        value={queryFields.HotelType}
-                      >
-                        <option value={0}>Select Type</option>
-
-                        {hotelType.map((value, ind) => {
-                          return (
-                            <option value={ind + 1} key={ind + 1}>
-                              {value.Name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                    <div className="col-md-6 col-12">
-                      <label> Meal Plan </label>
-                      <select
-                        type="select"
-                        className="form-input-1"
-                        name="MealPlan"
-                        onChange={handleQueryChange}
-                        value={queryFields.MealPlan}
-                      >
-                        <option value={0}>Select Plan</option>
-                        {hotelMeal.map((value, ind) => {
-                          return (
-                            <option value={ind + 1} key={ind + 1}>
-                              {value.Name}
-                            </option>
-                          );
-                        })}
-                      </select>
+                      style={{ height: "25px" }}
+                    >
+                      Total : {RoomsTotal}
                     </div>
                   </div>
                 </div>
               </div>
-            </Form>
-          </Formik>
+              <div className="col-md col-sm-6 border py-2 rounded">
+                <div className="row row-gap-2">
+                  <h6>Suggested Package</h6>
+                  <div className="col-12">
+                    <label>Search:</label>
+                    <input
+                      type="text"
+                      className="form-input-1"
+                      placeholder="Search Package.."
+                      name="Search"
+                      onChange={handleQueryChange}
+                      value={queryFields.SearchPackage}
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md col-sm-6 border py-2 rounded">
+                <div className="row row-gap-2">
+                  <h6>Other Detail's</h6>
+                  <div className="col-md-6 col-12">
+                    <label> Operation Person </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="OperationPerson"
+                      onChange={handleQueryChange}
+                      value={queryFields.OperationPerson}
+                    >
+                      <option value={0}>Select Person</option>
+                      <option value={1}>Ansar</option>
+                      <option value={2}>Satendra</option>
+                      <option value={3}>Prasang</option>
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Contract.. Person </label>
+                    <input
+                      type="text"
+                      className="form-input-1"
+                      name="ContractingPerson"
+                      placeholder="Person"
+                      onChange={handleQueryChange}
+                      value={queryFields.ContractingPerson}
+                    />
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Priority </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="Priority"
+                      onChange={handleQueryChange}
+                      value={queryFields.Priority}
+                    >
+                      <option value={0}>Select Priority</option>
+                      <option value={1}>Normal</option>
+                      <option value={2}>Medium</option>
+                      <option value={3}>Hight</option>
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> TAT </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="TAT"
+                      onChange={handleQueryChange}
+                      value={queryFields.TAT}
+                    >
+                      <option value={0}>Select TAT</option>
+                      <option value={1}>24 Hours</option>
+                      <option value={2}>48 Hours</option>
+                      <option value={3}>72 Hours</option>
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Tour Type </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="TourType"
+                      onChange={handleQueryChange}
+                      value={queryFields.TourType}
+                    >
+                      <option value={0}>Select</option>
+                      {tourType.map((value, ind) => {
+                        return (
+                          <option value={ind + 1} key={ind + 1}>
+                            {value.Name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Lead Source </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="LeadSource"
+                      onChange={handleQueryChange}
+                      value={queryFields.LeadSource}
+                    >
+                      <option value={0}>Select</option>
+                      {leadList.map((value, ind) => {
+                        return (
+                          <option value={ind + 1} key={ind + 1}>
+                            {value.Name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Hotel Category </label>
+                    <div className="form-input-1 pl-0 border-0 d-flex justify-content-between align-items-center">
+                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Lead Referenced </label>
+                    <input
+                      type="text"
+                      className="form-input-1"
+                      name="LeadReferenced"
+                      placeholder="Referenced Id"
+                      onChange={handleQueryChange}
+                      value={queryFields.LeadReferenced}
+                    />
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Hotel Type </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="HotelType"
+                      onChange={handleQueryChange}
+                      value={queryFields.HotelType}
+                    >
+                      <option value={0}>Select Type</option>
+
+                      {hotelType.map((value, ind) => {
+                        return (
+                          <option value={ind + 1} key={ind + 1}>
+                            {value.Name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <div className="col-md-6 col-12">
+                    <label> Meal Plan </label>
+                    <select
+                      type="select"
+                      className="form-input-1"
+                      name="MealPlan"
+                      onChange={handleQueryChange}
+                      value={queryFields.MealPlan}
+                    >
+                      <option value={0}>Select Plan</option>
+                      {hotelMeal.map((value, ind) => {
+                        return (
+                          <option value={ind + 1} key={ind + 1}>
+                            {value.Name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          {/* </Formik> */}
         </div>
       </div>
     </>

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Counter = ({ value, onIncrement, onDecrement, setCounter, name }) => {
+const Counter = ({ value, dispatch, counter }) => {
   return (
     <>
       <div
@@ -8,7 +6,7 @@ const Counter = ({ value, onIncrement, onDecrement, setCounter, name }) => {
         style={{ height: "25px" }}
       >
         <div
-          onClick={onDecrement}
+          onClick={() => dispatch({ type: "DECREMENT", counter })}
           className="col backgroundColor-2 rounded-left
                     text-light cursor-pointer h-100
                     d-flex align-items-center justify-content-center px-1"
@@ -21,15 +19,14 @@ const Counter = ({ value, onIncrement, onDecrement, setCounter, name }) => {
           d-flex align-items-center justify-content-center px-1"
         >
           <input
-            name={name}
             value={value}
             className="h-100 w-100 border-0 bg-transparent outline-none"
             readOnly
           />
         </div>
-        
+
         <div
-          onClick={onIncrement}
+          onClick={() => dispatch({ type: "INCREMENT", counter })}
           className="col backgroundColor-2 rounded-right
                 text-light cursor-pointer h-100
                 d-flex align-items-center justify-content-center px-1"
@@ -38,36 +35,36 @@ const Counter = ({ value, onIncrement, onDecrement, setCounter, name }) => {
         </div>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center pt-1" >
+      <div className="d-flex justify-content-between align-items-center pt-1">
         <div
           className="py-0 border rounded cursor-pointer green-hover padding-x 
           d-flex justify-content-center align-items-center"
-          onClick={() => setCounter(1)}
-          style={{height:'19px'}}
+          onClick={() => dispatch({ type:"SET",value:1, counter })}
+          style={{ height: "19px" }}
         >
           1
         </div>
         <div
           className="py-0 border rounded cursor-pointer green-hover padding-x
            d-flex justify-content-center align-items-center"
-          onClick={() => setCounter(2)}
-          style={{height:'19px'}}
+          onClick={() => dispatch({ type:"SET",value:2, counter })}
+          style={{ height: "19px" }}
         >
           2
         </div>
         <div
           className="py-0 border rounded cursor-pointer green-hover padding-x 
           d-flex justify-content-center align-items-center"
-          onClick={() => setCounter(3)}
-          style={{height:'19px'}}
+          onClick={() => dispatch({ type: "SET",value:3, counter })}
+          style={{ height: "19px" }}
         >
           3
         </div>
         <div
           className="py-0 border rounded cursor-pointer green-hover padding-x 
           d-flex justify-content-center align-items-center"
-          onClick={() => setCounter(4)}
-          style={{height:'19px'}}
+          onClick={() => dispatch({ type: "SET",value:4, counter })}
+          style={{ height: "19px" }}
         >
           4
         </div>
