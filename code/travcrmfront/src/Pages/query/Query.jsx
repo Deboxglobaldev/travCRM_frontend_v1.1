@@ -1,5 +1,4 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
 import { eachDayOfInterval, format } from "date-fns";
 import {
@@ -292,7 +291,7 @@ const Query = () => {
     });
   }, [state]);
 
-  // Data Set into input field from localstorage
+  // Data Set into input field from localstorage and remove on Submit and Clear;
   useEffect(() => {
     const {
       TravelDate,PaxInfo,RoomInfo,CompanyInfo,AddEmail,
