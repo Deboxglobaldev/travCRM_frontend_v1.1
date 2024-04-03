@@ -12,11 +12,11 @@ import {
 import axios from "axios";
 import "jquery";
 import "select2";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Counter from "./Counter";
 
 const Query = () => {
-
+  const navigate = useNavigate();
   const [TravelDate, setTravelDate] = useState({
     Type: "",
     FromDate: "",
@@ -55,13 +55,17 @@ const Query = () => {
     HotelType: "",
     MealPlan: "",
   });
-
+  console.log("JSON Values...", {
+    ...queryFields,
+    TravelDate,
+    PaxInfo,
+    RoomInfo,
+  });
   const [hotelType, setHotelType] = useState([]);
   const [hotelMeal, setHotelMeal] = useState([]);
   const [leadList, setLeadList] = useState([]);
   const [tourType, setTourType] = useState([]);
   const [toDate, setToDate] = useState();
-  const [isSaving, setIsSaving] = useState(false);
   const [dateArray, setDateArray] = useState([]);
   const [counter1, setCounter1] = useState(0);
   const [counter2, setCounter2] = useState(0);
@@ -75,15 +79,13 @@ const Query = () => {
   const [RoomsTotal, setRoomsTotal] = useState(0);
 
   const data = localStorage.getItem("Query");
-
   const storedData = JSON.parse(data);
   // console.log(storedData);
 
-
-  console.log('hotelType', hotelType)
-  console.log('hotelMeal', hotelMeal)
-  console.log('laedList', leadList)
-  console.log('tourtype', tourType)
+  // console.log('hotelType', hotelType)
+  // console.log('hotelMeal', hotelMeal)
+  // console.log('laedList', leadList)
+  // console.log('tourtype', tourType)
   // Fetching Data From Api for Dropdown in Query
   useEffect(() => {
     const getDataToServer = async () => {
@@ -96,10 +98,7 @@ const Query = () => {
           "hotelmealplanlist",
           hotelMealInitialValue
         );
-        const lead = await axiosOther.post(
-          "leadlist", 
-          leadSourceInitialValue
-        );
+        const lead = await axiosOther.post("leadlist", leadSourceInitialValue);
         // const tour = await axiosOther.post(
         //   "tourlist",
         //   tourtypeInitialValue
@@ -117,11 +116,10 @@ const Query = () => {
   }, []);
 
   // Handling Submit Query Data
-  const handleSubmit = async (postData) => {
+  const handleSubmit = async () => {
     // console.log('Post Data', postData);
-    console.log("Query Value", queryFields);
-    if (document.activeElement.name === "SaveButton"){
-      setIsSaving(true);
+    // console.log("Query Value", queryFields);
+    if (document.activeElement.name === "SaveButton") {
       localStorage.setItem(
         "Query",
         JSON.stringify({
@@ -131,17 +129,20 @@ const Query = () => {
           RoomInfo,
         })
       );
-      console.log("LocalStorage Data", storedData);
-    } else if (document.activeElement.name === "SubmitButton") {
-
-      localStorage.removeItem('Query');
+      navigate("/querylist");
+      // console.log("LocalStorage Data", storedData);
+    }else if(document.activeElement.name === "ClearButton"){
+      localStorage.removeItem("Query");
+    }else if (document.activeElement.name === "SubmitButton") {
+      localStorage.removeItem("Query");
+      console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
 
       try {
         const response = await axios.post(
           "http://127.0.0.1:8000/api/addupdatequerymaster",
-          { postData }
+          { ...queryFields, TravelDate, PaxInfo, RoomInfo }
         );
-        console.log(response);
+        // console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -265,38 +266,38 @@ const Query = () => {
   // Data Set into input field from localstorage
   useEffect(() => {
     setTravelDate({
-      Type: storedData?.TravelDate?.Type,
-      FromDate: storedData?.TravelDate?.FromDate,
-      ToDate: storedData?.TravelDate?.ToDate,
-      TotalNights:storedData? storedData?.TravelDate?.TotalNights:'',
-      SeasonType: storedData?.TravelDate?.SeasonType,
-      SeasonYear: storedData?.TravelDate?.SeasonYear,
+      Type: storedData?.TravelDate?.Type ? storedData?.TravelDate?.Type : "",
+      FromDate: storedData?.TravelDate?.FromDate ? storedData?.TravelDate?.FromDate : "",
+      ToDate: storedData?.TravelDate?.ToDate ? storedData?.TravelDate?.ToDate : "",
+      TotalNights: storedData?.TravelDate?.TotalNights ? storedData?.TravelDate?.TotalNights : "",
+      SeasonType: storedData?.TravelDate?.SeasonType ? storedData?.TravelDate?.SeasonType : "",
+      SeasonYear: storedData?.TravelDate?.SeasonType ? storedData?.TravelDate?.SeasonYear : "",
     });
-    setCounter1(storedData? storedData?.PaxInfo?.Adult :0);
-    setCounter2(storedData? storedData?.PaxInfo?.Child :0);
-    setCounter3(storedData? storedData?.PaxInfo?.Infant:0);
-    setCounter4(storedData? storedData?.RoomInfo?.Single:0);
-    setCounter5(storedData? storedData?.RoomInfo?.Double:0);
-    setCounter6(storedData? storedData?.RoomInfo?.Twin:0);
-    setCounter7(storedData? storedData?.RoomInfo?.Triple:0);
-    setCounter8(storedData? storedData?.RoomInfo?.ExtraBed:0);
+    setCounter1(storedData?.PaxInfo?.Adult ? storedData?.PaxInfo?.Adult : 0);
+    setCounter2(storedData?.PaxInfo?.Child ? storedData?.PaxInfo?.Child : 0);
+    setCounter3(storedData?.PaxInfo?.Infant ? storedData?.PaxInfo?.Infant : 0);
+    setCounter4(storedData?.RoomInfo?.Single ? storedData?.RoomInfo?.Single : 0);
+    setCounter5(storedData?.RoomInfo?.Double ? storedData?.RoomInfo?.Double : 0);
+    setCounter6(storedData?.RoomInfo?.Twin ? storedData?.RoomInfo?.Twin : 0);
+    setCounter7(storedData?.RoomInfo?.Triple ? storedData?.RoomInfo?.Triple : 0);
+    setCounter8(storedData?.RoomInfo?.ExtraBed ? storedData?.RoomInfo?.ExtraBed : 0);
     setQueryFields({
-      CompanyInfo: storedData?.CompanyInfo,
-      AddEmail: storedData?.AddEmail,
-      LeadPax: storedData?.LeadPax,
-      Subject: storedData?.Subject,
-      AdditionalInfo: storedData?.AdditionalInfo,
-      SearchPackage: storedData?.SearchPackage,
-      OperationPerson: storedData?.OperationPerson,
-      ContractPerson: storedData?.ContractPerson,
-      Priority: storedData?.Priority,
-      TAT: storedData?.TAT,
-      TourType: storedData?.TourType,
-      LeadSource: storedData?.LeadSource,
-      HotelCategory: storedData?.HotelCategory,
-      LeadReferenced: storedData?.LeadReferenced,
-      HotelType: storedData?.HotelType,
-      MealPlan: storedData?.MealPlan,
+      CompanyInfo: storedData?.CompanyInfo ? storedData?.CompanyInfo : "",
+      AddEmail: storedData?.AddEmail ? storedData?.AddEmail : "",
+      LeadPax: storedData?.LeadPax ? storedData?.LeadPax : "",
+      Subject: storedData?.Subject ? storedData?.Subject : "",
+      AdditionalInfo: storedData?.AdditionalInfo ? storedData?.AdditionalInfo : "",
+      SearchPackage: storedData?.SearchPackage ? storedData?.SearchPackage : "",
+      OperationPerson: storedData?.OperationPerson ? storedData?.OperationPerson : "",
+      ContractPerson: storedData?.ContractPerson ? storedData?.ContractPerson : "",
+      Priority: storedData?.Priority ? storedData?.Priority : "",
+      TAT: storedData?.TAT ? storedData?.TAT : "",
+      TourType: storedData?.TourType ? storedData?.TourType : "",
+      LeadSource: storedData?.LeadSource ? storedData?.LeadSource : "",
+      HotelCategory: storedData?.HotelCategory ? storedData?.HotelCategory : "",
+      LeadReferenced: storedData?.LeadReferenced ? storedData?.LeadReferenced : "",
+      HotelType: storedData?.HotelType ? storedData?.HotelType : "",
+      MealPlan: storedData?.MealPlan ? storedData?.MealPlan : "",
     });
   }, []);
 
@@ -322,6 +323,13 @@ const Query = () => {
                     name="SaveButton"
                   >
                     Save
+                  </button>
+                  <button
+                    className="blue-button"
+                    type="submit"
+                    name="ClearButton"
+                  >
+                    Clear
                   </button>
                   <button
                     className="green-button"
@@ -712,11 +720,13 @@ const Query = () => {
                         value={queryFields.TourType}
                       >
                         <option value={0}>Select</option>
-                        {
-                          tourType.map((value, ind)=>{
-                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
-                          })
-                        }
+                        {tourType.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -729,11 +739,13 @@ const Query = () => {
                         value={queryFields.LeadSource}
                       >
                         <option value={0}>Select</option>
-                        {
-                          leadList.map((value, ind)=>{
-                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
-                          })
-                        }
+                        {leadList.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -767,10 +779,14 @@ const Query = () => {
                         value={queryFields.HotelType}
                       >
                         <option value={0}>Select Type</option>
-                      
-                      {hotelType.map((value, ind)=>{
-                          return <option value={ind+1} key={ind+1}>{value.Name}</option>
-                      })}
+
+                        {hotelType.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                     <div className="col-md-6 col-12">
@@ -783,12 +799,13 @@ const Query = () => {
                         value={queryFields.MealPlan}
                       >
                         <option value={0}>Select Plan</option>
-                        {
-                          hotelMeal.map((value, ind)=>{
-                            return <option value={ind+1} key={ind+1}>{value.Name}</option>
-                          })
-                        }
-                        
+                        {hotelMeal.map((value, ind) => {
+                          return (
+                            <option value={ind + 1} key={ind + 1}>
+                              {value.Name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                   </div>
