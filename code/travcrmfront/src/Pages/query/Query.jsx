@@ -325,7 +325,7 @@ const Query = () => {
                     Save
                   </button>
                   <button
-                    className="blue-button"
+                    className="orange-button"
                     type="submit"
                     name="ClearButton"
                   >
