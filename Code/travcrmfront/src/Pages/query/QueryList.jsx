@@ -136,9 +136,7 @@ const QueryList = () => {
       },
     },
   ];
-
-  console.log(storedData);
-
+  
   return (
     <>
       <Layout>

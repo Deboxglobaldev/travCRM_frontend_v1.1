@@ -15,14 +15,11 @@ const Counter = ({ value, dispatch, counter }) => {
         </div>
 
         <div
-          className="col backgroundColor-1  h-100
+          className="col backgroundColor-1
+          text-dark h-100
           d-flex align-items-center justify-content-center px-1"
         >
-          <input
-            value={value}
-            className="h-100 w-100 border-0 bg-transparent outline-none"
-            readOnly
-          />
+          {value}
         </div>
 
         <div

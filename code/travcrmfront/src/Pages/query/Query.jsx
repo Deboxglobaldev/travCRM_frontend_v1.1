@@ -1,5 +1,4 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import { QueryinputInitialValue, QueryInputSchema } from "./QuerySchema";
 import { axiosOther } from "../../http/axios/axios_new";
 import { eachDayOfInterval, format } from "date-fns";
@@ -72,6 +71,7 @@ const Query = () => {
   const [tourType, setTourType] = useState([]);
   const [toDate, setToDate] = useState();
   const [dateArray, setDateArray] = useState([]);
+  const [emptyData, setEmptyData] = useState(false);
 
   const initialState = {
     counter1: 0,
@@ -93,15 +93,15 @@ const Query = () => {
           [action.counter]: Math.max(0, state[action.counter] - 1),
         };
       case "SET":
-        return { ...state, [action.counter]: (state[action.counter] = action.value)};
+        return {
+          ...state,
+          [action.counter]: (state[action.counter] = action.value),
+        };
       default:
         return state;
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // console.log("Reducer State", state);
-
 
   const [PaxTotal, setPaxTotal] = useState(0);
   const [RoomsTotal, setRoomsTotal] = useState(0);
@@ -153,22 +153,29 @@ const Query = () => {
           RoomInfo,
         })
       );
+      console.log("SAVE-BUTTON-RENDERED");
       navigate("/querylist");
     } else if (document.activeElement.name === "ClearButton") {
       localStorage.removeItem("Query");
+      console.log("CLEAR-BUTTON-RENDERED");
+      setEmptyData(!emptyData);
     } else if (document.activeElement.name === "SubmitButton") {
       localStorage.removeItem("Query");
-
+      console.log("SUBMIT-BUTTON-RENDERED");
+      
+      
+      setEmptyData(!emptyData);
       try {
         await validationSchema.validate(
           { ...queryFields, TravelDate, PaxInfo, RoomInfo },
           { abortEarly: false }
-        );
-        console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
-        const response = await axios.post(
-          "http://127.0.0.1:8000/api/addupdatequerymaster",
-          { ...queryFields, TravelDate, PaxInfo, RoomInfo }
-        );
+          );
+          console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
+          const response = await axios.post(
+            "http://127.0.0.1:8000/api/addupdatequerymaster",
+            { ...queryFields, TravelDate, PaxInfo, RoomInfo }
+            );
+        localStorage.removeItem("Query");
       } catch (validationErrors) {
         const formattedErrors = {};
         validationErrors.inner.forEach((error) => {
@@ -250,13 +257,19 @@ const Query = () => {
 
   // Update Total Values in Pax and Rooms
   const updateTotal = () => {
-    const {counter1, counter2, counter3,
-           counter4, counter5, counter6, counter7, counter8
-          } = state;
-    setPaxTotal(counter1 + counter2 +counter3);
+    const {
+      counter1,
+      counter2,
+      counter3,
+      counter4,
+      counter5,
+      counter6,
+      counter7,
+      counter8,
+    } = state;
+    setPaxTotal(counter1 + counter2 + counter3);
     setRoomsTotal(counter4 + counter5 + counter6 + counter7 + counter8);
   };
-
 
   // Set counter value into json
   useEffect(() => {
@@ -281,60 +294,56 @@ const Query = () => {
 
   // Data Set into input field from localstorage
   useEffect(() => {
+    const {
+      TravelDate,PaxInfo,RoomInfo,CompanyInfo,AddEmail,
+      LeadPax,Subject,AdditionalInfo,SearchPackage,
+      OperationPerson,ContractPerson,Priority,TAT,TourType,
+      LeadSource,HotelCategory,LeadReferenced,HotelType,MealPlan,
+    } = storedData ?? {};
+    const { Type, FromDate, ToDate, TotalNights, SeasonType, SeasonYear } =
+      TravelDate ?? {};
+    const { Adult, Child, Infant } = PaxInfo ?? {};
+    const { Single, Double, Twin, Triple, ExtraBed } = RoomInfo ?? {};
     setTravelDate({
-      Type: storedData?.TravelDate?.Type ? storedData?.TravelDate?.Type : "",
-      FromDate: storedData?.TravelDate?.FromDate
-        ? storedData?.TravelDate?.FromDate
-        : "",
-      ToDate: storedData?.TravelDate?.ToDate
-        ? storedData?.TravelDate?.ToDate
-        : "",
-      TotalNights: storedData?.TravelDate?.TotalNights
-        ? storedData?.TravelDate?.TotalNights
-        : "",
-      SeasonType: storedData?.TravelDate?.SeasonType
-        ? storedData?.TravelDate?.SeasonType
-        : "",
-      SeasonYear: storedData?.TravelDate?.SeasonType
-        ? storedData?.TravelDate?.SeasonYear
-        : "",
+      Type: Type ? Type : "",
+      FromDate: FromDate ? FromDate : "",
+      ToDate: ToDate ? ToDate : "",
+      TotalNights: TotalNights ? TotalNights : "",
+      SeasonType: SeasonType ? SeasonType : "",
+      SeasonYear: SeasonType ? SeasonYear : "",
     });
-    dispatch({type:"SET", value:storedData?.PaxInfo?.Adult ? storedData?.PaxInfo?.Adult : 0, counter:"counter1"});
-    dispatch({type:"SET", value:storedData?.PaxInfo?.Child ? storedData?.PaxInfo?.Child : 0, counter:"counter2"});
-    dispatch({type:"SET", value:storedData?.PaxInfo?.Infant ? storedData?.PaxInfo?.Infant : 0, counter:"counter3"});
-    dispatch({type:"SET", value:storedData?.RoomInfo?.Single ? storedData?.RoomInfo?.Single : 0, counter: "counter4"});
-    dispatch({type:"SET", value:storedData?.RoomInfo?.Double ? storedData?.RoomInfo?.Double : 0, counter:"counter5"});
-    dispatch({type:"SET", value:storedData?.RoomInfo?.Twin ? storedData?.RoomInfo?.Twin : 0, counter:"counter6"});
-    dispatch({type:"SET", value:storedData?.RoomInfo?.Triple ? storedData?.RoomInfo?.Triple : 0, counter:"counter7"} );
-    dispatch({type:"SET", value:storedData?.RoomInfo?.ExtraBed ? storedData?.RoomInfo?.ExtraBed : 0,  counter:"counter8"});
+    dispatch({ type: "SET", value: Adult ? Adult : 0, counter: "counter1" });
+    dispatch({ type: "SET", value: Child ? Child : 0, counter: "counter2" });
+    dispatch({ type: "SET", value: Infant ? Infant : 0, counter: "counter3" });
+    dispatch({ type: "SET", value: Single ? Single : 0, counter: "counter4" });
+    dispatch({ type: "SET", value: Double ? Double : 0, counter: "counter5" });
+    dispatch({ type: "SET", value: Twin ? Twin : 0, counter: "counter6" });
+    dispatch({ type: "SET", value: Triple ? Triple : 0, counter: "counter7" });
+    dispatch({
+      type: "SET",
+      value: ExtraBed ? ExtraBed : 0,
+      counter: "counter8",
+    });
 
     setQueryFields({
-      CompanyInfo: storedData?.CompanyInfo ? storedData?.CompanyInfo : "",
-      AddEmail: storedData?.AddEmail ? storedData?.AddEmail : "",
-      LeadPax: storedData?.LeadPax ? storedData?.LeadPax : "",
-      Subject: storedData?.Subject ? storedData?.Subject : "",
-      AdditionalInfo: storedData?.AdditionalInfo
-        ? storedData?.AdditionalInfo
-        : "",
-      SearchPackage: storedData?.SearchPackage ? storedData?.SearchPackage : "",
-      OperationPerson: storedData?.OperationPerson
-        ? storedData?.OperationPerson
-        : "",
-      ContractPerson: storedData?.ContractPerson
-        ? storedData?.ContractPerson
-        : "",
-      Priority: storedData?.Priority ? storedData?.Priority : "",
-      TAT: storedData?.TAT ? storedData?.TAT : "",
-      TourType: storedData?.TourType ? storedData?.TourType : "",
-      LeadSource: storedData?.LeadSource ? storedData?.LeadSource : "",
-      HotelCategory: storedData?.HotelCategory ? storedData?.HotelCategory : "",
-      LeadReferenced: storedData?.LeadReferenced
-        ? storedData?.LeadReferenced
-        : "",
-      HotelType: storedData?.HotelType ? storedData?.HotelType : "",
-      MealPlan: storedData?.MealPlan ? storedData?.MealPlan : "",
+      CompanyInfo: CompanyInfo ? CompanyInfo : "",
+      AddEmail: AddEmail ? AddEmail : "",
+      LeadPax: LeadPax ? LeadPax : "",
+      Subject: Subject ? Subject : "",
+      AdditionalInfo: AdditionalInfo ? AdditionalInfo : "",
+      SearchPackage: SearchPackage ? SearchPackage : "",
+      OperationPerson: OperationPerson ? OperationPerson : "",
+      ContractPerson: ContractPerson ? ContractPerson : "",
+      Priority: Priority ? Priority : "",
+      TAT: TAT ? TAT : "",
+      TourType: TourType ? TourType : "",
+      LeadSource: LeadSource ? LeadSource : "",
+      HotelCategory: HotelCategory ? HotelCategory : "",
+      LeadReferenced: LeadReferenced ? LeadReferenced : "",
+      HotelType: HotelType ? HotelType : "",
+      MealPlan: MealPlan ? MealPlan : "",
     });
-  }, []);
+  }, [emptyData]);
 
   return (
     <>
