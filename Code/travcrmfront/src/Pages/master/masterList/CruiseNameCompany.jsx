@@ -159,7 +159,7 @@ const CruiseNameCompany = () => {
                           name="Name"
                         />
                         <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
+                          <ErrorMessage name="Name"/>
                         </span>
                       </div>
                       <div className="col-sm-6">

@@ -13,6 +13,7 @@ import "jquery";
 import "select2";
 import { NavLink, useNavigate } from "react-router-dom";
 import Counter from "./Counter";
+import toast, { Toaster } from "react-hot-toast";
 
 const Query = () => {
   const navigate = useNavigate();
@@ -157,12 +158,12 @@ const Query = () => {
     } else if (document.activeElement.name === "ClearButton") {
       localStorage.removeItem("Query");
       console.log("CLEAR-BUTTON-RENDERED");
+      toast.success('Query Form Cleared !');  
       setEmptyData(!emptyData);
     } else if (document.activeElement.name === "SubmitButton") {
       localStorage.removeItem("Query");
       console.log("SUBMIT-BUTTON-RENDERED");
-      
-      
+      toast.success('Query Submitted Successfully!');
       setEmptyData(!emptyData);
       try {
         await validationSchema.validate(
@@ -377,6 +378,7 @@ const Query = () => {
                 >
                   Submit
                 </button>
+                <Toaster />
                 <NavLink to="/querylist" className={"gray-button py-2"}>
                   Back
                 </NavLink>
