@@ -8,7 +8,7 @@ import { login } from "../../reducer/authReducers";
 import { axiosNew } from "../../http/axios/axios_new";
 
 const Login = () => {
-  
+
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
