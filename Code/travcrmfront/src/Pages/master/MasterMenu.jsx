@@ -653,7 +653,7 @@ const MasterMenu = () => {
                       <span className="pl-1">Itenarary Overview</span>
                     </div>
                   </NavLink>
-                  <NavLink to="/master/roomtype">
+                  <NavLink to="/master/proposalsetting">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/business-proposal.png" alt="image" />
                       <span className="pl-1">Proposal Setting</span>
@@ -661,7 +661,7 @@ const MasterMenu = () => {
                   </NavLink>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/amenties">
+                  <NavLink to="/master/emergencydetails">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/resume.png" alt="image" />
                       <span className="pl-1">Emergency Details</span>
@@ -722,7 +722,7 @@ const MasterMenu = () => {
                   
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/roomtype">
+                  <NavLink to="/master/commissionmaster">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/commission.png" alt="image" />
                       <span className="pl-1">Commission Master</span>

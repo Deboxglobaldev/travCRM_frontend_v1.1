@@ -21,7 +21,7 @@ const FleetMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("countrylist", postData);
+        const { data } = await axiosOther.post("fleetmasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -126,7 +126,7 @@ const FleetMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Fleet"}
-                  apiurl={"addupdatecountry"}
+                  apiurl={"addupdatefleetmaster"}
                   initialValues={countryInitialValue}
                   validationSchema={countryValidationSchema}
                   forEdit={editData}

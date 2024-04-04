@@ -127,7 +127,7 @@ const Query = () => {
         //   "tourlist",
         //   tourtypeInitialValue
         // );
-        // console.log('TourType', tour)
+        // console.log('TourType', tour);
         setHotelType(type.data.DataList);
         setHotelMeal(meal.data.DataList);
         setLeadList(lead.data.DataList);
@@ -155,12 +155,12 @@ const Query = () => {
       );
       console.log("SAVE-BUTTON-RENDERED");
       navigate("/querylist");
-    } else if (document.activeElement.name === "ClearButton") {
+    } else if (document.activeElement.name === "ClearButton"){
       localStorage.removeItem("Query");
       console.log("CLEAR-BUTTON-RENDERED");
       toast.success('Query Form Cleared !');  
       setEmptyData(!emptyData);
-    } else if (document.activeElement.name === "SubmitButton") {
+    } else if (document.activeElement.name === "SubmitButton"){
       localStorage.removeItem("Query");
       console.log("SUBMIT-BUTTON-RENDERED");
       toast.success('Query Submitted Successfully!');
@@ -364,13 +364,13 @@ const Query = () => {
                 <button className="blue-button" type="submit" name="SaveButton">
                   Save
                 </button>
-                <button
+                {/* <button
                   className="orange-button"
                   type="submit"
                   name="ClearButton"
                 >
                   Clear
-                </button>
+                </button> */}
                 <button
                   className="green-button"
                   type="submit"

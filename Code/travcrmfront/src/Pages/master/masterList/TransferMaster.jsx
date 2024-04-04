@@ -20,7 +20,7 @@ const TransferMaster = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("transfermasterlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -131,7 +131,7 @@ const TransferMaster = () => {
                 </NavLink>
                 <Model
                   heading={"Add Vehicle"}
-                  apiurl={"addupdatecity"}
+                  apiurl={"addupdatetransfermaster"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
                   forEdit={editData}

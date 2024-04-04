@@ -230,5 +230,4 @@ const BusinessType = () => {
     </>
   );
 };
-
 export default BusinessType;

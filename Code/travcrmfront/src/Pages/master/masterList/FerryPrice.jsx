@@ -20,7 +20,7 @@ const FerryPrice = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("citylist", postData);
+        const { data } = await axiosOther.post("ferryprice", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -129,7 +129,7 @@ const FerryPrice = () => {
                 </NavLink>
                 <Model
                   heading={"Add Ferry Price"}
-                  apiurl={"addupdatecity"}
+                  apiurl={"addupdateferryprice"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
                   forEdit={editData}

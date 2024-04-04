@@ -25,7 +25,7 @@ const TourEscort = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("monumentmasterlist", postData);
+        const { data } = await axiosOther.post("tourescortlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
@@ -164,7 +164,7 @@ const TourEscort = () => {
                 </NavLink>
                 <Model
                   heading={"Add Tour Escort / Tour Manager"}
-                  apiurl={"addupdatemonumentmaster"}
+                  apiurl={"addupdatetourescort"}
                   initialValues={tourEscortInitialValue}
                   validationSchema={tourEscortValidationSchema}
                   forEdit={editData}

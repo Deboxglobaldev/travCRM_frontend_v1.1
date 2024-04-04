@@ -121,7 +121,7 @@ const HotelAdditional = () => {
                 </NavLink>
                 <Model
                   heading={"Add Additional"}
-                  apiurl={"addupdatehoteladdition"}
+                  apiurl={"addupdatehoteladditional"}
                   initialValues={hotelAdditonalInitialValue}
                   validationSchema={hotelAdditionalValidationSchema}
                   forEdit={editData}

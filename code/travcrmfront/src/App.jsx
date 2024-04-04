@@ -89,6 +89,9 @@ import ClientComm from "./Pages/query/ClientComm.jsx";
 import SupplierComm from "./Pages/query/SupplierComm.jsx";
 import TourExtension from "./Pages/query/TourExtension.jsx";
 import HotelMasterCreate from "./Pages/master/masterList/HotelMasterCreate.jsx";
+import EmergencyDetails from "./Pages/master/masterList/EmergencyDetails.jsx";
+import ProposalSetting from "./Pages/master/masterList/ProposalSetting.jsx";
+import CommissionMaster from "./Pages/master/masterList/CommissionMaster.jsx";
 
 const App = () => {
   return (
@@ -164,10 +167,13 @@ const App = () => {
           <Route path="/master/ferryseat" element={<FerrySeat/>}></Route>
           <Route path="/master/ferryprice" element={<FerryPrice/>}></Route>
           <Route path="/master/itenararyoverview" element={<ItenaryOverview/>}></Route>
+          <Route path="/master/emergencydetails" element={<EmergencyDetails/>}></Route>
           <Route path="/master/lettermaster" element={<LetterMaster/>}></Route>
+          <Route path="/master/proposalsetting" element={<ProposalSetting/>}></Route>
           <Route path="/master/fit" element={<FIT/>}></Route>
           <Route path="/master/git" element={<GIT/>}></Route>
           <Route path="/master/currencymaster" element={<CurrencyMaster/>}></Route>
+          <Route path="/master/commissionmaster" element={<CommissionMaster/>}></Route>
           <Route path="/master/taxmaster" element={<TaxMaster/>}></Route>
           <Route path="/master/expensetype" element={<ExpenseType/>}></Route>
           <Route path="/master/expensehead" element={<ExpenseHead/>}></Route>
