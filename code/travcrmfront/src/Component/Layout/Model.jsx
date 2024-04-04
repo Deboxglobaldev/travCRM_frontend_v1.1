@@ -18,13 +18,13 @@ const Model = ({
   const closeModel = () => {
     document.getElementById("cancel").click();
   };
-  
+
   const handleSubmit = async (values, { resetForm }) => {
 
     try {
       const response = await axiosOther.post(apiurl, values);
       if (response.data.Status) {
-        toast.success(response.data.Message);toast.success(response.data.Message);toast.success(response.data.Message);
+        toast.success(response.data.Message);
         console.log(response);
         console.log(response.config.data);
         resetForm();

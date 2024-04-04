@@ -4,8 +4,11 @@ import { NavLink } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import * as XLSX from "xlsx";
+import LinearWithValueLabel from "../../../hooks/LinearWithValueLabel";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HotelMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -18,6 +21,7 @@ const HotelMaster = () => {
   const [excelToJson, setExcelToJson] = useState("");
   const [file, setFile] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [linearStatus, setLinearStatus] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -77,7 +81,9 @@ const HotelMaster = () => {
         console.log("Diffrenece array length: ",difference.length);
         if(difference.length>0){
           setErrorMessage("Header Name: [ "+difference+" ] is not matched with template. Please upload correct one.");
+
         }else{
+          toast.success("Header Matched");
           setExcelToJson(JSON.stringify(json, null, 2));
         }
 
@@ -88,13 +94,33 @@ const HotelMaster = () => {
     }
   };
 
-  const handleSubmitFile = () => {
+  const handleSubmitFile = async () => {
     const extension = file?.name?.split(".")?.pop()?.toLowerCase();
     if ((excelToJson !== "" && extension == "xls") || extension == "xlsx") {
       setErrorMessage("");
-      console.log(excelToJson);
+      //console.log(excelToJson);
       setFile({ [file.name]: "" });
-      toast.success("File Uploaded Successfully.!");
+      document.getElementById("cancel").click();
+      toast.info("Data uploading in process..");
+
+
+      setLinearStatus(true);
+
+      try{
+        const response = await axiosOther.post('importhotel', excelToJson);
+        if (response) {
+          setTimeout(() => {
+            setLinearStatus(false);
+          },5000)
+
+        } else {
+
+        }
+      }catch(error){
+        console.log(error);
+      }
+
+
     } else {
       setErrorMessage("Upload an excel file.");
     }
@@ -165,6 +191,7 @@ const HotelMaster = () => {
             >
               <div className="col-xl-10 d-flex align-items-center">
                 <h5 className="card-title d-none d-sm-block">Hotel Master</h5>
+                <ToastContainer />
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -217,7 +244,6 @@ const HotelMaster = () => {
                       </div>
                       <div className="modal-body">
                         <div className="col-5">
-                          <Toaster />
                           <label htmlFor="">Upload File</label>
                           <input
                             type="file"
@@ -240,6 +266,7 @@ const HotelMaster = () => {
                         >
                           Close
                         </button>
+                        {!errorMessage  &&
                         <button
                           type="submit"
                           className="green-button"
@@ -247,11 +274,11 @@ const HotelMaster = () => {
                         >
                           Upload
                         </button>
+                        }
                       </div>
                     </div>
                   </div>
                 </div>
-
                 {/* //Modal */}
               </div>
             </div>
@@ -291,7 +318,9 @@ const HotelMaster = () => {
               </div>
             </div>
           </div>
-
+          {/* {linearStatus &&
+          <LinearWithValueLabel />
+          } */}
           <div className="card shadow-none border">
             <DataTable
               columns={columns}
