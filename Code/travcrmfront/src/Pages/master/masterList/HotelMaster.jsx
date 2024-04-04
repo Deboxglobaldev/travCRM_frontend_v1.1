@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { axiosOther } from "../../../http/axios/axios_new";
 import { hotelMasterValue } from "./MasterValidation";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import * as XLSX from "xlsx";
 import LinearWithValueLabel from "../../../hooks/LinearWithValueLabel";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HotelMaster = () => {
   const [getData, setGetData] = useState([]);
@@ -81,6 +83,7 @@ const HotelMaster = () => {
           setErrorMessage("Header Name: [ "+difference+" ] is not matched with template. Please upload correct one.");
 
         }else{
+          toast.success("Header Matched");
           setExcelToJson(JSON.stringify(json, null, 2));
         }
 
@@ -95,17 +98,21 @@ const HotelMaster = () => {
     const extension = file?.name?.split(".")?.pop()?.toLowerCase();
     if ((excelToJson !== "" && extension == "xls") || extension == "xlsx") {
       setErrorMessage("");
-      console.log(excelToJson);
+      //console.log(excelToJson);
       setFile({ [file.name]: "" });
-      toast.success("File Sent Successfully!");
       document.getElementById("cancel").click();
+      toast.info("Data uploading in process..");
+
+
       setLinearStatus(true);
+
       try{
         const response = await axiosOther.post('importhotel', excelToJson);
         if (response) {
           setTimeout(() => {
             setLinearStatus(false);
-          },5000);
+          },5000)
+
         } else {
 
         }
@@ -184,6 +191,7 @@ const HotelMaster = () => {
             >
               <div className="col-xl-10 d-flex align-items-center">
                 <h5 className="card-title d-none d-sm-block">Hotel Master</h5>
+                <ToastContainer />
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
                 {/* Bootstrap Modal */}
@@ -236,7 +244,6 @@ const HotelMaster = () => {
                       </div>
                       <div className="modal-body">
                         <div className="col-5">
-                          <Toaster />
                           <label htmlFor="">Upload File</label>
                           <input
                             type="file"
@@ -311,9 +318,9 @@ const HotelMaster = () => {
               </div>
             </div>
           </div>
-          {linearStatus &&
+          {/* {linearStatus &&
           <LinearWithValueLabel />
-          }
+          } */}
           <div className="card shadow-none border">
             <DataTable
               columns={columns}
