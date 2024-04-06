@@ -127,7 +127,7 @@ const VehicleBrand = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                {/* <Model
                   heading={"Add Vehicle"}
                   apiurl={"addupdatevehiclebrand"}
                   initialValues={cityInitialValue}
@@ -190,7 +190,7 @@ const VehicleBrand = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">

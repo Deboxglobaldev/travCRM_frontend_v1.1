@@ -125,7 +125,7 @@ const EmergencyDetails = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                {/* <Model
                   heading={"Add Emergency Details"}
                   apiurl={"addupdateemergencydetails"}
                   initialValues={countryInitialValue}
@@ -272,7 +272,7 @@ const EmergencyDetails = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">

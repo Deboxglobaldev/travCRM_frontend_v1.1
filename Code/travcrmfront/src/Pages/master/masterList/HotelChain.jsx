@@ -265,7 +265,7 @@ const HotelChain = () => {
                       </div>
                     </div>
                     <div className="row mt-2">
-                    <div className="col-sm-5">
+                    <div className="col-sm-3">
                         <label>Status</label>
                         <Field
                           className="form-control"

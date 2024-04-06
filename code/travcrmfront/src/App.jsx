@@ -92,6 +92,7 @@ import HotelMasterCreate from "./Pages/master/masterList/HotelMasterCreate.jsx";
 import EmergencyDetails from "./Pages/master/masterList/EmergencyDetails.jsx";
 import ProposalSetting from "./Pages/master/masterList/ProposalSetting.jsx";
 import CommissionMaster from "./Pages/master/masterList/CommissionMaster.jsx";
+import ItenaryRequirement from "./Pages/master/masterList/ItenaryRequirement.jsx";
 
 const App = () => {
   return (
@@ -167,6 +168,7 @@ const App = () => {
           <Route path="/master/ferryseat" element={<FerrySeat/>}></Route>
           <Route path="/master/ferryprice" element={<FerryPrice/>}></Route>
           <Route path="/master/itenararyoverview" element={<ItenaryOverview/>}></Route>
+          <Route path="/master/itenaryrequirement" element={<ItenaryRequirement/>}></Route>
           <Route path="/master/emergencydetails" element={<EmergencyDetails/>}></Route>
           <Route path="/master/lettermaster" element={<LetterMaster/>}></Route>
           <Route path="/master/proposalsetting" element={<ProposalSetting/>}></Route>

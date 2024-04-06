@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../Component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import Model from "../../../Component/Layout/Model";
 import DataTable from "react-data-table-component";
+import { axiosOther } from "../../../http/axios/axios_new";
 import { Field, ErrorMessage } from "formik";
 import {
-  amentiesInitialValue,
-  amentiesValidationSchema,
+  countryInitialValue,
+  countryValidationSchema,
 } from "./MasterValidation";
-import { axiosOther } from "../../../http/axios/axios_new";
 
-const Amenties = () => {
+const ItenaryRequirement = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [editData, setEditData] = useState({});
@@ -23,14 +23,13 @@ const Amenties = () => {
   useEffect(() => {
     const postDataToServer = async () => {
       try {
-        const { data } = await axiosOther.post("amenitieslist", postData);
+        const { data } = await axiosOther.post("itenararyrequirementlist", postData);
         setGetData(data.DataList);
         setFilterData(data.DataList);
       } catch (error) {
         console.log(error);
       }
     };
-
     postDataToServer();
   }, [getData]);
 
@@ -44,21 +43,16 @@ const Amenties = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      SetDefault: rowValue.SetDefault==="Yes"? 1:0,
-      Status: rowValue.SetDefault==="Active"? 1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
-      Created_at: rowValue.Created_at,
-      Updated_at: rowValue.Updated_at,
+      ...rowValue,
+      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      Status: rowValue.Status === "Active" ? 1 : 0
     });
     setIsEditing(true);
   };
 
   const columns = [
     {
-      name: "Aminity Image",
+      name: "Country Name",
       selector: (row) => (
         <span>
           <i
@@ -67,54 +61,59 @@ const Amenties = () => {
             data-target="#modal_form_vertical"
             onClick={() => handleEditClick(row)}
           ></i>
-          {row.AmenityImage}
+          {row.Name}
         </span>
       ),
       sortable: true,
     },
     {
-      name: "Name",
-      selector: (row) => row.Name,
+      name: "Short Name",
+      selector: (row) => row.ShortName,
       sortable: true,
     },
     {
-      name: "AddedBy",
-      selector: (row) => row.AddedBy,
+      name: "Status Name",
+      selector: (row) => row.Status,
       sortable: true,
+    },
+    {
+      name: "Added By",
+      selector: (row) => {
+        return (
+          <span>
+            Admin <br /> {row.Created_at}
+          </span>
+        );
+      },
     },
     {
       name: "Updated By",
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.UpdatedBy}
+            {row.UpdatedBy == true ? "Admin" : "-"} <br /> {row.Updated_at}
           </span>
         );
       },
     },
-    {
-      name: "Status",
-      selector: (row) => row.Status,
-      sortable: true,
-    },
   ];
-
   return (
     <>
       <Layout>
         <div className="container-fluid p-3 mb-4">
-          <div className="card shadow-none border">
+          <div
+            className="card shadow-none border"
+            style={{ marginBottom: "0" }}
+          >
             <div
               className="card-header header-elements-inline bg-info-700 py-2"
-              style={{ padding: "10px" }}
+              style={{padding:"10px"}}
             >
               <div className="col-xl-10 d-flex align-items-center">
-                <h5 className="card-title d-none d-sm-block">
-                  Amenties Master
-                </h5>
+                <h5 className="card-title d-none d-sm-block">Itenarary Requirement</h5>
               </div>
               <div className="col-xl-2 d-flex justify-content-end">
-                {/* Bootstrap Modal */}
+                {/*Bootstrap Modal*/}
                 <NavLink
                   to="/master"
                   className="gray-button"
@@ -122,64 +121,80 @@ const Amenties = () => {
                 >
                   Back
                 </NavLink>
-                <Model
-                  heading={"Add City"}
-                  apiurl={"addupdateamenities"}
-                  initialValues={amentiesInitialValue}
-                  validationSchema={amentiesValidationSchema}
+                {/* <Model
+                  heading={"Add Overview"}
+                  apiurl={"addupateitenararyrequirement"}
+                  initialValues={countryInitialValue}
+                  validationSchema={countryValidationSchema}
                   forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
-                    <div className="row row-gap-2">
-                      <div className="col-sm-3">
-                        <label>Name</label>
+                    <div className="row row-gap-3">
+                      <div className="col-sm-6">
+                        <label>Overview Name</label>
                         <Field
                           type="text"
-                          placeholder="Amenity Name"
+                          name="Color"
+                          placeholder="Overview Name"
                           className="form-control"
-                          name="Name"
                         />
-                        <span className="font-size-10 text-danger">
-                          <ErrorMessage name="Name" />
-                        </span>
                       </div>
-                      <div className="col-sm-3">
+                      <div className="col-sm-6">
+                        <label>Overview Information</label>
+                        <Field
+                          as="textarea"
+                          name="Color"
+                          placeholder="Write Here..."
+                          className="form-control"
+                          style={{height:"38px"}}
+                          />
+                      </div>
+                      <div className="col-sm-6">
+                        <label>Highlight Information</label>
+                        <Field
+                          as="textarea"
+                          name="Color"
+                          placeholder="Write Here..."
+                          className="form-control"
+                          style={{height:"38px"}}
+                          />
+                      </div>
+                      <div className="col-sm-6">
+                        <label>Itenarary Introduction</label>
+                        <Field
+                          as="textarea"
+                          name="Color"
+                          placeholder="Write Here..."
+                          className="form-control"
+                          style={{height:"38px"}}
+                          />
+                      </div>
+                      <div className="col-sm-6">
+                        <label>Itenarary Summary</label>
+                        <Field
+                          as="textarea"
+                          name="Color"
+                          placeholder="Write Here..."
+                          className="form-control"
+                          style={{height:"38px"}}
+                          />
+                      </div>
+                      <div className="col-sm-6">
                         <label>Status</label>
                         <Field
+                          name="Status"
                           className="form-control"
                           component={"select"}
-                          name="Status"
                         >
                           <option value={1}>Active</option>
-                          <option value={2}>Inactive</option>
-                        </Field>
-                      </div>
-                      <div className="col-sm-4">
-                        <label>Amenty Image</label>
-                        <Field
-                          type="file"
-                          name="AmentyImage"
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="col-sm-2">
-                        <label>Set Default</label>
-                        <Field
-                          name="SetDefault"
-                          className="form-control"
-                          component={"select"}
-                        >
-                          <option value={0} selected>
-                            No
-                          </option>
-                          <option value={1}>Yes</option>
+                          <option value={0}>Inactive</option>
                         </Field>
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">
@@ -187,9 +202,9 @@ const Amenties = () => {
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
                   <input
                     type="text"
-                    placeholder="Search"
-                    className="search-input focus-ring form-input"
                     name="Search"
+                    placeholder="Search here.."
+                    className="search-input focus-ring form-input"
                     value={postData.Search}
                     onChange={(e) =>
                       setPostData({ ...postData, Search: e.target.value })
@@ -205,9 +220,9 @@ const Amenties = () => {
                       setPostData({ ...postData, Status: e.target.value })
                     }
                   >
-                    <option value={0}>Select Status</option>
+                    <option>Select Status</option>
+                    <option value={0}>Inactive</option>
                     <option value={1}>Active</option>
-                    <option value={2}>Inactive</option>
                   </select>
                 </div>
                 <div className="col-lg-2 col-md-3 mt-2 mt-md-0">
@@ -219,14 +234,11 @@ const Amenties = () => {
             </div>
           </div>
 
-          <div className="card shadow-none border">
+          {/*******************------Table Card-----*******************/}
+          <div className="card shadow-none border mt-2">
             <DataTable
               columns={columns}
-              data={
-                postData.Search !== "" || postData.Status !== ""
-                  ? filterData
-                  : getData
-              }
+              data={filterData}
               pagination
               fixedHeader
               fixedHeaderScrollHeight="280px"
@@ -239,4 +251,4 @@ const Amenties = () => {
   );
 };
 
-export default Amenties;
+export default ItenaryRequirement;

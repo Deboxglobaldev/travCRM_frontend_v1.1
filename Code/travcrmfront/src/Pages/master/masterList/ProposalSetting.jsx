@@ -125,7 +125,7 @@ const ProposalSetting = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                {/* <Model
                   heading={"Add Proposal"}
                   apiurl={"addupdateproposal"}
                   initialValues={countryInitialValue}
@@ -177,7 +177,7 @@ const ProposalSetting = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">

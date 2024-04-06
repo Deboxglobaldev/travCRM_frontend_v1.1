@@ -130,7 +130,7 @@ const CommissionMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                {/* <Model
                   heading={"Add Commission"}
                   apiurl={"addupdatecommission"}
                   initialValues={countryInitialValue}
@@ -189,7 +189,7 @@ const CommissionMaster = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">
