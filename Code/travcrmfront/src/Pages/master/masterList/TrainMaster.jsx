@@ -43,8 +43,12 @@ const TrainMaster = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
-      Status: rowValue.Status === "Active" ? 1 : 0
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      ImageName: rowValue.ImageName,
+      ImageData: rowValue.ImageData,
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

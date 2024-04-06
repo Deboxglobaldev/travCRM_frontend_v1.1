@@ -45,9 +45,14 @@ const TourEscortPrice = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      ServiceType: rowValue.ServiceType,
+      Destination: rowValue.Destination,
+      TourEscortService: rowValue.TourEscortService,
       Status: rowValue.Status === "Active" ? 1 : 0,
       Default: rowValue.Default === "Yes" ? 1 : 0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

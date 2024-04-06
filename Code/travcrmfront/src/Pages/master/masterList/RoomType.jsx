@@ -40,7 +40,15 @@ const RoomType = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setValueForEdit({ 
+      Name:rowValue.Name,
+      Size:rowValue.Size,
+      MaximumOccupancy:rowValue.MaxOccupancy,
+      Bedding:rowValue.Bedding,
+      Status:rowValue.Status==="Active"?1:0,
+      AddedBy:rowValue.AddedBy,
+      UpdatedBy:rowValue.UpdatedBy
+     });
   };
 
   const columns = [

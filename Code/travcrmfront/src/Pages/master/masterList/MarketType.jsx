@@ -40,10 +40,13 @@ const MarketType = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue,
-      SetDefault: rowValue.SetDefault==="Yes"?1:0,
-      Status: rowValue.Status==="Active"?1:0,
-    });
+    setValueForEdit({ 
+      Name:rowValue.Name,
+      Color:rowValue.Color,
+      AddedBy:rowValue.AddedBy,
+      UpdatedBy:rowValue.UpdatedBy,
+      Status:rowValue.Status==="Active"?1:0
+     });
     setIsEditing(true);
   };
 
@@ -74,11 +77,11 @@ const MarketType = () => {
       sortable: true,
     },
     {
-      name: "Date Added",
+      name: "Updated By",
       selector: (row) => {
         return (
           <span>
-            Admin <br /> {row.Created_at}
+            Admin <br /> {row.UpdatedBy}
           </span>
         );
       },

@@ -42,8 +42,11 @@ const VehicleType = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
-      Status: rowValue.Status==="Active"? 1:0
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      PaxCapacity: rowValue.PaxCapacity,
+      Status: rowValue.Status==="Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
     });
     setIsEditing(true);
   };

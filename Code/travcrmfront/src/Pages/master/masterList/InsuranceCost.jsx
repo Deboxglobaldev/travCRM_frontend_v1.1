@@ -43,8 +43,12 @@ const InsuranceCost = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue ,
-      Status: rowValue.Status === "Active" ?1:0
+      id: rowValue.Id,
+      InsuranceName: rowValue.InsuranceName,
+      InsuranceType: rowValue.InsuranceType,
+      Status: rowValue.Status === "Active" ?1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

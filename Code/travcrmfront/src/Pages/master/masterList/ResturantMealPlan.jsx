@@ -43,9 +43,11 @@ const ResturantMealPlan = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0
+    setValueForEdit({ 
+      Name:rowValue.Name,
+      Status:rowValue.Status==="Active"?1:0,
+      AddedBy:rowValue.AddedBy,
+      UpdatedBy:rowValue.UpdatedBy
     });
     setIsEditing(true);
   };

@@ -40,9 +40,12 @@ const VisaCost = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      Country: rowValue.Country,
+      VisaType: rowValue.VisaType,
       Status: rowValue.Status === "Active" ? 1 : 0,
-
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

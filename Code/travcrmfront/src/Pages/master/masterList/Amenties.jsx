@@ -32,7 +32,7 @@ const Amenties = () => {
     };
 
     postDataToServer();
-  }, [getData]);
+  }, [getD]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -44,9 +44,14 @@ const Amenties = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      Name: rowValue.Name,
       SetDefault: rowValue.SetDefault==="Yes"? 1:0,
-      Status: rowValue.SetDefault==="Active"? 1:0
+      Status: rowValue.SetDefault==="Active"? 1:0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+      Created_at: rowValue.Created_at,
+      Updated_at: rowValue.Updated_at,
     });
     setIsEditing(true);
   };

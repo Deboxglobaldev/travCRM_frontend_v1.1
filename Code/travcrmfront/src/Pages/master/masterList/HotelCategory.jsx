@@ -41,9 +41,11 @@ const HotelCategory = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      UploadKeyword: rowValue.UploadKeyword,
       Status: rowValue.Status === "Active" ? 1 : 0,
-
+      UpdatedBy: rowValue.UpdatedBy
     })
     setIsEditing(true);
   };

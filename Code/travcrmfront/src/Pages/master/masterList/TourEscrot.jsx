@@ -44,7 +44,34 @@ const TourEscort = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({...rowValue});
+    setEditData({
+      id: rowValue.Id,
+      ServiceType:rowValue.ServiceType,
+      Name: rowValue.Name,
+      MobileNumber: rowValue.MobileNumber,
+      WhatsAppNumber: rowValue.WhatsAppNumber,
+      AlternateNumber: rowValue.AlternateNumber,
+      Email: rowValue.Email,
+      TourEscortLicenseOne: rowValue.TourEscortLicenseOne,
+      LicenseExpiry: rowValue.LicenseExpiry,
+      Destination: rowValue.Destination,
+      Language: rowValue.Language,
+      TourEscortImageName: rowValue.TourEscortImageName,
+      TourEscortImageData: rowValue.TourEscortImageData,
+      Supplier: rowValue.Supplier,
+      TourEscortLicenseTwo: rowValue.TourEscortLicenseTwo,
+      ContactPerson: rowValue.ContactPerson,
+      Designation: rowValue.Designation,
+      Country: rowValue.Country,
+      State: rowValue.State,
+      City: rowValue.City,
+      PinCode: rowValue.PinCode,
+      Detail: rowValue.Detail,
+      Address: rowValue.Address,
+      Status: rowValue.Status,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
+    });
     setIsEditing(true);
   };
 

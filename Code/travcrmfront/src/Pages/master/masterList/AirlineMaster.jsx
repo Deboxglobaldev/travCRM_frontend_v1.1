@@ -42,7 +42,14 @@ const AirlineMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({...rowValue});
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      ImageName: rowValue.ImageName,
+      ImageData: rowValue.ImageData,
+      Status: 1,
+      UpdatedBy: 1,
+    });
     setIsEditing(true);
   };
 

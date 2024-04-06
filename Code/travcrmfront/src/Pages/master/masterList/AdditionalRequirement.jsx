@@ -45,7 +45,24 @@ const AdditionalRequirement = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({ ...rowValue });
+    setEditData({
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      DestinationId: rowValue.DestinationId,
+      CurrencyId: rowValue.CurrencyId,
+      CostType: rowValue.CostType,
+      TaxSlab: rowValue.TaxSlab,
+      MarkupApply: rowValue.MarkupApply,
+      ShowInProposal: rowValue.ShowInProposal,
+      AdultCost: rowValue.AdultCost,
+      ChildCost: rowValue.ChildCost,
+      InfantCost: rowValue.InfantCost,
+      ImageName: rowValue.ImageName,
+      Details: rowValue.Details,
+      Status: rowValue.Status,
+      AddedBy: rowValue.AddedBy,
+      ImageData: rowValue.ImageData,
+    });
     setIsEditing(true);
   };
 

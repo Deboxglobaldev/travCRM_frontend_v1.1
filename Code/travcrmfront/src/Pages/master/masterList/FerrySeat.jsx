@@ -10,7 +10,6 @@ import {
   countryValidationSchema,
 } from "./MasterValidation";
 
-
 const FerrySeat = () => {
   const [getData, setGetData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -44,9 +43,13 @@ const FerrySeat = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      Name: rowValue.Name,
+      ShortName: rowValue.ShortName,
       SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
-      Status: rowValue.Status === "Active" ? 1 : 0
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

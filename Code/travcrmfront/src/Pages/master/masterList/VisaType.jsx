@@ -43,9 +43,11 @@ const VisaType = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      VisaType: rowValue.VisaType,
       Status: rowValue.Status === "Active" ? 1 : 0,
-
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

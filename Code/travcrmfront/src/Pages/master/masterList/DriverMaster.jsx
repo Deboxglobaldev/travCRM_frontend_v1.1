@@ -43,9 +43,21 @@ const DriverMaster = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
+      Country: rowValue.Country,
+      DriverName: rowValue.DriverName,
+      MobileNumber: rowValue.MobileNumber,
+      AlternateMobileNo: rowValue.AlternateMobileNo,
+      WhatsappNumber: rowValue.WhatsappNumber,
+      LicenseNumber: rowValue.LicenseNumber,
+      BirthDate: rowValue.BirthDate,
+      ValidUpto: rowValue.ValidUpto,
+      PassportNumber: rowValue.PassportNumber,
+      LicenseName: rowValue.LicenseName,
+      LicenseData: rowValue.LicenseData,
       Status:rowValue.Status==="Active"? 1:0,
-
+      Address: rowValue.Address,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

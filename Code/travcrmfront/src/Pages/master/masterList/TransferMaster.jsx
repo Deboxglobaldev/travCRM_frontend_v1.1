@@ -42,10 +42,13 @@ const TransferMaster = () => {
   const handleEditClick = (rowValue) => {
     console.log(rowValue);
     setEditData({
-      ...rowValue,
+      id: rowValue.Id,
       CountryId: rowValue.CountryName === "India" ? "1" : "2",
       StateId: rowValue.StateName === "Rajsthan" ? "1" : "2",
-      Status: rowValue.Status === "Active" ? 1 : 0
+      Name: rowValue.Name,
+      Status: rowValue.Status === "Active" ? 1 : 0,
+      AddedBy: rowValue.AddedBy,
+      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

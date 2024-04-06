@@ -40,9 +40,16 @@ const HotelChain = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({ ...rowValue,   
-    SetDefault: rowValue.SetDefault==="Yes"?1:0,
-    Status: rowValue.Status==="Active"?1:0, });
+    setEditData({ 
+      Name:rowValue.Name,
+      Location:rowValue.Location,
+      HotelWebsite:rowValue.HotelWebsite,
+      SelfSupplier:rowValue.SelfSupplier,
+      ContaractPerson:rowValue.ContaractPerson,
+      AddedBy:rowValue.AddedBy,
+      UpdatedBy:rowValue.UpdatedBy,
+      Status:rowValue.Status==="Active"?1:0
+     });
     setIsEditing(true);
   };
 
@@ -64,32 +71,32 @@ const HotelChain = () => {
     },
     {
       name: "Location",
-      selector: (row) => row.Status,
+      selector: (row) => row.Location,
       sortable: true,
     },
     {
       name: "Hotel Website",
-      selector: (row) => row.Status,
+      selector: (row) => row.HotelWebsite,
       sortable: true,
     },
     {
       name: "Self Supplier",
-      selector: (row) => row.Status,
+      selector: (row) => row.Supplier,
       sortable: true,
     },
     {
       name: "Cont.Person",
-      selector: (row) => row.Status,
+      selector: (row) => row.ContractPerson,
       sortable: true,
     },
     {
       name: "AddedBy",
-      selector: (row) => row.Status,
+      selector: (row) => row.AddedBy,
       sortable: true,
     },
     {
       name: "UpdatedBy",
-      selector: (row) => row.Status,
+      selector: (row) => row.UpdatedBy,
       sortable: true,
     },
     {
