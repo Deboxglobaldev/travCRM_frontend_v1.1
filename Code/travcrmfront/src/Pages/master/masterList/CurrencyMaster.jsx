@@ -43,14 +43,9 @@ const CurrencyMaster = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.rowValue,
-      CountryId: rowValue.CountryId,
-      CurrencyCode: rowValue.CurrencyCode,
-      CurrencyName: rowValue.CurrencyName,
+      ...rowValue,
       Status: rowValue.Status==="Active"? 1:0,
-      SetDefault: rowValue.SetDefault==="Yes"?1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
+      SetDefault: rowValue.SetDefault==="Yes"?1:0
     });
     setIsEditing(true);
   };

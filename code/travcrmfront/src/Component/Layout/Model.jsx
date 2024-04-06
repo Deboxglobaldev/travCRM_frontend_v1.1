@@ -20,6 +20,7 @@ const Model = ({
   };
 
   const handleSubmit = async (values, { resetForm }) => {
+    console.log('modal value', values);
 
     try {
       const response = await axiosOther.post(apiurl, values);

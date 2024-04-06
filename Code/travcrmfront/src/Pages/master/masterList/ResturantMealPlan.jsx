@@ -17,7 +17,8 @@ const ResturantMealPlan = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -31,7 +32,7 @@ const ResturantMealPlan = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -42,7 +43,11 @@ const ResturantMealPlan = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setValueForEdit({ ...rowValue,
+      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+      Status: rowValue.Status === "Active" ? 1 : 0
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -111,7 +116,9 @@ const ResturantMealPlan = () => {
                   apiurl={"addupdaterestaurantmeal"}
                   initialValues={restaurantMealInitialValue}
                   validationSchema={restaurantMealValidationSchema}
-                  valueForEdit={valueForEdit}
+                  editData={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

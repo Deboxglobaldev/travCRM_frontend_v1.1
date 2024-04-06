@@ -31,7 +31,7 @@ const CountryMaster = () => {
       }
     };
     postDataToServer();
-  }, [getData]);
+  }, []);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -42,17 +42,13 @@ const CountryMaster = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
-      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0,
+    setEditData({...rowValue, 
       Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
+      SetDefault: rowValue.SetDefault === "Yes" ? 1 : 0
     });
     setIsEditing(true);
   };
+
 
   const columns = [
     {

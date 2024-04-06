@@ -14,7 +14,7 @@ const HotelChain = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+  const [editData, setEditData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const HotelChain = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -40,7 +40,9 @@ const HotelChain = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setEditData({ ...rowValue,   
+    SetDefault: rowValue.SetDefault==="Yes"?1:0,
+    Status: rowValue.Status==="Active"?1:0, });
     setIsEditing(true);
   };
 
@@ -125,7 +127,7 @@ const HotelChain = () => {
                   apiurl={"addupdatehotelchain"}
                   initialValues={hotelChainInitialValue}
                   validationSchema={hotelChainValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}
                 >

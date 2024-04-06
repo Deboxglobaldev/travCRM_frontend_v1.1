@@ -20,7 +20,6 @@ const HotelMeal = () => {
     Status: "",
   });
 
-  const [valueForEdit, setValueForEdit] = useState({});
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -34,7 +33,7 @@ const HotelMeal = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -46,15 +45,9 @@ const HotelMeal = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      ShortName: rowValue.ShortName,
+      ...rowValue,
       SetDefault: rowValue.SetDefault==="Yes"?1:0,
       Status: rowValue.Status==="Active"?1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
-      Created_at: rowValue.Created_at,
-      Updated_at: rowValue.Updated_at,
     });
     setIsEditing(true);
   };

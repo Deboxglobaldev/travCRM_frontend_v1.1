@@ -41,11 +41,8 @@ const StateMaster = () => {
   const handleEditClick = (rowValue) => {
     console.log(rowValue);
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      CountryId: rowValue.CountryId,
-      Status: (rowValue.Status==='Active') ? 1 : 0,
-      UpdatedBy: 1,
+      ...rowValue,
+      Status: (rowValue.Status==='Active') ? 1 : 0
     });
     setIsEditing(true);
   };

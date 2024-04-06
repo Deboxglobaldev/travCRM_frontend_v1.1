@@ -48,18 +48,8 @@ const Sightseeing = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      SightseeingName: rowValue.SightseeingName,
-      Destination: rowValue.Destination,
-      TransferType: rowValue.TransferType,
-      DefaultQuotation: rowValue.DefaultQuotation,
-      DefaultProposal: rowValue.DefaultProposal,
-      Description: rowValue.Description,
-      InclusionsExclusionsTiming: rowValue.InclusionsExclusionsTiming,
-      ImportantNote: rowValue.ImportantNote,
+      ...rowValue,
       Status: rowValue.Status==="Active"? 1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

@@ -14,7 +14,8 @@ const RoomType = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -28,7 +29,7 @@ const RoomType = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -126,7 +127,9 @@ const RoomType = () => {
                   apiurl={"addupdateroomtype"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
-                  valueForEdit={valueForEdit}
+                  editData={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row row-gap-2">

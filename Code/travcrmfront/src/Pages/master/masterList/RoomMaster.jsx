@@ -41,18 +41,13 @@ const RoomMaster = () => {
 
     setFilterData(result);
   }, [postData]);
-
+  
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      Status: rowValue.Status==="Active"? 1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
-      Created_at: rowValue.Created_at,
-      Updated_at: rowValue.Updated_at,
+      ...rowValue,
+      Status: rowValue.Status==="Active"? 1:0
     });
-    setIsEditing(true)
+    setIsEditing(true);
   };
 
   const columns = [

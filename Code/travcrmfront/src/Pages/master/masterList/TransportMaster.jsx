@@ -29,7 +29,7 @@ const TransportMaster = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -42,13 +42,8 @@ const TransportMaster = () => {
   const handleEditClick = (rowValue) => {
     console.log(rowValue);
     setEditData({
-      id: rowValue.Id,
-      CountryId: rowValue.CountryName === "India" ? "1" : "2",
-      StateId: rowValue.StateName === "Rajsthan" ? "1" : "2",
-      Name: rowValue.Name,
+      ...rowValue,
       Status: rowValue.Status === "Active" ? 1 : 0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
     });
     setIsEditing(true);
   };

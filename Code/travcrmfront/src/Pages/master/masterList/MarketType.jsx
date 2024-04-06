@@ -14,7 +14,8 @@ const MarketType = () => {
     Search: "",
     Status: "",
   });
-  const [valueForEdit, setValueForEdit] = useState({});
+  const [editData, setEditData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const postDataToServer = async () => {
@@ -28,7 +29,7 @@ const MarketType = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -39,7 +40,11 @@ const MarketType = () => {
   }, [postData]);
 
   const handleEditClick = (rowValue) => {
-    setValueForEdit({ ...rowValue });
+    setValueForEdit({ ...rowValue,
+      SetDefault: rowValue.SetDefault==="Yes"?1:0,
+      Status: rowValue.Status==="Active"?1:0,
+    });
+    setIsEditing(true);
   };
 
   const columns = [
@@ -111,7 +116,9 @@ const MarketType = () => {
                   apiurl={"addupdatemarket"}
                   initialValues={marketTypeInitialValue}
                   validationSchema={marketTypeValidationSchema}
-                  valueForEdit={valueForEdit}
+                  forEdit={editData}
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
                 >
                   <div className="card-body">
                     <div className="row">

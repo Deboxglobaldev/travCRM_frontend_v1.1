@@ -33,7 +33,7 @@ const SeasonMaster = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
   useEffect(()=>{
     getData.map((v)=>{
       console.log(v["Status"]);
@@ -50,15 +50,8 @@ const SeasonMaster = () => {
 
   const handleEditClick = (rowValue) => {
     setEditData({
-      id: rowValue.Id,
-      Name: rowValue.Name,
-      FromDate: rowValue.FromDate,
-      ToDate: rowValue.ToDate,
+      ...rowValue,
       Status: rowValue.Status==="Active"? 1:0,
-      AddedBy: rowValue.AddedBy,
-      UpdatedBy: rowValue.UpdatedBy,
-      Created_at: rowValue.Created_at,
-      Updated_at: rowValue.Updated_at,
     });
     setIsEditing(true);
   };
