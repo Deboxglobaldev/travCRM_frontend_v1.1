@@ -83,6 +83,7 @@ const Query = () => {
     counter7: 0,
     counter8: 0,
   };
+  
   const reducer = (state, action) => {
     switch (action.type) {
       case "INCREMENT":
