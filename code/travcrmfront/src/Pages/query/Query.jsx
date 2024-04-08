@@ -358,13 +358,13 @@ const Query = () => {
           <form onSubmit={handleSubmit}>
             {/* <div className=""> */}
             <div className="col-xl-12 d-flex align-items-start justify-content-between p-0">
-              <h5 className="card-title d-none d-sm-block m-0 p-0">
+              {/* <h5 className="card-title d-none d-sm-block m-0 p-0">
                 Query Form
               </h5>
               <div className="p-0 m-0">
                 <button className="blue-button" type="submit" name="SaveButton">
                   Save
-                </button>
+                </button> */}
                 {/* <button
                   className="orange-button"
                   type="submit"
@@ -372,7 +372,7 @@ const Query = () => {
                 >
                   Clear
                 </button> */}
-                <button
+                {/* <button
                   className="green-button"
                   type="submit"
                   name="SubmitButton"
@@ -382,8 +382,8 @@ const Query = () => {
                 <Toaster />
                 <NavLink to="/querylist" className={"gray-button py-2"}>
                   Back
-                </NavLink>
-              </div>
+                </NavLink> */}
+              {/* </div> */}
             </div>
             <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
               <div className="col-12 p-0 ">

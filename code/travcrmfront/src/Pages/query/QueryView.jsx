@@ -83,7 +83,7 @@ const QueryView = () => {
                       : "text-primary"
                   }`}
                 >
-                  Qoutation
+                  Quotation
                 </NavLink>
               </li>
               <li className="nav-item view-nav-item">
@@ -171,7 +171,7 @@ const QueryView = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="card shadow-none border mt-1">
+            <div className="card shadow-none mt-1">
               <div className="card-body" style={{ padding: "1px" }}>
                 <div className="tab-content">
                   <Outlet />
