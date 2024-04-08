@@ -106,7 +106,7 @@ a {
 .form-input-2{
   width: 100%;
   outline: none;
-  border: 1px solid rgb(22, 155, 215);
+  border: 1px solid rgb(163, 161, 161);
   border-radius: 5px;
   height: 30px;
   padding-left: 10px;
@@ -114,8 +114,8 @@ a {
 .form-div{
   width: 100%;
   outline: none;
-  border: 1px solid rgb(22, 155, 215);
-  border-radius: 5px;
+  border: 1px solid rgb(163, 161, 161);
+  border-radius: 3px;
   height: 30px;
 }
 .borderNone {

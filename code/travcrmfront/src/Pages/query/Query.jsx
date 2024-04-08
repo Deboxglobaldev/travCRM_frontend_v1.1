@@ -1071,7 +1071,7 @@ const Query = () => {
                               id="three"
                             />
                           </div>
-                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                          <div className="col form-div d-flex justify-content-center align-items-center">
                             <label htmlFor="three" className="m-0 pr-2">
                               All
                             </label>
@@ -1366,68 +1366,18 @@ const Query = () => {
                   <div className="col border rounded">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
-                        <p className="m-0 fs-6 font-weight-bold">Pax Details</p>
+                        <p className="m-0 fs-6 font-weight-bold">Travel Information</p>
                       </div>
                       <div className="col-4">
-                        <label htmlFor="queryType" className="m-0">
-                          Pax Type
-                        </label>
-                        <select
-                          component={"select"}
+                        <input
+                          type="text"
                           className="form-input-2"
                           name="Type"
-                          value={TravelDate.Type}
-                          onChange={handleChange}
-                        >
-                          <option value="1">FIT</option>
-                          <option value="2">GIT</option>
-                        </select>
+                          placeholder="Budget"
+                        />    
                       </div>
-                      <div className="col-4">
-                        <label htmlFor="" className="m-0">
-                          Adult
-                          <i className="fa-solid fa-person pl-2"></i>
-                        </label>
-                        <Counter
-                          value={state.counter1}
-                          dispatch={dispatch}
-                          counter="counter1"
-                        />
-                      </div>
-                      <div className="col-4">
-                        <label htmlFor="" className="m-0">
-                          Child
-                          <i className="fa-solid fa-child-reaching pl-2"></i>
-                        </label>
-                        <Counter
-                          value={state.counter2}
-                          dispatch={dispatch}
-                          counter="counter2"
-                        />
-                      </div>
-                      <div className="col-4">
-                        <label htmlFor="" className="m-0">
-                          Infant
-                          <i className="fa-solid fa-person-breastfeeding pl-2"></i>
-                        </label>
-                        <Counter
-                          value={state.counter3}
-                          dispatch={dispatch}
-                          counter="counter3"
-                        />
-                      </div>
-                      <div className="col-12">
-                        <label htmlFor="" className="m-0 text-center">
-                          Total
-                        </label>
-                        <div
-                          className="backgroundColor-1 rounded
-                      d-flex justify-content-center align-items-center font-weight-bold"
-                          style={{ height: "25px" }}
-                        >
-                          Total Pax : {PaxTotal}
-                        </div>
-                      </div>
+
+                      
                     </div>
                   </div>
                 </div>
