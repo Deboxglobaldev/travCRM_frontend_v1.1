@@ -1039,7 +1039,7 @@ const Query = () => {
                           Hotel Category
                         </label>
                         <div className="row column-gap-2">
-                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                          <div className="col form-div d-flex justify-content-center align-items-center">
                             <label htmlFor="" className="m-0 pr-2">
                               3*
                             </label>
@@ -1049,7 +1049,7 @@ const Query = () => {
                               name="hotelCategory"
                             />
                           </div>
-                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                          <div className="col form-div d-flex justify-content-center align-items-center">
                             <label htmlFor="three" className="m-0 pr-2">
                               4*
                             </label>
@@ -1060,7 +1060,7 @@ const Query = () => {
                               id="three"
                             />
                           </div>
-                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                          <div className="col form-div d-flex justify-content-center align-items-center">
                             <label htmlFor="three" className="m-0 pr-2">
                               5*
                             </label>
@@ -1084,79 +1084,285 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-4">
+                      <div className="col-3">
                         <label htmlFor="queryType" className="m-0">
-                          BusinessType
+                          Room
                         </label>
-                        <select
-                          className="form-input-2"
-                          name="Type"
-                          value={TravelDate.Type}
-                          onChange={handleChange}
-                        >
-                          <option value="1">Date Wise</option>
-                          <option value="2">Day Wise</option>
-                        </select>
-                      </div>
-                      <div className="col-8 ">
-                        <label htmlFor="queryType" className="m-0">
-                          Agent/Client Name
-                        </label>
-                        <div className="d-flex">
-                          <input
-                            type="text"
-                            className="form-input-2"
-                            placeholder="Eneter Agent/Client Name"
-                            name="Type"
-                            onChange={handleChange}
-                          />
-                          <button
-                            className="btn btn-primary d-flex align-items-center ml-1"
-                            style={{ height: "30px" }}
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
                           >
-                            Add
-                          </button>
+                            1
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
+                          </div>
                         </div>
                       </div>
-
-                      <div className="col-12">
-                        <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
-                          <div className="d-flex justify-content-between align-items-center">
-                            <i className="fa-solid fa-user font-size-12"></i>
-                            <p className="m-0 pl-1 font-size-12">Rahul Kumar</p>
+                      <div className="col-3 ">
+                        <label htmlFor="queryType" className="m-0">
+                          SGL Room
+                        </label>
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
+                          >
+                            1
                           </div>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <i className="fa-solid fa-phone-volume font-size-12"></i>
-                            <p className="m-0 pl-1 font-size-12">8765435678</p>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
                           </div>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <i className="fa-solid fa-envelope font-size-12"></i>
-                            <p className="m-0 pl-1 font-size-12">
-                              deboxglobal@gmail.com
-                            </p>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
                           </div>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <label
-                              htmlFor="market"
-                              className="m-0 font-size-12"
-                            >
-                              Market Type :{" "}
-                            </label>
-                            <p className="m-0 pl-1 font-size-12">General</p>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
                           </div>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <label
-                              htmlFor="market"
-                              className="m-0 font-size-12"
-                            >
-                              Nationalty :{" "}
-                            </label>
-                            <p className="m-0 pl-1 font-size-12">Indian</p>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-3">
+                        <label htmlFor="queryType" className="m-0">
+                          DBL Room
+                        </label>
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
+                          >
+                            1
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-3 ">
+                        <label htmlFor="queryType" className="m-0">
+                          TWIN Room
+                        </label>
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
+                          >
+                            1
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-3 ">
+                        <label htmlFor="queryType" className="m-0">
+                          TPL Room
+                        </label>
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
+                          >
+                            1
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-3 ">
+                        <label htmlFor="queryType" className="m-0">
+                          EXTRA Bed
+                        </label>
+                        <div className="form-div d-flex justify-content-center align-items-center">
+                          1
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center pt-1">
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            
+                            style={{ height: "19px" }}
+                          >
+                            1
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            2
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            3
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            4
+                          </div>
+                          <div
+                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            d-flex justify-content-center align-items-center"
+                            style={{ height: "19px" }}
+                          >
+                            5
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div className="col border rounded">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
