@@ -400,7 +400,8 @@ const Query = () => {
                 </NavLink> */}
               {/* </div> */}
             </div>
-            <div className="row p-1 column-gap-md-1 row-gap-2">
+
+            <div className="row ">
               {/* <div className="col-12 p-0 ">
                 <div className="card shadow-none border p-1 bg-gray">
                   <h6 className="text-dark m-0">Contact Information</h6>
@@ -860,162 +861,367 @@ const Query = () => {
                   </div>
                 </div>
               </div> */}
-              <div className="col-sm-4 border rounded">
-                <div className="row row-gap-2 p-0 pt-1 pb-2">
-                  <div className="col-8 d-flex align-items-center">
-                    <p className="m-0 fs-6 font-weight-bold">
-                      Contact Information
-                    </p>
-                  </div>
-                  <div className="col-4 ">
-                    <label htmlFor="queryType" className="m-0">
-                      Query Type
-                    </label>
-                    <select
-                      component={"select"}
-                      className="form-input-2"
-                      name="Type"
-                      value={TravelDate.Type}
-                      onChange={handleChange}
-                    >
-                      <option value="1">Date Wise</option>
-                      <option value="2">Day Wise</option>
-                    </select>
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="queryType" className="m-0">
-                      BusinessType
-                    </label>
-                    <select
-                      className="form-input-2"
-                      name="Type"
-                      value={TravelDate.Type}
-                      onChange={handleChange}
-                    >
-                      <option value="1">Date Wise</option>
-                      <option value="2">Day Wise</option>
-                    </select>
-                  </div>
-                  <div className="col-8 ">
-                    <label htmlFor="queryType" className="m-0">
-                      Agent/Client Name
-                    </label>
-                    <div className="d-flex">
-                      <input
-                        type="text"
-                        className="form-input-2"
-                        placeholder="Eneter Agent/Client Name"
-                        name="Type"
-                        onChange={handleChange}
-                      />
-                      <button
-                        className="btn btn-primary d-flex align-items-center ml-1"
-                        style={{ height: "30px" }}
-                      >
-                        Add
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="col-12">
-                    <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <i className="fa-solid fa-user font-size-12"></i>
-                        <p className="m-0 pl-1 font-size-12">Rahul Kumar</p>
-                      </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <i className="fa-solid fa-phone-volume font-size-12"></i>
-                        <p className="m-0 pl-1 font-size-12">8765435678</p>
-                      </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <i className="fa-solid fa-envelope font-size-12"></i>
-                        <p className="m-0 pl-1 font-size-12">
-                          deboxglobal@gmail.com
+              <div className="col-8">
+                <div className="row py-1 row-gap-2 column-gap-2">
+                  <div className="col border rounded">
+                    <div className="row row-gap-2 p-0 pt-1 pb-2">
+                      <div className="col-8 d-flex align-items-center">
+                        <p className="m-0 fs-6 font-weight-bold">
+                          Contact Information
                         </p>
                       </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <label htmlFor="market" className="m-0 font-size-12">
-                          Market Type :{" "}
+                      <div className="col-4 ">
+                        <label htmlFor="queryType" className="m-0">
+                          Query Type
                         </label>
-                        <p className="m-0 pl-1 font-size-12">General</p>
+                        <select
+                          component={"select"}
+                          className="form-input-2"
+                          name="Type"
+                          value={TravelDate.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="1">Date Wise</option>
+                          <option value="2">Day Wise</option>
+                        </select>
                       </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <label htmlFor="market" className="m-0 font-size-12">
-                          Nationalty :{" "}
+                      <div className="col-4">
+                        <label htmlFor="queryType" className="m-0">
+                          BusinessType
                         </label>
-                        <p className="m-0 pl-1 font-size-12">Indian</p>
+                        <select
+                          className="form-input-2"
+                          name="Type"
+                          value={TravelDate.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="1">Date Wise</option>
+                          <option value="2">Day Wise</option>
+                        </select>
+                      </div>
+                      <div className="col-8 ">
+                        <label htmlFor="queryType" className="m-0">
+                          Agent/Client Name
+                        </label>
+                        <div className="d-flex">
+                          <input
+                            type="text"
+                            className="form-input-2"
+                            placeholder="Eneter Agent/Client Name"
+                            name="Type"
+                            onChange={handleChange}
+                          />
+                          <button
+                            className="btn btn-primary d-flex align-items-center ml-1"
+                            style={{ height: "30px" }}
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="col-12">
+                        <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-user font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">Rahul Kumar</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-phone-volume font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">8765435678</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-envelope font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">
+                              deboxglobal@gmail.com
+                            </p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <label
+                              htmlFor="market"
+                              className="m-0 font-size-12"
+                            >
+                              Market Type :{" "}
+                            </label>
+                            <p className="m-0 pl-1 font-size-12">General</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <label
+                              htmlFor="market"
+                              className="m-0 font-size-12"
+                            >
+                              Nationalty :{" "}
+                            </label>
+                            <p className="m-0 pl-1 font-size-12">Indian</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col border rounded">
+                    <div className="row row-gap-2 p-0 pt-1 pb-2">
+                      <div className="col-8 d-flex align-items-center">
+                        <p className="m-0 fs-6 font-weight-bold">Pax Details</p>
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="queryType" className="m-0">
+                          Pax Type
+                        </label>
+                        <select
+                          component={"select"}
+                          className="form-input-2"
+                          name="Type"
+                          value={TravelDate.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="1">FIT</option>
+                          <option value="2">GIT</option>
+                        </select>
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Adult
+                          <i className="fa-solid fa-person pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter1}
+                          dispatch={dispatch}
+                          counter="counter1"
+                        />
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Child
+                          <i className="fa-solid fa-child-reaching pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter2}
+                          dispatch={dispatch}
+                          counter="counter2"
+                        />
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Infant
+                          <i className="fa-solid fa-person-breastfeeding pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter3}
+                          dispatch={dispatch}
+                          counter="counter3"
+                        />
+                      </div>
+                      <div className="col-12">
+                        <label htmlFor="" className="m-0 text-center">
+                          Total
+                        </label>
+                        <div
+                          className="backgroundColor-1 rounded
+                      d-flex justify-content-center align-items-center font-weight-bold"
+                          style={{ height: "25px" }}
+                        >
+                          Total Pax : {PaxTotal}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                <div className="row py-1 row-gap-2 column-gap-2">
+                  <div className="col border rounded">
+                    <div className="row row-gap-2 p-0 pt-1 pb-2">
+                      <div className="col-4 d-flex align-items-center">
+                        <p className="m-0 fs-6 font-weight-bold">
+                          Accomodation
+                        </p>
+                      </div>
+                      <div className="col-8 px-3">
+                        <label htmlFor="hotel" className="m-0 p-0">
+                          Hotel Category
+                        </label>
+                        <div className="row column-gap-2">
+                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                            <label htmlFor="" className="m-0 pr-2">
+                              3*
+                            </label>
+                            <input
+                              className="form-check-input m-0 p-0 ml-3"
+                              type="radio"
+                              name="hotelCategory"
+                            />
+                          </div>
+                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                            <label htmlFor="three" className="m-0 pr-2">
+                              4*
+                            </label>
+                            <input
+                              className="form-check-input m-0 p-0 ml-3"
+                              type="radio"
+                              name="hotelCategory"
+                              id="three"
+                            />
+                          </div>
+                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                            <label htmlFor="three" className="m-0 pr-2">
+                              5*
+                            </label>
+                            <input
+                              className="form-check-input m-0 p-0 ml-3"
+                              type="radio"
+                              name="hotelCategory"
+                              id="three"
+                            />
+                          </div>
+                          <div className="col form-input-2 d-flex justify-content-center align-items-center">
+                            <label htmlFor="three" className="m-0 pr-2">
+                              All
+                            </label>
+                            <input
+                              className="form-check-input m-0 p-0 ml-3"
+                              type="radio"
+                              name="hotelCategory"
+                              id="three"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="queryType" className="m-0">
+                          BusinessType
+                        </label>
+                        <select
+                          className="form-input-2"
+                          name="Type"
+                          value={TravelDate.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="1">Date Wise</option>
+                          <option value="2">Day Wise</option>
+                        </select>
+                      </div>
+                      <div className="col-8 ">
+                        <label htmlFor="queryType" className="m-0">
+                          Agent/Client Name
+                        </label>
+                        <div className="d-flex">
+                          <input
+                            type="text"
+                            className="form-input-2"
+                            placeholder="Eneter Agent/Client Name"
+                            name="Type"
+                            onChange={handleChange}
+                          />
+                          <button
+                            className="btn btn-primary d-flex align-items-center ml-1"
+                            style={{ height: "30px" }}
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
 
-              <div className="col-sm-4 border rounded">
-                <div className="row row-gap-2 p-0 pt-1 pb-2">
-                  <div className="col-8 d-flex align-items-center">
-                    <p className="m-0 fs-6 font-weight-bold">
-                      Pax Details
-                    </p>
+                      <div className="col-12">
+                        <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-user font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">Rahul Kumar</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-phone-volume font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">8765435678</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <i className="fa-solid fa-envelope font-size-12"></i>
+                            <p className="m-0 pl-1 font-size-12">
+                              deboxglobal@gmail.com
+                            </p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <label
+                              htmlFor="market"
+                              className="m-0 font-size-12"
+                            >
+                              Market Type :{" "}
+                            </label>
+                            <p className="m-0 pl-1 font-size-12">General</p>
+                          </div>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <label
+                              htmlFor="market"
+                              className="m-0 font-size-12"
+                            >
+                              Nationalty :{" "}
+                            </label>
+                            <p className="m-0 pl-1 font-size-12">Indian</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-4">
-                    <label htmlFor="queryType" className="m-0">
-                      Pax Type
-                      
-                    </label>
-                    <select
-                      component={"select"}
-                      className="form-input-2"
-                      name="Type"
-                      value={TravelDate.Type}
-                      onChange={handleChange}
-                    >
-                      <option value="1">FIT</option>
-                      <option value="2">GIT</option>
-                    </select>
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Adult
-                      <i className="fa-solid fa-person pl-2"></i>
-                    </label>
-                    <Counter
-                      value={state.counter1}
-                      dispatch={dispatch}
-                      counter="counter1"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Child
-                      <i className="fa-solid fa-child-reaching pl-2"></i>
-                    </label>
-                    <Counter
-                      value={state.counter2}
-                      dispatch={dispatch}
-                      counter="counter2"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Infant
-                      <i className="fa-solid fa-person-breastfeeding pl-2"></i>
-                    </label>
-                    <Counter
-                      value={state.counter3}
-                      dispatch={dispatch}
-                      counter="counter3"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <label htmlFor="" className="m-0 text-center">
-                      Total
-                    </label>
-                    <div
-                      className="backgroundColor-1 rounded
+                  <div className="col border rounded">
+                    <div className="row row-gap-2 p-0 pt-1 pb-2">
+                      <div className="col-8 d-flex align-items-center">
+                        <p className="m-0 fs-6 font-weight-bold">Pax Details</p>
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="queryType" className="m-0">
+                          Pax Type
+                        </label>
+                        <select
+                          component={"select"}
+                          className="form-input-2"
+                          name="Type"
+                          value={TravelDate.Type}
+                          onChange={handleChange}
+                        >
+                          <option value="1">FIT</option>
+                          <option value="2">GIT</option>
+                        </select>
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Adult
+                          <i className="fa-solid fa-person pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter1}
+                          dispatch={dispatch}
+                          counter="counter1"
+                        />
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Child
+                          <i className="fa-solid fa-child-reaching pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter2}
+                          dispatch={dispatch}
+                          counter="counter2"
+                        />
+                      </div>
+                      <div className="col-4">
+                        <label htmlFor="" className="m-0">
+                          Infant
+                          <i className="fa-solid fa-person-breastfeeding pl-2"></i>
+                        </label>
+                        <Counter
+                          value={state.counter3}
+                          dispatch={dispatch}
+                          counter="counter3"
+                        />
+                      </div>
+                      <div className="col-12">
+                        <label htmlFor="" className="m-0 text-center">
+                          Total
+                        </label>
+                        <div
+                          className="backgroundColor-1 rounded
                       d-flex justify-content-center align-items-center font-weight-bold"
-                      style={{ height: "25px" }}
-                    >
-                      Total Pax : {PaxTotal}
+                          style={{ height: "25px" }}
+                        >
+                          Total Pax : {PaxTotal}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
