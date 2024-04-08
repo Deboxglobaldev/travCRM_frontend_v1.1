@@ -62,7 +62,7 @@ const QueryView = () => {
           </div> */}
           <div className="col-xl-12 px-4" style={{ padding: 0 }}>
             <ul className="nav nav-pills-toolbar d-flex justify-content-between">
-              <li className="nav-item view-nav-item">
+              <li className="nav-item view-nav-item"> 
                 <NavLink
                   to="/querylist/queryview/"
                   className={`nav-link fs-6 rounded-0 ${

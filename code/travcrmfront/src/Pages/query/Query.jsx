@@ -83,7 +83,7 @@ const Query = () => {
     counter7: 0,
     counter8: 0,
   };
-  
+
   const reducer = (state, action) => {
     switch (action.type) {
       case "INCREMENT":
@@ -156,26 +156,26 @@ const Query = () => {
       );
       console.log("SAVE-BUTTON-RENDERED");
       navigate("/querylist");
-    } else if (document.activeElement.name === "ClearButton"){
+    } else if (document.activeElement.name === "ClearButton") {
       localStorage.removeItem("Query");
       console.log("CLEAR-BUTTON-RENDERED");
-      toast.success('Query Form Cleared !');  
+      toast.success("Query Form Cleared !");
       setEmptyData(!emptyData);
-    } else if (document.activeElement.name === "SubmitButton"){
+    } else if (document.activeElement.name === "SubmitButton") {
       localStorage.removeItem("Query");
       console.log("SUBMIT-BUTTON-RENDERED");
-      toast.success('Query Submitted Successfully!');
+      toast.success("Query Submitted Successfully!");
       setEmptyData(!emptyData);
       try {
         await validationSchema.validate(
           { ...queryFields, TravelDate, PaxInfo, RoomInfo },
           { abortEarly: false }
-          );
-          console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
-          const response = await axios.post(
-            "http://127.0.0.1:8000/api/addupdatequerymaster",
-            { ...queryFields, TravelDate, PaxInfo, RoomInfo }
-            );
+        );
+        console.log({ ...queryFields, TravelDate, PaxInfo, RoomInfo });
+        const response = await axios.post(
+          "http://127.0.0.1:8000/api/addupdatequerymaster",
+          { ...queryFields, TravelDate, PaxInfo, RoomInfo }
+        );
         localStorage.removeItem("Query");
       } catch (validationErrors) {
         const formattedErrors = {};
@@ -296,10 +296,25 @@ const Query = () => {
   // Data Set into input field from localstorage and remove on Submit and Clear;
   useEffect(() => {
     const {
-      TravelDate,PaxInfo,RoomInfo,CompanyInfo,AddEmail,
-      LeadPax,Subject,AdditionalInfo,SearchPackage,
-      OperationPerson,ContractPerson,Priority,TAT,TourType,
-      LeadSource,HotelCategory,LeadReferenced,HotelType,MealPlan,
+      TravelDate,
+      PaxInfo,
+      RoomInfo,
+      CompanyInfo,
+      AddEmail,
+      LeadPax,
+      Subject,
+      AdditionalInfo,
+      SearchPackage,
+      OperationPerson,
+      ContractPerson,
+      Priority,
+      TAT,
+      TourType,
+      LeadSource,
+      HotelCategory,
+      LeadReferenced,
+      HotelType,
+      MealPlan,
     } = storedData ?? {};
     const { Type, FromDate, ToDate, TotalNights, SeasonType, SeasonYear } =
       TravelDate ?? {};
@@ -365,14 +380,14 @@ const Query = () => {
                 <button className="blue-button" type="submit" name="SaveButton">
                   Save
                 </button> */}
-                {/* <button
+              {/* <button
                   className="orange-button"
                   type="submit"
                   name="ClearButton"
                 >
                   Clear
                 </button> */}
-                {/* <button
+              {/* <button
                   className="green-button"
                   type="submit"
                   name="SubmitButton"
@@ -385,8 +400,8 @@ const Query = () => {
                 </NavLink> */}
               {/* </div> */}
             </div>
-            <div className="row p-1 column-gap-md-1 row-gap-2 justify-content-between">
-              <div className="col-12 p-0 ">
+            <div className="row p-1 column-gap-md-1 row-gap-2">
+              {/* <div className="col-12 p-0 ">
                 <div className="card shadow-none border p-1 bg-gray">
                   <h6 className="text-dark m-0">Contact Information</h6>
                   <div className="row row-gap-2 ">
@@ -842,6 +857,166 @@ const Query = () => {
                         );
                       })}
                     </select>
+                  </div>
+                </div>
+              </div> */}
+              <div className="col-sm-4 border rounded">
+                <div className="row row-gap-2 p-0 pt-1 pb-2">
+                  <div className="col-8 d-flex align-items-center">
+                    <p className="m-0 fs-6 font-weight-bold">
+                      Contact Information
+                    </p>
+                  </div>
+                  <div className="col-4 ">
+                    <label htmlFor="queryType" className="m-0">
+                      Query Type
+                    </label>
+                    <select
+                      component={"select"}
+                      className="form-input-2"
+                      name="Type"
+                      value={TravelDate.Type}
+                      onChange={handleChange}
+                    >
+                      <option value="1">Date Wise</option>
+                      <option value="2">Day Wise</option>
+                    </select>
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="queryType" className="m-0">
+                      BusinessType
+                    </label>
+                    <select
+                      className="form-input-2"
+                      name="Type"
+                      value={TravelDate.Type}
+                      onChange={handleChange}
+                    >
+                      <option value="1">Date Wise</option>
+                      <option value="2">Day Wise</option>
+                    </select>
+                  </div>
+                  <div className="col-8 ">
+                    <label htmlFor="queryType" className="m-0">
+                      Agent/Client Name
+                    </label>
+                    <div className="d-flex">
+                      <input
+                        type="text"
+                        className="form-input-2"
+                        placeholder="Eneter Agent/Client Name"
+                        name="Type"
+                        onChange={handleChange}
+                      />
+                      <button
+                        className="btn btn-primary d-flex align-items-center ml-1"
+                        style={{ height: "30px" }}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="col-12">
+                    <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <i className="fa-solid fa-user font-size-12"></i>
+                        <p className="m-0 pl-1 font-size-12">Rahul Kumar</p>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <i className="fa-solid fa-phone-volume font-size-12"></i>
+                        <p className="m-0 pl-1 font-size-12">8765435678</p>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <i className="fa-solid fa-envelope font-size-12"></i>
+                        <p className="m-0 pl-1 font-size-12">
+                          deboxglobal@gmail.com
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label htmlFor="market" className="m-0 font-size-12">
+                          Market Type :{" "}
+                        </label>
+                        <p className="m-0 pl-1 font-size-12">General</p>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <label htmlFor="market" className="m-0 font-size-12">
+                          Nationalty :{" "}
+                        </label>
+                        <p className="m-0 pl-1 font-size-12">Indian</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-sm-4 border rounded">
+                <div className="row row-gap-2 p-0 pt-1 pb-2">
+                  <div className="col-8 d-flex align-items-center">
+                    <p className="m-0 fs-6 font-weight-bold">
+                      Pax Details
+                    </p>
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="queryType" className="m-0">
+                      Pax Type
+                      
+                    </label>
+                    <select
+                      component={"select"}
+                      className="form-input-2"
+                      name="Type"
+                      value={TravelDate.Type}
+                      onChange={handleChange}
+                    >
+                      <option value="1">FIT</option>
+                      <option value="2">GIT</option>
+                    </select>
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Adult
+                      <i className="fa-solid fa-person pl-2"></i>
+                    </label>
+                    <Counter
+                      value={state.counter1}
+                      dispatch={dispatch}
+                      counter="counter1"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Child
+                      <i className="fa-solid fa-child-reaching pl-2"></i>
+                    </label>
+                    <Counter
+                      value={state.counter2}
+                      dispatch={dispatch}
+                      counter="counter2"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label htmlFor="" className="m-0">
+                      Infant
+                      <i className="fa-solid fa-person-breastfeeding pl-2"></i>
+                    </label>
+                    <Counter
+                      value={state.counter3}
+                      dispatch={dispatch}
+                      counter="counter3"
+                    />
+                  </div>
+                  <div className="col-12">
+                    <label htmlFor="" className="m-0 text-center">
+                      Total
+                    </label>
+                    <div
+                      className="backgroundColor-1 rounded
+                      d-flex justify-content-center align-items-center font-weight-bold"
+                      style={{ height: "25px" }}
+                    >
+                      Total Pax : {PaxTotal}
+                    </div>
                   </div>
                 </div>
               </div>
