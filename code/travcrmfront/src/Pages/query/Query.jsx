@@ -398,6 +398,20 @@ const Query = () => {
                           <option value="5">Multiple Services</option>
                         </select>
                       </div>
+                      {queryFields.QueryType=='3' && 
+                        <div className="col-12">
+                        <label htmlFor="" className="m-0">Query Id</label>
+                        <input type="text" name="PackageName" placeholder="Query Id" className="form-input-2"/>
+                        </div>
+                      }
+                      {queryFields.QueryType=='2' && <><div className="col-12 col-sm-6">
+                        <label htmlFor="" className="m-0">Package Code</label>
+                        <input type="text" name="PackageName" placeholder="Enter Package Code" className="form-input-2"/>
+                      </div>
+                      <div className="col-12 col-sm-6">
+                        <label htmlFor="" className="m-0">Package Name</label>
+                        <input type="text" name="PackageName" placeholder="Enter Package Name" className="form-input-2"/>
+                      </div></>}
                       <div className="col-12 col-lg-4">
                         <label htmlFor="queryType" className="m-0">
                           BusinessType
@@ -422,7 +436,7 @@ const Query = () => {
                           <input
                             type="text"
                             className="form-input-2"
-                            placeholder="Eneter Agent/Client Name"
+                            placeholder="Enter Agent/Client Name"
                             name="AgentName"
                             value={queryFields.AgentName}
                             onChange={handleChange}
