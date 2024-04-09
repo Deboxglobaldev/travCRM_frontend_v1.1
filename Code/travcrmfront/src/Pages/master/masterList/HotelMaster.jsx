@@ -85,8 +85,6 @@ const HotelMaster = () => {
           toast.success("Template Matched");
           setExcelToJson(JSON.stringify(json, null, 2));
         }
-
-
       };
 
       reader.readAsBinaryString(file);
@@ -100,7 +98,7 @@ const HotelMaster = () => {
       //console.log(excelToJson);
       setFile({ [file.name]: "" });
       document.getElementById("cancel").click();
-      toast.info(<LinearWithValueLabel />);
+      toast.success("Data Validating..");
 
 
       setLinearStatus(true);

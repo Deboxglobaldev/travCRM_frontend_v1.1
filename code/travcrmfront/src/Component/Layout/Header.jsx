@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/global_assets/images/logo_light.png";
 import placeholder from "../../../public/global_assets/images/placeholders/placeholder.jpg";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 
 const Header = () => {
   const [user, setUserData] = useState([]);
@@ -40,7 +38,6 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbar-mobile">
           <span className="navbar-text ml-md-3 mr-md-auto">
             <span className="badge bg-success">Online</span>
-            <ToastContainer />
           </span>
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
