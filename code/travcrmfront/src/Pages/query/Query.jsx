@@ -932,6 +932,9 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
+                      <div className="col-6 col-md-6 col-lg-6 d-flex align-items-center">
+                          <p className="font-weight-bold">Total Rooms : 0</p>
+                      </div>
                     </div>
                   </div>
 
