@@ -403,8 +403,8 @@ const Query = () => {
 
             <div className="row">
               <div className="col-8">
-                <div className="row py-1 row-gap-2 column-gap-2">
-                  <div className="col border rounded">
+                <div className="row py-1 column-gap-2">
+                  <div className="col border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
@@ -499,7 +499,7 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col border rounded">
+                  <div className="col border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">Pax Details</p>
@@ -567,8 +567,8 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
-                <div className="row py-1 row-gap-2 column-gap-2">
-                  <div className="col border rounded">
+                <div className="row mt-3 py-1 column-gap-2">
+                  <div className="col border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-4 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
@@ -898,7 +898,7 @@ const Query = () => {
                     </div>
                   </div>
 
-                  <div className="col border rounded">
+                  <div className="col border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
@@ -971,56 +971,56 @@ const Query = () => {
                     bg-primary form-input-3 px-3 rounded 
                     border-0 height-30 d-flex align-items-center m-0">Set Preference</p>
                     <div className=" mt-1">
-                      <label htmlFor="salesperson" className="m-0">Sales Person</label>
+                      <label htmlFor="salesperson" className="m-0 font-size-12">Sales Person</label>
                       <input type="text" id="salesperson" className="form-input-3" placeholder="Sales Person"/>
                     </div>
                     <div className="">
-                      <label htmlFor="assignuser" className="m-0">Assign User</label>
+                      <label htmlFor="assignuser" className="m-0 font-size-12">Assign User</label>
                       <input type="text" id="assignuser" className="form-input-3" placeholder="Assign User"/>
                     </div>
                     <div className="">
-                      <label htmlFor="contracting" className="m-0">Contracting Person</label>
+                      <label htmlFor="contracting" className="m-0 font-size-12">Contracting Person</label>
                       <input type="text" id="contracting" className="form-input-3" placeholder="Contracting Person"/>
                     </div>
                     <div className="">
-                      <label htmlFor="priority" className="m-0">Priority</label>
+                      <label htmlFor="priority" className="m-0 font-size-12">Priority</label>
                       <select type="select" id="priority" className="form-input-3" >
                         <option>Select Priority</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="hoteltype" className="m-0">Hotel Type</label>
+                      <label htmlFor="hoteltype" className="m-0 font-size-12">Hotel Type</label>
                       <select type="select" id="hoteltype" className="form-input-3" >
-                        <option>All Type</option>
+                        <option>Hotel Type</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="adventuretour" className="m-0">Tour Type</label>
+                      <label htmlFor="adventuretour" className="m-0 font-size-12">Tour Type</label>
                       <select type="select" id="adventuretour" className="form-input-3">
                         <option>Adventure Tour</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="tourtype" className="m-0">Tour Type</label>
+                      <label htmlFor="tourtype" className="m-0 font-size-12">Tour Type</label>
                       <select type="select" id="tourtype" className="form-input-3">
                         <option>Adventure Tour</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="vehicle" className="m-0">Vehicle Preference</label>
+                      <label htmlFor="vehicle" className="m-0 font-size-12">Vehicle Preference</label>
                       <select type="select" id="vehicle" className="form-input-3">
                         <option>Select Vehicle</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="leadsource" className="m-0">Lead Source</label>
+                      <label htmlFor="leadsource" className="m-0 font-size-12">Lead Source</label>
                       <select type="select" id="leadsource" className="form-input-3">
                         <option>Instagram</option>
                         <option>Facebook</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="leadreferenced" className="m-0">Lead ReferecedId</label>
+                      <label htmlFor="leadreferenced" className="m-0 font-size-12">Lead ReferecedId</label>
                       <input type="text" id="leadreferenced" className="form-input-3" placeholder="#87738727667"/>
                     </div>
                   </div>
@@ -1091,6 +1091,15 @@ const Query = () => {
                         </div>
                         <div className="pl-2">
                           <p className="font-size-12 font-weight-bold m-0 p-0">Maldives Magical 5 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://assets.vogue.in/photos/63889b741b8712b28236a56b/2:3/w_2560%2Cc_limit/Goa.jpeg" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Goa Enhance 5 days</p>
                         </div>
                     </div>
                   </div>
