@@ -196,9 +196,6 @@ const Query = () => {
   };
   console.log({...queryFields, TravelDate, RoomInfo, PaxInfo});
 
-  // const handleQueryChange = (e) => {
-  //   setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
-  // };
 
   // Looping date & stored into array
   function createDateArray() {
@@ -394,8 +391,11 @@ const Query = () => {
                           value={queryFields.QueryType}
                           onChange={handleChange}
                         >
-                          <option value="1">Date Wise</option>
-                          <option value="2">Day Wise</option>
+                          <option value="1">Query</option>
+                          <option value="2">Package</option>
+                          <option value="3">Duplicate Query</option>
+                          <option value="4">Activity</option>
+                          <option value="5">Multiple Services</option>
                         </select>
                       </div>
                       <div className="col-12 col-lg-4">
@@ -408,8 +408,10 @@ const Query = () => {
                           value={queryFields.BusinessType}
                           onChange={handleChange}
                         >
-                          <option value="1">Date Wise</option>
-                          <option value="2">Day Wise</option>
+                          <option value="1">Agent</option>
+                          <option value="2">B2B</option>
+                          <option value="3">B2C</option>
+                          <option value="3">Corporate</option>
                         </select>
                       </div>
                       <div className="col-12 col-lg-8">
@@ -1046,7 +1048,9 @@ const Query = () => {
                         className="form-input-3 w-100"
                         name="Priority"
                       >
-                        <option>Select</option>
+                        <option value={"1"}>Normal</option>
+                        <option value={"2"}>Medium</option>
+                        <option value={"3"}>Hight</option>
                       </select>
                     </div>
                     <div className="">
