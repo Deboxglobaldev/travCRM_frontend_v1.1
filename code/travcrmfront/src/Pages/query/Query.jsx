@@ -31,29 +31,28 @@ const Query = () => {
     Infant: "",
   });
   const [RoomInfo, setRoomInfo] = useState({
-    Single: "",
-    Double: "",
-    Twin: "",
-    Triple: "",
-    ExtraBed: "",
+    Room:0,
+    Single: 0,
+    Double: 0,
+    Twin: 0,
+    Triple: 0,
+    ExtraBed: 0,
   });
   const [queryFields, setQueryFields] = useState({
-    CompanyInfo: "",
-    AddEmail: "",
-    LeadPax: "",
-    Subject: "",
-    AdditionalInfo: "",
-    SearchPackage: "",
-    OperationPerson: "",
-    ContractPerson: "",
+    SalesPerson: "",
+    AssignUser: "",
+    ContractingPerson: "",
     Priority: "",
-    TAT: "",
-    TourType: "",
-    LeadSource: "",
-    HotelCategory: "",
-    LeadReferenced: "",
     HotelType: "",
-    MealPlan: "",
+    TourType: "",
+    VehiclePreference: "",
+    LeadSource: "",
+    LeadReferencedId: "",
+    QueryType: "",
+    BusinessType: "",
+    AgentName: "",
+    HotelCategory: "",
+    PaxType:""
   });
   // console.log("JSON Values...", {
   //   ...queryFields,
@@ -192,12 +191,14 @@ const Query = () => {
   // Handling onChange data inside query page
   const handleChange = (e) => {
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
+    setQueryFields({...queryFields, [e.target.name]:e.target.value});
+    setRoomInfo({...RoomInfo, [e.target.name]:e.target.value});
   };
-  console.log(TravelDate);
+  console.log({...queryFields, TravelDate, RoomInfo, PaxInfo});
 
-  const handleQueryChange = (e) => {
-    setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
-  };
+  // const handleQueryChange = (e) => {
+  //   setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
+  // };
 
   // Looping date & stored into array
   function createDateArray() {
@@ -390,7 +391,7 @@ const Query = () => {
                           component={"select"}
                           className="form-input-2"
                           name="QueryType"
-                          value="1"
+                          value={queryFields.QueryType}
                           onChange={handleChange}
                         >
                           <option value="1">Date Wise</option>
@@ -404,7 +405,7 @@ const Query = () => {
                         <select
                           className="form-input-2"
                           name="BusinessType"
-                          value="1"
+                          value={queryFields.BusinessType}
                           onChange={handleChange}
                         >
                           <option value="1">Date Wise</option>
@@ -421,6 +422,7 @@ const Query = () => {
                             className="form-input-2"
                             placeholder="Eneter Agent/Client Name"
                             name="AgentName"
+                            value={queryFields.AgentName}
                             onChange={handleChange}
                           />
                           <button
@@ -482,7 +484,7 @@ const Query = () => {
                           component={"select"}
                           className="form-input-2"
                           name="PaxType"
-                          value="1"
+                          value={queryFields.PaxType}
                           onChange={handleChange}
                         >
                           <option value="1">FIT</option>
@@ -559,6 +561,7 @@ const Query = () => {
                               type="radio"
                               name="hotelCategory"
                               value="3"
+                              onChange={handleChange}
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
@@ -571,6 +574,7 @@ const Query = () => {
                               name="hotelCategory"
                               id="four"
                               value="4"
+                              onChange={handleChange}
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
@@ -583,6 +587,7 @@ const Query = () => {
                               name="hotelCategory"
                               id="five"
                               value="5"
+                              onChange={handleChange}
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
@@ -595,6 +600,7 @@ const Query = () => {
                               name="hotelCategory"
                               id="all"
                               value="0"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -609,6 +615,8 @@ const Query = () => {
                             className="form-input-2 text-center p-0"
                             placeholder="0"
                             name="Room"
+                            value={RoomInfo.Room}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -658,7 +666,9 @@ const Query = () => {
                             type="text"
                             className="form-input-2 text-center p-0"
                             placeholder="0"
-                            name="SingleRoom"
+                            name="Single"
+                            value={RoomInfo.Single}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -708,7 +718,9 @@ const Query = () => {
                             type="text"
                             className="form-input-2 text-center p-0"
                             placeholder="0"
-                            name="DoubleRoom"
+                            name="Double"
+                            value={RoomInfo.Double}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -758,7 +770,9 @@ const Query = () => {
                             type="text"
                             className="form-input-2 text-center p-0"
                             placeholder="0"
-                            name="TwinRoom"
+                            name="Twin"
+                            value={RoomInfo.Twin}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -809,6 +823,7 @@ const Query = () => {
                             className="form-input-2 text-center p-0"
                             placeholder="0"
                             name="TplRoom"
+                            value={RoomInfo.Triple}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -859,6 +874,8 @@ const Query = () => {
                             className="form-input-2 text-center p-0"
                             placeholder="0"
                             name="ExtraBed"
+                            value={RoomInfo.ExtraBed}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -915,6 +932,7 @@ const Query = () => {
                           className="form-input-2"
                           name="Budget"
                           placeholder="Budget"
+
                         />
                       </div>
                       <div className="col-6 col-md-6 col-lg-4 form-check">
