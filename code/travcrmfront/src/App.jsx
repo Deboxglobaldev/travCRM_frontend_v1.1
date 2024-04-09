@@ -23,7 +23,7 @@ import DivisionMaster from "./Pages/master/masterList/DivisionMaster";
 import TourType from "./Pages/master/masterList/TourType";
 import SeasonMaster from "./Pages/master/masterList/SeasonMaster";
 import RoomMaster from "./Pages/master/masterList/RoomMaster";
-import HotelMaster from "./Pages/master/masterList/HotelMaster.jsx";
+
 import RoomType from "./Pages/master/masterList/RoomType";
 import Amenties from "./Pages/master/masterList/Amenties";
 import HotelType from "./Pages/master/masterList/HotelType";
@@ -92,14 +92,19 @@ import HotelMasterCreate from "./Pages/master/masterList/HotelMasterCreate.jsx";
 import EmergencyDetails from "./Pages/master/masterList/EmergencyDetails.jsx";
 import ProposalSetting from "./Pages/master/masterList/ProposalSetting.jsx";
 import CommissionMaster from "./Pages/master/masterList/CommissionMaster.jsx";
+import HotelMaster from "./Pages/master/masterlist/HotelMaster.jsx";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import ItenaryRequirement from "./Pages/master/masterList/ItenaryRequirement.jsx";
 import Proposal from "./Pages/query/Proposal.jsx";
 import Vouchers from "./Pages/query/Vouchers.jsx";
 import Invoices from "./Pages/query/Invoices.jsx";
 
+
 const App = () => {
   return (
     <>
+    <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<Protected><Home /></Protected>}/>

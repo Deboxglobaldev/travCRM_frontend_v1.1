@@ -2,7 +2,6 @@ import React from "react";
 import { axiosOther } from "../../http/axios/axios_new";
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form, useFormik } from "formik";
-import * as XLSX from "xlsx";
 
 const Model = ({
   children,
