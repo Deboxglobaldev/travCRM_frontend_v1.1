@@ -401,466 +401,7 @@ const Query = () => {
               {/* </div> */}
             </div>
 
-            <div className="row ">
-              {/* <div className="col-12 p-0 ">
-                <div className="card shadow-none border p-1 bg-gray">
-                  <h6 className="text-dark m-0">Contact Information</h6>
-                  <div className="row row-gap-2 ">
-                    <div className="col-12 col-sm-6 col-md-3">
-                      <input
-                        type="text"
-                        className="form-input-2"
-                        placeholder="Company, Email, Phone, Contact Person"
-                        name="CompanyInfo"
-                        onChange={handleQueryChange}
-                        value={queryFields.CompanyInfo}
-                      ></input>
-                      {errors.CompanyInfo && (
-                        <span className="text-danger font-size-10">
-                          {errors.CompanyInfo}
-                        </span>
-                      )}
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-3">
-                      <input
-                        type="text"
-                        placeholder="text@example.com"
-                        className="form-input-2"
-                        name="AddEmail"
-                        onChange={handleQueryChange}
-                        value={queryFields.AddEmail}
-                      ></input>
-                      {errors.AddEmail && (
-                        <span className="text-danger font-size-10">
-                          {errors.AddEmail}
-                        </span>
-                      )}
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-2">
-                      <input
-                        type="text"
-                        className="form-input-2"
-                        placeholder="Lead Pax Name"
-                        name="LeadPax"
-                        onChange={handleQueryChange}
-                        value={queryFields.LeadPax}
-                      ></input>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-2">
-                      <input
-                        type="text"
-                        className="form-input-2"
-                        placeholder="Subject"
-                        name="Subject"
-                        onChange={handleQueryChange}
-                        value={queryFields.Subject}
-                      ></input>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-2">
-                      <input
-                        type="textArea"
-                        placeholder="Additional Information"
-                        className="form-input-2"
-                        name="AdditionalInfo"
-                        onChange={handleQueryChange}
-                        value={queryFields.AdditionalInfo}
-                      ></input>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md col-sm-6 border rounded px-1">
-                <div className="row row-gap-2 p-0 pt-1 ">
-                  <h6 className="m-0">Destination Details</h6>
-                  <div className="col-md-12 col-12">
-                    <select
-                      component={"select"}
-                      className="form-input-1"
-                      name="Type"
-                      value={TravelDate.Type}
-                      onChange={handleChange}
-                    >
-                      <option value="1">Date Wise</option>
-                      <option value="2">Day Wise</option>
-                    </select>
-                  </div>
-                  <div className="col-5 pl-2 pr-0">
-                    <label>From Date</label>
-                    <input
-                      type="date"
-                      className="form-input-1"
-                      name="FromDate"
-                      value={TravelDate.FromDate}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                  <div className="col-5 pl-1 pr-0">
-                    <label>To Date</label>
-                    <input
-                      type="date"
-                      className="form-input-1"
-                      name="ToDate"
-                      value={TravelDate.ToDate}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                  <div className="col-2 pl-1">
-                    <label>Night</label>
-                    <input
-                      type="text"
-                      className="form-input-1 backgroundColor-3"
-                      placeholder=""
-                      name="TotalNights"
-                      value={TravelDate.TotalNights}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                </div>
-                {TravelDate.TotalNights !== "" && TravelDate.FromDate !== "" ? (
-                  <div className="row p-2">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Date/Day</th>
-                          <th>Country</th>
-                          <th>Destination</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {dateArray.map((value, index) => {
-                          return (
-                            <tr key={index + 1}>
-                              <td className="p-0 text-center">{value}</td>
-                              <td className="p-1">
-                                <select
-                                  type="select"
-                                  className="form-input-1"
-                                  style={{ height: "30px" }}
-                                  name={`Country${index}`}
-                                >
-                                  <option value="1">Select</option>
-
-                                  <option value="2">Inida</option>
-                                  <option value="3">Australia</option>
-                                </select>
-                              </td>
-                              <td className="p-1">
-                                <select
-                                  type="select"
-                                  className="form-input-1"
-                                  style={{ height: "30px" }}
-                                  name={`Destination${index}`}
-                                >
-                                  <option value="1">Select</option>
-                                  <option value="2">Delhi</option>
-                                  <option value="3">Dubai</option>
-                                </select>
-                              </td>
-                              <td>
-                                <i
-                                  className="fa-solid fa-trash pr-1
-                                   text-danger cursor-pointer"
-                                  onClick={dateDeleting}
-                                ></i>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="col-md col-sm-6 border rounded">
-                <div className="row py-1 row-gap-2 ">
-                  <h6 className="m-0 p-0 pl-2">Pax Information</h6>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Adult
-                    </label>
-                    <Counter
-                      value={state.counter1}
-                      dispatch={dispatch}
-                      counter="counter1"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Child
-                    </label>
-                    <Counter
-                      value={state.counter2}
-                      dispatch={dispatch}
-                      counter="counter2"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Infant
-                    </label>
-                    <Counter
-                      value={state.counter3}
-                      dispatch={dispatch}
-                      counter="counter3"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Total
-                    </label>
-                    <div
-                      className="backgroundColor-1 rounded
-                      d-flex justify-content-center align-items-center font-weight-bold"
-                      style={{ height: "25px" }}
-                    >
-                      Total : {PaxTotal}
-                    </div>
-                  </div>
-                </div>
-                <div className="row row-gap-2">
-                  <h6 className="m-0">Room's Information</h6>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Single
-                    </label>
-                    <Counter
-                      value={state.counter4}
-                      dispatch={dispatch}
-                      counter="counter4"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Double
-                    </label>
-                    <Counter
-                      value={state.counter5}
-                      dispatch={dispatch}
-                      counter="counter5"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Twin
-                    </label>
-                    <Counter
-                      value={state.counter6}
-                      dispatch={dispatch}
-                      counter="counter6"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Triple
-                    </label>
-                    <Counter
-                      value={state.counter7}
-                      dispatch={dispatch}
-                      counter="counter7"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Extra Bed
-                    </label>
-                    <Counter
-                      value={state.counter8}
-                      dispatch={dispatch}
-                      counter="counter8"
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label htmlFor="" className="m-0">
-                      Total
-                    </label>
-                    <div
-                      className="backgroundColor-1 rounded
-                      d-flex justify-content-center align-items-center font-weight-bold"
-                      style={{ height: "25px" }}
-                    >
-                      Total : {RoomsTotal}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md col-sm-6 border py-2 rounded">
-                <div className="row row-gap-2">
-                  <h6>Suggested Package</h6>
-                  <div className="col-12">
-                    <label>Search:</label>
-                    <input
-                      type="text"
-                      className="form-input-1"
-                      placeholder="Search Package.."
-                      name="Search"
-                      onChange={handleQueryChange}
-                      value={queryFields.SearchPackage}
-                    ></input>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md col-sm-6 border py-2 rounded">
-                <div className="row row-gap-2">
-                  <h6>Other Detail's</h6>
-                  <div className="col-md-6 col-12">
-                    <label> Operation Person </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="OperationPerson"
-                      onChange={handleQueryChange}
-                      value={queryFields.OperationPerson}
-                    >
-                      <option value={0}>Select Person</option>
-                      <option value={1}>Ansar</option>
-                      <option value={2}>Satendra</option>
-                      <option value={3}>Prasang</option>
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Contract.. Person </label>
-                    <input
-                      type="text"
-                      className="form-input-1"
-                      name="ContractingPerson"
-                      placeholder="Person"
-                      onChange={handleQueryChange}
-                      value={queryFields.ContractingPerson}
-                    />
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Priority </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="Priority"
-                      onChange={handleQueryChange}
-                      value={queryFields.Priority}
-                    >
-                      <option value={0}>Select Priority</option>
-                      <option value={1}>Normal</option>
-                      <option value={2}>Medium</option>
-                      <option value={3}>Hight</option>
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> TAT </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="TAT"
-                      onChange={handleQueryChange}
-                      value={queryFields.TAT}
-                    >
-                      <option value={0}>Select TAT</option>
-                      <option value={1}>24 Hours</option>
-                      <option value={2}>48 Hours</option>
-                      <option value={3}>72 Hours</option>
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Tour Type </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="TourType"
-                      onChange={handleQueryChange}
-                      value={queryFields.TourType}
-                    >
-                      <option value={0}>Select</option>
-                      {tourType.map((value, ind) => {
-                        return (
-                          <option value={ind + 1} key={ind + 1}>
-                            {value.Name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Lead Source </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="LeadSource"
-                      onChange={handleQueryChange}
-                      value={queryFields.LeadSource}
-                    >
-                      <option value={0}>Select</option>
-                      {leadList.map((value, ind) => {
-                        return (
-                          <option value={ind + 1} key={ind + 1}>
-                            {value.Name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Hotel Category </label>
-                    <div className="form-input-1 pl-0 border-0 d-flex justify-content-between align-items-center">
-                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                      <i className="fa-solid fa-star cursor-pointer font-size-15 color-gold"></i>
-                    </div>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Lead Referenced </label>
-                    <input
-                      type="text"
-                      className="form-input-1"
-                      name="LeadReferenced"
-                      placeholder="Referenced Id"
-                      onChange={handleQueryChange}
-                      value={queryFields.LeadReferenced}
-                    />
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Hotel Type </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="HotelType"
-                      onChange={handleQueryChange}
-                      value={queryFields.HotelType}
-                    >
-                      <option value={0}>Select Type</option>
-
-                      {hotelType.map((value, ind) => {
-                        return (
-                          <option value={ind + 1} key={ind + 1}>
-                            {value.Name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label> Meal Plan </label>
-                    <select
-                      type="select"
-                      className="form-input-1"
-                      name="MealPlan"
-                      onChange={handleQueryChange}
-                      value={queryFields.MealPlan}
-                    >
-                      <option value={0}>Select Plan</option>
-                      {hotelMeal.map((value, ind) => {
-                        return (
-                          <option value={ind + 1} key={ind + 1}>
-                            {value.Name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </div>
-              </div> */}
+            <div className="row">
               <div className="col-8">
                 <div className="row py-1 row-gap-2 column-gap-2">
                   <div className="col border rounded">
@@ -1408,11 +949,149 @@ const Query = () => {
                         <label htmlFor="queryType" className="m-0">
                           Total Nights
                         </label>
-                          <input type="text" className="form-input-2 text-center p-0" placeholder="0"/>
+                        <input
+                          type="text"
+                          className="form-input-2 text-center p-0"
+                          placeholder="0"
+                        />
                       </div>
                       <div className="col-2 mt-3">
-                          <button className="btn btn-primary p-1 height-30" >Add Night</button>
+                        <button className="btn btn-primary p-1 height-30">
+                          Add Night
+                        </button>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-4">
+                <div className="row py-1 row-gap-2">
+                  <div className="col-5 d-flex flex-column align-items-center">
+                    <p className="font-weight-bold 
+                    bg-primary form-input-3 px-3 rounded 
+                    border-0 height-30 d-flex align-items-center m-0">Set Preference</p>
+                    <div className=" mt-1">
+                      <label htmlFor="salesperson" className="m-0">Sales Person</label>
+                      <input type="text" id="salesperson" className="form-input-3" placeholder="Sales Person"/>
+                    </div>
+                    <div className="">
+                      <label htmlFor="assignuser" className="m-0">Assign User</label>
+                      <input type="text" id="assignuser" className="form-input-3" placeholder="Assign User"/>
+                    </div>
+                    <div className="">
+                      <label htmlFor="contracting" className="m-0">Contracting Person</label>
+                      <input type="text" id="contracting" className="form-input-3" placeholder="Contracting Person"/>
+                    </div>
+                    <div className="">
+                      <label htmlFor="priority" className="m-0">Priority</label>
+                      <select type="select" id="priority" className="form-input-3" >
+                        <option>Select Priority</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="hoteltype" className="m-0">Hotel Type</label>
+                      <select type="select" id="hoteltype" className="form-input-3" >
+                        <option>All Type</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="adventuretour" className="m-0">Tour Type</label>
+                      <select type="select" id="adventuretour" className="form-input-3">
+                        <option>Adventure Tour</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="tourtype" className="m-0">Tour Type</label>
+                      <select type="select" id="tourtype" className="form-input-3">
+                        <option>Adventure Tour</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="vehicle" className="m-0">Vehicle Preference</label>
+                      <select type="select" id="vehicle" className="form-input-3">
+                        <option>Select Vehicle</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="leadsource" className="m-0">Lead Source</label>
+                      <select type="select" id="leadsource" className="form-input-3">
+                        <option>Instagram</option>
+                        <option>Facebook</option>
+                      </select>
+                    </div>
+                    <div className="">
+                      <label htmlFor="leadreferenced" className="m-0">Lead ReferecedId</label>
+                      <input type="text" id="leadreferenced" className="form-input-3" placeholder="#87738727667"/>
+                    </div>
+                  </div>
+                  <div className="col-7 border rounded p-2">
+                    <h6 className="font-weight-bold">Suggested Packages</h6>
+                    <div>
+                        <input type="text" placeholder="Search Packages " className="form-input-3 rounded-pill"/>
+                        <label htmlFor="" className="font-size-12">Click to select the packages</label>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://media.cntraveller.com/photos/617936a2a8f76267fba5d115/master/w_1600%2Cc_limit/The%2520Burj%2520Khalifa-GettyImages-1084264582.jpeg" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Discover Dubai 5 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://i.natgeofe.com/n/483e77f7-f52b-432a-a0f5-d9cd1489a95a/madinat-jumeirah-dubai-uae_3x4.jpg" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Dubai Odessey 6 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/377486240.jpg?k=956825fb96b0ccd1d754e9b01d3f8fa33d83eb47c44b171bee406d9ae7b78c5e&o=&hp=1" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Dubai Unleashed 5 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://r1imghtlak.mmtcdn.com/a271073a79ca11eca91e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg&downsize=192:224.4&crop=192:224.4" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Captivating Highlight 7 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://static.dezeen.com/uploads/2022/02/museum-of-the-future-killa-design-dubai_dezeen_2364_col_20-scaled.jpg" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Enhancing Dubai Delight 6 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://akm-img-a-in.tosshub.com/sites/visualstory/stories/2021_06/story_1330/assets/46.jpeg?time=1624977644&size=*:900" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Maligcal Dubai 5 days</p>
+                        </div>
+                    </div>
+                    <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
+                        <div>
+                          <img src="https://media.architecturaldigest.com/photos/6032b3c9a0b9bd2edd5510d1/1:1/w_2880,h_2880,c_limit/Hero_Soneva%20Jani%20Chapter%20Two%20by%20Aksham%20Abdul%20Ghadir.jpg" 
+                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
+                        </div>
+                        <div className="pl-2">
+                          <p className="font-size-12 font-weight-bold m-0 p-0">Maldives Magical 5 days</p>
+                        </div>
                     </div>
                   </div>
                 </div>
