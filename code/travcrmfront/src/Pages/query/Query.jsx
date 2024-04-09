@@ -1095,7 +1095,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1141,7 +1140,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1187,7 +1185,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1233,7 +1230,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1279,7 +1275,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1325,7 +1320,6 @@ const Query = () => {
                           <div
                             className="py-0 border rounded cursor-pointer green-hover padding-x 
                             d-flex justify-content-center align-items-center"
-                            
                             style={{ height: "19px" }}
                           >
                             1
@@ -1366,7 +1360,9 @@ const Query = () => {
                   <div className="col border rounded">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
                       <div className="col-8 d-flex align-items-center">
-                        <p className="m-0 fs-6 font-weight-bold">Travel Information</p>
+                        <p className="m-0 fs-6 font-weight-bold">
+                          Travel Information
+                        </p>
                       </div>
                       <div className="col-4">
                         <input
@@ -1374,10 +1370,49 @@ const Query = () => {
                           className="form-input-2"
                           name="Type"
                           placeholder="Budget"
-                        />    
+                        />
                       </div>
-
-                      
+                      <div className="col-4 form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="TravelType"
+                          id="typedateorday"
+                        />
+                        <label className="form-check-label m-0" for="datewise">
+                          Date Wise
+                        </label>
+                      </div>
+                      <div className="col-4 form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="TravelType"
+                          id="daywise"
+                        />
+                        <label className="form-check-label m-0" for="daywise">
+                          Day Wise
+                        </label>
+                      </div>
+                      <div className="col-6">
+                        <label className="m-0">From Date</label>
+                        <input
+                          type="date"
+                          className="form-input-2"
+                          name="FromDate"
+                          value={TravelDate.FromDate}
+                          onChange={handleChange}
+                        ></input>
+                      </div>
+                      <div className="col-3 ">
+                        <label htmlFor="queryType" className="m-0">
+                          Total Nights
+                        </label>
+                          <input type="text" className="form-input-2 text-center p-0" placeholder="0"/>
+                      </div>
+                      <div className="col-2 mt-3">
+                          <button className="btn btn-primary p-1 height-30" >Add Night</button>
+                      </div>
                     </div>
                   </div>
                 </div>
