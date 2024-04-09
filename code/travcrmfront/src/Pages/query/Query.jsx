@@ -965,7 +965,7 @@ const Query = () => {
               </div>
               <div className="col-12 col-md-4">
                 <div className="row py-1 row-gap-2">
-                  <div className="col-12 col-sm-5 d-flex flex-column align-items-center">
+                  <div className="col-12 col-sm-5 d-flex flex-column ">
                     <p className="font-weight-bold 
                     bg-primary form-input-3 px-3 rounded 
                     border-0 height-30 d-flex align-items-center m-0">Set Preference</p>
@@ -983,14 +983,14 @@ const Query = () => {
                     </div>
                     <div className="">
                       <label htmlFor="priority" className="m-0 font-size-12">Priority</label>
-                      <select type="select" id="priority" className="form-input-3" >
-                        <option>Select Priority</option>
+                      <select type="select" id="priority" className="form-input-3 w-100" >
+                        <option>Select</option>
                       </select>
                     </div>
                     <div className="">
                       <label htmlFor="hoteltype" className="m-0 font-size-12">Hotel Type</label>
                       <select type="select" id="hoteltype" className="form-input-3" >
-                        <option>Hotel Type</option>
+                        <option>All</option>
                       </select>
                     </div>
                     <div className="">
