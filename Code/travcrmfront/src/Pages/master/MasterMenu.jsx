@@ -632,7 +632,7 @@ const MasterMenu = () => {
             <div className="col-xl-11 col-lg-10 col-md-10 col-sm-10">
               <div className="row">
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 my-2 my-md-2 my-lg-0 my-xl-0 p-0 px-2">
-                  <NavLink to="/master/hotel_ratesheet">
+                  <NavLink to="/master/itenaryrequirement">
                     <div className="mb-lg-2 mb-xl-2 mb-md-1 mb-1 master-list-icon">
                       <img src="assets/icons/destination.png" alt="image" />
                       <span className="pl-1">Itenarary Requirement</span>

@@ -161,16 +161,16 @@ const CruiseCompany = () => {
                         </Field>
                       </div>
                       <div className="col-sm-4">
-                        <label>City</label>
+                        <label>Country</label>
                         <Field
                           name="SetDefault"
                           className="form-control"
                           component={"select"}
                         >
-                          <option value={1}>Gurgoan</option>
-                          <option value={1}>Delhi</option>
-                          <option value={1}>Noida</option>
-                          <option value={2}>Hydrabad</option>
+                          <option value={1}>Inida</option>
+                          <option value={1}>Sri-Lanka</option>
+                          <option value={1}>Pakistan</option>
+                          <option value={2}>Nepal</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">
@@ -184,6 +184,19 @@ const CruiseCompany = () => {
                           <option value={1}>Delhi</option>
                           <option value={1}>Noida</option>
                           <option value={2}>Haryana</option>
+                        </Field>
+                      </div>
+                      <div className="col-sm-4">
+                        <label>City</label>
+                        <Field
+                          name="SetDefault"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={1}>Gurgoan</option>
+                          <option value={1}>Delhi</option>
+                          <option value={1}>Noida</option>
+                          <option value={2}>Hydrabad</option>
                         </Field>
                       </div>
                       <div className="col-sm-4">

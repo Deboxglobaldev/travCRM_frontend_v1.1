@@ -401,6 +401,18 @@ const TourEscort = () => {
                           <ErrorMessage name="Address" />
                         </span>
                       </div>
+                      <div className="col-sm-4">
+                        <label>Status</label>
+                        <Field
+                          name="Status"
+                          className="form-control"
+                          component={"select"}
+                        >
+                          <option value={1}>Active</option>
+                          <option value={0}>InActive</option>
+
+                        </Field>
+                      </div>
                     </div>
                   </div>
                 </Model>

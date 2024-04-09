@@ -29,7 +29,7 @@ const TransferMaster = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -130,7 +130,7 @@ const TransferMaster = () => {
                   Back
                 </NavLink>
                 <Model
-                  heading={"Add Vehicle"}
+                  heading={"Add Transfer"}
                   apiurl={"addupdatetransfermaster"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}

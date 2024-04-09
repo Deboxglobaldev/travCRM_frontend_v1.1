@@ -124,7 +124,7 @@ const VehicleMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model
+                {/* <Model
                   heading={"Add Airline"}
                   apiurl={"addupdatevehiclemasterlist"}
                   initialValues={countryInitialValue}
@@ -183,7 +183,7 @@ const VehicleMaster = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">

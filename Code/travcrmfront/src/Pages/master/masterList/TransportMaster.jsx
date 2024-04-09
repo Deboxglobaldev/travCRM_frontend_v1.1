@@ -29,7 +29,7 @@ const TransportMaster = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
@@ -127,8 +127,8 @@ const TransportMaster = () => {
                 >
                   Back
                 </NavLink>
-                <Model
-                  heading={"Add Vehicle"}
+                {/* <Model
+                  heading={"Add Transport"}
                   apiurl={"addupdatetransportmaster"}
                   initialValues={cityInitialValue}
                   validationSchema={cityValidationSchema}
@@ -210,7 +210,7 @@ const TransportMaster = () => {
                       </div>
                     </div>
                   </div>
-                </Model>
+                </Model> */}
               </div>
             </div>
             <div className="card-body">

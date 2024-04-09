@@ -29,7 +29,7 @@ const CruiseMaster = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {

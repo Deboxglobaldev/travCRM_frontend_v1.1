@@ -29,7 +29,7 @@ const CabinType = () => {
     };
 
     postDataToServer();
-  }, []);
+  }, [editData]);
 
   useEffect(() => {
     const result = getData.filter((item) => {
