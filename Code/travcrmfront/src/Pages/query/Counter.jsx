@@ -73,14 +73,6 @@ const Counter = ({ value, dispatch, counter }) => {
         >
           5
         </div>
-        <div
-          className="py-0 border rounded cursor-pointer green-hover padding-x 
-          d-flex justify-content-center align-items-center"
-          onClick={() => dispatch({ type: "SET",value:6, counter })}
-          style={{ height: "19px" }}
-        >
-          6
-        </div>
       </div>
     </>
   );

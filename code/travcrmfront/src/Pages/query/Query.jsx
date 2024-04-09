@@ -402,16 +402,16 @@ const Query = () => {
             </div>
 
             <div className="row">
-              <div className="col-8">
-                <div className="row py-1 column-gap-2">
-                  <div className="col border rounded py-1">
+              <div className="col-12 col-md-8">
+                <div className="row py-1 column-gap-2 row-gap-2">
+                  <div className="col-12 col-sm  border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
-                      <div className="col-8 d-flex align-items-center">
+                      <div className="col-12 col-sm-6 col-lg-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
                           Contact Information
                         </p>
                       </div>
-                      <div className="col-4 ">
+                      <div className="col-12 col-sm col-lg-4  ">
                         <label htmlFor="queryType" className="m-0">
                           Query Type
                         </label>
@@ -426,7 +426,7 @@ const Query = () => {
                           <option value="2">Day Wise</option>
                         </select>
                       </div>
-                      <div className="col-4">
+                      <div className="col-12 col-lg-4">
                         <label htmlFor="queryType" className="m-0">
                           BusinessType
                         </label>
@@ -440,7 +440,7 @@ const Query = () => {
                           <option value="2">Day Wise</option>
                         </select>
                       </div>
-                      <div className="col-8 ">
+                      <div className="col-12 col-lg-8">
                         <label htmlFor="queryType" className="m-0">
                           Agent/Client Name
                         </label>
@@ -460,7 +460,6 @@ const Query = () => {
                           </button>
                         </div>
                       </div>
-
                       <div className="col-12">
                         <div className="border d-flex justify-content-between p-1 flex-wrap gap-2">
                           <div className="d-flex justify-content-between align-items-center">
@@ -499,12 +498,12 @@ const Query = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col border rounded py-1">
+                  <div className="col-12 col-sm border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
-                      <div className="col-8 d-flex align-items-center">
+                      <div className="col-12 col-sm-6 col-lg-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">Pax Details</p>
                       </div>
-                      <div className="col-4">
+                      <div className="col-12 col-sm-6 col-lg-4">
                         <label htmlFor="queryType" className="m-0">
                           Pax Type
                         </label>
@@ -519,7 +518,7 @@ const Query = () => {
                           <option value="2">GIT</option>
                         </select>
                       </div>
-                      <div className="col-4">
+                      <div className="col-6 col-sm-4 col-md-4">
                         <label htmlFor="" className="m-0">
                           Adult
                           <i className="fa-solid fa-person pl-2"></i>
@@ -530,7 +529,7 @@ const Query = () => {
                           counter="counter1"
                         />
                       </div>
-                      <div className="col-4">
+                      <div className="col-6 col-sm-4 col-md-4">
                         <label htmlFor="" className="m-0">
                           Child
                           <i className="fa-solid fa-child-reaching pl-2"></i>
@@ -541,7 +540,7 @@ const Query = () => {
                           counter="counter2"
                         />
                       </div>
-                      <div className="col-4">
+                      <div className="col-6 col-sm-4 col-md-4">
                         <label htmlFor="" className="m-0">
                           Infant
                           <i className="fa-solid fa-person-breastfeeding pl-2"></i>
@@ -552,7 +551,7 @@ const Query = () => {
                           counter="counter3"
                         />
                       </div>
-                      <div className="col-12">
+                      <div className="col-6 col-sm-12 col-md-12">
                         <label htmlFor="" className="m-0 text-center">
                           Total
                         </label>
@@ -567,15 +566,15 @@ const Query = () => {
                     </div>
                   </div>
                 </div>
-                <div className="row mt-3 py-1 column-gap-2">
-                  <div className="col border rounded py-1">
+                <div className="row mt-3 py-1 column-gap-2 row-gap-2">
+                  <div className="col-12 col-sm border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
-                      <div className="col-4 d-flex align-items-center">
+                      <div className="col-12 col-lg-4 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
                           Accomodation
                         </p>
                       </div>
-                      <div className="col-8 px-3">
+                      <div className="col-12 col-lg-8 px-3">
                         <label htmlFor="hotel" className="m-0 p-0">
                           Hotel Category
                         </label>
@@ -625,7 +624,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3">
+                      <div className="col-6 col-md-6 col-lg-3">
                         <label htmlFor="queryType" className="m-0">
                           Room
                         </label>
@@ -670,7 +669,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3 ">
+                      <div className="col-6 col-md-6 col-lg-3 ">
                         <label htmlFor="queryType" className="m-0">
                           SGL Room
                         </label>
@@ -715,7 +714,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3">
+                      <div className="col-6 col-md-6 col-lg-3">
                         <label htmlFor="queryType" className="m-0">
                           DBL Room
                         </label>
@@ -760,7 +759,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3 ">
+                      <div className="col-6 col-md-6 col-lg-3 ">
                         <label htmlFor="queryType" className="m-0">
                           TWIN Room
                         </label>
@@ -805,7 +804,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3 ">
+                      <div className="col-6 col-md-6 col-lg-3">
                         <label htmlFor="queryType" className="m-0">
                           TPL Room
                         </label>
@@ -850,7 +849,7 @@ const Query = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-3 ">
+                      <div className="col-6 col-md-6 col-lg-3">
                         <label htmlFor="queryType" className="m-0">
                           EXTRA Bed
                         </label>
@@ -898,14 +897,14 @@ const Query = () => {
                     </div>
                   </div>
 
-                  <div className="col border rounded py-1">
+                  <div className="col-12 col-sm border rounded py-1">
                     <div className="row row-gap-2 p-0 pt-1 pb-2">
-                      <div className="col-8 d-flex align-items-center">
+                      <div className="col-12 col-md-6 col-lg-8 d-flex align-items-center">
                         <p className="m-0 fs-6 font-weight-bold">
                           Travel Information
                         </p>
                       </div>
-                      <div className="col-4">
+                      <div className="col-12 col-md-6 col-lg-4">
                         <input
                           type="text"
                           className="form-input-2"
@@ -913,7 +912,7 @@ const Query = () => {
                           placeholder="Budget"
                         />
                       </div>
-                      <div className="col-4 form-check">
+                      <div className="col-6 col-md-6 col-lg-4 form-check">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -924,7 +923,7 @@ const Query = () => {
                           Date Wise
                         </label>
                       </div>
-                      <div className="col-4 form-check">
+                      <div className="col-6 col-md-6 col-lg-4 form-check">
                         <input
                           className="form-check-input"
                           type="radio"
@@ -935,7 +934,7 @@ const Query = () => {
                           Day Wise
                         </label>
                       </div>
-                      <div className="col-6">
+                      <div className="col-6 col-md-12 col-lg-6">
                         <label className="m-0">From Date</label>
                         <input
                           type="date"
@@ -945,7 +944,7 @@ const Query = () => {
                           onChange={handleChange}
                         ></input>
                       </div>
-                      <div className="col-3 ">
+                      <div className="col-4 col-md-6 col-lg-3 ">
                         <label htmlFor="queryType" className="m-0">
                           Total Nights
                         </label>
@@ -955,7 +954,7 @@ const Query = () => {
                           placeholder="0"
                         />
                       </div>
-                      <div className="col-2 mt-3">
+                      <div className="col-4 col-md-6 col-lg-2  mt-3">
                         <button className="btn btn-primary p-1 height-30">
                           Add Night
                         </button>
@@ -964,9 +963,9 @@ const Query = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <div className="row py-1 row-gap-2">
-                  <div className="col-5 d-flex flex-column align-items-center">
+                  <div className="col-12 col-sm-5 d-flex flex-column align-items-center">
                     <p className="font-weight-bold 
                     bg-primary form-input-3 px-3 rounded 
                     border-0 height-30 d-flex align-items-center m-0">Set Preference</p>
@@ -1024,7 +1023,7 @@ const Query = () => {
                       <input type="text" id="leadreferenced" className="form-input-3" placeholder="#87738727667"/>
                     </div>
                   </div>
-                  <div className="col-7 border rounded p-2">
+                  <div className="col-12 col-sm-7 border rounded p-2">
                     <h6 className="font-weight-bold">Suggested Packages</h6>
                     <div>
                         <input type="text" placeholder="Search Packages " className="form-input-3 rounded-pill"/>
