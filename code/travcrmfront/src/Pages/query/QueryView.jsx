@@ -107,6 +107,7 @@ const QueryView = () => {
                       : "text-primary"
                   }`}
                 >
+                  
                   Proposal
                 </NavLink>
               </li>
@@ -143,6 +144,7 @@ const QueryView = () => {
                       : "text-primary"
                   }`}
                 >
+                  <i className="fa-solid fa-puzzle-piece"></i>
                   Tour Extension
                 </NavLink>
               </li>

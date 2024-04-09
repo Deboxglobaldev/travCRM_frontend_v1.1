@@ -77,11 +77,6 @@ const Query = () => {
     counter1: 0,
     counter2: 0,
     counter3: 0,
-    counter4: 0,
-    counter5: 0,
-    counter6: 0,
-    counter7: 0,
-    counter8: 0,
   };
 
   const reducer = (state, action) => {
@@ -198,6 +193,7 @@ const Query = () => {
   const handleChange = (e) => {
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
   };
+  console.log(TravelDate);
 
   const handleQueryChange = (e) => {
     setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
@@ -262,14 +258,8 @@ const Query = () => {
       counter1,
       counter2,
       counter3,
-      counter4,
-      counter5,
-      counter6,
-      counter7,
-      counter8,
     } = state;
     setPaxTotal(counter1 + counter2 + counter3);
-    setRoomsTotal(counter4 + counter5 + counter6 + counter7 + counter8);
   };
 
   // Set counter value into json
@@ -282,16 +272,6 @@ const Query = () => {
     });
   }, [state]);
 
-  useEffect(() => {
-    updateTotal();
-    setRoomInfo({
-      Single: state.counter4,
-      Double: state.counter5,
-      Twin: state.counter6,
-      Triple: state.counter7,
-      ExtraBed: state.counter8,
-    });
-  }, [state]);
 
   // Data Set into input field from localstorage and remove on Submit and Clear;
   useEffect(() => {
@@ -331,15 +311,6 @@ const Query = () => {
     dispatch({ type: "SET", value: Adult ? Adult : 0, counter: "counter1" });
     dispatch({ type: "SET", value: Child ? Child : 0, counter: "counter2" });
     dispatch({ type: "SET", value: Infant ? Infant : 0, counter: "counter3" });
-    dispatch({ type: "SET", value: Single ? Single : 0, counter: "counter4" });
-    dispatch({ type: "SET", value: Double ? Double : 0, counter: "counter5" });
-    dispatch({ type: "SET", value: Twin ? Twin : 0, counter: "counter6" });
-    dispatch({ type: "SET", value: Triple ? Triple : 0, counter: "counter7" });
-    dispatch({
-      type: "SET",
-      value: ExtraBed ? ExtraBed : 0,
-      counter: "counter8",
-    });
 
     setQueryFields({
       CompanyInfo: CompanyInfo ? CompanyInfo : "",
@@ -418,8 +389,8 @@ const Query = () => {
                         <select
                           component={"select"}
                           className="form-input-2"
-                          name="Type"
-                          value={TravelDate.Type}
+                          name="QueryType"
+                          value="1"
                           onChange={handleChange}
                         >
                           <option value="1">Date Wise</option>
@@ -432,8 +403,8 @@ const Query = () => {
                         </label>
                         <select
                           className="form-input-2"
-                          name="Type"
-                          value={TravelDate.Type}
+                          name="BusinessType"
+                          value="1"
                           onChange={handleChange}
                         >
                           <option value="1">Date Wise</option>
@@ -449,7 +420,7 @@ const Query = () => {
                             type="text"
                             className="form-input-2"
                             placeholder="Eneter Agent/Client Name"
-                            name="Type"
+                            name="AgentName"
                             onChange={handleChange}
                           />
                           <button
@@ -481,7 +452,7 @@ const Query = () => {
                               htmlFor="market"
                               className="m-0 font-size-12"
                             >
-                              Market Type :{" "}
+                              Market Type :
                             </label>
                             <p className="m-0 pl-1 font-size-12">General</p>
                           </div>
@@ -490,7 +461,7 @@ const Query = () => {
                               htmlFor="market"
                               className="m-0 font-size-12"
                             >
-                              Nationalty :{" "}
+                              Nationalty :
                             </label>
                             <p className="m-0 pl-1 font-size-12">Indian</p>
                           </div>
@@ -510,8 +481,8 @@ const Query = () => {
                         <select
                           component={"select"}
                           className="form-input-2"
-                          name="Type"
-                          value={TravelDate.Type}
+                          name="PaxType"
+                          value="1"
                           onChange={handleChange}
                         >
                           <option value="1">FIT</option>
@@ -587,53 +558,62 @@ const Query = () => {
                               className="form-check-input m-0 p-0 ml-3"
                               type="radio"
                               name="hotelCategory"
+                              value="3"
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
-                            <label htmlFor="three" className="m-0 pr-2">
+                            <label htmlFor="four" className="m-0 pr-2">
                               4*
                             </label>
                             <input
                               className="form-check-input m-0 p-0 ml-3"
                               type="radio"
                               name="hotelCategory"
-                              id="three"
+                              id="four"
+                              value="4"
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
-                            <label htmlFor="three" className="m-0 pr-2">
+                            <label htmlFor="five" className="m-0 pr-2">
                               5*
                             </label>
                             <input
                               className="form-check-input m-0 p-0 ml-3"
                               type="radio"
                               name="hotelCategory"
-                              id="three"
+                              id="five"
+                              value="5"
                             />
                           </div>
                           <div className="col form-div d-flex justify-content-center align-items-center">
-                            <label htmlFor="three" className="m-0 pr-2">
+                            <label htmlFor="all" className="m-0 pr-2">
                               All
                             </label>
                             <input
                               className="form-check-input m-0 p-0 ml-3"
                               type="radio"
                               name="hotelCategory"
-                              id="three"
+                              id="all"
+                              value="0"
                             />
                           </div>
                         </div>
                       </div>
                       <div className="col-6 col-md-6 col-lg-3">
-                        <label htmlFor="queryType" className="m-0">
+                        <label className="m-0">
                           Room
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="Room"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
-                            className="py-0 border rounded cursor-pointer green-hover padding-x 
+                            className="py-0 border rounded cursor-pointer green-hover padding-x
                             d-flex justify-content-center align-items-center"
                             style={{ height: "19px" }}
                           >
@@ -670,11 +650,16 @@ const Query = () => {
                         </div>
                       </div>
                       <div className="col-6 col-md-6 col-lg-3 ">
-                        <label htmlFor="queryType" className="m-0">
+                        <label className="m-0">
                           SGL Room
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="SingleRoom"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
@@ -718,8 +703,13 @@ const Query = () => {
                         <label htmlFor="queryType" className="m-0">
                           DBL Room
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="DoubleRoom"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
@@ -763,8 +753,13 @@ const Query = () => {
                         <label htmlFor="queryType" className="m-0">
                           TWIN Room
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="TwinRoom"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
@@ -808,8 +803,13 @@ const Query = () => {
                         <label htmlFor="queryType" className="m-0">
                           TPL Room
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="TplRoom"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
@@ -853,8 +853,13 @@ const Query = () => {
                         <label htmlFor="queryType" className="m-0">
                           EXTRA Bed
                         </label>
-                        <div className="form-div d-flex justify-content-center align-items-center">
-                          1
+                        <div>
+                          <input
+                            type="text"
+                            className="form-input-2 text-center p-0"
+                            placeholder="0"
+                            name="ExtraBed"
+                          />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
                           <div
@@ -908,7 +913,7 @@ const Query = () => {
                         <input
                           type="text"
                           className="form-input-2"
-                          name="Type"
+                          name="Budget"
                           placeholder="Budget"
                         />
                       </div>
@@ -916,7 +921,7 @@ const Query = () => {
                         <input
                           className="form-check-input"
                           type="radio"
-                          name="TravelType"
+                          name="DateWise"
                           id="typedateorday"
                         />
                         <label className="form-check-label m-0" for="datewise">
@@ -927,7 +932,7 @@ const Query = () => {
                         <input
                           className="form-check-input"
                           type="radio"
-                          name="TravelType"
+                          name="DayWise"
                           id="daywise"
                         />
                         <label className="form-check-label m-0" for="daywise">
@@ -952,6 +957,9 @@ const Query = () => {
                           type="text"
                           className="form-input-2 text-center p-0"
                           placeholder="0"
+                          name="TotalNights"
+                          value={TravelDate.TotalNights}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="col-4 col-md-6 col-lg-2  mt-3">
@@ -965,141 +973,269 @@ const Query = () => {
               </div>
               <div className="col-12 col-md-4">
                 <div className="row py-1 row-gap-2">
-                  <div className="col-12 col-sm-5 d-flex flex-column ">
-                    <p className="font-weight-bold 
+                  <div className="col-12 col-sm-5 d-flex flex-column justify-content-between">
+                    <p
+                      className="font-weight-bold 
                     bg-primary form-input-3 px-3 rounded 
-                    border-0 height-30 d-flex align-items-center m-0">Set Preference</p>
+                    border-0 height-30 d-flex align-items-center m-0"
+                    >
+                      Set Preference
+                    </p>
                     <div className=" mt-1">
-                      <label htmlFor="salesperson" className="m-0 font-size-12">Sales Person</label>
-                      <input type="text" id="salesperson" className="form-input-3" placeholder="Sales Person"/>
+                      <label htmlFor="salesperson" className="m-0 font-size-12">
+                        Sales Person
+                      </label>
+                      <input
+                        type="text"
+                        id="salesperson"
+                        className="form-input-3"
+                        placeholder="Sales Person"
+                        name="SalesPerson"
+
+                      />
                     </div>
                     <div className="">
-                      <label htmlFor="assignuser" className="m-0 font-size-12">Assign User</label>
-                      <input type="text" id="assignuser" className="form-input-3" placeholder="Assign User"/>
+                      <label htmlFor="assignuser" className="m-0 font-size-12">
+                        Assign User
+                      </label>
+                      <input
+                        type="text"
+                        id="assignuser"
+                        className="form-input-3"
+                        placeholder="Assign User"
+                        name="AssignUser"
+                      />
                     </div>
                     <div className="">
-                      <label htmlFor="contracting" className="m-0 font-size-12">Contracting Person</label>
-                      <input type="text" id="contracting" className="form-input-3" placeholder="Contracting Person"/>
+                      <label htmlFor="contracting" className="m-0 font-size-12">
+                        Contracting Person
+                      </label>
+                      <input
+                        type="text"
+                        id="contracting"
+                        className="form-input-3"
+                        placeholder="Contracting Person"
+                        name="ContractingPerson"
+                      />
                     </div>
                     <div className="">
-                      <label htmlFor="priority" className="m-0 font-size-12">Priority</label>
-                      <select type="select" id="priority" className="form-input-3 w-100" >
+                      <label htmlFor="priority" className="m-0 font-size-12">
+                        Priority
+                      </label>
+                      <select
+                        type="select"
+                        id="priority"
+                        className="form-input-3 w-100"
+                        name="Priority"
+                      >
                         <option>Select</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="hoteltype" className="m-0 font-size-12">Hotel Type</label>
-                      <select type="select" id="hoteltype" className="form-input-3" >
+                      <label htmlFor="hoteltype" className="m-0 font-size-12">
+                        Hotel Type
+                      </label>
+                      <select
+                        type="select"
+                        id="hoteltype"
+                        className="form-input-3"
+                        name="HotelType"
+                      >
                         <option>All</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="adventuretour" className="m-0 font-size-12">Tour Type</label>
-                      <select type="select" id="adventuretour" className="form-input-3">
+                      <label
+                        htmlFor="adventuretour"
+                        className="m-0 font-size-12"
+                        name="TourType"
+                      >
+                        Tour Type
+                      </label>
+                      <select
+                        type="select"
+                        id="adventuretour"
+                        className="form-input-3"
+                        name="TourType"
+                      >
                         <option>Adventure Tour</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="tourtype" className="m-0 font-size-12">Tour Type</label>
-                      <select type="select" id="tourtype" className="form-input-3">
-                        <option>Adventure Tour</option>
-                      </select>
-                    </div>
-                    <div className="">
-                      <label htmlFor="vehicle" className="m-0 font-size-12">Vehicle Preference</label>
-                      <select type="select" id="vehicle" className="form-input-3">
+                      <label htmlFor="vehicle" className="m-0 font-size-12">
+                        Vehicle Preference
+                      </label>
+                      <select
+                        type="select"
+                        id="vehicle"
+                        className="form-input-3"
+                        name="VehiclePreference"
+                      >
                         <option>Select Vehicle</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="leadsource" className="m-0 font-size-12">Lead Source</label>
-                      <select type="select" id="leadsource" className="form-input-3">
+                      <label htmlFor="leadsource" className="m-0 font-size-12">
+                        Lead Source
+                      </label>
+                      <select
+                        type="select"
+                        id="leadsource"
+                        className="form-input-3"
+                        name="LeadSource"
+                      >
                         <option>Instagram</option>
                         <option>Facebook</option>
                       </select>
                     </div>
                     <div className="">
-                      <label htmlFor="leadreferenced" className="m-0 font-size-12">Lead ReferecedId</label>
-                      <input type="text" id="leadreferenced" className="form-input-3" placeholder="#87738727667"/>
+                      <label
+                        htmlFor="leadreferenced"
+                        className="m-0 font-size-12"
+                        name="LeadReferencedId"
+                      >
+                        Lead ReferecedId
+                      </label>
+                      <input
+                        type="text"
+                        id="leadreferenced"
+                        className="form-input-3"
+                        placeholder="#87738727667"
+                      />
                     </div>
                   </div>
                   <div className="col-12 col-sm-7 border rounded p-2">
                     <h6 className="font-weight-bold">Suggested Packages</h6>
                     <div>
-                        <input type="text" placeholder="Search Packages " className="form-input-3 rounded-pill"/>
-                        <label htmlFor="" className="font-size-12">Click to select the packages</label>
+                      <input
+                        type="text"
+                        placeholder="Search Packages "
+                        className="form-input-3 rounded-pill"
+                        name="PackageSearch"
+                      />
+                      <label htmlFor="" className="font-size-12">
+                        Click to select the packages
+                      </label>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://media.cntraveller.com/photos/617936a2a8f76267fba5d115/master/w_1600%2Cc_limit/The%2520Burj%2520Khalifa-GettyImages-1084264582.jpeg" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Discover Dubai 5 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://media.cntraveller.com/photos/617936a2a8f76267fba5d115/master/w_1600%2Cc_limit/The%2520Burj%2520Khalifa-GettyImages-1084264582.jpeg"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Discover Dubai 5 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://i.natgeofe.com/n/483e77f7-f52b-432a-a0f5-d9cd1489a95a/madinat-jumeirah-dubai-uae_3x4.jpg" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Dubai Odessey 6 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://i.natgeofe.com/n/483e77f7-f52b-432a-a0f5-d9cd1489a95a/madinat-jumeirah-dubai-uae_3x4.jpg"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Dubai Odessey 6 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/377486240.jpg?k=956825fb96b0ccd1d754e9b01d3f8fa33d83eb47c44b171bee406d9ae7b78c5e&o=&hp=1" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Dubai Unleashed 5 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/377486240.jpg?k=956825fb96b0ccd1d754e9b01d3f8fa33d83eb47c44b171bee406d9ae7b78c5e&o=&hp=1"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Dubai Unleashed 5 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://r1imghtlak.mmtcdn.com/a271073a79ca11eca91e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg&downsize=192:224.4&crop=192:224.4" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Captivating Highlight 7 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://r1imghtlak.mmtcdn.com/a271073a79ca11eca91e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg&downsize=192:224.4&crop=192:224.4"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded margin-l"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Captivating Highlight 7 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://static.dezeen.com/uploads/2022/02/museum-of-the-future-killa-design-dubai_dezeen_2364_col_20-scaled.jpg" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Enhancing Dubai Delight 6 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://static.dezeen.com/uploads/2022/02/museum-of-the-future-killa-design-dubai_dezeen_2364_col_20-scaled.jpg"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded margin-l"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Enhancing Dubai Delight 6 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://akm-img-a-in.tosshub.com/sites/visualstory/stories/2021_06/story_1330/assets/46.jpeg?time=1624977644&size=*:900" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Maligcal Dubai 5 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://akm-img-a-in.tosshub.com/sites/visualstory/stories/2021_06/story_1330/assets/46.jpeg?time=1624977644&size=*:900"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded margin-l"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Maligcal Dubai 5 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://media.architecturaldigest.com/photos/6032b3c9a0b9bd2edd5510d1/1:1/w_2880,h_2880,c_limit/Hero_Soneva%20Jani%20Chapter%20Two%20by%20Aksham%20Abdul%20Ghadir.jpg" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Maldives Magical 5 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://media.architecturaldigest.com/photos/6032b3c9a0b9bd2edd5510d1/1:1/w_2880,h_2880,c_limit/Hero_Soneva%20Jani%20Chapter%20Two%20by%20Aksham%20Abdul%20Ghadir.jpg"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded margin-l"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Maldives Magical 5 days
+                        </p>
+                      </div>
                     </div>
                     <div className="padding-2 d-flex align-items-center border rounded cursor-pointer mt-1">
-                        <div>
-                          <img src="https://assets.vogue.in/photos/63889b741b8712b28236a56b/2:3/w_2560%2Cc_limit/Goa.jpeg" 
-                          alt="" style={{height:'35px', width:'35px'}} className="rounded margin-l"/>
-                        </div>
-                        <div className="pl-2">
-                          <p className="font-size-12 font-weight-bold m-0 p-0">Goa Enhance 5 days</p>
-                        </div>
+                      <div>
+                        <img
+                          src="https://assets.vogue.in/photos/63889b741b8712b28236a56b/2:3/w_2560%2Cc_limit/Goa.jpeg"
+                          alt=""
+                          style={{ height: "35px", width: "35px" }}
+                          className="rounded margin-l"
+                        />
+                      </div>
+                      <div className="pl-2">
+                        <p className="font-size-12 font-weight-bold m-0 p-0">
+                          Goa Enhance 5 days
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
