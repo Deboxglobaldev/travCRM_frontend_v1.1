@@ -31,17 +31,17 @@ const Query = () => {
     Infant: "",
   });
   const [RoomInfo, setRoomInfo] = useState({
-    Room:0,
-    Single: 0,
-    Double: 0,
-    Twin: 0,
-    Triple: 0,
-    ExtraBed: 0,
+    Room: "",
+    Single: "",
+    Double: "",
+    Twin: "",
+    Triple: "",
+    ExtraBed: "",
   });
   const [queryFields, setQueryFields] = useState({
     SalesPerson: "",
     AssignUser: "",
-    ContractingPerson: "",
+    ContractPerson: "",
     Priority: "",
     HotelType: "",
     TourType: "",
@@ -52,7 +52,15 @@ const Query = () => {
     BusinessType: "",
     AgentName: "",
     HotelCategory: "",
-    PaxType:""
+    PaxType: "",
+    PackageCode: "",
+    PackageName: "",
+    QueryId: "",
+    TravelType: "1",
+    TravelSeason: "",
+    TravelYear:"",
+    Budget:"",
+    PackageSearch:""
   });
   // console.log("JSON Values...", {
   //   ...queryFields,
@@ -191,11 +199,10 @@ const Query = () => {
   // Handling onChange data inside query page
   const handleChange = (e) => {
     setTravelDate({ ...TravelDate, [e.target.name]: e.target.value });
-    setQueryFields({...queryFields, [e.target.name]:e.target.value});
-    setRoomInfo({...RoomInfo, [e.target.name]:e.target.value});
+    setQueryFields({ ...queryFields, [e.target.name]: e.target.value });
+    setRoomInfo({ ...RoomInfo, [e.target.name]: e.target.value });
   };
-  console.log({...queryFields, TravelDate, RoomInfo, PaxInfo});
-
+  console.log({ ...queryFields, TravelDate, RoomInfo, PaxInfo });
 
   // Looping date & stored into array
   function createDateArray() {
@@ -252,11 +259,7 @@ const Query = () => {
 
   // Update Total Values in Pax and Rooms
   const updateTotal = () => {
-    const {
-      counter1,
-      counter2,
-      counter3,
-    } = state;
+    const { counter1, counter2, counter3 } = state;
     setPaxTotal(counter1 + counter2 + counter3);
   };
 
@@ -269,7 +272,6 @@ const Query = () => {
       Infant: state.counter3,
     });
   }, [state]);
-
 
   // Data Set into input field from localstorage and remove on Submit and Clear;
   useEffect(() => {
@@ -398,20 +400,51 @@ const Query = () => {
                           <option value="5">Multiple Services</option>
                         </select>
                       </div>
-                      {queryFields.QueryType=='3' && 
+                      {queryFields.QueryType == "3" && (
                         <div className="col-12">
-                        <label htmlFor="" className="m-0">Query Id</label>
-                        <input type="text" name="PackageName" placeholder="Query Id" className="form-input-2"/>
+                          <label htmlFor="" className="m-0">
+                            Query Id
+                          </label>
+                          <input
+                            type="text"
+                            name="QueryId"
+                            placeholder="Query Id"
+                            className="form-input-2"
+                            value={queryFields.QueryId}
+                            onChange={handleChange}
+                          />
                         </div>
-                      }
-                      {queryFields.QueryType=='2' && <><div className="col-12 col-sm-6">
-                        <label htmlFor="" className="m-0">Package Code</label>
-                        <input type="text" name="PackageName" placeholder="Enter Package Code" className="form-input-2"/>
-                      </div>
-                      <div className="col-12 col-sm-6">
-                        <label htmlFor="" className="m-0">Package Name</label>
-                        <input type="text" name="PackageName" placeholder="Enter Package Name" className="form-input-2"/>
-                      </div></>}
+                      )}
+                      {queryFields.QueryType == "2" && (
+                        <>
+                          <div className="col-12 col-sm-6">
+                            <label htmlFor="" className="m-0">
+                              Package Code
+                            </label>
+                            <input
+                              type="text"
+                              name="PackageCode"
+                              placeholder="Enter Package Code"
+                              className="form-input-2"
+                              value={queryFields.PackageCode}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-12 col-sm-6">
+                            <label htmlFor="" className="m-0">
+                              Package Name
+                            </label>
+                            <input
+                              type="text"
+                              name="PackageName"
+                              placeholder="Enter Package Name"
+                              className="form-input-2"
+                              value={queryFields.PackageName}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </>
+                      )}
                       <div className="col-12 col-lg-4">
                         <label htmlFor="queryType" className="m-0">
                           BusinessType
@@ -576,7 +609,7 @@ const Query = () => {
                               className="form-check-input m-0 p-0 ml-3"
                               type="radio"
                               name="hotelCategory"
-                              value="3"
+                              value={queryFields.HotelCategory}
                               onChange={handleChange}
                             />
                           </div>
@@ -589,7 +622,7 @@ const Query = () => {
                               type="radio"
                               name="hotelCategory"
                               id="four"
-                              value="4"
+                              value={queryFields.HotelCategory}
                               onChange={handleChange}
                             />
                           </div>
@@ -602,7 +635,7 @@ const Query = () => {
                               type="radio"
                               name="hotelCategory"
                               id="five"
-                              value="5"
+                              value={queryFields.HotelCategory}
                               onChange={handleChange}
                             />
                           </div>
@@ -615,16 +648,14 @@ const Query = () => {
                               type="radio"
                               name="hotelCategory"
                               id="all"
-                              value="0"
+                              value={queryFields.HotelCategory}
                               onChange={handleChange}
                             />
                           </div>
                         </div>
                       </div>
                       <div className="col-6 col-md-6 col-lg-3">
-                        <label className="m-0">
-                          Room
-                        </label>
+                        <label className="m-0">Room</label>
                         <div>
                           <input
                             type="text"
@@ -674,9 +705,7 @@ const Query = () => {
                         </div>
                       </div>
                       <div className="col-6 col-md-6 col-lg-3 ">
-                        <label className="m-0">
-                          SGL Room
-                        </label>
+                        <label className="m-0">SGL Room</label>
                         <div>
                           <input
                             type="text"
@@ -840,6 +869,7 @@ const Query = () => {
                             placeholder="0"
                             name="TplRoom"
                             value={RoomInfo.Triple}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="d-flex justify-content-between align-items-center pt-1">
@@ -933,7 +963,7 @@ const Query = () => {
                         </div>
                       </div>
                       <div className="col-6 col-md-6 col-lg-6 d-flex align-items-center">
-                          <p className="font-weight-bold">Total Rooms : 0</p>
+                        <p className="font-weight-bold">Total Rooms : 0</p>
                       </div>
                     </div>
                   </div>
@@ -951,17 +981,20 @@ const Query = () => {
                           className="form-input-2"
                           name="Budget"
                           placeholder="Budget"
-
+                          value={queryFields.Budget}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="col-6 col-md-6 col-lg-4 form-check">
                         <input
                           className="form-check-input"
                           type="radio"
-                          name="DateWise"
+                          name="TravelType"
                           id="typedateorday"
+                          value={queryFields.TravelType}
+                          onChange={handleChange}
                         />
-                        <label className="form-check-label m-0" for="datewise">
+                        <label className="form-check-label m-0" htmlFor="typedateorday">
                           Date Wise
                         </label>
                       </div>
@@ -969,13 +1002,50 @@ const Query = () => {
                         <input
                           className="form-check-input"
                           type="radio"
-                          name="DayWise"
+                          name="TravelType"
                           id="daywise"
+                          value={queryFields.TravelType}
+                          onChange={handleChange}
                         />
-                        <label className="form-check-label m-0" for="daywise">
+                        <label className="form-check-label m-0" htmlFor="daywise">
                           Day Wise
                         </label>
                       </div>
+                      {queryFields.TravelType=='2' &&
+                        <>
+                          <div className="col-6 col-md-12 col-lg-6">
+                            <select
+                              type="select"
+                              className="form-input-2"
+                              name="TravelSeason"
+                              value={queryFields.TravelSeason}
+                              onChange={handleChange}
+                            >
+                              <option value="1">Winter</option>
+                              <option value="2">Summer</option>
+                              <option value="3">Both Season</option>
+                            </select>
+                          </div>
+                          <div className="col-6 col-md-12 col-lg-6">
+                            <select
+                              type="select"
+                              className="form-input-2"
+                              name="TravelYear"
+                              value={queryFields.TravelYear}
+                              onChange={handleChange}
+                            >
+                              <option value="1">2024</option>
+                              <option value="2">2025</option>
+                              <option value="3">2026</option>
+                              <option value="4">2027</option>
+                              <option value="5">2028</option>
+                              <option value="6">2029</option>
+                              <option value="7">2030</option>
+                            </select>
+                          </div>
+                        </>
+                      }
+                      {queryFields.TravelType=="2" ? "" : 
                       <div className="col-6 col-md-12 col-lg-6">
                         <label className="m-0">From Date</label>
                         <input
@@ -985,8 +1055,8 @@ const Query = () => {
                           value={TravelDate.FromDate}
                           onChange={handleChange}
                         ></input>
-                      </div>
-                      <div className="col-4 col-md-6 col-lg-3 ">
+                      </div>}
+                      <div className={queryFields.TravelType=="2"? 'col-6' : 'col-4 col-md-6 col-lg-3'}>
                         <label htmlFor="queryType" className="m-0">
                           Total Nights
                         </label>
@@ -999,11 +1069,68 @@ const Query = () => {
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="col-4 col-md-6 col-lg-2  mt-3">
+                      <div className={'col-4 col-md-6 col-lg-2 mt-3'}>
                         <button className="btn btn-primary p-1 height-30">
                           Add Night
                         </button>
                       </div>
+                      {TravelDate.TotalNights !== "" &&
+                      TravelDate.FromDate !== "" ? (
+                        <div className="row p-2">
+                          <table className="table">
+                            <thead>
+                              <tr>
+                                <th>Date/Day</th>
+                                <th>Country</th>
+                                <th>Destination</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {dateArray.map((value, index) => {
+                                return (
+                                  <tr key={index + 1}>
+                                    <td className="p-0 text-center">{value}</td>
+                                    <td className="p-1">
+                                      <select
+                                        type="select"
+                                        className="form-input-1"
+                                        style={{ height: "30px" }}
+                                        name={`Country${index}`}
+                                      >
+                                        <option value="1">Select</option>
+                                        <option value="2">Inida</option>
+                                        <option value="3">Australia</option>
+                                      </select>
+                                    </td>
+                                    <td className="p-1">
+                                      <select
+                                        type="select"
+                                        className="form-input-1"
+                                        style={{ height: "30px" }}
+                                        name={`Destination${index}`}
+                                      >
+                                        <option value="1">Select</option>
+                                        <option value="2">Delhi</option>
+                                        <option value="3">Dubai</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <i
+                                        className="fa-solid fa-trash pr-1
+                                   text-danger cursor-pointer"
+                                        onClick={dateDeleting}
+                                      ></i>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1028,7 +1155,8 @@ const Query = () => {
                         className="form-input-3"
                         placeholder="Sales Person"
                         name="SalesPerson"
-
+                        value={queryFields.SalesPerson}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="">
@@ -1041,6 +1169,8 @@ const Query = () => {
                         className="form-input-3"
                         placeholder="Assign User"
                         name="AssignUser"
+                        value={queryFields.AssignUser}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="">
@@ -1052,7 +1182,9 @@ const Query = () => {
                         id="contracting"
                         className="form-input-3"
                         placeholder="Contracting Person"
-                        name="ContractingPerson"
+                        name="ContractPerson"
+                        value={queryFields.ContractPerson}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="">
@@ -1064,6 +1196,8 @@ const Query = () => {
                         id="priority"
                         className="form-input-3 w-100"
                         name="Priority"
+                        value={queryFields.Priority}
+                        onChange={handleChange}
                       >
                         <option value={"1"}>Normal</option>
                         <option value={"2"}>Medium</option>
@@ -1079,6 +1213,8 @@ const Query = () => {
                         id="hoteltype"
                         className="form-input-3"
                         name="HotelType"
+                        value={queryFields.HotelType}
+                        onChange={handleChange}
                       >
                         <option>All</option>
                       </select>
@@ -1088,6 +1224,8 @@ const Query = () => {
                         htmlFor="adventuretour"
                         className="m-0 font-size-12"
                         name="TourType"
+                        value={queryFields.TourType}
+                        onChange={handleChange}
                       >
                         Tour Type
                       </label>
@@ -1096,6 +1234,8 @@ const Query = () => {
                         id="adventuretour"
                         className="form-input-3"
                         name="TourType"
+                        value={queryFields.TourType}
+                        onChange={handleChange}
                       >
                         <option>Adventure Tour</option>
                       </select>
@@ -1109,6 +1249,8 @@ const Query = () => {
                         id="vehicle"
                         className="form-input-3"
                         name="VehiclePreference"
+                        value={queryFields.VehiclePreference}
+                        onChange={handleChange}
                       >
                         <option>Select Vehicle</option>
                       </select>
@@ -1122,6 +1264,8 @@ const Query = () => {
                         id="leadsource"
                         className="form-input-3"
                         name="LeadSource"
+                        value={queryFields.LeadSource}
+                        onChange={handleChange}
                       >
                         <option>Instagram</option>
                         <option>Facebook</option>
@@ -1131,7 +1275,6 @@ const Query = () => {
                       <label
                         htmlFor="leadreferenced"
                         className="m-0 font-size-12"
-                        name="LeadReferencedId"
                       >
                         Lead ReferecedId
                       </label>
@@ -1140,6 +1283,9 @@ const Query = () => {
                         id="leadreferenced"
                         className="form-input-3"
                         placeholder="#87738727667"
+                        name="LeadReferencedId"
+                        value={queryFields.LeadReferencedId}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -1151,6 +1297,8 @@ const Query = () => {
                         placeholder="Search Packages "
                         className="form-input-3 rounded-pill"
                         name="PackageSearch"
+                        value={queryFields.PackageSearch}
+                        onChange={handleChange}
                       />
                       <label htmlFor="" className="font-size-12">
                         Click to select the packages
